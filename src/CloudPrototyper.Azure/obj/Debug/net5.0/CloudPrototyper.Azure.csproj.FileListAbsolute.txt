@@ -1,0 +1,15 @@
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\bin\Debug\net5.0\CloudPrototyper.Azure.deps.json
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\bin\Debug\net5.0\CloudPrototyper.Azure.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\bin\Debug\net5.0\ref\CloudPrototyper.Azure.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\bin\Debug\net5.0\CloudPrototyper.Azure.pdb
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\bin\Debug\net5.0\CloudPrototyper.Model.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\bin\Debug\net5.0\CloudPrototyper.Model.pdb
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\CloudPrototyper.Azure.csproj.AssemblyReference.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\CloudPrototyper.Azure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\CloudPrototyper.Azure.AssemblyInfoInputs.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\CloudPrototyper.Azure.AssemblyInfo.cs
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\CloudPrototyper.Azure.csproj.CoreCompileInputs.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\CloudPrototyper.Azure.csproj.CopyComplete
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\CloudPrototyper.Azure.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\ref\CloudPrototyper.Azure.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Azure\obj\Debug\net5.0\CloudPrototyper.Azure.pdb
