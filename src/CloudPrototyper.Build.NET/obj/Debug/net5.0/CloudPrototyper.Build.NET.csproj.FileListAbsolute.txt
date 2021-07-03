@@ -1,0 +1,17 @@
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\bin\Debug\net5.0\CloudPrototyper.Build.NET.deps.json
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\bin\Debug\net5.0\CloudPrototyper.Build.NET.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\bin\Debug\net5.0\ref\CloudPrototyper.Build.NET.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\bin\Debug\net5.0\CloudPrototyper.Build.NET.pdb
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\bin\Debug\net5.0\CloudPrototyper.Interface.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\bin\Debug\net5.0\CloudPrototyper.Model.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\bin\Debug\net5.0\CloudPrototyper.Interface.pdb
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\bin\Debug\net5.0\CloudPrototyper.Model.pdb
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\CloudPrototyper.Build.NET.csproj.AssemblyReference.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\CloudPrototyper.Build.NET.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\CloudPrototyper.Build.NET.AssemblyInfoInputs.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\CloudPrototyper.Build.NET.AssemblyInfo.cs
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\CloudPrototyper.Build.NET.csproj.CoreCompileInputs.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\CloudPrototyper.Build.NET.csproj.CopyComplete
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\CloudPrototyper.Build.NET.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\ref\CloudPrototyper.Build.NET.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.Build.NET\obj\Debug\net5.0\CloudPrototyper.Build.NET.pdb
