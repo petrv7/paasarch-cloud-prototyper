@@ -63,9 +63,9 @@ namespace CloudPrototyper.Deployment.Azure
         /// Lists resources that can be prepared with this instance.
         /// </summary>
         /// <returns>List of resources that can be prepared with this instance.</returns>
-        public override List<Type> GetSupportedResources()
+        public override List<System.Type> GetSupportedResources()
             =>
-                new List<Type>
+                new List<System.Type>
                 {
                     typeof (AzureSQLDatabase),
                     typeof (AzureTableStorage),
@@ -77,8 +77,8 @@ namespace CloudPrototyper.Deployment.Azure
         /// Lists applications that can be prepared with this instance.
         /// </summary>
         /// <returns>List of applications that can be prepared with this instance.</returns>
-        public override List<Type> GetSupportedApplications() =>
-                new List<Type>
+        public override List<System.Type> GetSupportedApplications() =>
+                new List<System.Type>
                 {
                     typeof (RestApiApplication),
                     typeof (WorkerApplication)
@@ -165,10 +165,10 @@ namespace CloudPrototyper.Deployment.Azure
                 Uri relRoot = new Uri(Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), UriKind.Absolute);
 
                 string relPath = relRoot.MakeRelativeUri(fullPath).ToString();
-                client.UploadFile(file, (@"\site\wwwroot\App_Data\Jobs\continuous\Worker" + "\\" + relPath.Substring(6)), true, true);
+                client.UploadFile(file, (@"\site\wwwroot\App_Data\Jobs\continuous\Worker" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
                 if (Path.GetFileName(file.ToLower()).Contains("packages.config"))
                 {
-                    client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), true, true);
+                    client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
                 }
             }
             _webApps[application].Refresh();
@@ -202,11 +202,11 @@ namespace CloudPrototyper.Deployment.Azure
                     Path.GetFileName(file.ToLower()).Contains("web.config") ||
                     Path.GetFileName(file.ToLower()).Contains("packages.config"))
                 {
-                    client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), true, true);
+                    client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
                 }
                 else
                 {
-                    client.UploadFile(file, (@"\site\wwwroot\bin" + "\\" + relPath.Substring(6)), true, true);
+                    client.UploadFile(file, (@"\site\wwwroot\bin" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
                 }
             }
             application.BaseUrl = _webApps[application].DefaultHostName;
@@ -288,8 +288,87 @@ namespace CloudPrototyper.Deployment.Azure
                         .Create();
             }
             Console.WriteLine("Making sql db: " + resource.Name);
+
+            DatabaseEdition edition = new();
+            edition = DatabaseEdition.Free;
+            switch (resource.PerformanceTier)
+            {
+                case "Basic":
+                    edition = DatabaseEdition.Basic;
+                    break;
+                case "Premium":
+                    edition = DatabaseEdition.Premium;
+                    break;
+                case "Free":
+                    edition = DatabaseEdition.Free;
+                    break;
+                case "Standard":
+                    edition = DatabaseEdition.Standard;
+                    break;                
+            }
+
+            ServiceObjectiveName serviceObjective = new();
+            serviceObjective = ServiceObjectiveName.Free;
+            switch (resource.ServiceObjective)
+            {
+                case "Basic":
+                    serviceObjective = ServiceObjectiveName.Basic;
+                    break;
+                case "Free":
+                    serviceObjective = ServiceObjectiveName.Free;
+                    break;
+                case "P1":
+                    serviceObjective = ServiceObjectiveName.P1;
+                    break;
+                case "P2":
+                    serviceObjective = ServiceObjectiveName.P2;
+                    break;
+                case "P3":
+                    serviceObjective = ServiceObjectiveName.P3;
+                    break;
+                case "P4":
+                    serviceObjective = ServiceObjectiveName.P4;
+                    break;
+                case "P6":
+                    serviceObjective = ServiceObjectiveName.P6;
+                    break;
+                case "P11":
+                    serviceObjective = ServiceObjectiveName.P11;
+                    break;
+                case "P15":
+                    serviceObjective = ServiceObjectiveName.P15;
+                    break;
+                case "S0":
+                    serviceObjective = ServiceObjectiveName.S0;
+                    break;
+                case "S1":
+                    serviceObjective = ServiceObjectiveName.S1;
+                    break;
+                case "S2":
+                    serviceObjective = ServiceObjectiveName.S2;
+                    break;
+                case "S3":
+                    serviceObjective = ServiceObjectiveName.S3;
+                    break;
+                case "S4":
+                    serviceObjective = ServiceObjectiveName.S4;
+                    break;
+                case "S6":
+                    serviceObjective = ServiceObjectiveName.S6;
+                    break;
+                case "S7":
+                    serviceObjective = ServiceObjectiveName.S7;
+                    break;
+                case "S9":
+                    serviceObjective = ServiceObjectiveName.S9;
+                    break;
+                case "S12":
+                    serviceObjective = ServiceObjectiveName.S12;
+                    break;
+            }
+
             _databases.Add(resource, _sqlServer.Databases.Define(resource.Name)
-                .WithEdition(resource.PerformanceTier).WithServiceObjective(resource.ServiceObjective)
+                .WithEdition(edition).WithServiceObjective(serviceObjective)
                         .Create());
 
             PreparedResources.Add(resource);
