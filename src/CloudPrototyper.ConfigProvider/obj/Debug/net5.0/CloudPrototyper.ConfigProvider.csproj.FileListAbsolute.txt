@@ -1,0 +1,17 @@
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\bin\Debug\net5.0\CloudPrototyper.ConfigProvider.deps.json
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\bin\Debug\net5.0\CloudPrototyper.ConfigProvider.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\bin\Debug\net5.0\ref\CloudPrototyper.ConfigProvider.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\bin\Debug\net5.0\CloudPrototyper.ConfigProvider.pdb
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\bin\Debug\net5.0\CloudPrototyper.Interface.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\bin\Debug\net5.0\CloudPrototyper.Model.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\bin\Debug\net5.0\CloudPrototyper.Interface.pdb
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\bin\Debug\net5.0\CloudPrototyper.Model.pdb
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\CloudPrototyper.ConfigProvider.csproj.AssemblyReference.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\CloudPrototyper.ConfigProvider.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\CloudPrototyper.ConfigProvider.AssemblyInfoInputs.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\CloudPrototyper.ConfigProvider.AssemblyInfo.cs
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\CloudPrototyper.ConfigProvider.csproj.CoreCompileInputs.cache
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\CloudPrototyper.ConfigProvider.csproj.CopyComplete
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\CloudPrototyper.ConfigProvider.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\ref\CloudPrototyper.ConfigProvider.dll
+C:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.ConfigProvider\obj\Debug\net5.0\CloudPrototyper.ConfigProvider.pdb

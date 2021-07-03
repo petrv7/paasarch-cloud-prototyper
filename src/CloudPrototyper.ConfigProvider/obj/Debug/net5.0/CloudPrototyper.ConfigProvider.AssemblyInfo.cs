@@ -11,8 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: System.Reflection.AssemblyCompanyAttribute("CloudPrototyper.ConfigProvider")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyProductAttribute("CloudPrototyper.ConfigProvider")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CloudPrototyper.ConfigProvider")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
