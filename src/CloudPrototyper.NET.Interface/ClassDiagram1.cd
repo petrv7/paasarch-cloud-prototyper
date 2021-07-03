@@ -22,7 +22,6 @@
       <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Prototyper\GeneratorBase.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CloudPrototyper.NET.Interface.Prototyper.ModeledBase" Collapsed="true">
     <Position X="25.25" Y="0.5" Width="1.5" />
