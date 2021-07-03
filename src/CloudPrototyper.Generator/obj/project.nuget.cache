@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sobIZwpoLXX/fjFzrLKx0uxIP5DHrLvALKDB0tckQOXAsDdmA1MijtUPnvE1sMMCM/paZ/AKoBGYQiWUe/JIGw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PV\\source\\repos\\paasarch-cloud-prototyper\\src\\CloudPrototyper.Generator\\CloudPrototyper.Generator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PV\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
