@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -45,14 +46,14 @@ namespace CloudPrototyper.Build.NET
         {
             try
             {
-                ProjectCollection pc = new ProjectCollection();
+                /*ProjectCollection pc = new ProjectCollection();
 
                 Dictionary<string, string> globalProperty = new Dictionary<string, string>
                 {
                     {"Configuration", "Release"},
                     {"Platform", "Any CPU"},
                     {"OutputPath", buildable.OutputBuildPath+"\\build"}
-                };
+            };
 
                 BuildParameters bp = new BuildParameters(pc);
                 File.WriteAllText(buildable.OutputBuildPath + "\\build.log", "");
@@ -62,15 +63,47 @@ namespace CloudPrototyper.Build.NET
                         Verbosity = LoggerVerbosity.Detailed,
                         ShowSummary = true,
                         SkipProjectStartedText = false,
-                        Parameters = buildable.OutputBuildPath + "\\build.log"
+                        Parameters = "logfile=" + buildable.OutputBuildPath + "\\build.log"
             }
                 };
-                BuildRequestData buidlRequest = new BuildRequestData(Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First(), globalProperty, "4.0", new[] { "Build" }, null);
+                BuildRequestData buidlRequest = new BuildRequestData(Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First(), globalProperty, null, new[] { "Build" }, null);
                 BuildResult buildResult = BuildManager.DefaultBuildManager.Build(bp, buidlRequest);
 
                 if (buildResult.OverallResult != BuildResultCode.Success)
                 { 
                    throw new ArgumentException("Provided buildable is not valid :( " + buildable.SolutionRootPath); 
+                }*/
+
+                var isDone = false;
+                var solutionFile = Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First();
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+
+                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
+                {
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    FileName = @"c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe",
+                    Arguments = solutionFile + " /p:OutputPath=" + buildable.OutputBuildPath + "\\build",
+                    UseShellExecute = false
+
+                };
+
+                process.EnableRaisingEvents = true;
+                process.StartInfo = startInfo;
+
+                process.OutputDataReceived += (sender, args) =>
+                {
+                    Console.WriteLine(args.ToString());
+                };
+                process.Exited += (sender, args) =>
+                {
+                    isDone = true;
+                    process.Dispose();
+                };
+                process.Start();
+
+                while (!isDone)
+                {
+                    Thread.Sleep(100);
                 }
             }
             catch (Exception e)
@@ -96,7 +129,7 @@ namespace CloudPrototyper.Build.NET
                 System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
                 {
                     WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-                    FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "nuget.exe"),
+                    FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nuget.exe"),
                     Arguments = "restore " + solutionFile,
                     UseShellExecute = false
                     
