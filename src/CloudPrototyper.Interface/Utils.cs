@@ -36,7 +36,7 @@ namespace CloudPrototyper.Interface
             {
                 try
                 {
-                    var assembly = Assembly.LoadFile(assemblyPath);
+                    var assembly = Assembly.LoadFrom(assemblyPath);
                     output.AddRange(assembly.GetTypes());
                 }
                 catch (ReflectionTypeLoadException e)
