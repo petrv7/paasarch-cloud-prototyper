@@ -7,401 +7,382 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace CloudPrototyper.NET.Framework.v462.Common.Templates.BusinessLayerTemplates
-{
-    using System;
-    using System.Collections.Generic;
+
+namespace CloudPrototyper.NET.Framework.v462.Common.Templates.BusinessLayerTemplates {
     using System.Linq;
     using System.Text;
-
-
-
-    public partial class SequenceOperationTemplate : SequenceOperationTemplateBase
-    {
-
-
+    using System.Collections.Generic;
+    using System;
+    
+    
+    public partial class SequenceOperationTemplate : SequenceOperationTemplateBase {
+        
+        
         private CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.SequenceOperationGenerator _ModelField;
-
-        public CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.SequenceOperationGenerator Model
-        {
-            get
-            {
+        
+        public CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.SequenceOperationGenerator Model {
+            get {
                 return this._ModelField;
             }
         }
 
-
-        public virtual string TransformText()
-        {
+        
+        public virtual string TransformText() {
             this.GenerationEnvironment = null;
-
-#line 7 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line 7 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("using System.Collections.Generic;\r\n// sequence operation\r\nnamespace  ");
-
-#line default
-#line hidden
-
-#line 9 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
-
-#line default
-#line hidden
-
-#line 9 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 9 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 9 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
-
-#line default
-#line hidden
-
-#line 11 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 11 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 11 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 11 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write(" : ");
-
-#line default
-#line hidden
-
-#line 11 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.OperationInterface.Namespace));
-
-#line default
-#line hidden
-
-#line 11 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 11 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.OperationInterface.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 11 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 11 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.OperationInterface.Name));
-
-#line default
-#line hidden
-
-#line 11 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 11 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.OperationInterface.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 11 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("\r\n    {\r\n\t\tpublic const string Key = \"");
-
-#line default
-#line hidden
-
-#line 13 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModelParameters.Name));
-
-#line default
-#line hidden
-
-#line 13 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("\";\r\n");
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            foreach (var operation in Model.InnerOperations)
-            {
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write("\t\tpublic ");
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(operation.Namespace));
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name));
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(" ");
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name));
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(" { get; set; }\r\n");
-
-#line default
-#line hidden
-
-#line 16 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 17 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ foreach(var operation in Model.InnerOperations) { 
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write("\t\tpublic ");
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(" { get; set; }\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 16 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 17 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("\r\n\t\tpublic ");
-
-#line default
-#line hidden
-
-#line 18 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 18 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("(\r\n");
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            foreach (var operation in Model.InnerOperations)
-            {
-                if (Model.InnerOperations.Last().Equals(operation))
-                {
-
-#line default
-#line hidden
-
-#line 20 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write("\t\t");
-
-#line default
-#line hidden
-
-#line 20 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(operation.Namespace));
-
-#line default
-#line hidden
-
-#line 20 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(".");
-
-#line default
-#line hidden
-
-#line 20 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name));
-
-#line default
-#line hidden
-
-#line 20 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(" ");
-
-#line default
-#line hidden
-
-#line 20 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name.ToLower()));
-
-#line default
-#line hidden
-
-#line 20 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write("\r\n");
-
-#line default
-#line hidden
-
-#line 21 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                }
-                else
-                {
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write("\t\t");
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(operation.Namespace));
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(".");
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name));
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(" ");
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name.ToLower()));
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                    this.Write(",\r\n");
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                }
-            }
-
-#line default
-#line hidden
-
-#line 24 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ foreach(var operation in Model.InnerOperations) {  if(Model.InnerOperations.Last().Equals(operation)) {
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write("\t\t");
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name.ToLower() ));
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write("\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write("\t\t");
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name.ToLower() ));
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(",\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ }} 
+            
+            #line default
+            #line hidden
+            
+            #line 24 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("\t\t) \r\n\r\n\t\t{\r\n");
-
-#line default
-#line hidden
-
-#line 27 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            foreach (var operation in Model.InnerOperations)
-            {
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write("\t\t\tthis.");
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name));
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(" = ");
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name.ToLower()));
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(";\r\n");
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 27 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ foreach(var operation in Model.InnerOperations) { 
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write("\t\t\tthis.");
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(" = ");
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name.ToLower() ));
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(";\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("\t\t}\r\n\r\n\t\tpublic void Execute(List<string> output)\r\n\t\t{\r\n\t\t\tfor(int i = 0; i < ");
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModelParameters.NumberOfRepetitions));
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.NumberOfRepetitions ));
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("; i++) \r\n\t\t\t{\r\n");
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            foreach (var operation in Model.InnerOperations)
-            {
-
-#line default
-#line hidden
-
-#line 37 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write("\t\t\t");
-
-#line default
-#line hidden
-
-#line 37 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(operation.Name));
-
-#line default
-#line hidden
-
-#line 37 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-                this.Write(".Execute(output);\r\n");
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ foreach(var operation in Model.InnerOperations) { 
+            
+            #line default
+            #line hidden
+            
+            #line 37 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write("\t\t\t");
+            
+            #line default
+            #line hidden
+            
+            #line 37 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( operation.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 37 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+            this.Write(".Execute(output);\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\BusinessLayerTemplates\SequenceOperationTemplate.tt"
             this.Write("\t\t\t}\r\n\t\t}\r\n    }\r\n}\r\n");
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
-
-        public virtual void Initialize()
-        {
-            if ((this.Errors.HasErrors == false))
-            {
-                if (((this.Session != null)
-                            && this.Session.ContainsKey("Model")))
-                {
+        
+        public virtual void Initialize() {
+            if ((this.Errors.HasErrors == false)) {
+                if (((this.Session != null) 
+                            && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.SequenceOperationGenerator).IsAssignableFrom(data.GetType()))
-                    {
+                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.SequenceOperationGenerator).IsAssignableFrom(data.GetType())) {
                         this._ModelField = ((CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.SequenceOperationGenerator)(data));
                     }
-                    else
-                    {
+                    else {
                         this.Error("The type \'CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGener" +
                                 "ators.SequenceOperationGenerator\' of the parameter \'Model\' did not match the typ" +
                                 "e passed to the template");
@@ -411,106 +392,84 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.BusinessLayerTempl
 
         }
     }
-
-    public class SequenceOperationTemplateBase
-    {
-
+    
+    public class SequenceOperationTemplateBase {
+        
         private global::System.Text.StringBuilder builder;
-
+        
         private global::System.Collections.Generic.IDictionary<string, object> session;
-
+        
         private global::System.CodeDom.Compiler.CompilerErrorCollection errors;
-
+        
         private string currentIndent = string.Empty;
-
+        
         private global::System.Collections.Generic.Stack<int> indents;
-
+        
         private ToStringInstanceHelper _toStringHelper = new ToStringInstanceHelper();
-
-        public virtual global::System.Collections.Generic.IDictionary<string, object> Session
-        {
-            get
-            {
+        
+        public virtual global::System.Collections.Generic.IDictionary<string, object> Session {
+            get {
                 return this.session;
             }
-            set
-            {
+            set {
                 this.session = value;
             }
         }
-
-        public global::System.Text.StringBuilder GenerationEnvironment
-        {
-            get
-            {
-                if ((this.builder == null))
-                {
+        
+        public global::System.Text.StringBuilder GenerationEnvironment {
+            get {
+                if ((this.builder == null)) {
                     this.builder = new global::System.Text.StringBuilder();
                 }
                 return this.builder;
             }
-            set
-            {
+            set {
                 this.builder = value;
             }
         }
-
-        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors
-        {
-            get
-            {
-                if ((this.errors == null))
-                {
+        
+        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors {
+            get {
+                if ((this.errors == null)) {
                     this.errors = new global::System.CodeDom.Compiler.CompilerErrorCollection();
                 }
                 return this.errors;
             }
         }
-
-        public string CurrentIndent
-        {
-            get
-            {
+        
+        public string CurrentIndent {
+            get {
                 return this.currentIndent;
             }
         }
-
-        private global::System.Collections.Generic.Stack<int> Indents
-        {
-            get
-            {
-                if ((this.indents == null))
-                {
+        
+        private global::System.Collections.Generic.Stack<int> Indents {
+            get {
+                if ((this.indents == null)) {
                     this.indents = new global::System.Collections.Generic.Stack<int>();
                 }
                 return this.indents;
             }
         }
-
-        public ToStringInstanceHelper ToStringHelper
-        {
-            get
-            {
+        
+        public ToStringInstanceHelper ToStringHelper {
+            get {
                 return this._toStringHelper;
             }
         }
-
-        public void Error(string message)
-        {
+        
+        public void Error(string message) {
             this.Errors.Add(new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message));
         }
-
-        public void Warning(string message)
-        {
+        
+        public void Warning(string message) {
             global::System.CodeDom.Compiler.CompilerError val = new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message);
             val.IsWarning = true;
             this.Errors.Add(val);
         }
-
-        public string PopIndent()
-        {
-            if ((this.Indents.Count == 0))
-            {
+        
+        public string PopIndent() {
+            if ((this.Indents.Count == 0)) {
                 return string.Empty;
             }
             int lastPos = (this.currentIndent.Length - this.Indents.Pop());
@@ -518,80 +477,65 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.BusinessLayerTempl
             this.currentIndent = this.currentIndent.Substring(0, lastPos);
             return last;
         }
-
-        public void PushIndent(string indent)
-        {
+        
+        public void PushIndent(string indent) {
             this.Indents.Push(indent.Length);
             this.currentIndent = (this.currentIndent + indent);
         }
-
-        public void ClearIndent()
-        {
+        
+        public void ClearIndent() {
             this.currentIndent = string.Empty;
             this.Indents.Clear();
         }
-
-        public void Write(string textToAppend)
-        {
+        
+        public void Write(string textToAppend) {
             this.GenerationEnvironment.Append(textToAppend);
         }
-
-        public void Write(string format, params object[] args)
-        {
+        
+        public void Write(string format, params object[] args) {
             this.GenerationEnvironment.AppendFormat(format, args);
         }
-
-        public void WriteLine(string textToAppend)
-        {
+        
+        public void WriteLine(string textToAppend) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendLine(textToAppend);
         }
-
-        public void WriteLine(string format, params object[] args)
-        {
+        
+        public void WriteLine(string format, params object[] args) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendFormat(format, args);
             this.GenerationEnvironment.AppendLine();
         }
-
-        public class ToStringInstanceHelper
-        {
-
+        
+        public class ToStringInstanceHelper {
+            
             private global::System.IFormatProvider formatProvider = global::System.Globalization.CultureInfo.InvariantCulture;
-
-            public global::System.IFormatProvider FormatProvider
-            {
-                get
-                {
+            
+            public global::System.IFormatProvider FormatProvider {
+                get {
                     return this.formatProvider;
                 }
-                set
-                {
-                    if ((value != null))
-                    {
+                set {
+                    if ((value != null)) {
                         this.formatProvider = value;
                     }
                 }
             }
-
-            public string ToStringWithCulture(object objectToConvert)
-            {
-                if ((objectToConvert == null))
-                {
+            
+            public string ToStringWithCulture(object objectToConvert) {
+                if ((objectToConvert == null)) {
                     throw new global::System.ArgumentNullException("objectToConvert");
                 }
                 global::System.Type type = objectToConvert.GetType();
                 global::System.Type iConvertibleType = typeof(global::System.IConvertible);
-                if (iConvertibleType.IsAssignableFrom(type))
-                {
+                if (iConvertibleType.IsAssignableFrom(type)) {
                     return ((global::System.IConvertible)(objectToConvert)).ToString(this.formatProvider);
                 }
                 global::System.Reflection.MethodInfo methInfo = type.GetMethod("ToString", new global::System.Type[] {
-                        iConvertibleType});
-                if ((methInfo != null))
-                {
+                            iConvertibleType});
+                if ((methInfo != null)) {
                     return ((string)(methInfo.Invoke(objectToConvert, new object[] {
-                            this.formatProvider})));
+                                this.formatProvider})));
                 }
                 return objectToConvert.ToString();
             }

@@ -7,572 +7,562 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates.AzureSql
-{
-    using System;
-    using System.Collections.Generic;
+
+namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates.AzureSql {
     using System.Linq;
     using System.Text;
-
-
-
-    public partial class AzureSqlDatabaseContextTemplate : AzureSqlDatabaseContextTemplateBase
-    {
-
-
+    using System.Collections.Generic;
+    using System;
+    
+    
+    public partial class AzureSqlDatabaseContextTemplate : AzureSqlDatabaseContextTemplateBase {
+        
+        
         private CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.AzureSqlDatabase.AzureSqlDatabaseContextGenerator _ModelField;
-
-        public CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.AzureSqlDatabase.AzureSqlDatabaseContextGenerator Model
-        {
-            get
-            {
+        
+        public CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.AzureSqlDatabase.AzureSqlDatabaseContextGenerator Model {
+            get {
                 return this._ModelField;
             }
         }
 
-
-        public virtual string TransformText()
-        {
+        
+        public virtual string TransformText() {
             this.GenerationEnvironment = null;
-
-#line 7 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line 7 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.Data.Entity;\r\nusin" +
                     "g System.Linq;\r\n// Azure sql database\r\nnamespace ");
-
-#line default
-#line hidden
-
-#line 12 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
-
-#line default
-#line hidden
-
-#line 12 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 12 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 12 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(" : DbContext, ");
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.StorageInterface.Namespace));
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.StorageInterface.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.StorageInterface.Name));
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.StorageInterface.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(@"
     {
 		private static readonly Random Random = new Random();
 		private readonly Dictionary<Type, object> _dbSets = new Dictionary<Type, object>();
 		private readonly Dictionary<string, Tuple<Type,int>> _names = new Dictionary<string, Tuple<Type,int>>();
 		public const string Name = """);
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModelParameters.Name));
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("\";\r\n\r\n\t\tstatic ");
-
-#line default
-#line hidden
-
-#line 21 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 21 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("()\r\n\t\t{\r\n\t\t\tDatabase.SetInitializer<");
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(">(null);        \r\n\t\t} \r\n\r\n\t\tpublic ");
-
-#line default
-#line hidden
-
-#line 26 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 26 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 26 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 26 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("() : base(\"");
-
-#line default
-#line hidden
-
-#line 26 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModelParameters.ConnectionString));
-
-#line default
-#line hidden
-
-#line 26 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 26 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.ConnectionString ));
+            
+            #line default
+            #line hidden
+            
+            #line 26 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("\") \r\n\t\t{ \r\n\r\n\t\t\tDatabase.SetInitializer<");
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(">(new CreateDatabaseIfNotExists<");
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(">());\r\n            Configuration.AutoDetectChangesEnabled = false;\r\n\t\t\tInitDbSetD" +
                     "ictionary();\r\n\t\t}\r\n\t\t\r\n        public string GetName()\r\n        {\r\n            r" +
                     "eturn \"");
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Key));
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Key ));
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("\";\r\n        }\r\n\t\t\r\n");
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            foreach (var entity in Model.Entities)
-            {
-
-#line default
-#line hidden
-
-#line 40 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\t\tpublic DbSet<");
-
-#line default
-#line hidden
-
-#line 40 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
-
-#line default
-#line hidden
-
-#line 40 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 40 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 40 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("> ");
-
-#line default
-#line hidden
-
-#line 40 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 40 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("s { get; set; }\r\n");
-
-#line default
-#line hidden
-
-#line 41 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 42 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write("\r\n\t\tpublic DbSet<T> GetDbSet<T>(Type entityType) where T : class, ");
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.EntityInterface.Namespace));
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
+            
+            #line default
+            #line hidden
+            
+            #line 40 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\tpublic DbSet<");
+            
+            #line default
+            #line hidden
+            
+            #line 40 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 40 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.EntityInterface.Name));
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 40 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 40 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("> ");
+            
+            #line default
+            #line hidden
+            
+            #line 40 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 40 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("s { get; set; }\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 41 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 42 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\r\n\t\tpublic DbSet<T> GetDbSet<T>(Type entityType) where T : class, ");
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.EntityInterface.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.EntityInterface.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("\r\n        {\r\n            return _dbSets[typeof (T)] as DbSet<T>;\r\n        }\r\n\t\t\r\n" +
                     "\t\tpublic List<object> GetEntities(string entitySetName, string entityName, ");
-
-#line default
-#line hidden
-
-#line 48 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Query.Namespace));
-
-#line default
-#line hidden
-
-#line 48 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 48 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Query.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 48 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 48 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Query.Name));
-
-#line default
-#line hidden
-
-#line 48 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 48 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Query.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 48 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(" query)\r\n\t\t{\r\n\t\t\tif(query.IsNominal) \r\n\t\t\t{\r\n");
-
-#line default
-#line hidden
-
-#line 52 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            foreach (var entity in Model.Entities)
-            {
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\t\t\t\tif(entityName == \"");
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\")\r\n\t\t\t\t{\r\n\t\t\t\t\tif(query.PropertyName == \"Id\")\r\n\t\t\t\t\t{   var parameter = int.Pars" +
-                        "e(query.NominalParameter);\r\n\t\t\t\t\t\treturn ");
-
-#line default
-#line hidden
-
-#line 57 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 57 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("s.Where(x=> x.Id == parameter).AsNoTracking().ToList().Cast<object>().ToList();\r\n" +
-                        "\t\t\t\t\t}\r\n");
-
-#line default
-#line hidden
-
-#line 59 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                foreach (var prop in entity.ModelParameters.Properties.Where(x => x.Name != "Id"))
-                {
-
-#line default
-#line hidden
-
-#line 60 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write("\t\t\t\t\tif(query.PropertyName == \"");
-
-#line default
-#line hidden
-
-#line 60 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
-
-#line default
-#line hidden
-
-#line 60 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write("\") \r\n\t\t\t\t\t{\r\n\t\t\t\t\t\treturn ");
-
-#line default
-#line hidden
-
-#line 62 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 62 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write("s.Where(x=>string.Compare(x.");
-
-#line default
-#line hidden
-
-#line 62 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
-
-#line default
-#line hidden
-
-#line 62 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(".ToString(), query.NominalParameter, StringComparison.Ordinal) == 0).AsNoTracking" +
-                            "().ToList().Cast<object>().ToList();\r\n\t\t\t\t\t}\r\n");
-
-#line default
-#line hidden
-
-#line 64 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                }
-
-#line default
-#line hidden
-
-#line 65 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\t\t\t\t}\t \r\n");
-
-#line default
-#line hidden
-
-#line 66 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 67 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 52 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\t\tif(entityName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\")\r\n\t\t\t\t{\r\n\t\t\t\t\tif(query.PropertyName == \"Id\")\r\n\t\t\t\t\t{   var parameter = int.Pars" +
+                    "e(query.NominalParameter);\r\n\t\t\t\t\t\treturn ");
+            
+            #line default
+            #line hidden
+            
+            #line 57 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 57 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("s.Where(x=> x.Id == parameter).AsNoTracking().ToList().Cast<object>().ToList();\r\n" +
+                    "\t\t\t\t\t}\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 59 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ foreach(var prop in entity.ModelParameters.Properties.Where(x=>x.Name != "Id")) { 
+            
+            #line default
+            #line hidden
+            
+            #line 60 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\t\t\tif(query.PropertyName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 60 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 60 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\") \r\n\t\t\t\t\t{\r\n\t\t\t\t\t\treturn ");
+            
+            #line default
+            #line hidden
+            
+            #line 62 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 62 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("s.Where(x=>string.Compare(x.");
+            
+            #line default
+            #line hidden
+            
+            #line 62 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 62 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".ToString(), query.NominalParameter, StringComparison.Ordinal) == 0).AsNoTracking" +
+                    "().ToList().Cast<object>().ToList();\r\n\t\t\t\t\t}\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 64 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 65 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\t\t}\t \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 66 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 67 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("\t\t\t}\r\n\t\t\telse \r\n\t\t\t{\r\n");
-
-#line default
-#line hidden
-
-#line 70 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            foreach (var entity in Model.Entities)
-            {
-
-#line default
-#line hidden
-
-#line 71 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\t\t\t\tif(entityName == \"");
-
-#line default
-#line hidden
-
-#line 71 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 71 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\")\r\n\t\t\t\t{\r\n\t\t\t\t\tif(query.PropertyName == \"Id\")\r\n\t\t\t\t\t{\r\n\t\t\t\t\t    var minParameter" +
-                        " = int.Parse(query.MinValue);\r\n\t\t\t\t\t    var maxParameter = int.Parse(query.MaxVa" +
-                        "lue);\r\n\t\t\t\t\t\treturn ");
-
-#line default
-#line hidden
-
-#line 77 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 77 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("s.Where(x=> x.Id >= minParameter && x.Id <= maxParameter).AsNoTracking().ToList()" +
-                        ".Cast<object>().ToList();\r\n\t\t\t\t\t}\r\n");
-
-#line default
-#line hidden
-
-#line 79 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                foreach (var prop in entity.ModelParameters.Properties.Where(x => x.Name != "Id"))
-                {
-
-#line default
-#line hidden
-
-#line 80 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write("\t\t\t\t\tif(query.PropertyName == \"");
-
-#line default
-#line hidden
-
-#line 80 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
-
-#line default
-#line hidden
-
-#line 80 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write("\") \r\n\t\t\t\t\t{\r\n\t\t\t\t\t\treturn ");
-
-#line default
-#line hidden
-
-#line 82 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 82 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write("s.Where(x=>string.Compare(x.");
-
-#line default
-#line hidden
-
-#line 82 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
-
-#line default
-#line hidden
-
-#line 82 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(".ToString(), query.MinValue, StringComparison.Ordinal) >= 0 && string.Compare(x.");
-
-#line default
-#line hidden
-
-#line 82 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
-
-#line default
-#line hidden
-
-#line 82 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                    this.Write(".ToString(), query.MaxValue, StringComparison.Ordinal) <= 0).AsNoTracking().ToLis" +
-                            "t().Cast<object>().ToList();\r\n\t\t\t\t\t}\r\n");
-
-#line default
-#line hidden
-
-#line 84 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                }
-
-#line default
-#line hidden
-
-#line 85 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\t\t\t\t}\t \r\n");
-
-#line default
-#line hidden
-
-#line 86 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 87 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 70 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
+            
+            #line default
+            #line hidden
+            
+            #line 71 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\t\tif(entityName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 71 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 71 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\")\r\n\t\t\t\t{\r\n\t\t\t\t\tif(query.PropertyName == \"Id\")\r\n\t\t\t\t\t{\r\n\t\t\t\t\t    var minParameter" +
+                    " = int.Parse(query.MinValue);\r\n\t\t\t\t\t    var maxParameter = int.Parse(query.MaxVa" +
+                    "lue);\r\n\t\t\t\t\t\treturn ");
+            
+            #line default
+            #line hidden
+            
+            #line 77 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 77 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("s.Where(x=> x.Id >= minParameter && x.Id <= maxParameter).AsNoTracking().ToList()" +
+                    ".Cast<object>().ToList();\r\n\t\t\t\t\t}\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 79 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ foreach(var prop in entity.ModelParameters.Properties.Where(x=>x.Name != "Id")) { 
+            
+            #line default
+            #line hidden
+            
+            #line 80 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\t\t\tif(query.PropertyName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 80 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 80 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\") \r\n\t\t\t\t\t{\r\n\t\t\t\t\t\treturn ");
+            
+            #line default
+            #line hidden
+            
+            #line 82 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 82 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("s.Where(x=>string.Compare(x.");
+            
+            #line default
+            #line hidden
+            
+            #line 82 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 82 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".ToString(), query.MinValue, StringComparison.Ordinal) >= 0 && string.Compare(x.");
+            
+            #line default
+            #line hidden
+            
+            #line 82 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 82 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".ToString(), query.MaxValue, StringComparison.Ordinal) <= 0).AsNoTracking().ToLis" +
+                    "t().Cast<object>().ToList();\r\n\t\t\t\t\t}\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 84 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 85 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\t\t}\t \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 86 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 87 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write(@"			} 
 
 			return new List<object>();	
@@ -588,240 +578,232 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
 		{
 			object[] generated = null;
 ");
-
-#line default
-#line hidden
-
-#line 101 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            foreach (var entity in Model.Entities)
-            {
-
-#line default
-#line hidden
-
-#line 102 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\t\t\tif(entityName == \"");
-
-#line default
-#line hidden
-
-#line 102 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 102 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tgenerated = ");
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Name));
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(".GetInstance().Generate<");
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(">(count).ToArray();\r\n\t\t\t} \r\n");
-
-#line default
-#line hidden
-
-#line 106 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 101 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
+            
+            #line default
+            #line hidden
+            
+            #line 102 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\tif(entityName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 102 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 102 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tgenerated = ");
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.DataGenerator.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".GetInstance().Generate<");
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(">(count).ToArray();\r\n\t\t\t} \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 106 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("\t\t\tInsertAll(entitySetName,entityName,generated);\r\n\r\n\t\t}\r\n\r\n\t\tprivate void InitDb" +
                     "SetDictionary()\r\n        {\r\n");
-
-#line default
-#line hidden
-
-#line 113 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            foreach (var entity in Model.Entities)
-            {
-
-#line default
-#line hidden
-
-#line 114 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\t\t\t_dbSets.Add(typeof(");
-
-#line default
-#line hidden
-
-#line 114 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
-
-#line default
-#line hidden
-
-#line 114 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 114 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 114 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("), ");
-
-#line default
-#line hidden
-
-#line 114 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 114 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("s); \r\n");
-
-#line default
-#line hidden
-
-#line 115 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 116 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            foreach (var set in Model.ModelParameters.EntitySets)
-            {
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\t\t\t_names.Add(\"");
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(set.Name));
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("\", new Tuple<Type,int>(typeof(");
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entities.Single(x => x.Name == set.EntityName).Namespace));
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entities.Single(x => x.Name == set.EntityName).Name));
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("),");
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(set.Count));
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-                this.Write("));\r\n");
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 119 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 113 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
+            
+            #line default
+            #line hidden
+            
+            #line 114 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\t_dbSets.Add(typeof(");
+            
+            #line default
+            #line hidden
+            
+            #line 114 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 114 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 114 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 114 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("), ");
+            
+            #line default
+            #line hidden
+            
+            #line 114 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 114 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("s); \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 115 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 116 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ foreach(var set in Model.ModelParameters.EntitySets) { 
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\t\t\t_names.Add(\"");
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( set.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("\", new Tuple<Type,int>(typeof(");
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Entities.Single(x=>x.Name == set.EntityName).Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(  Model.Entities.Single(x=>x.Name == set.EntityName).Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("),");
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(set.Count));
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+            this.Write("));\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 119 "Templates\DataLayerTemplates\AzureSql\AzureSqlDatabaseContextTemplate.tt"
             this.Write("        }\r\n    }\r\n}");
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
-
-        public virtual void Initialize()
-        {
-            if ((this.Errors.HasErrors == false))
-            {
-                if (((this.Session != null)
-                            && this.Session.ContainsKey("Model")))
-                {
+        
+        public virtual void Initialize() {
+            if ((this.Errors.HasErrors == false)) {
+                if (((this.Session != null) 
+                            && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.AzureSqlDatabase.AzureSqlDatabaseContextGenerator).IsAssignableFrom(data.GetType()))
-                    {
+                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.AzureSqlDatabase.AzureSqlDatabaseContextGenerator).IsAssignableFrom(data.GetType())) {
                         this._ModelField = ((CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.AzureSqlDatabase.AzureSqlDatabaseContextGenerator)(data));
                     }
-                    else
-                    {
+                    else {
                         this.Error("The type \'CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerator" +
                                 "s.AzureSqlDatabase.AzureSqlDatabaseContextGenerator\' of the parameter \'Model\' di" +
                                 "d not match the type passed to the template");
@@ -831,106 +813,84 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
 
         }
     }
-
-    public class AzureSqlDatabaseContextTemplateBase
-    {
-
+    
+    public class AzureSqlDatabaseContextTemplateBase {
+        
         private global::System.Text.StringBuilder builder;
-
+        
         private global::System.Collections.Generic.IDictionary<string, object> session;
-
+        
         private global::System.CodeDom.Compiler.CompilerErrorCollection errors;
-
+        
         private string currentIndent = string.Empty;
-
+        
         private global::System.Collections.Generic.Stack<int> indents;
-
+        
         private ToStringInstanceHelper _toStringHelper = new ToStringInstanceHelper();
-
-        public virtual global::System.Collections.Generic.IDictionary<string, object> Session
-        {
-            get
-            {
+        
+        public virtual global::System.Collections.Generic.IDictionary<string, object> Session {
+            get {
                 return this.session;
             }
-            set
-            {
+            set {
                 this.session = value;
             }
         }
-
-        public global::System.Text.StringBuilder GenerationEnvironment
-        {
-            get
-            {
-                if ((this.builder == null))
-                {
+        
+        public global::System.Text.StringBuilder GenerationEnvironment {
+            get {
+                if ((this.builder == null)) {
                     this.builder = new global::System.Text.StringBuilder();
                 }
                 return this.builder;
             }
-            set
-            {
+            set {
                 this.builder = value;
             }
         }
-
-        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors
-        {
-            get
-            {
-                if ((this.errors == null))
-                {
+        
+        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors {
+            get {
+                if ((this.errors == null)) {
                     this.errors = new global::System.CodeDom.Compiler.CompilerErrorCollection();
                 }
                 return this.errors;
             }
         }
-
-        public string CurrentIndent
-        {
-            get
-            {
+        
+        public string CurrentIndent {
+            get {
                 return this.currentIndent;
             }
         }
-
-        private global::System.Collections.Generic.Stack<int> Indents
-        {
-            get
-            {
-                if ((this.indents == null))
-                {
+        
+        private global::System.Collections.Generic.Stack<int> Indents {
+            get {
+                if ((this.indents == null)) {
                     this.indents = new global::System.Collections.Generic.Stack<int>();
                 }
                 return this.indents;
             }
         }
-
-        public ToStringInstanceHelper ToStringHelper
-        {
-            get
-            {
+        
+        public ToStringInstanceHelper ToStringHelper {
+            get {
                 return this._toStringHelper;
             }
         }
-
-        public void Error(string message)
-        {
+        
+        public void Error(string message) {
             this.Errors.Add(new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message));
         }
-
-        public void Warning(string message)
-        {
+        
+        public void Warning(string message) {
             global::System.CodeDom.Compiler.CompilerError val = new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message);
             val.IsWarning = true;
             this.Errors.Add(val);
         }
-
-        public string PopIndent()
-        {
-            if ((this.Indents.Count == 0))
-            {
+        
+        public string PopIndent() {
+            if ((this.Indents.Count == 0)) {
                 return string.Empty;
             }
             int lastPos = (this.currentIndent.Length - this.Indents.Pop());
@@ -938,80 +898,65 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
             this.currentIndent = this.currentIndent.Substring(0, lastPos);
             return last;
         }
-
-        public void PushIndent(string indent)
-        {
+        
+        public void PushIndent(string indent) {
             this.Indents.Push(indent.Length);
             this.currentIndent = (this.currentIndent + indent);
         }
-
-        public void ClearIndent()
-        {
+        
+        public void ClearIndent() {
             this.currentIndent = string.Empty;
             this.Indents.Clear();
         }
-
-        public void Write(string textToAppend)
-        {
+        
+        public void Write(string textToAppend) {
             this.GenerationEnvironment.Append(textToAppend);
         }
-
-        public void Write(string format, params object[] args)
-        {
+        
+        public void Write(string format, params object[] args) {
             this.GenerationEnvironment.AppendFormat(format, args);
         }
-
-        public void WriteLine(string textToAppend)
-        {
+        
+        public void WriteLine(string textToAppend) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendLine(textToAppend);
         }
-
-        public void WriteLine(string format, params object[] args)
-        {
+        
+        public void WriteLine(string format, params object[] args) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendFormat(format, args);
             this.GenerationEnvironment.AppendLine();
         }
-
-        public class ToStringInstanceHelper
-        {
-
+        
+        public class ToStringInstanceHelper {
+            
             private global::System.IFormatProvider formatProvider = global::System.Globalization.CultureInfo.InvariantCulture;
-
-            public global::System.IFormatProvider FormatProvider
-            {
-                get
-                {
+            
+            public global::System.IFormatProvider FormatProvider {
+                get {
                     return this.formatProvider;
                 }
-                set
-                {
-                    if ((value != null))
-                    {
+                set {
+                    if ((value != null)) {
                         this.formatProvider = value;
                     }
                 }
             }
-
-            public string ToStringWithCulture(object objectToConvert)
-            {
-                if ((objectToConvert == null))
-                {
+            
+            public string ToStringWithCulture(object objectToConvert) {
+                if ((objectToConvert == null)) {
                     throw new global::System.ArgumentNullException("objectToConvert");
                 }
                 global::System.Type type = objectToConvert.GetType();
                 global::System.Type iConvertibleType = typeof(global::System.IConvertible);
-                if (iConvertibleType.IsAssignableFrom(type))
-                {
+                if (iConvertibleType.IsAssignableFrom(type)) {
                     return ((global::System.IConvertible)(objectToConvert)).ToString(this.formatProvider);
                 }
                 global::System.Reflection.MethodInfo methInfo = type.GetMethod("ToString", new global::System.Type[] {
-                        iConvertibleType});
-                if ((methInfo != null))
-                {
+                            iConvertibleType});
+                if ((methInfo != null)) {
                     return ((string)(methInfo.Invoke(objectToConvert, new object[] {
-                            this.formatProvider})));
+                                this.formatProvider})));
                 }
                 return objectToConvert.ToString();
             }

@@ -7,36 +7,31 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.Assemblies
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
+
+namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.Assemblies {
     using System.Linq;
     using System.Text;
-
-
-
-    public partial class WebApiAssemblyTemplate : WebApiAssemblyTemplateBase
-    {
-
-
+    using System.Collections.Generic;
+    using System.IO;
+    using System;
+    
+    
+    public partial class WebApiAssemblyTemplate : WebApiAssemblyTemplateBase {
+        
+        
         private CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.AssemblyFiles.WebApiAssemblyFileGenerator _ModelField;
-
-        public CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.AssemblyFiles.WebApiAssemblyFileGenerator Model
-        {
-            get
-            {
+        
+        public CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.AssemblyFiles.WebApiAssemblyFileGenerator Model {
+            get {
                 return this._ModelField;
             }
         }
 
-
-        public virtual string TransformText()
-        {
+        
+        public virtual string TransformText() {
             this.GenerationEnvironment = null;
-
-#line 8 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            
+            #line 8 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write(@"<?xml version=""1.0"" encoding=""utf-8""?>
 <Project ToolsVersion=""12.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
 
@@ -51,44 +46,44 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{");
-
-#line default
-#line hidden
-
-#line 21 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.AssemblyInfo.UniqueProjectId.ToString().ToUpper()));
-
-#line default
-#line hidden
-
-#line 21 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.UniqueProjectId.ToString().ToUpper() ));
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write("}</ProjectGuid>\r\n    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fa" +
                     "e04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>\r\n    <OutputType>Library<" +
                     "/OutputType>\r\n    <AppDesignerFolder>Properties</AppDesignerFolder>\r\n    <RootNa" +
                     "mespace>");
-
-#line default
-#line hidden
-
-#line 25 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.AssemblyInfo.Name));
-
-#line default
-#line hidden
-
-#line 25 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 25 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 25 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write("</RootNamespace>\r\n    <AssemblyName>");
-
-#line default
-#line hidden
-
-#line 26 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.AssemblyInfo.Name));
-
-#line default
-#line hidden
-
-#line 26 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 26 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 26 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write("</AssemblyName>\r\n    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>\r\n   " +
                     " <UseIISExpress>true</UseIISExpress>\r\n    <IISExpressSSLPort />\r\n    <IISExpress" +
                     "AnonymousAuthentication />\r\n    <IISExpressWindowsAuthentication />\r\n    <IISExp" +
@@ -129,222 +124,216 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
                     "nce Include=\"System.Web.Http.WebHost\">\r\n      <HintPath>..\\packages\\Microsoft.As" +
                     "pNet.WebApi.WebHost.5.2.3\\lib\\net45\\System.Web.Http.WebHost.dll</HintPath>\r\n    " +
                     "</Reference>\r\n");
-
-#line default
-#line hidden
-
-#line 92 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            foreach (var reference in Model.AssemblyInfo.Packages)
-            {
-
-#line default
-#line hidden
-
-#line 93 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                foreach (var package in reference.IncludeHintPathTuples)
-                {
-
-#line default
-#line hidden
-
-#line 94 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    this.Write("\t<Reference Include=\"");
-
-#line default
-#line hidden
-
-#line 94 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(package.Item1));
-
-#line default
-#line hidden
-
-#line 94 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    this.Write("\">\r\n");
-
-#line default
-#line hidden
-
-#line 95 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    if (!string.IsNullOrEmpty(package.Item2))
-                    {
-
-#line default
-#line hidden
-
-#line 96 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                        this.Write("\t\t\t <HintPath>");
-
-#line default
-#line hidden
-
-#line 96 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                        this.Write(this.ToStringHelper.ToStringWithCulture(package.Item2));
-
-#line default
-#line hidden
-
-#line 96 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                        this.Write("</HintPath>\r\n");
-
-#line default
-#line hidden
-
-#line 97 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    }
-
-#line default
-#line hidden
-
-#line 98 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    this.Write("    </Reference>\r\n");
-
-#line default
-#line hidden
-
-#line 99 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                }
-
-#line default
-#line hidden
-
-#line 100 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 101 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 92 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ foreach(var reference in Model.AssemblyInfo.Packages) {
+            
+            #line default
+            #line hidden
+            
+            #line 93 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ foreach(var package in reference.IncludeHintPathTuples) {
+            
+            #line default
+            #line hidden
+            
+            #line 94 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\t<Reference Include=\"");
+            
+            #line default
+            #line hidden
+            
+            #line 94 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( package.Item1 ));
+            
+            #line default
+            #line hidden
+            
+            #line 94 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\">\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 95 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ if(!string.IsNullOrEmpty(package.Item2)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\t\t\t <HintPath>");
+            
+            #line default
+            #line hidden
+            
+            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( package.Item2 ));
+            
+            #line default
+            #line hidden
+            
+            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("</HintPath>\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 97 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 98 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("    </Reference>\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 99 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 100 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 101 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write("  </ItemGroup>\r\n<ItemGroup>\r\n");
-
-#line default
-#line hidden
-
-#line 103 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            foreach (var import in Model.AssemblyInfo.AssemblyImports)
-            {
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write("\t<ProjectReference Include=\"..\\\\");
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Path.Combine(import.AssemblyInfo.ProjectFileRelativePath, import.AssemblyInfo.Name)));
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write(".csproj\">\r\n      <Project>{");
-
-#line default
-#line hidden
-
-#line 105 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(import.AssemblyInfo.UniqueProjectId.ToString().ToUpper()));
-
-#line default
-#line hidden
-
-#line 105 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write("}</Project>\r\n      <Name>");
-
-#line default
-#line hidden
-
-#line 106 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(import.AssemblyInfo.Name));
-
-#line default
-#line hidden
-
-#line 106 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write("</Name>\r\n    </ProjectReference>\r\n");
-
-#line default
-#line hidden
-
-#line 108 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 109 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 103 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ foreach(var import in Model.AssemblyInfo.AssemblyImports) {
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\t<ProjectReference Include=\"..\\\\");
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Path.Combine(import.AssemblyInfo.ProjectFileRelativePath, import.AssemblyInfo.Name) ));
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(".csproj\">\r\n      <Project>{");
+            
+            #line default
+            #line hidden
+            
+            #line 105 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(  import.AssemblyInfo.UniqueProjectId.ToString().ToUpper() ));
+            
+            #line default
+            #line hidden
+            
+            #line 105 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("}</Project>\r\n      <Name>");
+            
+            #line default
+            #line hidden
+            
+            #line 106 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( import.AssemblyInfo.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 106 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("</Name>\r\n    </ProjectReference>\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 108 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 109 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write("  </ItemGroup>\r\n  <ItemGroup>\r\n");
-
-#line default
-#line hidden
-
-#line 111 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            foreach (var include in Model.AssemblyInfo.IncludeOnlys)
-            {
-
-#line default
-#line hidden
-
-#line 112 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write("    <Content Include=\"");
-
-#line default
-#line hidden
-
-#line 112 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(include));
-
-#line default
-#line hidden
-
-#line 112 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write("\" />\r\n");
-
-#line default
-#line hidden
-
-#line 113 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 114 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            foreach (var content in Model.AssemblyInfo.Contents)
-            {
-
-#line default
-#line hidden
-
-#line 115 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write("    <Content Include=\"..\\\\");
-
-#line default
-#line hidden
-
-#line 115 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(content.OutputPath));
-
-#line default
-#line hidden
-
-#line 115 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                this.Write("\">\r\n      <CopyToOutputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n" +
-                        "");
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 119 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 111 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ foreach(var include in Model.AssemblyInfo.IncludeOnlys)  {
+            
+            #line default
+            #line hidden
+            
+            #line 112 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("    <Content Include=\"");
+            
+            #line default
+            #line hidden
+            
+            #line 112 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( include ));
+            
+            #line default
+            #line hidden
+            
+            #line 112 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\" />\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 113 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 114 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ foreach(var content in Model.AssemblyInfo.Contents) { 
+            
+            #line default
+            #line hidden
+            
+            #line 115 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("    <Content Include=\"..\\\\");
+            
+            #line default
+            #line hidden
+            
+            #line 115 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( content.OutputPath ));
+            
+            #line default
+            #line hidden
+            
+            #line 115 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\">\r\n      <CopyToOutputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n" +
+                    "");
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 119 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write(@"</ItemGroup>
   <ItemGroup>
     <Content Include=""Global.asax"">
@@ -360,45 +349,41 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
 ");
-
-#line default
-#line hidden
-
-#line 133 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            foreach (var file in Model.AssemblyInfo.FilesToCompile)
-            {
-                if (!(file.GenerationInfo.FileName.EndsWith(@"WebApiConfig.cs") || file.GenerationInfo.FileName.EndsWith(".config") || file.GenerationInfo.FileName.Contains(".asax")))
-                {
-
-#line default
-#line hidden
-
-#line 134 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    this.Write("\t\t<compile Include=\"");
-
-#line default
-#line hidden
-
-#line 134 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(Path.Combine(file.GenerationInfo.RelativePathFolder.Substring(Model.AssemblyInfo.ProjectFileRelativePath.Length, file.GenerationInfo.RelativePathFolder.Length - Model.AssemblyInfo.ProjectFileRelativePath.Length).TrimStart('\\'), file.GenerationInfo.FileName)));
-
-#line default
-#line hidden
-
-#line 134 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                    this.Write("\"/>\r\n");
-
-#line default
-#line hidden
-
-#line 135 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-                }
-            }
-
-#line default
-#line hidden
-
-#line 136 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 133 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ foreach(var file in Model.AssemblyInfo.FilesToCompile) { if(!(file.GenerationInfo.FileName.EndsWith(@"WebApiConfig.cs") || file.GenerationInfo.FileName.EndsWith(".config")|| file.GenerationInfo.FileName.Contains(".asax"))) {
+            
+            #line default
+            #line hidden
+            
+            #line 134 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\t\t<compile Include=\"");
+            
+            #line default
+            #line hidden
+            
+            #line 134 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Path.Combine(file.GenerationInfo.RelativePathFolder.Substring(Model.AssemblyInfo.ProjectFileRelativePath.Length,file.GenerationInfo.RelativePathFolder.Length-Model.AssemblyInfo.ProjectFileRelativePath.Length).TrimStart('\\'), file.GenerationInfo.FileName)));
+            
+            #line default
+            #line hidden
+            
+            #line 134 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\"/>\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 135 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ }} 
+            
+            #line default
+            #line hidden
+            
+            #line 136 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write("  </ItemGroup>\r\n  <ItemGroup>\r\n    <Content Include=\"packages.config\" >\r\n\t <CopyT" +
                     "oOutputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n    <None Inclu" +
                     "de=\"Web.Debug.config\">\r\n      <DependentUpon>Web.config</DependentUpon>\r\n    </N" +
@@ -442,26 +427,21 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
                     "side one of the targets below and uncomment it. \r\n       Other similar extension" +
                     " points exist, see Microsoft.Common.targets.\r\n  <Target Name=\"BeforeBuild\">\r\n  <" +
                     "/Target>\r\n  <Target Name=\"AfterBuild\">\r\n  </Target>\r\n  -->\r\n</Project>");
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
-
-        public virtual void Initialize()
-        {
-            if ((this.Errors.HasErrors == false))
-            {
-                if (((this.Session != null)
-                            && this.Session.ContainsKey("Model")))
-                {
+        
+        public virtual void Initialize() {
+            if ((this.Errors.HasErrors == false)) {
+                if (((this.Session != null) 
+                            && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.AssemblyFiles.WebApiAssemblyFileGenerator).IsAssignableFrom(data.GetType()))
-                    {
+                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.AssemblyFiles.WebApiAssemblyFileGenerator).IsAssignableFrom(data.GetType())) {
                         this._ModelField = ((CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.AssemblyFiles.WebApiAssemblyFileGenerator)(data));
                     }
-                    else
-                    {
+                    else {
                         this.Error("The type \'CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators" +
                                 ".AssemblyFiles.WebApiAssemblyFileGenerator\' of the parameter \'Model\' did not mat" +
                                 "ch the type passed to the template");
@@ -471,106 +451,84 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
 
         }
     }
-
-    public class WebApiAssemblyTemplateBase
-    {
-
+    
+    public class WebApiAssemblyTemplateBase {
+        
         private global::System.Text.StringBuilder builder;
-
+        
         private global::System.Collections.Generic.IDictionary<string, object> session;
-
+        
         private global::System.CodeDom.Compiler.CompilerErrorCollection errors;
-
+        
         private string currentIndent = string.Empty;
-
+        
         private global::System.Collections.Generic.Stack<int> indents;
-
+        
         private ToStringInstanceHelper _toStringHelper = new ToStringInstanceHelper();
-
-        public virtual global::System.Collections.Generic.IDictionary<string, object> Session
-        {
-            get
-            {
+        
+        public virtual global::System.Collections.Generic.IDictionary<string, object> Session {
+            get {
                 return this.session;
             }
-            set
-            {
+            set {
                 this.session = value;
             }
         }
-
-        public global::System.Text.StringBuilder GenerationEnvironment
-        {
-            get
-            {
-                if ((this.builder == null))
-                {
+        
+        public global::System.Text.StringBuilder GenerationEnvironment {
+            get {
+                if ((this.builder == null)) {
                     this.builder = new global::System.Text.StringBuilder();
                 }
                 return this.builder;
             }
-            set
-            {
+            set {
                 this.builder = value;
             }
         }
-
-        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors
-        {
-            get
-            {
-                if ((this.errors == null))
-                {
+        
+        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors {
+            get {
+                if ((this.errors == null)) {
                     this.errors = new global::System.CodeDom.Compiler.CompilerErrorCollection();
                 }
                 return this.errors;
             }
         }
-
-        public string CurrentIndent
-        {
-            get
-            {
+        
+        public string CurrentIndent {
+            get {
                 return this.currentIndent;
             }
         }
-
-        private global::System.Collections.Generic.Stack<int> Indents
-        {
-            get
-            {
-                if ((this.indents == null))
-                {
+        
+        private global::System.Collections.Generic.Stack<int> Indents {
+            get {
+                if ((this.indents == null)) {
                     this.indents = new global::System.Collections.Generic.Stack<int>();
                 }
                 return this.indents;
             }
         }
-
-        public ToStringInstanceHelper ToStringHelper
-        {
-            get
-            {
+        
+        public ToStringInstanceHelper ToStringHelper {
+            get {
                 return this._toStringHelper;
             }
         }
-
-        public void Error(string message)
-        {
+        
+        public void Error(string message) {
             this.Errors.Add(new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message));
         }
-
-        public void Warning(string message)
-        {
+        
+        public void Warning(string message) {
             global::System.CodeDom.Compiler.CompilerError val = new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message);
             val.IsWarning = true;
             this.Errors.Add(val);
         }
-
-        public string PopIndent()
-        {
-            if ((this.Indents.Count == 0))
-            {
+        
+        public string PopIndent() {
+            if ((this.Indents.Count == 0)) {
                 return string.Empty;
             }
             int lastPos = (this.currentIndent.Length - this.Indents.Pop());
@@ -578,80 +536,65 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
             this.currentIndent = this.currentIndent.Substring(0, lastPos);
             return last;
         }
-
-        public void PushIndent(string indent)
-        {
+        
+        public void PushIndent(string indent) {
             this.Indents.Push(indent.Length);
             this.currentIndent = (this.currentIndent + indent);
         }
-
-        public void ClearIndent()
-        {
+        
+        public void ClearIndent() {
             this.currentIndent = string.Empty;
             this.Indents.Clear();
         }
-
-        public void Write(string textToAppend)
-        {
+        
+        public void Write(string textToAppend) {
             this.GenerationEnvironment.Append(textToAppend);
         }
-
-        public void Write(string format, params object[] args)
-        {
+        
+        public void Write(string format, params object[] args) {
             this.GenerationEnvironment.AppendFormat(format, args);
         }
-
-        public void WriteLine(string textToAppend)
-        {
+        
+        public void WriteLine(string textToAppend) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendLine(textToAppend);
         }
-
-        public void WriteLine(string format, params object[] args)
-        {
+        
+        public void WriteLine(string format, params object[] args) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendFormat(format, args);
             this.GenerationEnvironment.AppendLine();
         }
-
-        public class ToStringInstanceHelper
-        {
-
+        
+        public class ToStringInstanceHelper {
+            
             private global::System.IFormatProvider formatProvider = global::System.Globalization.CultureInfo.InvariantCulture;
-
-            public global::System.IFormatProvider FormatProvider
-            {
-                get
-                {
+            
+            public global::System.IFormatProvider FormatProvider {
+                get {
                     return this.formatProvider;
                 }
-                set
-                {
-                    if ((value != null))
-                    {
+                set {
+                    if ((value != null)) {
                         this.formatProvider = value;
                     }
                 }
             }
-
-            public string ToStringWithCulture(object objectToConvert)
-            {
-                if ((objectToConvert == null))
-                {
+            
+            public string ToStringWithCulture(object objectToConvert) {
+                if ((objectToConvert == null)) {
                     throw new global::System.ArgumentNullException("objectToConvert");
                 }
                 global::System.Type type = objectToConvert.GetType();
                 global::System.Type iConvertibleType = typeof(global::System.IConvertible);
-                if (iConvertibleType.IsAssignableFrom(type))
-                {
+                if (iConvertibleType.IsAssignableFrom(type)) {
                     return ((global::System.IConvertible)(objectToConvert)).ToString(this.formatProvider);
                 }
                 global::System.Reflection.MethodInfo methInfo = type.GetMethod("ToString", new global::System.Type[] {
-                        iConvertibleType});
-                if ((methInfo != null))
-                {
+                            iConvertibleType});
+                if ((methInfo != null)) {
                     return ((string)(methInfo.Invoke(objectToConvert, new object[] {
-                            this.formatProvider})));
+                                this.formatProvider})));
                 }
                 return objectToConvert.ToString();
             }

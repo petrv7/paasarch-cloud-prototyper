@@ -7,278 +7,272 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates
-{
-    using System;
-    using System.Collections.Generic;
+
+namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates {
     using System.Linq;
     using System.Text;
-
-
-
-    public partial class AzureTableStorageContextTemplate : AzureTableStorageContextTemplateBase
-    {
-
-
+    using System.Collections.Generic;
+    using System;
+    
+    
+    public partial class AzureTableStorageContextTemplate : AzureTableStorageContextTemplateBase {
+        
+        
         private CloudPrototyper.NET.Framework.v462.TblStorage.Generators.AzureTableStorageContextGenerator _ModelField;
-
-        public CloudPrototyper.NET.Framework.v462.TblStorage.Generators.AzureTableStorageContextGenerator Model
-        {
-            get
-            {
+        
+        public CloudPrototyper.NET.Framework.v462.TblStorage.Generators.AzureTableStorageContextGenerator Model {
+            get {
                 return this._ModelField;
             }
         }
 
-
-        public virtual string TransformText()
-        {
+        
+        public virtual string TransformText() {
             this.GenerationEnvironment = null;
-
-#line 7 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line 7 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.Linq;\r\nusing Micro" +
                     "soft.WindowsAzure.Storage;\r\nusing Microsoft.WindowsAzure.Storage.Table;\r\nusing M" +
                     "icrosoft.WindowsAzure.Storage.Table.Protocol;\r\n//Azure table storage\r\nnamespace " +
                     "");
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
-
-#line default
-#line hidden
-
-#line 14 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
-
-#line default
-#line hidden
-
-#line 16 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 16 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 16 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 16 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(" : ");
-
-#line default
-#line hidden
-
-#line 16 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.StorageInterface.Namespace));
-
-#line default
-#line hidden
-
-#line 16 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 16 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.StorageInterface.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 16 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 16 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.StorageInterface.Name));
-
-#line default
-#line hidden
-
-#line 16 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 16 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.StorageInterface.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 16 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\r\n    {\r\n\t\tprivate readonly Dictionary<string, Tuple<Type,int>> _names = new Dict" +
                     "ionary<string, Tuple<Type,int>>();\r\n\t\tprivate readonly CloudStorageAccount _stor" +
                     "ageAccount = CloudStorageAccount.Parse(\"");
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModelParameters.ConnectionString));
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.ConnectionString ));
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\");\r\n\t\tprivate readonly CloudTableClient _tableClient;\r\n\t\tpublic const string Nam" +
                     "e = \"");
-
-#line default
-#line hidden
-
-#line 21 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.ModelParameters.Name));
-
-#line default
-#line hidden
-
-#line 21 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\";\r\n\t\tpublic ");
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 22 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 22 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("() \r\n\t\t{ \r\n\t\t\tInitDictionary();\r\n\t\t\t_tableClient = _storageAccount.CreateCloudTab" +
                     "leClient();\r\n\t\t}\r\n\t\t\r\n        public string GetName()\r\n        {\r\n            re" +
                     "turn \"");
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Key));
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Key ));
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\";\r\n        }\r\n\t\t\r\n\t\tpublic List<object> GetEntities(string entitySetName, string" +
                     " entityName, ");
-
-#line default
-#line hidden
-
-#line 33 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Query.Namespace));
-
-#line default
-#line hidden
-
-#line 33 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 33 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Query.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 33 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 33 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Query.Name));
-
-#line default
-#line hidden
-
-#line 33 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 33 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Query.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 33 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(" query)\r\n\t\t{\r\n");
-
-#line default
-#line hidden
-
-#line 35 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            foreach (var entitySet in Model.ModelParameters.EntitySets)
-            {
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("\t\t\tif(entitySetName == \"");
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entitySet.Name));
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tCloudTable table = _tableClient.GetTableReference(entitySetName);\r\n" +
-                        "\t\t\t\tTableQuery<");
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entities.Single(x => x.Key == entitySet.EntityName).Namespace));
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entities.Single(x => x.Key == entitySet.EntityName).Name));
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("> tableQuery = new TableQuery<");
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entities.Single(x => x.Key == entitySet.EntityName).Namespace));
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entities.Single(x => x.Key == entitySet.EntityName).Name));
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(">();\r\n                if (query.IsNominal)\r\n                {\r\n                  " +
-                        "  if (query.PropertyName == \"Id\")\r\n                    {\r\n                      " +
-                        "  var qId = tableQuery.Where(\r\n                        TableQuery.CombineFilters" +
-                        "(\r\n                        TableQuery.GenerateFilterCondition(\"PartitionKey\", Qu" +
-                        "eryComparisons.Equal, \"p\"),\r\n                        TableOperators.And,\r\n      " +
-                        "                  TableQuery.GenerateFilterCondition(\"RowKey\", QueryComparisons." +
-                        "Equal, query.NominalParameter)));\r\n                        return table.ExecuteQ" +
-                        "uery(qId).Cast<object>().ToList();\r\n                    }\r\n                    v" +
-                        "ar q = tableQuery.Where(TableQuery.GenerateFilterCondition(query.PropertyName, Q" +
-                        "ueryComparisons.Equal, query.NominalParameter));\r\n                    return tab" +
-                        "le.ExecuteQuery(q).Cast<object>().ToList();\r\n                }\r\n\t\t\t\t if (query.P" +
-                        "ropertyName == \"Id\")\r\n                    {\r\n                        var qId = t" +
-                        "ableQuery.Where(\r\n                            TableQuery.CombineFilters(\r\n      " +
-                        "                          TableQuery.GenerateFilterCondition(\"PartitionKey\", Que" +
-                        "ryComparisons.Equal, \"p\"),\r\n                                TableOperators.And,\r" +
-                        "\n                                TableQuery.CombineFilters(\r\n                   " +
-                        "                 TableQuery.GenerateFilterCondition(\"RowKey\", QueryComparisons.G" +
-                        "reaterThanOrEqual, query.MinValue), \r\n                                    TableO" +
-                        "perators.And, \r\n                                    TableQuery.GenerateFilterCon" +
-                        "dition(\"RowKey\", QueryComparisons.LessThanOrEqual, query.MaxValue\r\n             " +
-                        "                    )\r\n                          )));\r\n                        r" +
-                        "eturn table.ExecuteQuery(qId).Cast<object>().ToList();\r\n                    }\r\n " +
-                        "               var queryRange = tableQuery.Where(\r\n                    TableQuer" +
-                        "y.CombineFilters(\r\n                        TableQuery.GenerateFilterCondition(qu" +
-                        "ery.PropertyName, QueryComparisons.GreaterThanOrEqual, query.MinValue),\r\n       " +
-                        "                 TableOperators.And,\r\n                        TableQuery.Generat" +
-                        "eFilterCondition(query.PropertyName, QueryComparisons.LessThanOrEqual, query.Max" +
-                        "Value)));\r\n                return table.ExecuteQuery(queryRange).Cast<object>()." +
-                        "ToList();\r\n\t\t\t} \r\n");
-
-#line default
-#line hidden
-
-#line 75 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 76 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 35 "Templates\AzureTableStorageContextTemplate.tt"
+ foreach(var entitySet in Model.ModelParameters.EntitySets) { 
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("\t\t\tif(entitySetName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entitySet.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tCloudTable table = _tableClient.GetTableReference(entitySetName);\r\n" +
+                    "\t\t\t\tTableQuery<");
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Entities.Single(x=>x.Key == entitySet.EntityName).Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Entities.Single(x=>x.Key == entitySet.EntityName).Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("> tableQuery = new TableQuery<");
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Entities.Single(x=>x.Key == entitySet.EntityName).Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Entities.Single(x=>x.Key == entitySet.EntityName).Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(">();\r\n                if (query.IsNominal)\r\n                {\r\n                  " +
+                    "  if (query.PropertyName == \"Id\")\r\n                    {\r\n                      " +
+                    "  var qId = tableQuery.Where(\r\n                        TableQuery.CombineFilters" +
+                    "(\r\n                        TableQuery.GenerateFilterCondition(\"PartitionKey\", Qu" +
+                    "eryComparisons.Equal, \"p\"),\r\n                        TableOperators.And,\r\n      " +
+                    "                  TableQuery.GenerateFilterCondition(\"RowKey\", QueryComparisons." +
+                    "Equal, query.NominalParameter)));\r\n                        return table.ExecuteQ" +
+                    "uery(qId).Cast<object>().ToList();\r\n                    }\r\n                    v" +
+                    "ar q = tableQuery.Where(TableQuery.GenerateFilterCondition(query.PropertyName, Q" +
+                    "ueryComparisons.Equal, query.NominalParameter));\r\n                    return tab" +
+                    "le.ExecuteQuery(q).Cast<object>().ToList();\r\n                }\r\n\t\t\t\t if (query.P" +
+                    "ropertyName == \"Id\")\r\n                    {\r\n                        var qId = t" +
+                    "ableQuery.Where(\r\n                            TableQuery.CombineFilters(\r\n      " +
+                    "                          TableQuery.GenerateFilterCondition(\"PartitionKey\", Que" +
+                    "ryComparisons.Equal, \"p\"),\r\n                                TableOperators.And,\r" +
+                    "\n                                TableQuery.CombineFilters(\r\n                   " +
+                    "                 TableQuery.GenerateFilterCondition(\"RowKey\", QueryComparisons.G" +
+                    "reaterThanOrEqual, query.MinValue), \r\n                                    TableO" +
+                    "perators.And, \r\n                                    TableQuery.GenerateFilterCon" +
+                    "dition(\"RowKey\", QueryComparisons.LessThanOrEqual, query.MaxValue\r\n             " +
+                    "                    )\r\n                          )));\r\n                        r" +
+                    "eturn table.ExecuteQuery(qId).Cast<object>().ToList();\r\n                    }\r\n " +
+                    "               var queryRange = tableQuery.Where(\r\n                    TableQuer" +
+                    "y.CombineFilters(\r\n                        TableQuery.GenerateFilterCondition(qu" +
+                    "ery.PropertyName, QueryComparisons.GreaterThanOrEqual, query.MinValue),\r\n       " +
+                    "                 TableOperators.And,\r\n                        TableQuery.Generat" +
+                    "eFilterCondition(query.PropertyName, QueryComparisons.LessThanOrEqual, query.Max" +
+                    "Value)));\r\n                return table.ExecuteQuery(queryRange).Cast<object>()." +
+                    "ToList();\r\n\t\t\t} \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 75 "Templates\AzureTableStorageContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 76 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(@"			
 			return new List<object>();
 		}
@@ -308,185 +302,178 @@ namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates
 		{
 			object[] generated = null;
 ");
-
-#line default
-#line hidden
-
-#line 104 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            foreach (var entity in Model.Entities)
-            {
-
-#line default
-#line hidden
-
-#line 105 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("\t\t\tif(entityName == \"");
-
-#line default
-#line hidden
-
-#line 105 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 105 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tgenerated = ");
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Name));
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(".GetInstance().Generate<");
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(entity.Name));
-
-#line default
-#line hidden
-
-#line 107 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(">(count).ToArray();\r\n\r\n\t\t\t} \r\n");
-
-#line default
-#line hidden
-
-#line 110 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 111 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 104 "Templates\AzureTableStorageContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
+            
+            #line default
+            #line hidden
+            
+            #line 105 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("\t\t\tif(entityName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 105 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 105 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tgenerated = ");
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.DataGenerator.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(".GetInstance().Generate<");
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(">(count).ToArray();\r\n\r\n\t\t\t} \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 110 "Templates\AzureTableStorageContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 111 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\t\t\tInsertAll(entitySetName,entityName,generated);\r\n\r\n\t\t}\r\n\r\n\t\tprivate void InitDi" +
                     "ctionary()\r\n        {\r\n");
-
-#line default
-#line hidden
-
-#line 117 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            foreach (var set in Model.ModelParameters.EntitySets)
-            {
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("\t\t\t_names.Add(\"");
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(set.Name));
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("\", new Tuple<Type,int>(typeof(");
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entities.Single(x => x.Name == set.EntityName).Namespace));
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entities.Single(x => x.Name == set.EntityName).Name));
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("),");
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(set.Count));
-
-#line default
-#line hidden
-
-#line 118 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-                this.Write("));\r\n");
-
-#line default
-#line hidden
-
-#line 119 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 120 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.TblStorage\Templates\AzureTableStorageContextTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+ foreach(var set in Model.ModelParameters.EntitySets) { 
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("\t\t\t_names.Add(\"");
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( set.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("\", new Tuple<Type,int>(typeof(");
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Entities.Single(x=>x.Name == set.EntityName).Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(  Model.Entities.Single(x=>x.Name == set.EntityName).Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("),");
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(set.Count));
+            
+            #line default
+            #line hidden
+            
+            #line 118 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("));\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 119 "Templates\AzureTableStorageContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("        }\r\n\r\n    }\r\n}");
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
-
-        public virtual void Initialize()
-        {
-            if ((this.Errors.HasErrors == false))
-            {
-                if (((this.Session != null)
-                            && this.Session.ContainsKey("Model")))
-                {
+        
+        public virtual void Initialize() {
+            if ((this.Errors.HasErrors == false)) {
+                if (((this.Session != null) 
+                            && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.TblStorage.Generators.AzureTableStorageContextGenerator).IsAssignableFrom(data.GetType()))
-                    {
+                    if (typeof(CloudPrototyper.NET.Framework.v462.TblStorage.Generators.AzureTableStorageContextGenerator).IsAssignableFrom(data.GetType())) {
                         this._ModelField = ((CloudPrototyper.NET.Framework.v462.TblStorage.Generators.AzureTableStorageContextGenerator)(data));
                     }
-                    else
-                    {
+                    else {
                         this.Error("The type \'CloudPrototyper.NET.Framework.v462.TblStorage.Generators.AzureTableStor" +
                                 "ageContextGenerator\' of the parameter \'Model\' did not match the type passed to t" +
                                 "he template");
@@ -496,106 +483,84 @@ namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates
 
         }
     }
-
-    public class AzureTableStorageContextTemplateBase
-    {
-
+    
+    public class AzureTableStorageContextTemplateBase {
+        
         private global::System.Text.StringBuilder builder;
-
+        
         private global::System.Collections.Generic.IDictionary<string, object> session;
-
+        
         private global::System.CodeDom.Compiler.CompilerErrorCollection errors;
-
+        
         private string currentIndent = string.Empty;
-
+        
         private global::System.Collections.Generic.Stack<int> indents;
-
+        
         private ToStringInstanceHelper _toStringHelper = new ToStringInstanceHelper();
-
-        public virtual global::System.Collections.Generic.IDictionary<string, object> Session
-        {
-            get
-            {
+        
+        public virtual global::System.Collections.Generic.IDictionary<string, object> Session {
+            get {
                 return this.session;
             }
-            set
-            {
+            set {
                 this.session = value;
             }
         }
-
-        public global::System.Text.StringBuilder GenerationEnvironment
-        {
-            get
-            {
-                if ((this.builder == null))
-                {
+        
+        public global::System.Text.StringBuilder GenerationEnvironment {
+            get {
+                if ((this.builder == null)) {
                     this.builder = new global::System.Text.StringBuilder();
                 }
                 return this.builder;
             }
-            set
-            {
+            set {
                 this.builder = value;
             }
         }
-
-        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors
-        {
-            get
-            {
-                if ((this.errors == null))
-                {
+        
+        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors {
+            get {
+                if ((this.errors == null)) {
                     this.errors = new global::System.CodeDom.Compiler.CompilerErrorCollection();
                 }
                 return this.errors;
             }
         }
-
-        public string CurrentIndent
-        {
-            get
-            {
+        
+        public string CurrentIndent {
+            get {
                 return this.currentIndent;
             }
         }
-
-        private global::System.Collections.Generic.Stack<int> Indents
-        {
-            get
-            {
-                if ((this.indents == null))
-                {
+        
+        private global::System.Collections.Generic.Stack<int> Indents {
+            get {
+                if ((this.indents == null)) {
                     this.indents = new global::System.Collections.Generic.Stack<int>();
                 }
                 return this.indents;
             }
         }
-
-        public ToStringInstanceHelper ToStringHelper
-        {
-            get
-            {
+        
+        public ToStringInstanceHelper ToStringHelper {
+            get {
                 return this._toStringHelper;
             }
         }
-
-        public void Error(string message)
-        {
+        
+        public void Error(string message) {
             this.Errors.Add(new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message));
         }
-
-        public void Warning(string message)
-        {
+        
+        public void Warning(string message) {
             global::System.CodeDom.Compiler.CompilerError val = new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message);
             val.IsWarning = true;
             this.Errors.Add(val);
         }
-
-        public string PopIndent()
-        {
-            if ((this.Indents.Count == 0))
-            {
+        
+        public string PopIndent() {
+            if ((this.Indents.Count == 0)) {
                 return string.Empty;
             }
             int lastPos = (this.currentIndent.Length - this.Indents.Pop());
@@ -603,80 +568,65 @@ namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates
             this.currentIndent = this.currentIndent.Substring(0, lastPos);
             return last;
         }
-
-        public void PushIndent(string indent)
-        {
+        
+        public void PushIndent(string indent) {
             this.Indents.Push(indent.Length);
             this.currentIndent = (this.currentIndent + indent);
         }
-
-        public void ClearIndent()
-        {
+        
+        public void ClearIndent() {
             this.currentIndent = string.Empty;
             this.Indents.Clear();
         }
-
-        public void Write(string textToAppend)
-        {
+        
+        public void Write(string textToAppend) {
             this.GenerationEnvironment.Append(textToAppend);
         }
-
-        public void Write(string format, params object[] args)
-        {
+        
+        public void Write(string format, params object[] args) {
             this.GenerationEnvironment.AppendFormat(format, args);
         }
-
-        public void WriteLine(string textToAppend)
-        {
+        
+        public void WriteLine(string textToAppend) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendLine(textToAppend);
         }
-
-        public void WriteLine(string format, params object[] args)
-        {
+        
+        public void WriteLine(string format, params object[] args) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendFormat(format, args);
             this.GenerationEnvironment.AppendLine();
         }
-
-        public class ToStringInstanceHelper
-        {
-
+        
+        public class ToStringInstanceHelper {
+            
             private global::System.IFormatProvider formatProvider = global::System.Globalization.CultureInfo.InvariantCulture;
-
-            public global::System.IFormatProvider FormatProvider
-            {
-                get
-                {
+            
+            public global::System.IFormatProvider FormatProvider {
+                get {
                     return this.formatProvider;
                 }
-                set
-                {
-                    if ((value != null))
-                    {
+                set {
+                    if ((value != null)) {
                         this.formatProvider = value;
                     }
                 }
             }
-
-            public string ToStringWithCulture(object objectToConvert)
-            {
-                if ((objectToConvert == null))
-                {
+            
+            public string ToStringWithCulture(object objectToConvert) {
+                if ((objectToConvert == null)) {
                     throw new global::System.ArgumentNullException("objectToConvert");
                 }
                 global::System.Type type = objectToConvert.GetType();
                 global::System.Type iConvertibleType = typeof(global::System.IConvertible);
-                if (iConvertibleType.IsAssignableFrom(type))
-                {
+                if (iConvertibleType.IsAssignableFrom(type)) {
                     return ((global::System.IConvertible)(objectToConvert)).ToString(this.formatProvider);
                 }
                 global::System.Reflection.MethodInfo methInfo = type.GetMethod("ToString", new global::System.Type[] {
-                        iConvertibleType});
-                if ((methInfo != null))
-                {
+                            iConvertibleType});
+                if ((methInfo != null)) {
                     return ((string)(methInfo.Invoke(objectToConvert, new object[] {
-                            this.formatProvider})));
+                                this.formatProvider})));
                 }
                 return objectToConvert.ToString();
             }

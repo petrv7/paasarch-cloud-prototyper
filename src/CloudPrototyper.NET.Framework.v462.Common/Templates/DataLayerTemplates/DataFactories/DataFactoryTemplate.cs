@@ -7,513 +7,502 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates.DataFactories
-{
-    using System;
-    using System.Collections.Generic;
+
+namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates.DataFactories {
     using System.Linq;
     using System.Text;
-
-
-
-    public partial class DataFactoryTemplate : DataFactoryTemplateBase
-    {
-
-
+    using System.Collections.Generic;
+    using System;
+    
+    
+    public partial class DataFactoryTemplate : DataFactoryTemplateBase {
+        
+        
         private CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories.DataFactoryGenerator _ModelField;
-
-        public CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories.DataFactoryGenerator Model
-        {
-            get
-            {
+        
+        public CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories.DataFactoryGenerator Model {
+            get {
                 return this._ModelField;
             }
         }
 
-
-        public virtual string TransformText()
-        {
+        
+        public virtual string TransformText() {
             this.GenerationEnvironment = null;
-
-#line 7 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line 7 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.Data.Entity;\r\nusin" +
                     "g System.Linq;\r\nusing System.Reflection;\r\n// Data factory\r\nnamespace  ");
-
-#line default
-#line hidden
-
-#line 13 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
-
-#line default
-#line hidden
-
-#line 13 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("\r\n{\r\n    public class  ");
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(" :  ");
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataFactoryInterface.Namespace));
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataFactoryInterface.Name));
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("< ");
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 15 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(">\r\n    {\r\n        private static readonly Random Random = new Random();\r\n\r\n      " +
                     "  public ");
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("()\r\n        {\r\n\r\n        }\r\n\t\tpublic ");
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(" One() \r\n\t\t{\r\n\t\t\treturn GetData();\r\n\t\t}\r\n\r\n        public ");
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("[] All(string dbName)\r\n        { \r\n\t\t\tType classType = typeof(");
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Name));
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(");\r\n\t\t\tvar method = classType.GetMethod(\"GetRowCount\");\r\n            var rows = (" +
                     "int)method.Invoke(null, new object[] { dbName, typeof(");
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(") });\r\n            return Generate(rows);\r\n        }\r\n\r\n        private ");
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("[] Generate(int rows)\r\n        {\r\n            List<");
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("> entities = new List<");
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(">();\r\n            for(int i = 0; i < rows; i++) \r\n\t\t\t{\r\n\t\t\t\tvar entity = GetData(" +
                     ");\r\n");
-
-#line default
-#line hidden
-
-#line 42 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
-            foreach (var prop in Model.Entity.ModelParameters.Properties.Where(x => x.IsReference))
-            {
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
-                this.Write("\t\t\t\tentity.");
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
-                this.Write(" = ");
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(prop.Type));
-
-#line default
-#line hidden
-
-#line 43 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
-                this.Write("DataFactory.GetData();\r\n\t\t\t\t\r\n");
-
-#line default
-#line hidden
-
-#line 45 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 46 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 42 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+ foreach(var prop in Model.Entity.ModelParameters.Properties.Where(x => x.IsReference)) { 
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            this.Write("\t\t\t\tentity.");
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            this.Write(" = ");
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Type ));
+            
+            #line default
+            #line hidden
+            
+            #line 43 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            this.Write("DataFactory.GetData();\r\n\t\t\t\t\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 45 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 46 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("\t\t\tentities.Add(entity);\r\n\t\t\t}\r\n            return entities.ToArray();\r\n        }" +
                     "\r\n\r\n        public static ");
-
-#line default
-#line hidden
-
-#line 51 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 51 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 51 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 51 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 51 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 51 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 51 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 51 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(" GetData()\r\n        {\r\n            ");
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("  entity = new ");
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 53 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write("();\r\n            var props = entity.GetType().GetProperties();\r\n            forea" +
                     "ch (var prop in props)\r\n            {\r\n                if (");
-
-#line default
-#line hidden
-
-#line 57 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 57 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 57 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 57 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 57 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 57 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 57 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 57 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".GetContentSize(prop.Name) > 0)\r\n                {\r\n                    Type clas" +
                     "sType = typeof(");
-
-#line default
-#line hidden
-
-#line 59 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 59 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
-
-#line default
-#line hidden
-
-#line 59 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 59 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 59 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 59 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Name));
-
-#line default
-#line hidden
-
-#line 59 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 59 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(@");
                     MethodInfo methodInfoClass = classType.GetMethod(""GetData"", BindingFlags.Static | BindingFlags.Public);
                     MethodInfo methodInfoMethod = methodInfoClass.MakeGenericMethod(new Type[] { prop.PropertyType });
                     var value = methodInfoMethod.Invoke(null, new object[] { ");
-
-#line default
-#line hidden
-
-#line 62 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 62 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Namespace));
-
-#line default
-#line hidden
-
-#line 62 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 62 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 62 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 62 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Entity.Name));
-
-#line default
-#line hidden
-
-#line 62 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 62 "Templates\DataLayerTemplates\DataFactories\DataFactoryTemplate.tt"
             this.Write(".GetContentSize(prop.Name) });\r\n                    prop.SetValue(entity, value, " +
                     "null);\r\n                }\r\n            }\r\n            return entity;\r\n        }\r" +
                     "\n    }\r\n}");
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
-
-        public virtual void Initialize()
-        {
-            if ((this.Errors.HasErrors == false))
-            {
-                if (((this.Session != null)
-                            && this.Session.ContainsKey("Model")))
-                {
+        
+        public virtual void Initialize() {
+            if ((this.Errors.HasErrors == false)) {
+                if (((this.Session != null) 
+                            && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories.DataFactoryGenerator).IsAssignableFrom(data.GetType()))
-                    {
+                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories.DataFactoryGenerator).IsAssignableFrom(data.GetType())) {
                         this._ModelField = ((CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories.DataFactoryGenerator)(data));
                     }
-                    else
-                    {
+                    else {
                         this.Error("The type \'CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerator" +
                                 "s.DataFactories.DataFactoryGenerator\' of the parameter \'Model\' did not match the" +
                                 " type passed to the template");
@@ -523,106 +512,84 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
 
         }
     }
-
-    public class DataFactoryTemplateBase
-    {
-
+    
+    public class DataFactoryTemplateBase {
+        
         private global::System.Text.StringBuilder builder;
-
+        
         private global::System.Collections.Generic.IDictionary<string, object> session;
-
+        
         private global::System.CodeDom.Compiler.CompilerErrorCollection errors;
-
+        
         private string currentIndent = string.Empty;
-
+        
         private global::System.Collections.Generic.Stack<int> indents;
-
+        
         private ToStringInstanceHelper _toStringHelper = new ToStringInstanceHelper();
-
-        public virtual global::System.Collections.Generic.IDictionary<string, object> Session
-        {
-            get
-            {
+        
+        public virtual global::System.Collections.Generic.IDictionary<string, object> Session {
+            get {
                 return this.session;
             }
-            set
-            {
+            set {
                 this.session = value;
             }
         }
-
-        public global::System.Text.StringBuilder GenerationEnvironment
-        {
-            get
-            {
-                if ((this.builder == null))
-                {
+        
+        public global::System.Text.StringBuilder GenerationEnvironment {
+            get {
+                if ((this.builder == null)) {
                     this.builder = new global::System.Text.StringBuilder();
                 }
                 return this.builder;
             }
-            set
-            {
+            set {
                 this.builder = value;
             }
         }
-
-        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors
-        {
-            get
-            {
-                if ((this.errors == null))
-                {
+        
+        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors {
+            get {
+                if ((this.errors == null)) {
                     this.errors = new global::System.CodeDom.Compiler.CompilerErrorCollection();
                 }
                 return this.errors;
             }
         }
-
-        public string CurrentIndent
-        {
-            get
-            {
+        
+        public string CurrentIndent {
+            get {
                 return this.currentIndent;
             }
         }
-
-        private global::System.Collections.Generic.Stack<int> Indents
-        {
-            get
-            {
-                if ((this.indents == null))
-                {
+        
+        private global::System.Collections.Generic.Stack<int> Indents {
+            get {
+                if ((this.indents == null)) {
                     this.indents = new global::System.Collections.Generic.Stack<int>();
                 }
                 return this.indents;
             }
         }
-
-        public ToStringInstanceHelper ToStringHelper
-        {
-            get
-            {
+        
+        public ToStringInstanceHelper ToStringHelper {
+            get {
                 return this._toStringHelper;
             }
         }
-
-        public void Error(string message)
-        {
+        
+        public void Error(string message) {
             this.Errors.Add(new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message));
         }
-
-        public void Warning(string message)
-        {
+        
+        public void Warning(string message) {
             global::System.CodeDom.Compiler.CompilerError val = new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message);
             val.IsWarning = true;
             this.Errors.Add(val);
         }
-
-        public string PopIndent()
-        {
-            if ((this.Indents.Count == 0))
-            {
+        
+        public string PopIndent() {
+            if ((this.Indents.Count == 0)) {
                 return string.Empty;
             }
             int lastPos = (this.currentIndent.Length - this.Indents.Pop());
@@ -630,80 +597,65 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
             this.currentIndent = this.currentIndent.Substring(0, lastPos);
             return last;
         }
-
-        public void PushIndent(string indent)
-        {
+        
+        public void PushIndent(string indent) {
             this.Indents.Push(indent.Length);
             this.currentIndent = (this.currentIndent + indent);
         }
-
-        public void ClearIndent()
-        {
+        
+        public void ClearIndent() {
             this.currentIndent = string.Empty;
             this.Indents.Clear();
         }
-
-        public void Write(string textToAppend)
-        {
+        
+        public void Write(string textToAppend) {
             this.GenerationEnvironment.Append(textToAppend);
         }
-
-        public void Write(string format, params object[] args)
-        {
+        
+        public void Write(string format, params object[] args) {
             this.GenerationEnvironment.AppendFormat(format, args);
         }
-
-        public void WriteLine(string textToAppend)
-        {
+        
+        public void WriteLine(string textToAppend) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendLine(textToAppend);
         }
-
-        public void WriteLine(string format, params object[] args)
-        {
+        
+        public void WriteLine(string format, params object[] args) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendFormat(format, args);
             this.GenerationEnvironment.AppendLine();
         }
-
-        public class ToStringInstanceHelper
-        {
-
+        
+        public class ToStringInstanceHelper {
+            
             private global::System.IFormatProvider formatProvider = global::System.Globalization.CultureInfo.InvariantCulture;
-
-            public global::System.IFormatProvider FormatProvider
-            {
-                get
-                {
+            
+            public global::System.IFormatProvider FormatProvider {
+                get {
                     return this.formatProvider;
                 }
-                set
-                {
-                    if ((value != null))
-                    {
+                set {
+                    if ((value != null)) {
                         this.formatProvider = value;
                     }
                 }
             }
-
-            public string ToStringWithCulture(object objectToConvert)
-            {
-                if ((objectToConvert == null))
-                {
+            
+            public string ToStringWithCulture(object objectToConvert) {
+                if ((objectToConvert == null)) {
                     throw new global::System.ArgumentNullException("objectToConvert");
                 }
                 global::System.Type type = objectToConvert.GetType();
                 global::System.Type iConvertibleType = typeof(global::System.IConvertible);
-                if (iConvertibleType.IsAssignableFrom(type))
-                {
+                if (iConvertibleType.IsAssignableFrom(type)) {
                     return ((global::System.IConvertible)(objectToConvert)).ToString(this.formatProvider);
                 }
                 global::System.Reflection.MethodInfo methInfo = type.GetMethod("ToString", new global::System.Type[] {
-                        iConvertibleType});
-                if ((methInfo != null))
-                {
+                            iConvertibleType});
+                if ((methInfo != null)) {
                     return ((string)(methInfo.Invoke(objectToConvert, new object[] {
-                            this.formatProvider})));
+                                this.formatProvider})));
                 }
                 return objectToConvert.ToString();
             }

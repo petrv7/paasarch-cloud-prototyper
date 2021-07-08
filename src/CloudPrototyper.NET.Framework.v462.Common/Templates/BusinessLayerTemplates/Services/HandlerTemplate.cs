@@ -7,35 +7,30 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace CloudPrototyper.NET.Framework.v462.Common.Templates.BusinessLayerTemplates.Services
-{
-    using System;
-    using System.Collections.Generic;
+
+namespace CloudPrototyper.NET.Framework.v462.Common.Templates.BusinessLayerTemplates.Services {
     using System.Linq;
     using System.Text;
-
-
-
-    public partial class HandlerTemplate : HandlerTemplateBase
-    {
-
-
+    using System.Collections.Generic;
+    using System;
+    
+    
+    public partial class HandlerTemplate : HandlerTemplateBase {
+        
+        
         private CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.Services.HandlerGenerator _ModelField;
-
-        public CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.Services.HandlerGenerator Model
-        {
-            get
-            {
+        
+        public CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.Services.HandlerGenerator Model {
+            get {
                 return this._ModelField;
             }
         }
 
-
-        public virtual string TransformText()
-        {
+        
+        public virtual string TransformText() {
             this.GenerationEnvironment = null;
-
-#line 7 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line 7 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(@"using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
@@ -47,327 +42,319 @@ using Castle.Windsor;
 using System.Collections.Generic;
 // Queue handler
 namespace ");
-
-#line default
-#line hidden
-
-#line 17 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
-
-#line default
-#line hidden
-
-#line 17 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 17 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 17 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" : ");
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.MessageBusHandlerInterface.Namespace));
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(".");
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.MessageBusHandlerInterface.Name));
-
-#line default
-#line hidden
-
-#line 19 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\r\n\t{\r\n        private string connectionString;\r\n        private string queueName;" +
                     "\r\n\t\tpublic const string Name = \"");
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 23 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 23 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\";\r\n        private QueueClient _client;\r\n        private ManualResetEvent comple" +
                     "tedEvent = new ManualResetEvent(false);\r\n\r\n");
-
-#line default
-#line hidden
-
-#line 27 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            foreach (var action in Model.Actions)
-            {
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write("\t\tpublic ");
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(action.Namespace));
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(".");
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(action.Name));
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(" ");
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(action.Name));
-
-#line default
-#line hidden
-
-#line 28 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(" { get; set; }\r\n");
-
-#line default
-#line hidden
-
-#line 29 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ foreach(var action in Model.Actions) { 
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\t\tpublic ");
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
-
-#line default
-#line hidden
-
-#line 30 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(" { get; set; }\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\t\tpublic ");
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("(\r\n");
-
-#line default
-#line hidden
-
-#line 31 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            foreach (var action in Model.Actions)
-            {
-                if (Model.Actions.Last().Equals(action))
-                {
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write("\t\t");
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(action.Namespace));
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(".");
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(action.Name));
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(" ");
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(action.Name.ToLower()));
-
-#line default
-#line hidden
-
-#line 32 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write("\r\n");
-
-#line default
-#line hidden
-
-#line 33 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                }
-                else
-                {
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write("\t\t");
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(action.Namespace));
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(".");
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(action.Name));
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(" ");
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(this.ToStringHelper.ToStringWithCulture(action.Name.ToLower()));
-
-#line default
-#line hidden
-
-#line 34 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                    this.Write(",\r\n");
-
-#line default
-#line hidden
-
-#line 35 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                }
-            }
-
-#line default
-#line hidden
-
-#line 36 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ foreach(var action in Model.Actions) {  if(Model.Actions.Last().Equals(action)) {
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\t\t");
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\t\t");
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(",\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 35 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ }} 
+            
+            #line default
+            #line hidden
+            
+            #line 36 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\t\t) \r\n\t\t{\r\n");
-
-#line default
-#line hidden
-
-#line 38 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            foreach (var action in Model.Actions)
-            {
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write("\t\t\tthis.");
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(action.Name));
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(" = ");
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(action.Name.ToLower()));
-
-#line default
-#line hidden
-
-#line 39 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(";\r\n");
-
-#line default
-#line hidden
-
-#line 40 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 41 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 38 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ foreach(var action in Model.Actions) { 
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\t\t\tthis.");
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(" = ");
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
+            
+            #line default
+            #line hidden
+            
+            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(";\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 40 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 41 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("            this.connectionString = \"");
-
-#line default
-#line hidden
-
-#line 41 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.AzureServiceBusQueue.ConnectionString));
-
-#line default
-#line hidden
-
-#line 41 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 41 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AzureServiceBusQueue.ConnectionString ));
+            
+            #line default
+            #line hidden
+            
+            #line 41 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\";\r\n            this.queueName = \"");
-
-#line default
-#line hidden
-
-#line 42 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.AzureServiceBusQueue.Name));
-
-#line default
-#line hidden
-
-#line 42 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 42 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AzureServiceBusQueue.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 42 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(@""";
         }
 
@@ -401,54 +388,53 @@ namespace ");
                             JsonSerializer serializer = new JsonSerializer();
                             var messageBody = serializer.Deserialize(jr);
 ");
-
-#line default
-#line hidden
-
-#line 74 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            foreach (var action in Model.ModelParameters)
-            {
-
-#line default
-#line hidden
-
-#line 75 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write("\t\t\tif(receivedMessage.Label == \"");
-
-#line default
-#line hidden
-
-#line 75 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture((action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType));
-
-#line default
-#line hidden
-
-#line 75 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write("\")\r\n\t\t\t{\r\n\t\t\t\t ");
-
-#line default
-#line hidden
-
-#line 77 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(this.ToStringHelper.ToStringWithCulture(Model.Actions.FirstOrDefault(x => x.Key.Equals(action.Name)).Name));
-
-#line default
-#line hidden
-
-#line 77 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-                this.Write(".Execute(new List<string>());\r\n\t\t\t} \r\n");
-
-#line default
-#line hidden
-
-#line 79 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            }
-
-#line default
-#line hidden
-
-#line 80 "c:\Users\PV\source\repos\paasarch-cloud-prototyper\src\CloudPrototyper.NET.Framework.v462.Common\Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            
+            #line default
+            #line hidden
+            
+            #line 74 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ foreach(var action in Model.ModelParameters) { 
+            
+            #line default
+            #line hidden
+            
+            #line 75 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\t\t\tif(receivedMessage.Label == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 75 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( (action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType ));
+            
+            #line default
+            #line hidden
+            
+            #line 75 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\")\r\n\t\t\t{\r\n\t\t\t\t ");
+            
+            #line default
+            #line hidden
+            
+            #line 77 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Actions.FirstOrDefault(x=>x.Key.Equals(action.Name)).Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 77 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(".Execute(new List<string>());\r\n\t\t\t} \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 79 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 80 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(@"							  Trace.WriteLine(""Processing of message completed "" + receivedMessage.Label);
                         }
                     }
@@ -464,26 +450,21 @@ namespace ");
     }
 }
 ");
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
             return this.GenerationEnvironment.ToString();
         }
-
-        public virtual void Initialize()
-        {
-            if ((this.Errors.HasErrors == false))
-            {
-                if (((this.Session != null)
-                            && this.Session.ContainsKey("Model")))
-                {
+        
+        public virtual void Initialize() {
+            if ((this.Errors.HasErrors == false)) {
+                if (((this.Session != null) 
+                            && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.Services.HandlerGenerator).IsAssignableFrom(data.GetType()))
-                    {
+                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.Services.HandlerGenerator).IsAssignableFrom(data.GetType())) {
                         this._ModelField = ((CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.Services.HandlerGenerator)(data));
                     }
-                    else
-                    {
+                    else {
                         this.Error("The type \'CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGener" +
                                 "ators.Services.HandlerGenerator\' of the parameter \'Model\' did not match the type" +
                                 " passed to the template");
@@ -493,106 +474,84 @@ namespace ");
 
         }
     }
-
-    public class HandlerTemplateBase
-    {
-
+    
+    public class HandlerTemplateBase {
+        
         private global::System.Text.StringBuilder builder;
-
+        
         private global::System.Collections.Generic.IDictionary<string, object> session;
-
+        
         private global::System.CodeDom.Compiler.CompilerErrorCollection errors;
-
+        
         private string currentIndent = string.Empty;
-
+        
         private global::System.Collections.Generic.Stack<int> indents;
-
+        
         private ToStringInstanceHelper _toStringHelper = new ToStringInstanceHelper();
-
-        public virtual global::System.Collections.Generic.IDictionary<string, object> Session
-        {
-            get
-            {
+        
+        public virtual global::System.Collections.Generic.IDictionary<string, object> Session {
+            get {
                 return this.session;
             }
-            set
-            {
+            set {
                 this.session = value;
             }
         }
-
-        public global::System.Text.StringBuilder GenerationEnvironment
-        {
-            get
-            {
-                if ((this.builder == null))
-                {
+        
+        public global::System.Text.StringBuilder GenerationEnvironment {
+            get {
+                if ((this.builder == null)) {
                     this.builder = new global::System.Text.StringBuilder();
                 }
                 return this.builder;
             }
-            set
-            {
+            set {
                 this.builder = value;
             }
         }
-
-        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors
-        {
-            get
-            {
-                if ((this.errors == null))
-                {
+        
+        protected global::System.CodeDom.Compiler.CompilerErrorCollection Errors {
+            get {
+                if ((this.errors == null)) {
                     this.errors = new global::System.CodeDom.Compiler.CompilerErrorCollection();
                 }
                 return this.errors;
             }
         }
-
-        public string CurrentIndent
-        {
-            get
-            {
+        
+        public string CurrentIndent {
+            get {
                 return this.currentIndent;
             }
         }
-
-        private global::System.Collections.Generic.Stack<int> Indents
-        {
-            get
-            {
-                if ((this.indents == null))
-                {
+        
+        private global::System.Collections.Generic.Stack<int> Indents {
+            get {
+                if ((this.indents == null)) {
                     this.indents = new global::System.Collections.Generic.Stack<int>();
                 }
                 return this.indents;
             }
         }
-
-        public ToStringInstanceHelper ToStringHelper
-        {
-            get
-            {
+        
+        public ToStringInstanceHelper ToStringHelper {
+            get {
                 return this._toStringHelper;
             }
         }
-
-        public void Error(string message)
-        {
+        
+        public void Error(string message) {
             this.Errors.Add(new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message));
         }
-
-        public void Warning(string message)
-        {
+        
+        public void Warning(string message) {
             global::System.CodeDom.Compiler.CompilerError val = new global::System.CodeDom.Compiler.CompilerError(null, -1, -1, null, message);
             val.IsWarning = true;
             this.Errors.Add(val);
         }
-
-        public string PopIndent()
-        {
-            if ((this.Indents.Count == 0))
-            {
+        
+        public string PopIndent() {
+            if ((this.Indents.Count == 0)) {
                 return string.Empty;
             }
             int lastPos = (this.currentIndent.Length - this.Indents.Pop());
@@ -600,80 +559,65 @@ namespace ");
             this.currentIndent = this.currentIndent.Substring(0, lastPos);
             return last;
         }
-
-        public void PushIndent(string indent)
-        {
+        
+        public void PushIndent(string indent) {
             this.Indents.Push(indent.Length);
             this.currentIndent = (this.currentIndent + indent);
         }
-
-        public void ClearIndent()
-        {
+        
+        public void ClearIndent() {
             this.currentIndent = string.Empty;
             this.Indents.Clear();
         }
-
-        public void Write(string textToAppend)
-        {
+        
+        public void Write(string textToAppend) {
             this.GenerationEnvironment.Append(textToAppend);
         }
-
-        public void Write(string format, params object[] args)
-        {
+        
+        public void Write(string format, params object[] args) {
             this.GenerationEnvironment.AppendFormat(format, args);
         }
-
-        public void WriteLine(string textToAppend)
-        {
+        
+        public void WriteLine(string textToAppend) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendLine(textToAppend);
         }
-
-        public void WriteLine(string format, params object[] args)
-        {
+        
+        public void WriteLine(string format, params object[] args) {
             this.GenerationEnvironment.Append(this.currentIndent);
             this.GenerationEnvironment.AppendFormat(format, args);
             this.GenerationEnvironment.AppendLine();
         }
-
-        public class ToStringInstanceHelper
-        {
-
+        
+        public class ToStringInstanceHelper {
+            
             private global::System.IFormatProvider formatProvider = global::System.Globalization.CultureInfo.InvariantCulture;
-
-            public global::System.IFormatProvider FormatProvider
-            {
-                get
-                {
+            
+            public global::System.IFormatProvider FormatProvider {
+                get {
                     return this.formatProvider;
                 }
-                set
-                {
-                    if ((value != null))
-                    {
+                set {
+                    if ((value != null)) {
                         this.formatProvider = value;
                     }
                 }
             }
-
-            public string ToStringWithCulture(object objectToConvert)
-            {
-                if ((objectToConvert == null))
-                {
+            
+            public string ToStringWithCulture(object objectToConvert) {
+                if ((objectToConvert == null)) {
                     throw new global::System.ArgumentNullException("objectToConvert");
                 }
                 global::System.Type type = objectToConvert.GetType();
                 global::System.Type iConvertibleType = typeof(global::System.IConvertible);
-                if (iConvertibleType.IsAssignableFrom(type))
-                {
+                if (iConvertibleType.IsAssignableFrom(type)) {
                     return ((global::System.IConvertible)(objectToConvert)).ToString(this.formatProvider);
                 }
                 global::System.Reflection.MethodInfo methInfo = type.GetMethod("ToString", new global::System.Type[] {
-                        iConvertibleType});
-                if ((methInfo != null))
-                {
+                            iConvertibleType});
+                if ((methInfo != null)) {
                     return ((string)(methInfo.Invoke(objectToConvert, new object[] {
-                            this.formatProvider})));
+                                this.formatProvider})));
                 }
                 return objectToConvert.ToString();
             }
