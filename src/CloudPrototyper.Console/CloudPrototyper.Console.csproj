@@ -1,31 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Label="Globals">
-    <SccProjectName>SAK</SccProjectName>
-    <SccProvider>SAK</SccProvider>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-  </PropertyGroup>
-
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
-    <AssemblyName>CloudPrototyper.Console</AssemblyName>
+    <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon />
     <OutputType>Exe</OutputType>
-    <PackageId>CloudPrototyper.Console</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="prototyper.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SocialNetworkModel.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="App.config" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.10.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CloudPrototyper.Azure\CloudPrototyper.Azure.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Benchmark\CloudPrototyper.Benchmark.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Build.NET\CloudPrototyper.Build.NET.csproj" />
@@ -35,9 +22,6 @@
     <ProjectReference Include="..\CloudPrototyper.Examples\CloudPrototyper.Examples.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Generator\CloudPrototyper.Generator.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Interface\CloudPrototyper.Interface.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CloudPrototyper.ModelResolver\CloudPrototyper.ModelResolver.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Model\CloudPrototyper.Model.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Common\CloudPrototyper.NET.Framework.v462.Common.csproj" />
@@ -47,18 +31,6 @@
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.WebApi\CloudPrototyper.NET.Framework.v462.WebApi.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.WebJob\CloudPrototyper.NET.Framework.v462.WebJob.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Interface\CloudPrototyper.NET.Interface.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Azure.Management.ResourceManager.Fluent" Version="1.0.0" />
-    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.13.9" />
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
 </Project>
