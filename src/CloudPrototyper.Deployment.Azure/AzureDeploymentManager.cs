@@ -159,6 +159,9 @@ namespace CloudPrototyper.Deployment.Azure
                 Directory.GetFiles(
                     Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), "*",
                     SearchOption.AllDirectories);
+
+            client.Connect();
+
             foreach (var file in files)
             {
                 Uri fullPath = new Uri(file, UriKind.Absolute);
@@ -192,6 +195,9 @@ namespace CloudPrototyper.Deployment.Azure
                 Directory.GetFiles(
                     Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), "*",
                     SearchOption.AllDirectories);
+            
+            client.Connect();
+
             foreach (var file in files)
             {
                 Uri fullPath = new Uri(file, UriKind.Absolute);
