@@ -42,6 +42,7 @@
       <HashCode>AAIAAAAAAAAAAAAAIIAgAAAIAAAAAAAACAAAAABAAAA=</HashCode>
       <FileName>Generation\Generation\GeneratorManager.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CloudPrototyper.NET.Interface.Generation.Generation.GeneratorManager&lt;T&gt;" Collapsed="true">
     <Position X="11.25" Y="3.5" Width="2" />
@@ -51,7 +52,7 @@
     </Compartments>
     <InheritanceLine Type="CloudPrototyper.NET.Interface.Generation.Generation.GeneratorManager" ManuallyRouted="true" FixedToPoint="true">
       <Path>
-        <Point X="10.75" Y="2.441" />
+        <Point X="10.75" Y="2.312" />
         <Point X="10.75" Y="4" />
         <Point X="11.25" Y="4" />
       </Path>
