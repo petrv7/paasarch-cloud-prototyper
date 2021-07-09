@@ -229,39 +229,39 @@ namespace CloudPrototyper.Deployment.Azure
         {
             Init();
             PricingTier tier = PricingTier.FreeF1;
-            switch (resource.PerformanceTier)
+            switch (resource.PerformanceTier.ToLower())
             {
-                case "FreeF1":
+                case "freef1":
                     tier = PricingTier.FreeF1;
                     break;
-                case "BasicB1":
+                case "basicb1":
                     tier = PricingTier.BasicB1;
                     break;
-                case "BasicB2":
+                case "basicb2":
                     tier = PricingTier.BasicB2;
                     break;
-                case "BasicB3":
+                case "basicb3":
                     tier = PricingTier.BasicB3;
                     break;
-                case "PremiumP1":
+                case "premiump1":
                     tier = PricingTier.PremiumP1;
                     break;
-                case "PremiumP2":
+                case "premiump2":
                     tier = PricingTier.PremiumP2;
                     break;
-                case "PremiumP3":
+                case "premiump3":
                     tier = PricingTier.PremiumP3;
                     break;
-                case "SharedD1":
+                case "sharedd1":
                     tier = PricingTier.SharedD1;
                     break;
-                case "StandardS1":
+                case "standards1":
                     tier = PricingTier.StandardS1;
                     break;
-                case "StandardS2":
+                case "standards2":
                     tier = PricingTier.StandardS2;
                     break;
-                case "StandardS3":
+                case "standards3":
                     tier = PricingTier.StandardS3;
                     break;
             }
@@ -295,80 +295,78 @@ namespace CloudPrototyper.Deployment.Azure
             }
             Console.WriteLine("Making sql db: " + resource.Name);
 
-            DatabaseEdition edition = new();
-            edition = DatabaseEdition.Free;
-            switch (resource.PerformanceTier)
+            DatabaseEdition edition = DatabaseEdition.Free;
+            switch (resource.PerformanceTier.ToLower())
             {
-                case "Basic":
+                case "basic":
                     edition = DatabaseEdition.Basic;
                     break;
-                case "Premium":
+                case "premium":
                     edition = DatabaseEdition.Premium;
                     break;
-                case "Free":
+                case "free":
                     edition = DatabaseEdition.Free;
                     break;
-                case "Standard":
+                case "standard":
                     edition = DatabaseEdition.Standard;
-                    break;                
+                    break;              
             }
 
-            ServiceObjectiveName serviceObjective = new();
-            serviceObjective = ServiceObjectiveName.Free;
-            switch (resource.ServiceObjective)
+            ServiceObjectiveName serviceObjective = ServiceObjectiveName.Free;
+            switch (resource.ServiceObjective.ToLower())
             {
-                case "Basic":
+                case "basic":
                     serviceObjective = ServiceObjectiveName.Basic;
                     break;
-                case "Free":
+                case "free":
                     serviceObjective = ServiceObjectiveName.Free;
                     break;
-                case "P1":
+                case "p1":
                     serviceObjective = ServiceObjectiveName.P1;
                     break;
-                case "P2":
+                case "p2":
                     serviceObjective = ServiceObjectiveName.P2;
                     break;
-                case "P3":
+                case "p3":
                     serviceObjective = ServiceObjectiveName.P3;
                     break;
-                case "P4":
+                case "p4":
                     serviceObjective = ServiceObjectiveName.P4;
                     break;
-                case "P6":
+                case "p6":
                     serviceObjective = ServiceObjectiveName.P6;
                     break;
-                case "P11":
+                case "p11":
                     serviceObjective = ServiceObjectiveName.P11;
                     break;
-                case "P15":
+                case "p15":
                     serviceObjective = ServiceObjectiveName.P15;
                     break;
-                case "S0":
+                case "s0":
                     serviceObjective = ServiceObjectiveName.S0;
                     break;
-                case "S1":
+                case "s1":
                     serviceObjective = ServiceObjectiveName.S1;
                     break;
-                case "S2":
+                case "s2":
                     serviceObjective = ServiceObjectiveName.S2;
                     break;
-                case "S3":
+                case "s3":
                     serviceObjective = ServiceObjectiveName.S3;
                     break;
-                case "S4":
+                case "s4":
                     serviceObjective = ServiceObjectiveName.S4;
                     break;
-                case "S6":
+                case "s6":
                     serviceObjective = ServiceObjectiveName.S6;
                     break;
-                case "S7":
+                case "s7":
                     serviceObjective = ServiceObjectiveName.S7;
                     break;
-                case "S9":
+                case "s9":
                     serviceObjective = ServiceObjectiveName.S9;
                     break;
-                case "S12":
+                case "s12":
                     serviceObjective = ServiceObjectiveName.S12;
                     break;
             }
