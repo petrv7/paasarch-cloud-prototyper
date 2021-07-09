@@ -46,10 +46,16 @@ namespace <#= Model.Namespace #>
                         TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "p"),
                         TableOperators.And,
                         TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, query.NominalParameter)));
-                        return table.ExecuteQuery(qId).Cast<object>().ToList();
+						
+                        var queryTask = table.ExecuteQuerySegmentedAsync(qId, null);
+                        queryTask.Wait();
+                        return queryTask.Result.Cast<object>().ToList();
                     }
                     var q = tableQuery.Where(TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.Equal, query.NominalParameter));
-                    return table.ExecuteQuery(q).Cast<object>().ToList();
+					
+                    var qTask = table.ExecuteQuerySegmentedAsync(q, null);
+                    qTask.Wait();
+                    return qTask.Result.Cast<object>().ToList();
                 }
 				 if (query.PropertyName == "Id")
                     {
@@ -63,14 +69,18 @@ namespace <#= Model.Namespace #>
                                     TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.LessThanOrEqual, query.MaxValue
                                  )
                           )));
-                        return table.ExecuteQuery(qId).Cast<object>().ToList();
+                        var queryTask = table.ExecuteQuerySegmentedAsync(qId, null);
+                        queryTask.Wait();
+                        return queryTask.Result.Cast<object>().ToList();
                     }
                 var queryRange = tableQuery.Where(
                     TableQuery.CombineFilters(
                         TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.GreaterThanOrEqual, query.MinValue),
                         TableOperators.And,
                         TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.LessThanOrEqual, query.MaxValue)));
-                return table.ExecuteQuery(queryRange).Cast<object>().ToList();
+                var queryRangeTask = table.ExecuteQuerySegmentedAsync(queryRange, null);
+                queryRangeTask.Wait();
+                return queryRangeTask.Result.Cast<object>().ToList();
 			} 
 <# } #>
 			
@@ -81,21 +91,21 @@ namespace <#= Model.Namespace #>
 		public void InsertAll(string entitySetName, string entityName, object[] toInsert)
 		{
 		    CloudTable table = _tableClient.GetTableReference(entitySetName);
-		    table.CreateIfNotExists();
+		    table.CreateIfNotExistsAsync().Wait();
 		    TableBatchOperation batchOperation = new TableBatchOperation();
 			int count = 0;
 		    foreach (var obj in toInsert)
 		    {
 		        count++;
-		        if (count >= TableConstants.TableServiceBatchMaximumOperations-1)
+		        if (count >= 2)
 		        {
-		            table.ExecuteBatch(batchOperation);
+		            table.ExecuteBatchAsync(batchOperation).Wait();
 		            batchOperation = new TableBatchOperation();
 		            count = 0;
 		        }
 		        batchOperation.InsertOrReplace(obj as TableEntity);
             }
-		    table.ExecuteBatch(batchOperation);
+		    table.ExecuteBatchAsync(batchOperation).Wait();
 		}
 
 		public void Insert(string entitySetName,string entityName, int count)
