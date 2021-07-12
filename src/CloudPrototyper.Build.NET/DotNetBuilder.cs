@@ -76,15 +76,14 @@ namespace CloudPrototyper.Build.NET
 
                 var isDone = false;
                 var solutionFile = Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First();
-                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                Process process = new();
 
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
+                ProcessStartInfo startInfo = new ProcessStartInfo
                 {
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-                    FileName = @"c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe",
-                    Arguments = solutionFile + " /p:OutputPath=" + buildable.OutputBuildPath + "\\build",
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    FileName = "dotnet.exe",
+                    Arguments = "build " + solutionFile + " /p:OutputPath=" + buildable.OutputBuildPath + "\\build",
                     UseShellExecute = false
-
                 };
 
                 process.EnableRaisingEvents = true;
@@ -124,11 +123,11 @@ namespace CloudPrototyper.Build.NET
             {
                 var isDone = false;
                 var solutionFile = Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First();
-                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                Process process = new();
                 
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
+                ProcessStartInfo startInfo = new()
                 {
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    WindowStyle = ProcessWindowStyle.Hidden,
                     FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nuget.exe"),
                     Arguments = "restore " + solutionFile,
                     UseShellExecute = false
