@@ -96,14 +96,22 @@ namespace CloudPrototyper.Build.NET
                 process.Exited += (sender, args) =>
                 {
                     isDone = true;
+
+                    if (process.ExitCode != 0)
+                    {
+                        process.Dispose();
+                        throw new Exception("dotnet build process failed");
+                    }
+
                     process.Dispose();
+
                 };
                 process.Start();
 
                 while (!isDone)
                 {
                     Thread.Sleep(100);
-                }
+                }                
             }
             catch (Exception e)
             {
