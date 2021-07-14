@@ -239,46 +239,39 @@ namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates {
                     "(\r\n                        TableQuery.GenerateFilterCondition(\"PartitionKey\", Qu" +
                     "eryComparisons.Equal, \"p\"),\r\n                        TableOperators.And,\r\n      " +
                     "                  TableQuery.GenerateFilterCondition(\"RowKey\", QueryComparisons." +
-                    "Equal, query.NominalParameter)));\r\n\t\t\t\t\t\t\r\n                        var queryTask" +
-                    " = table.ExecuteQuerySegmentedAsync(qId, null);\r\n                        queryTa" +
-                    "sk.Wait();\r\n                        return queryTask.Result.Cast<object>().ToLis" +
-                    "t();\r\n                    }\r\n                    var q = tableQuery.Where(TableQ" +
-                    "uery.GenerateFilterCondition(query.PropertyName, QueryComparisons.Equal, query.N" +
-                    "ominalParameter));\r\n\t\t\t\t\t\r\n                    var qTask = table.ExecuteQuerySeg" +
-                    "mentedAsync(q, null);\r\n                    qTask.Wait();\r\n                    re" +
-                    "turn qTask.Result.Cast<object>().ToList();\r\n                }\r\n\t\t\t\t if (query.Pr" +
-                    "opertyName == \"Id\")\r\n                    {\r\n                        var qId = ta" +
-                    "bleQuery.Where(\r\n                            TableQuery.CombineFilters(\r\n       " +
-                    "                         TableQuery.GenerateFilterCondition(\"PartitionKey\", Quer" +
-                    "yComparisons.Equal, \"p\"),\r\n                                TableOperators.And,\r\n" +
-                    "                                TableQuery.CombineFilters(\r\n                    " +
-                    "                TableQuery.GenerateFilterCondition(\"RowKey\", QueryComparisons.Gr" +
-                    "eaterThanOrEqual, query.MinValue), \r\n                                    TableOp" +
-                    "erators.And, \r\n                                    TableQuery.GenerateFilterCond" +
-                    "ition(\"RowKey\", QueryComparisons.LessThanOrEqual, query.MaxValue\r\n              " +
-                    "                   )\r\n                          )));\r\n                        va" +
-                    "r queryTask = table.ExecuteQuerySegmentedAsync(qId, null);\r\n                    " +
-                    "    queryTask.Wait();\r\n                        return queryTask.Result.Cast<obje" +
-                    "ct>().ToList();\r\n                    }\r\n                var queryRange = tableQu" +
-                    "ery.Where(\r\n                    TableQuery.CombineFilters(\r\n                    " +
-                    "    TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.Grea" +
-                    "terThanOrEqual, query.MinValue),\r\n                        TableOperators.And,\r\n " +
-                    "                       TableQuery.GenerateFilterCondition(query.PropertyName, Qu" +
-                    "eryComparisons.LessThanOrEqual, query.MaxValue)));\r\n                var queryRan" +
-                    "geTask = table.ExecuteQuerySegmentedAsync(queryRange, null);\r\n                qu" +
-                    "eryRangeTask.Wait();\r\n                return queryRangeTask.Result.Cast<object>(" +
-                    ").ToList();\r\n\t\t\t} \r\n");
+                    "Equal, query.NominalParameter)));\r\n\t\t\t\t\t\t\r\n                        return Execut" +
+                    "eQuery(table, qId);\r\n                    }\r\n                    var q = tableQue" +
+                    "ry.Where(TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons" +
+                    ".Equal, query.NominalParameter));\r\n\t\t\t\t\t\r\n                    return ExecuteQuer" +
+                    "y(table, q);\r\n                }\r\n\t\t\t\t if (query.PropertyName == \"Id\")\r\n         " +
+                    "           {\r\n                        var qId = tableQuery.Where(\r\n             " +
+                    "               TableQuery.CombineFilters(\r\n                                Table" +
+                    "Query.GenerateFilterCondition(\"PartitionKey\", QueryComparisons.Equal, \"p\"),\r\n   " +
+                    "                             TableOperators.And,\r\n                              " +
+                    "  TableQuery.CombineFilters(\r\n                                    TableQuery.Gen" +
+                    "erateFilterCondition(\"RowKey\", QueryComparisons.GreaterThanOrEqual, query.MinVal" +
+                    "ue), \r\n                                    TableOperators.And, \r\n               " +
+                    "                     TableQuery.GenerateFilterCondition(\"RowKey\", QueryCompariso" +
+                    "ns.LessThanOrEqual, query.MaxValue\r\n                                 )\r\n        " +
+                    "                  )));\r\n                        return ExecuteQuery(table, qId);" +
+                    "\r\n                    }\r\n                var queryRange = tableQuery.Where(\r\n   " +
+                    "                 TableQuery.CombineFilters(\r\n                        TableQuery." +
+                    "GenerateFilterCondition(query.PropertyName, QueryComparisons.GreaterThanOrEqual," +
+                    " query.MinValue),\r\n                        TableOperators.And,\r\n                " +
+                    "        TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons." +
+                    "LessThanOrEqual, query.MaxValue)));\r\n                return ExecuteQuery(table, " +
+                    "queryRange);\r\n\t\t\t} \r\n");
             
             #line default
             #line hidden
             
-            #line 85 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 77 "Templates\AzureTableStorageContextTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 86 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 78 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(@"			
 			return new List<object>();
 		}
@@ -312,159 +305,183 @@ namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates {
             #line default
             #line hidden
             
-            #line 114 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 106 "Templates\AzureTableStorageContextTemplate.tt"
  foreach(var entity in Model.Entities) { 
             
             #line default
             #line hidden
             
-            #line 115 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\t\t\tif(entityName == \"");
             
             #line default
             #line hidden
             
-            #line 115 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 115 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tgenerated = ");
             
             #line default
             #line hidden
             
-            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
             
             #line default
             #line hidden
             
-            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.DataGenerator.Name ));
             
             #line default
             #line hidden
             
-            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".GetInstance().Generate<");
             
             #line default
             #line hidden
             
-            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
             
             #line default
             #line hidden
             
-            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 117 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(">(count).ToArray();\r\n\r\n\t\t\t} \r\n");
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 112 "Templates\AzureTableStorageContextTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 121 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 113 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\t\t\tInsertAll(entitySetName,entityName,generated);\r\n\r\n\t\t}\r\n\r\n\t\tprivate void InitDi" +
                     "ctionary()\r\n        {\r\n");
             
             #line default
             #line hidden
             
-            #line 127 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 119 "Templates\AzureTableStorageContextTemplate.tt"
  foreach(var set in Model.ModelParameters.EntitySets) { 
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\t\t\t_names.Add(\"");
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( set.Name ));
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\", new Tuple<Type,int>(typeof(");
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Entities.Single(x=>x.Name == set.EntityName).Namespace ));
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(  Model.Entities.Single(x=>x.Name == set.EntityName).Name ));
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("),");
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(set.Count));
             
             #line default
             #line hidden
             
-            #line 128 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("));\r\n");
             
             #line default
             #line hidden
             
-            #line 129 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 121 "Templates\AzureTableStorageContextTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 130 "Templates\AzureTableStorageContextTemplate.tt"
-            this.Write("        }\r\n\r\n    }\r\n}");
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(@"        }
+
+		private static List<object> ExecuteQuery<T>(CloudTable table, TableQuery<T> query) where T : TableEntity, new()
+        {
+
+            var items = new List<object>();
+            TableContinuationToken token = null;
+
+            do
+            {
+
+                var task = table.ExecuteQuerySegmentedAsync(query, token);
+                task.Wait();
+                var seg = task.Result;
+
+                token = seg.ContinuationToken;
+                items.AddRange(seg.ToList());
+
+            } while (token != null);
+
+            return items;
+        }
+
+    }
+}");
             
             #line default
             #line hidden

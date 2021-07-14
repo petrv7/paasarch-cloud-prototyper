@@ -47,15 +47,11 @@ namespace <#= Model.Namespace #>
                         TableOperators.And,
                         TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, query.NominalParameter)));
 						
-                        var queryTask = table.ExecuteQuerySegmentedAsync(qId, null);
-                        queryTask.Wait();
-                        return queryTask.Result.Cast<object>().ToList();
+                        return ExecuteQuery(table, qId);
                     }
                     var q = tableQuery.Where(TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.Equal, query.NominalParameter));
 					
-                    var qTask = table.ExecuteQuerySegmentedAsync(q, null);
-                    qTask.Wait();
-                    return qTask.Result.Cast<object>().ToList();
+                    return ExecuteQuery(table, q);
                 }
 				 if (query.PropertyName == "Id")
                     {
@@ -69,18 +65,14 @@ namespace <#= Model.Namespace #>
                                     TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.LessThanOrEqual, query.MaxValue
                                  )
                           )));
-                        var queryTask = table.ExecuteQuerySegmentedAsync(qId, null);
-                        queryTask.Wait();
-                        return queryTask.Result.Cast<object>().ToList();
+                        return ExecuteQuery(table, qId);
                     }
                 var queryRange = tableQuery.Where(
                     TableQuery.CombineFilters(
                         TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.GreaterThanOrEqual, query.MinValue),
                         TableOperators.And,
                         TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.LessThanOrEqual, query.MaxValue)));
-                var queryRangeTask = table.ExecuteQuerySegmentedAsync(queryRange, null);
-                queryRangeTask.Wait();
-                return queryRangeTask.Result.Cast<object>().ToList();
+                return ExecuteQuery(table, queryRange);
 			} 
 <# } #>
 			
@@ -127,6 +119,27 @@ namespace <#= Model.Namespace #>
 <# foreach(var set in Model.ModelParameters.EntitySets) { #>
 			_names.Add("<#= set.Name #>", new Tuple<Type,int>(typeof(<#= Model.Entities.Single(x=>x.Name == set.EntityName).Namespace #>.<#=  Model.Entities.Single(x=>x.Name == set.EntityName).Name #>),<#=set.Count#>));
 <# } #>
+        }
+
+		private static List<object> ExecuteQuery<T>(CloudTable table, TableQuery<T> query) where T : TableEntity, new()
+        {
+
+            var items = new List<object>();
+            TableContinuationToken token = null;
+
+            do
+            {
+
+                var task = table.ExecuteQuerySegmentedAsync(query, token);
+                task.Wait();
+                var seg = task.Result;
+
+                token = seg.ContinuationToken;
+                items.AddRange(seg.ToList());
+
+            } while (token != null);
+
+            return items;
         }
 
     }
