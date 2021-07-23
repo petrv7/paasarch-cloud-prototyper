@@ -283,14 +283,81 @@ namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates {
 		    table.CreateIfNotExistsAsync().Wait();
 		    TableBatchOperation batchOperation = new TableBatchOperation();
 			int count = 0;
+            int totalSize = 0;
+            int size = 0;
+
+");
+            
+            #line default
+            #line hidden
+            
+            #line 92 "Templates\AzureTableStorageContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
+            
+            #line default
+            #line hidden
+            
+            #line 93 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("\t\t\tif(entityName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 93 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 93 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tsize = ");
+            
+            #line default
+            #line hidden
+            
+            #line 95 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 95 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 95 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 95 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(".GetTotalContentSize();\r\n      \t\t} \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 97 "Templates\AzureTableStorageContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 98 "Templates\AzureTableStorageContextTemplate.tt"
+            this.Write(@"
 		    foreach (var obj in toInsert)
 		    {
 		        count++;
-		        if (count >= 2)
+                totalSize += size;
+
+		        if (count >= 100 || totalSize + size >= 4000000)
 		        {
 		            table.ExecuteBatchAsync(batchOperation).Wait();
 		            batchOperation = new TableBatchOperation();
 		            count = 0;
+                    totalSize = 0;
 		        }
 		        batchOperation.InsertOrReplace(obj as TableEntity);
             }
@@ -305,158 +372,158 @@ namespace CloudPrototyper.NET.Framework.v462.TblStorage.Templates {
             #line default
             #line hidden
             
-            #line 106 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 119 "Templates\AzureTableStorageContextTemplate.tt"
  foreach(var entity in Model.Entities) { 
             
             #line default
             #line hidden
             
-            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\t\t\tif(entityName == \"");
             
             #line default
             #line hidden
             
-            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 107 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tgenerated = ");
             
             #line default
             #line hidden
             
-            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
             
             #line default
             #line hidden
             
-            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.DataGenerator.Name ));
             
             #line default
             #line hidden
             
-            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".GetInstance().Generate<");
             
             #line default
             #line hidden
             
-            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
             
             #line default
             #line hidden
             
-            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 109 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(">(count).ToArray();\r\n\r\n\t\t\t} \r\n");
             
             #line default
             #line hidden
             
-            #line 112 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 125 "Templates\AzureTableStorageContextTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 113 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 126 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\t\t\tInsertAll(entitySetName,entityName,generated);\r\n\r\n\t\t}\r\n\r\n\t\tprivate void InitDi" +
                     "ctionary()\r\n        {\r\n");
             
             #line default
             #line hidden
             
-            #line 119 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 132 "Templates\AzureTableStorageContextTemplate.tt"
  foreach(var set in Model.ModelParameters.EntitySets) { 
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\t\t\t_names.Add(\"");
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( set.Name ));
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("\", new Tuple<Type,int>(typeof(");
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Entities.Single(x=>x.Name == set.EntityName).Namespace ));
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(  Model.Entities.Single(x=>x.Name == set.EntityName).Name ));
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("),");
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(set.Count));
             
             #line default
             #line hidden
             
-            #line 120 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 133 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write("));\r\n");
             
             #line default
             #line hidden
             
-            #line 121 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 134 "Templates\AzureTableStorageContextTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 122 "Templates\AzureTableStorageContextTemplate.tt"
+            #line 135 "Templates\AzureTableStorageContextTemplate.tt"
             this.Write(@"        }
 
 		private static List<object> ExecuteQuery<T>(CloudTable table, TableQuery<T> query) where T : TableEntity, new()

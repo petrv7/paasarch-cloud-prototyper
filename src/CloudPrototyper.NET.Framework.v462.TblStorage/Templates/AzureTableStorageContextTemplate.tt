@@ -86,14 +86,27 @@ namespace <#= Model.Namespace #>
 		    table.CreateIfNotExistsAsync().Wait();
 		    TableBatchOperation batchOperation = new TableBatchOperation();
 			int count = 0;
+            int totalSize = 0;
+            int size = 0;
+
+<# foreach(var entity in Model.Entities) { #>
+			if(entityName == "<#= entity.Name #>")
+			{
+				size = <#=entity.Namespace#>.<#= entity.Name #>.GetTotalContentSize();
+      		} 
+<# } #>
+
 		    foreach (var obj in toInsert)
 		    {
 		        count++;
-		        if (count >= 2)
+                totalSize += size;
+
+		        if (count >= 100 || totalSize + size >= 4000000)
 		        {
 		            table.ExecuteBatchAsync(batchOperation).Wait();
 		            batchOperation = new TableBatchOperation();
 		            count = 0;
+                    totalSize = 0;
 		        }
 		        batchOperation.InsertOrReplace(obj as TableEntity);
             }
