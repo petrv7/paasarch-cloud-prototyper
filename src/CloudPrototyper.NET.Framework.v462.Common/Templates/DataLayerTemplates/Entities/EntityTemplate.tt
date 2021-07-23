@@ -37,5 +37,24 @@ namespace <#=Model.Namespace#>
 				return -1;
 			}
 		}
+
+		public static int GetTotalContentSize()
+		{
+			try 
+			{
+				int size = 0;
+
+<#foreach(var prop in Model.ModelParameters.Properties) {#>
+				//<#=prop.Name#>
+				size += <#= prop.ContentSize #>;
+
+<#}#>
+				return size;
+			} 
+			catch(Exception)
+			{
+				return -1;
+			}
+		}
 	}
 }

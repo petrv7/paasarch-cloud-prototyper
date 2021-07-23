@@ -229,7 +229,57 @@ foreach(var prop in Model.ModelParameters.Properties) {
             
             #line 36 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\t\t\treturn sizeDict[propertyName];\r\n\t\t\t} \r\n\t\t\tcatch(Exception)\r\n\t\t\t{\r\n\t\t\t\treturn -" +
-                    "1;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}");
+                    "1;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\tpublic static int GetTotalContentSize()\r\n\t\t{\r\n\t\t\ttry \r\n\t\t\t{\r\n" +
+                    "\t\t\t\tint size = 0;\r\n\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 50 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+foreach(var prop in Model.ModelParameters.Properties) {
+            
+            #line default
+            #line hidden
+            
+            #line 51 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write("\t\t\t\t//");
+            
+            #line default
+            #line hidden
+            
+            #line 51 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
+            
+            #line default
+            #line hidden
+            
+            #line 51 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write("\r\n\t\t\t\tsize += ");
+            
+            #line default
+            #line hidden
+            
+            #line 52 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.ContentSize ));
+            
+            #line default
+            #line hidden
+            
+            #line 52 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(";\r\n\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 54 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+}
+            
+            #line default
+            #line hidden
+            
+            #line 55 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write("\t\t\t\treturn size;\r\n\t\t\t} \r\n\t\t\tcatch(Exception)\r\n\t\t\t{\r\n\t\t\t\treturn -1;\r\n\t\t\t}\r\n\t\t}\r\n\t}" +
+                    "\r\n}");
             
             #line default
             #line hidden
