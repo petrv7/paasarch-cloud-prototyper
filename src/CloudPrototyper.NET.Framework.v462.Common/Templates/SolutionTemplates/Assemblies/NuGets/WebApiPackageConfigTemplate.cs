@@ -32,13 +32,13 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
             
             #line 7 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
             this.Write(@"<packages>
-  <package id=""Microsoft.AspNet.WebApi"" version=""5.2.3"" targetFramework=""net462"" />
-  <package id=""Microsoft.AspNet.WebApi.Client"" version=""5.2.3"" targetFramework=""net462"" />
-  <package id=""Microsoft.AspNet.WebApi.Core"" version=""5.2.3"" targetFramework=""net462"" />
-  <package id=""Microsoft.AspNet.WebApi.WebHost"" version=""5.2.3"" targetFramework=""net462"" />
+  <package id=""Microsoft.AspNet.WebApi"" version=""5.2.7"" targetFramework=""net462"" />
+  <package id=""Microsoft.AspNet.WebApi.Client"" version=""5.2.7"" targetFramework=""net462"" />
+  <package id=""Microsoft.AspNet.WebApi.Core"" version=""5.2.7"" targetFramework=""net462"" />
+  <package id=""Microsoft.AspNet.WebApi.WebHost"" version=""5.2.7"" targetFramework=""net462"" />
   <package id=""Microsoft.CodeDom.Providers.DotNetCompilerPlatform"" version=""1.0.0"" targetFramework=""net462"" />
   <package id=""Microsoft.Net.Compilers"" version=""1.0.0"" targetFramework=""net462"" developmentDependency=""true"" />
-  <package id=""Newtonsoft.Json"" version=""6.0.4"" targetFramework=""net462"" />
+  <package id=""Newtonsoft.Json"" version=""10.0.3"" targetFramework=""net462"" />
   <package id=""MSBuild.Microsoft.VisualStudio.Web.targets"" version=""14.0.0.3"" targetFramework=""net462"" />
 ");
             

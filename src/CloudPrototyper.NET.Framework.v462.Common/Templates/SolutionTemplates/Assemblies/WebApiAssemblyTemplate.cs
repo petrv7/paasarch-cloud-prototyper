@@ -115,15 +115,15 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
                     "ystem.Xml\" />\r\n    <Reference Include=\"System.Configuration\" />\r\n    <Reference " +
                     "Include=\"System.Web.Services\" />\r\n    <Reference Include=\"System.EnterpriseServi" +
                     "ces\" />\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <Reference Include=\"Newtonsoft.Json\"" +
-                    ">\r\n      <HintPath>..\\packages\\Newtonsoft.Json.6.0.4\\lib\\net45\\Newtonsoft.Json.d" +
-                    "ll</HintPath>\r\n    </Reference>\r\n    <Reference Include=\"System.Net.Http.Formatt" +
-                    "ing\">\r\n      <HintPath>..\\packages\\Microsoft.AspNet.WebApi.Client.5.2.3\\lib\\net4" +
-                    "5\\System.Net.Http.Formatting.dll</HintPath>\r\n    </Reference>\r\n    <Reference In" +
-                    "clude=\"System.Web.Http\">\r\n      <HintPath>..\\packages\\Microsoft.AspNet.WebApi.Co" +
-                    "re.5.2.3\\lib\\net45\\System.Web.Http.dll</HintPath>\r\n    </Reference>\r\n    <Refere" +
-                    "nce Include=\"System.Web.Http.WebHost\">\r\n      <HintPath>..\\packages\\Microsoft.As" +
-                    "pNet.WebApi.WebHost.5.2.3\\lib\\net45\\System.Web.Http.WebHost.dll</HintPath>\r\n    " +
-                    "</Reference>\r\n");
+                    ">\r\n      <HintPath>..\\packages\\Newtonsoft.Json.10.0.3\\lib\\net45\\Newtonsoft.Json." +
+                    "dll</HintPath>\r\n    </Reference>\r\n    <Reference Include=\"System.Net.Http.Format" +
+                    "ting\">\r\n      <HintPath>..\\packages\\Microsoft.AspNet.WebApi.Client.5.2.7\\lib\\net" +
+                    "45\\System.Net.Http.Formatting.dll</HintPath>\r\n    </Reference>\r\n    <Reference I" +
+                    "nclude=\"System.Web.Http\">\r\n      <HintPath>..\\packages\\Microsoft.AspNet.WebApi.C" +
+                    "ore.5.2.7\\lib\\net45\\System.Web.Http.dll</HintPath>\r\n    </Reference>\r\n    <Refer" +
+                    "ence Include=\"System.Web.Http.WebHost\">\r\n      <HintPath>..\\packages\\Microsoft.A" +
+                    "spNet.WebApi.WebHost.5.2.7\\lib\\net45\\System.Web.Http.WebHost.dll</HintPath>\r\n   " +
+                    " </Reference>\r\n");
             
             #line default
             #line hidden

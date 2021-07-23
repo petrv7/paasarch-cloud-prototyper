@@ -32,8 +32,8 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
             
             #line 7 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.IO;\r\nusing System." +
-                    "Threading.Tasks;\r\nusing Newtonsoft.Json;\r\nusing Microsoft.ServiceBus.Messaging;\r" +
-                    "\n// Azure service bus\r\nnamespace ");
+                    "Threading.Tasks;\r\nusing Newtonsoft.Json;\r\nusing Microsoft.Azure.ServiceBus;\r\n// " +
+                    "Azure service bus\r\nnamespace ");
             
             #line default
             #line hidden
@@ -107,7 +107,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
             #line hidden
             
             #line 22 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
-            this.Write("() \r\n\t\t{ \r\n\t\t\t_client = QueueClient.CreateFromConnectionString(\"");
+            this.Write("() \r\n\t\t{ \r\n\t\t\t_client = new QueueClient(new ServiceBusConnectionStringBuilder(\"");
             
             #line default
             #line hidden
@@ -119,8 +119,8 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
             #line hidden
             
             #line 24 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
-            this.Write("\");\r\n\t\t}\r\n\r\n\t\tpublic void Insert(string name) \r\n\t\t{\r\n\t\t\tobject toInsert = null;\r\n" +
-                    "");
+            this.Write("\"));\r\n\t\t}\r\n\r\n\t\tpublic void Insert(string name) \r\n\t\t{\r\n\t\t\tobject toInsert = null;\r" +
+                    "\n");
             
             #line default
             #line hidden
@@ -220,9 +220,9 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
                         sw.Flush();
                         jsonStream.Seek(0, SeekOrigin.Begin);
 
-                        var message = new BrokeredMessage(jsonStream, true) { Label = name };
+                        var message = new Message(jsonStream.ToArray()) { Label = name };
 
-                        _client.Send(message);
+                        _client.SendAsync(message).Wait();
                     }
                 }
             }
@@ -232,8 +232,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
 		{
 			foreach(var o in toInsert) 
 			{
-				Insert(name, o);
-				
+				Insert(name, o);				
 			}
 		}
     }

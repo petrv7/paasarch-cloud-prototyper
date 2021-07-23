@@ -31,330 +31,322 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.BusinessLayerTempl
             this.GenerationEnvironment = null;
             
             #line 7 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(@"using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
-using Newtonsoft.Json;
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
-using Castle.Windsor;
-using System.Collections.Generic;
-// Queue handler
-namespace ");
+            this.Write("using Microsoft.Azure.ServiceBus;\r\nusing Newtonsoft.Json;\r\nusing System;\r\nusing S" +
+                    "ystem.Diagnostics;\r\nusing System.IO;\r\nusing System.Threading;\r\nusing Castle.Wind" +
+                    "sor;\r\nusing System.Collections.Generic;\r\n// Queue handler\r\nnamespace ");
             
             #line default
             #line hidden
             
-            #line 17 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 16 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 17 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 16 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 18 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 18 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" : ");
             
             #line default
             #line hidden
             
-            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 18 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Namespace ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 18 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 18 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Name ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 18 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\r\n\t{\r\n        private string connectionString;\r\n        private string queueName;" +
                     "\r\n\t\tpublic const string Name = \"");
             
             #line default
             #line hidden
             
-            #line 23 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 22 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 23 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 22 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\";\r\n        private QueueClient _client;\r\n        private ManualResetEvent comple" +
                     "tedEvent = new ManualResetEvent(false);\r\n\r\n");
             
             #line default
             #line hidden
             
-            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 26 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  foreach(var action in Model.Actions) { 
             
             #line default
             #line hidden
             
-            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\t\tpublic ");
             
             #line default
             #line hidden
             
-            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" ");
             
             #line default
             #line hidden
             
-            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 27 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" { get; set; }\r\n");
             
             #line default
             #line hidden
             
-            #line 29 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 28 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 30 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 29 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\t\tpublic ");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 29 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 30 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 29 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("(\r\n");
             
             #line default
             #line hidden
             
-            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 30 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  foreach(var action in Model.Actions) {  if(Model.Actions.Last().Equals(action)) {
             
             #line default
             #line hidden
             
-            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\t\t");
             
             #line default
             #line hidden
             
-            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" ");
             
             #line default
             #line hidden
             
-            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
             
             #line default
             #line hidden
             
-            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 31 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\r\n");
             
             #line default
             #line hidden
             
-            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 32 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  } else { 
             
             #line default
             #line hidden
             
-            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\t\t");
             
             #line default
             #line hidden
             
-            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" ");
             
             #line default
             #line hidden
             
-            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
             
             #line default
             #line hidden
             
-            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 33 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(",\r\n");
             
             #line default
             #line hidden
             
-            #line 35 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 34 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  }} 
             
             #line default
             #line hidden
             
-            #line 36 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 35 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\t\t) \r\n\t\t{\r\n");
             
             #line default
             #line hidden
             
-            #line 38 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 37 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  foreach(var action in Model.Actions) { 
             
             #line default
             #line hidden
             
-            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 38 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\t\t\tthis.");
             
             #line default
             #line hidden
             
-            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 38 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 38 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(" = ");
             
             #line default
             #line hidden
             
-            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 38 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
             
             #line default
             #line hidden
             
-            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 38 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(";\r\n");
             
             #line default
             #line hidden
             
-            #line 40 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 39 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 41 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 40 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("            this.connectionString = \"");
             
             #line default
             #line hidden
             
-            #line 41 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 40 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.AzureServiceBusQueue.ConnectionString ));
             
             #line default
             #line hidden
             
-            #line 41 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 40 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write("\";\r\n            this.queueName = \"");
             
             #line default
             #line hidden
             
-            #line 42 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 41 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.AzureServiceBusQueue.Name ));
             
             #line default
             #line hidden
             
-            #line 42 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 41 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(@""";
         }
 
@@ -362,8 +354,7 @@ namespace ");
         {
         
             // Initialize the connection to Service Bus Queue
-            _client = QueueClient.CreateFromConnectionString(connectionString);
-            _client.RetryPolicy = new RetryExponential(TimeSpan.FromSeconds(0.3), TimeSpan.FromSeconds(2), 5);
+            _client = new QueueClient(new ServiceBusConnectionStringBuilder(connectionString), ReceiveMode.ReceiveAndDelete, new RetryExponential(TimeSpan.FromSeconds(0.3), TimeSpan.FromSeconds(2), 5));
             //Client.PrefetchCount = 4;
         }
 
@@ -372,7 +363,7 @@ namespace ");
             Trace.WriteLine(""Starting processing of messages"");
 
             // Initiates the message pump and callback is invoked for each message that is received, calling close on the client will stop the pump.
-            _client.OnMessage((receivedMessage) =>
+            _client.RegisterMessageHandler((receivedMessage, token) =>
             {
                 // Get DateTime when task processing began
                 DateTime startedAt = DateTime.Now;
@@ -380,7 +371,7 @@ namespace ");
                 try
                 {
 
-                    using (StreamReader sr = new StreamReader(receivedMessage.GetBody<System.IO.Stream>()))
+                    using (StreamReader sr = new StreamReader(new MemoryStream(receivedMessage.Body)))
                     {
                         using (JsonTextReader jr = new JsonTextReader(sr))
                         {
@@ -392,50 +383,50 @@ namespace ");
             #line default
             #line hidden
             
-            #line 74 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 72 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  foreach(var action in Model.ModelParameters) { 
             
             #line default
             #line hidden
             
-            #line 75 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write("\t\t\tif(receivedMessage.Label == \"");
+            #line 73 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\t\t\t                if(receivedMessage.Label == \"");
             
             #line default
             #line hidden
             
-            #line 75 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 73 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( (action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType ));
             
             #line default
             #line hidden
             
-            #line 75 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write("\")\r\n\t\t\t{\r\n\t\t\t\t ");
+            #line 73 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write("\")\r\n\t\t\t                {\r\n\t\t\t\t                 ");
             
             #line default
             #line hidden
             
-            #line 77 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 75 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Actions.FirstOrDefault(x=>x.Key.Equals(action.Name)).Name ));
             
             #line default
             #line hidden
             
-            #line 77 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(".Execute(new List<string>());\r\n\t\t\t} \r\n");
+            #line 75 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(".Execute(new List<string>());\r\n\t\t\t                } \r\n\r\n");
             
             #line default
             #line hidden
             
-            #line 79 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            #line 78 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 80 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
-            this.Write(@"							  Trace.WriteLine(""Processing of message completed "" + receivedMessage.Label);
+            #line 79 "Templates\BusinessLayerTemplates\Services\HandlerTemplate.tt"
+            this.Write(@"							Trace.WriteLine(""Processing of message completed "" + receivedMessage.Label);
                         }
                     }
                 }
@@ -443,7 +434,8 @@ namespace ");
                 {
                     Trace.WriteLine(""Failed processing of message "" + receivedMessage.Label);
                 }
-            }, new OnMessageOptions() { MaxConcurrentCalls = 1 });
+                return System.Threading.Tasks.Task.CompletedTask;
+            }, new MessageHandlerOptions((args) => System.Threading.Tasks.Task.CompletedTask) { MaxConcurrentCalls = 1 });
 
             completedEvent.WaitOne();
         }

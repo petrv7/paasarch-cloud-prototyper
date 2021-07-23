@@ -44,28 +44,27 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.ApiLayerTemplates 
                     "rsion=\"1.0.0.0-5.2.3.0\" newVersion=\"5.2.3.0\"/>\r\n      </dependentAssembly>\r\n    " +
                     "  <dependentAssembly>\r\n        <assemblyIdentity name=\"System.Web.WebPages\" publ" +
                     "icKeyToken=\"31bf3856ad364e35\"/>\r\n        <bindingRedirect oldVersion=\"1.0.0.0-3." +
-                    "0.0.0\" newVersion=\"3.0.0.0\"/>\r\n      </dependentAssembly>\r\n\t        <assemblyBin" +
-                    "ding xmlns=\"urn:schemas-microsoft-com:asm.v1\">\r\n        <dependentAssembly>\r\n   " +
-                    "       <assemblyIdentity name=\"Newtonsoft.Json\" publicKeyToken=\"30AD4FE6B2A6AEED" +
-                    "\" culture=\"neutral\"/>\r\n          <bindingRedirect oldVersion=\"0.0.0.0-6.0.0.0\" n" +
-                    "ewVersion=\"6.0.0.0\"/>\r\n        </dependentAssembly>\r\n      </assemblyBinding>\r\n " +
-                    "   </assemblyBinding>\r\n  </runtime>\r\n  <system.codedom>\r\n    <compilers>\r\n      " +
-                    "<compiler language=\"c#;cs;csharp\" extension=\".cs\"\r\n        type=\"Microsoft.CodeD" +
-                    "om.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Provid" +
-                    "ers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31b" +
-                    "f3856ad364e35\"\r\n        warningLevel=\"4\" compilerOptions=\"/langversion:6 /nowarn" +
-                    ":1659;1699;1701\"/>\r\n      <compiler language=\"vb;vbs;visualbasic;vbscript\" exten" +
-                    "sion=\".vb\"\r\n        type=\"Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBC" +
-                    "odeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0" +
-                    ", Culture=neutral, PublicKeyToken=31bf3856ad364e35\"\r\n        warningLevel=\"4\" co" +
-                    "mpilerOptions=\"/langversion:14 /nowarn:41008 /define:_MYTYPE=\\&quot;Web\\&quot; /" +
-                    "optionInfer+\"/>\r\n    </compilers>\r\n  </system.codedom>\r\n   <entityFramework>\r\n  " +
-                    "  <defaultConnectionFactory type=\"System.Data.Entity.Infrastructure.LocalDbConne" +
-                    "ctionFactory, EntityFramework\">\r\n      <parameters>\r\n        <parameter value=\"m" +
-                    "ssqllocaldb\"/>\r\n      </parameters>\r\n    </defaultConnectionFactory>\r\n    <provi" +
-                    "ders>\r\n      <provider invariantName=\"System.Data.SqlClient\" type=\"System.Data.E" +
-                    "ntity.SqlServer.SqlProviderServices, EntityFramework.SqlServer\"/>\r\n    </provide" +
-                    "rs>\r\n  </entityFramework>\r\n</configuration>\r\n");
+                    "0.0.0\" newVersion=\"3.0.0.0\"/>\r\n      </dependentAssembly>\r\n      <dependentAssem" +
+                    "bly>\r\n        <assemblyIdentity name=\"Newtonsoft.Json\" publicKeyToken=\"30ad4fe6b" +
+                    "2a6aeed\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-10.0" +
+                    ".0.0\" newVersion=\"10.0.0.0\" />\r\n      </dependentAssembly>\r\n    </assemblyBindin" +
+                    "g>\r\n  </runtime>\r\n  <system.codedom>\r\n    <compilers>\r\n      <compiler language=" +
+                    "\"c#;cs;csharp\" extension=\".cs\"\r\n        type=\"Microsoft.CodeDom.Providers.DotNet" +
+                    "CompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerP" +
+                    "latform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35\"\r\n   " +
+                    "     warningLevel=\"4\" compilerOptions=\"/langversion:6 /nowarn:1659;1699;1701\"/>\r" +
+                    "\n      <compiler language=\"vb;vbs;visualbasic;vbscript\" extension=\".vb\"\r\n       " +
+                    " type=\"Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Micros" +
+                    "oft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, " +
+                    "PublicKeyToken=31bf3856ad364e35\"\r\n        warningLevel=\"4\" compilerOptions=\"/lan" +
+                    "gversion:14 /nowarn:41008 /define:_MYTYPE=\\&quot;Web\\&quot; /optionInfer+\"/>\r\n  " +
+                    "  </compilers>\r\n  </system.codedom>\r\n   <entityFramework>\r\n    <defaultConnectio" +
+                    "nFactory type=\"System.Data.Entity.Infrastructure.LocalDbConnectionFactory, Entit" +
+                    "yFramework\">\r\n      <parameters>\r\n        <parameter value=\"mssqllocaldb\"/>\r\n   " +
+                    "   </parameters>\r\n    </defaultConnectionFactory>\r\n    <providers>\r\n      <provi" +
+                    "der invariantName=\"System.Data.SqlClient\" type=\"System.Data.Entity.SqlServer.Sql" +
+                    "ProviderServices, EntityFramework.SqlServer\"/>\r\n    </providers>\r\n  </entityFram" +
+                    "ework>\r\n</configuration>\r\n");
             
             #line default
             #line hidden

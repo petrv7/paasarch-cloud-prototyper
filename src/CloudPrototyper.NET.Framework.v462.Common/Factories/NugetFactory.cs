@@ -18,9 +18,129 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
             new PackageConfigInfo(new List<Tuple<string, string>>
                 {
                     new Tuple<string, string>(
-                        "Microsoft.ServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
-                        @"..\packages\WindowsAzure.ServiceBus.3.4.2\lib\net45-full\Microsoft.ServiceBus.dll")
-                },"WindowsAzure.ServiceBus","3.4.2","net462")
+                        "Microsoft.Azure.Amqp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
+                        @"..\packages\Microsoft.Azure.Amqp.2.4.11\lib\net45\Microsoft.Azure.Amqp.dll")
+                },"Microsoft.Azure.Amqp","2.4.11","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "Microsoft.Azure.ServiceBus, Version=5.1.3.0, Culture=neutral, PublicKeyToken=7e34167dcc6d6d8c, processorArchitecture=MSIL",
+                        @"..\packages\Microsoft.Azure.ServiceBus.5.1.3\lib\netstandard2.0\Microsoft.Azure.ServiceBus.dll")
+                },"Microsoft.Azure.ServiceBus","5.1.3","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "Microsoft.Azure.Services.AppAuthentication, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
+                        @"..\packages\Microsoft.Azure.Services.AppAuthentication.1.0.3\lib\net452\Microsoft.Azure.Services.AppAuthentication.dll")
+                },"Microsoft.Azure.Services.AppAuthentication","1.0.3","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "Microsoft.IdentityModel.Clients.ActiveDirectory, Version=3.14.2.11, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
+                        @"..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.14.2\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.dll")
+                },"Microsoft.IdentityModel.Clients.ActiveDirectory","3.14.2","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "Microsoft.IdentityModel.Clients.ActiveDirectory.Platform, Version=3.14.2.11, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
+                        @"..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.3.14.2\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll")
+                },"Microsoft.IdentityModel.Clients.ActiveDirectory.Platform","3.14.2","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "Microsoft.IdentityModel.JsonWebTokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
+                        @"..\packages\Microsoft.IdentityModel.JsonWebTokens.5.4.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll")
+                },"Microsoft.IdentityModel.JsonWebTokens","5.4.0","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "Microsoft.IdentityModel.Logging, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
+                        @"..\packages\Microsoft.IdentityModel.Logging.5.4.0\lib\net461\Microsoft.IdentityModel.Logging.dll")
+                },"Microsoft.IdentityModel.Logging","5.4.0","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "Microsoft.IdentityModel.Tokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
+                        @"..\packages\Microsoft.IdentityModel.Tokens.5.4.0\lib\net461\Microsoft.IdentityModel.Tokens.dll")
+                },"Microsoft.IdentityModel.Tokens","5.4.0","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL",
+                        @"..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net46\System.Diagnostics.DiagnosticSource.dll")
+                },"System.Diagnostics.DiagnosticSource","4.5.1","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.IdentityModel.Tokens.Jwt, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
+                        @"..\packages\System.IdentityModel.Tokens.Jwt.5.4.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll")
+                },"System.IdentityModel.Tokens.Jwt","5.4.0","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Runtime.Serialization.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL",
+                        @"..\packages\System.Runtime.Serialization.Primitives.4.1.1\lib\net46\System.Runtime.Serialization.Primitives.dll")
+                },"System.Runtime.Serialization.Primitives","4.1.1","net462"),
+
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Net.WebSockets, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL",
+                        @"..\packages\System.Net.WebSockets.4.0.0\lib\net46\System.Net.WebSockets.dll")
+                },"System.Net.WebSockets","4.0.0","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Net.WebSockets.Client, Version=4.0.0.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL",
+                        @"..\packages\System.Net.WebSockets.Client.4.0.2\lib\net46\System.Net.WebSockets.Client.dll")
+                },"System.Net.WebSockets.Client","4.0.2","net462"),
+            
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Runtime.Serialization.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL",
+                        @"..\packages\System.Runtime.Serialization.Primitives.4.1.1\lib\net46\System.Runtime.Serialization.Primitives.dll")
+                },"System.Runtime.Serialization.Primitives","4.1.1","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL",
+                        @"..\packages\System.Security.Cryptography.Algorithms.4.2.0\lib\net461\System.Security.Cryptography.Algorithms.dll")
+                },"System.Security.Cryptography.Algorithms","4.2.0","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Security.Cryptography.Encoding, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL",
+                        @"..\packages\System.Security.Cryptography.Encoding.4.0.0\lib\net46\System.Security.Cryptography.Encoding.dll")
+                },"System.Security.Cryptography.Encoding","4.0.0","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Security.Cryptography.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL",
+                        @"..\packages\System.Security.Cryptography.Primitives.4.0.0\lib\net46\System.Security.Cryptography.Primitives.dll")
+                },"System.Security.Cryptography.Primitives","4.0.0","net462"),
+
+            new PackageConfigInfo(new List<Tuple<string, string>>
+                {
+                    new Tuple<string, string>(
+                        "System.Security.Cryptography.X509Certificates, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL",
+                        @"..\packages\System.Security.Cryptography.X509Certificates.4.1.0\lib\net461\System.Security.Cryptography.X509Certificates.dll")
+                },"System.Security.Cryptography.X509Certificates","4.1.0","net462")   
 
         };
 
@@ -85,10 +205,10 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
 
             new PackageConfigInfo(new List<Tuple<string, string>>
             {
-                new Tuple<string, string>("Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, " +
+                new Tuple<string, string>("Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, " +
                                           "PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL",
-                    @"..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll")
-            }, "Newtonsoft.Json", "6.0.8", "net462"),
+                    @"..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll")
+            }, "Newtonsoft.Json", "10.0.3", "net462"),
 
 
             new PackageConfigInfo(new List<Tuple<string, string>>
