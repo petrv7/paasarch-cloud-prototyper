@@ -97,8 +97,8 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
             PackagesConfigGenerator packagesConfig = new PackagesConfigGenerator(nugets, new GenerationInfo("packages.config", library.GenerationInfo.RelativePathFolder, new LibraryPackageConfigTemplate(), true));
 
             files.Add(library);
-            files.Add(packagesConfig);
-            files.Add(assemblyInfo);
+            //files.Add(packagesConfig);
+            //files.Add(assemblyInfo);
             
 
             library.AssemblyInfo.AssemblyImports.AddRange(imports);
@@ -146,12 +146,12 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
 
             files.Add(apiProject);
             files.Add(globalAsax);
-            files.Add(packagesConfig);
+            //files.Add(packagesConfig);
             files.Add(webConfig);
             files.Add(webDebugConfig);
             files.Add(webReleaseConfig);
             files.Add(webApiConfig);
-            files.Add(apiLayerAssemblyInfoModel);
+            //files.Add(apiLayerAssemblyInfoModel);
 
             apiProject.AssemblyInfo.AssemblyImports.AddRange(imports);
 
@@ -190,10 +190,10 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
 
             AssemblyInfoModelGenerator assemblyInfo = new AssemblyInfoModelGenerator(new GenerationInfo("AssemblyInfo.cs", Path.Combine(consoleProject.GenerationInfo.RelativePathFolder, "Properties"), new AssemblyInfoTemplate(), true), consoleProject.AssemblyInfo);
 
-            files.Add(assemblyInfo);
+            //files.Add(assemblyInfo);
             files.Add(consoleProject);
 
-            files.Add(packagesConfig);
+            //files.Add(packagesConfig);
             consoleProject.AssemblyInfo.Contents.AddRange(contents);
 
             consoleProject.AssemblyInfo.Packages.AddRange(nugets);

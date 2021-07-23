@@ -32,347 +32,180 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
             this.GenerationEnvironment = null;
             
             #line 8 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(@"<?xml version=""1.0"" encoding=""utf-8""?>
-<Project ToolsVersion=""14.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
-  <Import Project=""$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"" Condition=""Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"" />
-  <PropertyGroup>
-    <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>
-    <Platform Condition="" '$(Platform)' == '' "">AnyCPU</Platform>
-    <ProjectGuid>{");
+            this.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project Sdk=\"Microsoft.NET.Sdk\">  \r\n  <P" +
+                    "ropertyGroup>\r\n    <OutputType>Exe</OutputType>\r\n    <TargetFramework>net462</Ta" +
+                    "rgetFramework>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\" \'$(Configuratio" +
+                    "n)|$(Platform)\' == \'Debug|AnyCPU\' \">\r\n    <DebugSymbols>true</DebugSymbols>\r\n   " +
+                    " <DebugType>full</DebugType>\r\n    <Optimize>false</Optimize>\r\n    <OutputPath>bi" +
+                    "n\\Debug\\</OutputPath>\r\n    <DefineConstants>DEBUG;TRACE</DefineConstants>\r\n    <" +
+                    "ErrorReport>prompt</ErrorReport>\r\n    <WarningLevel>4</WarningLevel>\r\n    <Appen" +
+                    "dTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>\r\n    <App" +
+                    "endRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>\r\n  " +
+                    "</PropertyGroup>\r\n  <PropertyGroup Condition=\" \'$(Configuration)|$(Platform)\' ==" +
+                    " \'Release|AnyCPU\' \">\r\n    <DebugType>pdbonly</DebugType>\r\n    <Optimize>true</Op" +
+                    "timize>\r\n    <OutputPath>bin\\Release\\</OutputPath>\r\n    <DefineConstants>TRACE</" +
+                    "DefineConstants>\r\n    <ErrorReport>prompt</ErrorReport>\r\n    <WarningLevel>4</Wa" +
+                    "rningLevel>\r\n    <AppendTargetFrameworkToOutputPath>false</AppendTargetFramework" +
+                    "ToOutputPath>\r\n    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIden" +
+                    "tifierToOutputPath>\r\n  </PropertyGroup>\r\n  \r\n  <ItemGroup>\r\n    <Reference Inclu" +
+                    "de=\"System\"/>\r\n    <Reference Include=\"System.Core\"/>\r\n    <Reference Include=\"S" +
+                    "ystem.Xml.Linq\"/>\r\n    <Reference Include=\"System.Drawing\" />\r\n    <Reference In" +
+                    "clude=\"System.ComponentModel.DataAnnotations\" />\r\n    <Reference Include=\"System" +
+                    ".Data.DataSetExtensions\"/>\r\n    <Reference Include=\"Microsoft.CSharp\"/>\r\n\t<Refer" +
+                    "ence Include=\"System.Runtime.Serialization\" />\r\n    <Reference Include=\"System.D" +
+                    "ata\"/>\r\n    <Reference Include=\"System.Net.Http\"/>\r\n    <Reference Include=\"Syst" +
+                    "em.Xml\"/>  \r\n\t</ItemGroup>\r\n<ItemGroup>\r\n");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.UniqueProjectId.ToString().ToUpper() ));
-            
-            #line default
-            #line hidden
-            
-            #line 14 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("}</ProjectGuid>\r\n    <OutputType>Exe</OutputType>\r\n    <AppDesignerFolder>Propert" +
-                    "ies</AppDesignerFolder>\r\n    <RootNamespace>");
-            
-            #line default
-            #line hidden
-            
-            #line 17 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 17 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("</RootNamespace>\r\n    <AssemblyName>");
-            
-            #line default
-            #line hidden
-            
-            #line 18 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 18 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(@"</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include=""System""/>
-    <Reference Include=""System.Core""/>
-    <Reference Include=""System.Xml.Linq""/>
-    <Reference Include=""System.Drawing"" />
-    <Reference Include=""System.ComponentModel.DataAnnotations"" />
-    <Reference Include=""System.Data.DataSetExtensions""/>
-    <Reference Include=""Microsoft.CSharp""/>
-	<Reference Include=""System.Runtime.Serialization"" />
-    <Reference Include=""System.Data""/>
-    <Reference Include=""System.Net.Http""/>
-    <Reference Include=""System.Xml""/>  
-	</ItemGroup>
-<ItemGroup>
-");
-            
-            #line default
-            #line hidden
-            
-            #line 56 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 50 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
  foreach(var reference in Model.AssemblyInfo.Packages) {
             
             #line default
             #line hidden
             
-            #line 57 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
- foreach(var package in reference.IncludeHintPathTuples) {
+            #line 51 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            this.Write("    <PackageReference Include=\"");
             
             #line default
             #line hidden
             
-            #line 58 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("\t<Reference Include=\"");
+            #line 51 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( reference.Id ));
             
             #line default
             #line hidden
             
-            #line 58 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( package.Item1 ));
+            #line 51 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            this.Write("\">\r\n      <Version>");
             
             #line default
             #line hidden
             
-            #line 58 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("\">\r\n");
+            #line 52 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( reference.Version ));
             
             #line default
             #line hidden
             
-            #line 59 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
- if(!string.IsNullOrEmpty(package.Item2)) { 
+            #line 52 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            this.Write("</Version>\r\n    </PackageReference>\t\r\n");
             
             #line default
             #line hidden
             
-            #line 60 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("\t\t\t <HintPath>");
-            
-            #line default
-            #line hidden
-            
-            #line 60 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( package.Item2 ));
-            
-            #line default
-            #line hidden
-            
-            #line 60 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("</HintPath>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 61 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 54 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 62 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("    </Reference>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 63 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 64 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 65 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("  </ItemGroup>\r\n   <ItemGroup>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 67 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
- foreach(var file in Model.AssemblyInfo.FilesToCompile) { if(!file.GenerationInfo.FileName.EndsWith("packages.config")) {
-            
-            #line default
-            #line hidden
-            
-            #line 68 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("\t\t\t<compile Include=\"");
-            
-            #line default
-            #line hidden
-            
-            #line 68 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Path.Combine(file.GenerationInfo.RelativePathFolder.Substring(Model.AssemblyInfo.ProjectFileRelativePath.Length,file.GenerationInfo.RelativePathFolder.Length-Model.AssemblyInfo.ProjectFileRelativePath.Length).TrimStart('\\'), file.GenerationInfo.FileName)));
-            
-            #line default
-            #line hidden
-            
-            #line 68 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("\"/>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 69 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
- }}
-            
-            #line default
-            #line hidden
-            
-            #line 70 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 55 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write("  </ItemGroup>\r\n <ItemGroup>\r\n");
             
             #line default
             #line hidden
             
-            #line 72 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 57 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
  foreach(var import in Model.AssemblyInfo.AssemblyImports) {
             
             #line default
             #line hidden
             
-            #line 73 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 58 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write("\t<ProjectReference Include=\"..\\\\");
             
             #line default
             #line hidden
             
-            #line 73 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 58 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Path.Combine(import.AssemblyInfo.ProjectFileRelativePath, import.AssemblyInfo.Name) ));
             
             #line default
             #line hidden
             
-            #line 73 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(".csproj\">\r\n      <Project>{");
+            #line 58 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            this.Write(".csproj\">\r\n    </ProjectReference>\r\n");
             
             #line default
             #line hidden
             
-            #line 74 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(  import.AssemblyInfo.UniqueProjectId.ToString().ToUpper() ));
-            
-            #line default
-            #line hidden
-            
-            #line 74 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("}</Project>\r\n      <Name>");
-            
-            #line default
-            #line hidden
-            
-            #line 75 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( import.AssemblyInfo.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 75 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("</Name>\r\n    </ProjectReference>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 77 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 60 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 78 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write("  </ItemGroup>\r\n<ItemGroup>\r\n    <Content Include=\"packages.config\" >\r\n\t <CopyToO" +
-                    "utputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n");
+            #line 61 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            this.Write("  </ItemGroup>\r\n<ItemGroup>\r\n");
             
             #line default
             #line hidden
             
-            #line 83 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 63 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
  foreach(var include in Model.AssemblyInfo.IncludeOnlys) { 
             
             #line default
             #line hidden
             
-            #line 84 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 64 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write("    <Content Include=\"");
             
             #line default
             #line hidden
             
-            #line 84 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 64 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( include ));
             
             #line default
             #line hidden
             
-            #line 84 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 64 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write("\" />\r\n");
             
             #line default
             #line hidden
             
-            #line 85 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 65 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 86 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 66 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
  foreach(var content in Model.AssemblyInfo.Contents) { 
             
             #line default
             #line hidden
             
-            #line 87 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 67 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write("    <Content Include=\"..\\\\");
             
             #line default
             #line hidden
             
-            #line 87 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 67 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( content.OutputPath ));
             
             #line default
             #line hidden
             
-            #line 87 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 67 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
             this.Write("\">\r\n      <CopyToOutputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n" +
                     "");
             
             #line default
             #line hidden
             
-            #line 90 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            #line 70 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 91 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
-            this.Write(@"</ItemGroup>
-  <Import Project=""$(MSBuildToolsPath)\Microsoft.CSharp.targets"" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name=""BeforeBuild"">
-  </Target>
-  <Target Name=""AfterBuild"">
-  </Target>
-  -->
-
- </Project>
-");
+            #line 71 "Templates\SolutionTemplates\Assemblies\ConsoleAssemblyFileTemplate.tt"
+            this.Write("</ItemGroup>\r\n\r\n\r\n </Project>\r\n");
             
             #line default
             #line hidden

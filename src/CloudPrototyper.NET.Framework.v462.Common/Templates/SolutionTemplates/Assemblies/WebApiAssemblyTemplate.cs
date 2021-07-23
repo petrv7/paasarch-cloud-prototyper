@@ -32,230 +32,189 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
             this.GenerationEnvironment = null;
             
             #line 8 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(@"<?xml version=""1.0"" encoding=""utf-8""?>
-<Project ToolsVersion=""12.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">
-
-  <Import Project=""..\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props"" Condition=""Exists('..\packages\MSBuild.Microsoft.VisualStudio.Web.targets.14.0.0.3\build\MSBuild.Microsoft.VisualStudio.Web.targets.props')"" />
-  <Import Project=""..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props"" Condition=""Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')"" />
-  <Import Project=""..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props"" Condition=""Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')"" />
-  <Import Project=""$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"" Condition=""Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"" />
-  <PropertyGroup>
-    <Configuration Condition="" '$(Configuration)' == '' "">Debug</Configuration>
-    <Platform Condition="" '$(Platform)' == '' "">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{");
+            this.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project Sdk=\"Microsoft.NET.Sdk\">  \r\n\r\n  " +
+                    "<PropertyGroup>\r\n    <Configuration Condition=\" \'$(Configuration)\' == \'\' \">Debug" +
+                    "</Configuration>\r\n    <Platform Condition=\" \'$(Platform)\' == \'\' \">AnyCPU</Platfo" +
+                    "rm>\r\n    <TargetFramework>net462</TargetFramework>\r\n    <UseIISExpress>true</Use" +
+                    "IISExpress>\r\n    <IISExpressSSLPort />\r\n    <IISExpressAnonymousAuthentication /" +
+                    ">\r\n    <IISExpressWindowsAuthentication />\r\n    <IISExpressUseClassicPipelineMod" +
+                    "e />\r\n    <UseGlobalApplicationHostFile />\r\n    <NuGetPackageImportStamp>\r\n    <" +
+                    "/NuGetPackageImportStamp>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\" \'$(C" +
+                    "onfiguration)|$(Platform)\' == \'Debug|AnyCPU\' \">\r\n    <DebugSymbols>true</DebugSy" +
+                    "mbols>\r\n    <DebugType>full</DebugType>\r\n    <Optimize>false</Optimize>\r\n    <Ou" +
+                    "tputPath>bin\\</OutputPath>\r\n    <DefineConstants>DEBUG;TRACE</DefineConstants>\r\n" +
+                    "    <ErrorReport>prompt</ErrorReport>\r\n    <WarningLevel>4</WarningLevel>\r\n    <" +
+                    "AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>\r\n   " +
+                    " <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath" +
+                    ">\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\" \'$(Configuration)|$(Platform" +
+                    ")\' == \'Release|AnyCPU\' \">\r\n    <DebugType>pdbonly</DebugType>\r\n    <Optimize>tru" +
+                    "e</Optimize>\r\n    <OutputPath>bin\\</OutputPath>\r\n    <DefineConstants>TRACE</Def" +
+                    "ineConstants>\r\n    <ErrorReport>prompt</ErrorReport>\r\n    <WarningLevel>4</Warni" +
+                    "ngLevel>\r\n    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToO" +
+                    "utputPath>\r\n    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentif" +
+                    "ierToOutputPath>\r\n  </PropertyGroup>\r\n  <ItemGroup>\r\n    <ProjectCapability Incl" +
+                    "ude=\"DotNetCoreWeb\" />\r\n    <ProjectCapability Include=\"SupportsSystemWeb\" />\r\n " +
+                    " </ItemGroup>\r\n  <ItemGroup>\r\n    <Reference Include=\"Microsoft.CSharp\" />\r\n    " +
+                    "<Reference Include=\"System.Net.Http\" />\r\n    <Reference Include=\"System.Web.Dyna" +
+                    "micData\" />\r\n    <Reference Include=\"System.Web.Entity\" />\r\n    <Reference Inclu" +
+                    "de=\"System.Web.ApplicationServices\" />\r\n\t<Reference Include=\"System.Runtime.Seri" +
+                    "alization\" />\r\n    <Reference Include=\"System.ComponentModel.DataAnnotations\" />" +
+                    "\r\n    <Reference Include=\"System\" />\r\n    <Reference Include=\"System.Data\" />\r\n " +
+                    "   <Reference Include=\"System.Core\" />\r\n    <Reference Include=\"System.Data.Data" +
+                    "SetExtensions\" />\r\n    <Reference Include=\"System.Web.Extensions\" />\r\n    <Refer" +
+                    "ence Include=\"System.Xml.Linq\" />\r\n    <Reference Include=\"System.Drawing\" />\r\n " +
+                    "   <Reference Include=\"System.Web\" />\r\n    <Reference Include=\"System.Xml\" />\r\n " +
+                    "   <Reference Include=\"System.Configuration\" />\r\n    <Reference Include=\"System." +
+                    "Web.Services\" />\r\n    <Reference Include=\"System.EnterpriseServices\" />\r\n  </Ite" +
+                    "mGroup>\r\n  <ItemGroup>\r\n    <PackageReference Include=\"Microsoft.CodeDom.Provide" +
+                    "rs.DotNetCompilerPlatform\" version=\"1.0.5\" />\r\n    <PackageReference Include=\"Mi" +
+                    "crosoft.CSharp\" Version=\"4.4.1\" />\r\n    <PackageReference Include=\"Newtonsoft.Js" +
+                    "on\">\r\n      <Version>10.0.3</Version>\r\n    </PackageReference>\t\r\n    <PackageRef" +
+                    "erence Include=\"Microsoft.AspNet.WebApi\">\r\n      <Version>5.2.7</Version>\r\n    <" +
+                    "/PackageReference>\t\r\n    <PackageReference Include=\"Microsoft.AspNet.WebApi.Clie" +
+                    "nt\">\r\n      <Version>5.2.7</Version>\r\n    </PackageReference>\r\n    <PackageRefer" +
+                    "ence Include=\"Microsoft.AspNet.WebApi.Core\">\r\n      <Version>5.2.7</Version>\r\n  " +
+                    "  </PackageReference>\r\n    <PackageReference Include=\"Microsoft.AspNet.WebApi.We" +
+                    "bHost\">\r\n      <Version>5.2.7</Version>\r\n    </PackageReference>\r\n");
             
             #line default
             #line hidden
             
-            #line 21 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.UniqueProjectId.ToString().ToUpper() ));
-            
-            #line default
-            #line hidden
-            
-            #line 21 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("}</ProjectGuid>\r\n    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fa" +
-                    "e04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>\r\n    <OutputType>Library<" +
-                    "/OutputType>\r\n    <AppDesignerFolder>Properties</AppDesignerFolder>\r\n    <RootNa" +
-                    "mespace>");
-            
-            #line default
-            #line hidden
-            
-            #line 25 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 25 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("</RootNamespace>\r\n    <AssemblyName>");
-            
-            #line default
-            #line hidden
-            
-            #line 26 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.AssemblyInfo.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 26 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("</AssemblyName>\r\n    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>\r\n   " +
-                    " <UseIISExpress>true</UseIISExpress>\r\n    <IISExpressSSLPort />\r\n    <IISExpress" +
-                    "AnonymousAuthentication />\r\n    <IISExpressWindowsAuthentication />\r\n    <IISExp" +
-                    "ressUseClassicPipelineMode />\r\n    <UseGlobalApplicationHostFile />\r\n    <NuGetP" +
-                    "ackageImportStamp>\r\n    </NuGetPackageImportStamp>\r\n  </PropertyGroup>\r\n  <Prope" +
-                    "rtyGroup Condition=\" \'$(Configuration)|$(Platform)\' == \'Debug|AnyCPU\' \">\r\n    <D" +
-                    "ebugSymbols>true</DebugSymbols>\r\n    <DebugType>full</DebugType>\r\n    <Optimize>" +
-                    "false</Optimize>\r\n    <OutputPath>bin\\</OutputPath>\r\n    <DefineConstants>DEBUG;" +
-                    "TRACE</DefineConstants>\r\n    <ErrorReport>prompt</ErrorReport>\r\n    <WarningLeve" +
-                    "l>4</WarningLevel>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\" \'$(Configur" +
-                    "ation)|$(Platform)\' == \'Release|AnyCPU\' \">\r\n    <DebugType>pdbonly</DebugType>\r\n" +
-                    "    <Optimize>true</Optimize>\r\n    <OutputPath>bin\\</OutputPath>\r\n    <DefineCon" +
-                    "stants>TRACE</DefineConstants>\r\n    <ErrorReport>prompt</ErrorReport>\r\n    <Warn" +
-                    "ingLevel>4</WarningLevel>\r\n  </PropertyGroup>\r\n  <ItemGroup>\r\n    <Reference Inc" +
-                    "lude=\"Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Cultu" +
-                    "re=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL\">\r\n     " +
-                    " <HintPath>..\\packages\\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\\" +
-                    "lib\\net45\\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>\r\n   " +
-                    "   <Private>True</Private>\r\n    </Reference>\r\n    <Reference Include=\"Microsoft." +
-                    "CSharp\" />\r\n    <Reference Include=\"System.Net.Http\" />\r\n    <Reference Include=" +
-                    "\"System.Web.DynamicData\" />\r\n    <Reference Include=\"System.Web.Entity\" />\r\n    " +
-                    "<Reference Include=\"System.Web.ApplicationServices\" />\r\n\t<Reference Include=\"Sys" +
-                    "tem.Runtime.Serialization\" />\r\n    <Reference Include=\"System.ComponentModel.Dat" +
-                    "aAnnotations\" />\r\n    <Reference Include=\"System\" />\r\n    <Reference Include=\"Sy" +
-                    "stem.Data\" />\r\n    <Reference Include=\"System.Core\" />\r\n    <Reference Include=\"" +
-                    "System.Data.DataSetExtensions\" />\r\n    <Reference Include=\"System.Web.Extensions" +
-                    "\" />\r\n    <Reference Include=\"System.Xml.Linq\" />\r\n    <Reference Include=\"Syste" +
-                    "m.Drawing\" />\r\n    <Reference Include=\"System.Web\" />\r\n    <Reference Include=\"S" +
-                    "ystem.Xml\" />\r\n    <Reference Include=\"System.Configuration\" />\r\n    <Reference " +
-                    "Include=\"System.Web.Services\" />\r\n    <Reference Include=\"System.EnterpriseServi" +
-                    "ces\" />\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <Reference Include=\"Newtonsoft.Json\"" +
-                    ">\r\n      <HintPath>..\\packages\\Newtonsoft.Json.10.0.3\\lib\\net45\\Newtonsoft.Json." +
-                    "dll</HintPath>\r\n    </Reference>\r\n    <Reference Include=\"System.Net.Http.Format" +
-                    "ting\">\r\n      <HintPath>..\\packages\\Microsoft.AspNet.WebApi.Client.5.2.7\\lib\\net" +
-                    "45\\System.Net.Http.Formatting.dll</HintPath>\r\n    </Reference>\r\n    <Reference I" +
-                    "nclude=\"System.Web.Http\">\r\n      <HintPath>..\\packages\\Microsoft.AspNet.WebApi.C" +
-                    "ore.5.2.7\\lib\\net45\\System.Web.Http.dll</HintPath>\r\n    </Reference>\r\n    <Refer" +
-                    "ence Include=\"System.Web.Http.WebHost\">\r\n      <HintPath>..\\packages\\Microsoft.A" +
-                    "spNet.WebApi.WebHost.5.2.7\\lib\\net45\\System.Web.Http.WebHost.dll</HintPath>\r\n   " +
-                    " </Reference>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 92 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            #line 88 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
  foreach(var reference in Model.AssemblyInfo.Packages) {
             
             #line default
             #line hidden
             
+            #line 89 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("    <PackageReference Include=\"");
+            
+            #line default
+            #line hidden
+            
+            #line 89 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( reference.Id ));
+            
+            #line default
+            #line hidden
+            
+            #line 89 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\">\r\n      <Version>");
+            
+            #line default
+            #line hidden
+            
+            #line 90 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( reference.Version ));
+            
+            #line default
+            #line hidden
+            
+            #line 90 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("</Version>\r\n    </PackageReference>\t\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 92 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
             #line 93 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- foreach(var package in reference.IncludeHintPathTuples) {
-            
-            #line default
-            #line hidden
-            
-            #line 94 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("\t<Reference Include=\"");
-            
-            #line default
-            #line hidden
-            
-            #line 94 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( package.Item1 ));
-            
-            #line default
-            #line hidden
-            
-            #line 94 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("\">\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 95 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- if(!string.IsNullOrEmpty(package.Item2)) { 
-            
-            #line default
-            #line hidden
-            
-            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("\t\t\t <HintPath>");
-            
-            #line default
-            #line hidden
-            
-            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( package.Item2 ));
-            
-            #line default
-            #line hidden
-            
-            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("</HintPath>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 97 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 98 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("    </Reference>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 99 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 100 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 101 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write("  </ItemGroup>\r\n<ItemGroup>\r\n");
             
             #line default
             #line hidden
             
-            #line 103 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            #line 95 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
  foreach(var import in Model.AssemblyInfo.AssemblyImports) {
             
             #line default
             #line hidden
             
-            #line 104 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write("\t<ProjectReference Include=\"..\\\\");
             
             #line default
             #line hidden
             
-            #line 104 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Path.Combine(import.AssemblyInfo.ProjectFileRelativePath, import.AssemblyInfo.Name) ));
             
             #line default
             #line hidden
             
+            #line 96 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(".csproj\">\r\n    </ProjectReference>\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 98 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 99 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("  </ItemGroup>\r\n  <ItemGroup>\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 101 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ foreach(var include in Model.AssemblyInfo.IncludeOnlys)  {
+            
+            #line default
+            #line hidden
+            
+            #line 102 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("    <Content Include=\"");
+            
+            #line default
+            #line hidden
+            
+            #line 102 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( include ));
+            
+            #line default
+            #line hidden
+            
+            #line 102 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\" />\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 103 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
             #line 104 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(".csproj\">\r\n      <Project>{");
+ foreach(var content in Model.AssemblyInfo.Contents) { 
             
             #line default
             #line hidden
             
             #line 105 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(  import.AssemblyInfo.UniqueProjectId.ToString().ToUpper() ));
+            this.Write("    <Content Include=\"..\\\\");
             
             #line default
             #line hidden
             
             #line 105 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("}</Project>\r\n      <Name>");
+            this.Write(this.ToStringHelper.ToStringWithCulture( content.OutputPath ));
             
             #line default
             #line hidden
             
-            #line 106 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( import.AssemblyInfo.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 106 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("</Name>\r\n    </ProjectReference>\r\n");
+            #line 105 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
+            this.Write("\">\r\n      <CopyToOutputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n" +
+                    "");
             
             #line default
             #line hidden
@@ -267,166 +226,27 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
             #line hidden
             
             #line 109 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("  </ItemGroup>\r\n  <ItemGroup>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 111 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- foreach(var include in Model.AssemblyInfo.IncludeOnlys)  {
-            
-            #line default
-            #line hidden
-            
-            #line 112 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("    <Content Include=\"");
-            
-            #line default
-            #line hidden
-            
-            #line 112 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( include ));
-            
-            #line default
-            #line hidden
-            
-            #line 112 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("\" />\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 113 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 114 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- foreach(var content in Model.AssemblyInfo.Contents) { 
-            
-            #line default
-            #line hidden
-            
-            #line 115 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("    <Content Include=\"..\\\\");
-            
-            #line default
-            #line hidden
-            
-            #line 115 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( content.OutputPath ));
-            
-            #line default
-            #line hidden
-            
-            #line 115 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("\">\r\n      <CopyToOutputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n" +
-                    "");
-            
-            #line default
-            #line hidden
-            
-            #line 118 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- } 
-            
-            #line default
-            #line hidden
-            
-            #line 119 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(@"</ItemGroup>
-  <ItemGroup>
-    <Content Include=""Global.asax"">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Content>
-    <Content Include=""Web.config"" >
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include=""App_Start\WebApiConfig.cs"" />
-    <Compile Include=""Global.asax.cs"">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-");
-            
-            #line default
-            #line hidden
-            
-            #line 133 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- foreach(var file in Model.AssemblyInfo.FilesToCompile) { if(!(file.GenerationInfo.FileName.EndsWith(@"WebApiConfig.cs") || file.GenerationInfo.FileName.EndsWith(".config")|| file.GenerationInfo.FileName.Contains(".asax"))) {
-            
-            #line default
-            #line hidden
-            
-            #line 134 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("\t\t<compile Include=\"");
-            
-            #line default
-            #line hidden
-            
-            #line 134 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Path.Combine(file.GenerationInfo.RelativePathFolder.Substring(Model.AssemblyInfo.ProjectFileRelativePath.Length,file.GenerationInfo.RelativePathFolder.Length-Model.AssemblyInfo.ProjectFileRelativePath.Length).TrimStart('\\'), file.GenerationInfo.FileName)));
-            
-            #line default
-            #line hidden
-            
-            #line 134 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("\"/>\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 135 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
- }} 
-            
-            #line default
-            #line hidden
-            
-            #line 136 "Templates\SolutionTemplates\Assemblies\WebApiAssemblyTemplate.tt"
-            this.Write("  </ItemGroup>\r\n  <ItemGroup>\r\n    <Content Include=\"packages.config\" >\r\n\t <CopyT" +
-                    "oOutputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n    <None Inclu" +
-                    "de=\"Web.Debug.config\">\r\n      <DependentUpon>Web.config</DependentUpon>\r\n    </N" +
-                    "one>\r\n    <None Include=\"Web.Release.config\">\r\n      <DependentUpon>Web.config</" +
-                    "DependentUpon>\r\n    </None>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <Folder Include=" +
-                    "\"App_Data\\\" />\r\n  </ItemGroup>\r\n  <PropertyGroup>\r\n    <VisualStudioVersion Cond" +
-                    "ition=\"\'$(VisualStudioVersion)\' == \'\'\">10.0</VisualStudioVersion>\r\n    <VSToolsP" +
-                    "ath Condition=\"\'$(VSToolsPath)\' == \'\'\">$(MSBuildExtensionsPath32)\\Microsoft\\Visu" +
-                    "alStudio\\v$(VisualStudioVersion)</VSToolsPath>\r\n  </PropertyGroup>\r\n  <Import Pr" +
-                    "oject=\"$(MSBuildBinPath)\\Microsoft.CSharp.targets\" />\r\n  <Import Project=\"$(VSTo" +
-                    "olsPath)\\WebApplications\\Microsoft.WebApplication.targets\" Condition=\"\'$(VSTools" +
-                    "Path)\' != \'\'\" />\r\n  <Import Project=\"..\\packages\\MSBuild.Microsoft.VisualStudio." +
-                    "Web.targets.14.0.0.3\\tools\\VSToolsPath\\WebApplications\\Microsoft.WebApplication." +
-                    "targets\" Condition=\"true\" />\r\n  <ProjectExtensions>\r\n    <VisualStudio>\r\n      <" +
-                    "FlavorProperties GUID=\"{349c5851-65df-11da-9384-00065b846f21}\">\r\n        <WebPro" +
-                    "jectProperties>\r\n          <UseIIS>True</UseIIS>\r\n          <AutoAssignPort>True" +
-                    "</AutoAssignPort>\r\n          <DevelopmentServerPort>62524</DevelopmentServerPort" +
-                    ">\r\n          <DevelopmentServerVPath>/</DevelopmentServerVPath>\r\n          <IISU" +
-                    "rl>http://localhost:62524/</IISUrl>\r\n          <NTLMAuthentication>False</NTLMAu" +
-                    "thentication>\r\n          <UseCustomServer>False</UseCustomServer>\r\n          <Cu" +
-                    "stomServerUrl>\r\n          </CustomServerUrl>\r\n          <SaveServerSettingsInUse" +
-                    "rFile>False</SaveServerSettingsInUserFile>\r\n        </WebProjectProperties>\r\n   " +
-                    "   </FlavorProperties>\r\n    </VisualStudio>\r\n  </ProjectExtensions>\r\n  <Target N" +
-                    "ame=\"EnsureNuGetPackageBuildImports\" BeforeTargets=\"PrepareForBuild\">\r\n    <Prop" +
-                    "ertyGroup>\r\n      <ErrorText>This project references NuGet package(s) that are m" +
-                    "issing on this computer. Use NuGet Package Restore to download them.  For more i" +
-                    "nformation, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file " +
-                    "is {0}.</ErrorText>\r\n    </PropertyGroup>\r\n    <Error Condition=\"!Exists(\'..\\pac" +
-                    "kages\\Microsoft.Net.Compilers.1.0.0\\build\\Microsoft.Net.Compilers.props\')\" Text=" +
-                    "\"$([System.String]::Format(\'$(ErrorText)\', \'..\\packages\\Microsoft.Net.Compilers." +
-                    "1.0.0\\build\\Microsoft.Net.Compilers.props\'))\" />\r\n    <Error Condition=\"!Exists(" +
-                    "\'..\\packages\\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\\build\\Micr" +
-                    "osoft.CodeDom.Providers.DotNetCompilerPlatform.props\')\" Text=\"$([System.String]:" +
-                    ":Format(\'$(ErrorText)\', \'..\\packages\\Microsoft.CodeDom.Providers.DotNetCompilerP" +
-                    "latform.1.0.0\\build\\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props\'))\"" +
-                    " />\r\n    <Error Condition=\"!Exists(\'..\\packages\\MSBuild.Microsoft.VisualStudio.W" +
-                    "eb.targets.14.0.0.3\\build\\MSBuild.Microsoft.VisualStudio.Web.targets.props\')\" Te" +
-                    "xt=\"$([System.String]::Format(\'$(ErrorText)\', \'..\\packages\\MSBuild.Microsoft.Vis" +
-                    "ualStudio.Web.targets.14.0.0.3\\build\\MSBuild.Microsoft.VisualStudio.Web.targets." +
-                    "props\'))\" />\r\n  </Target>\r\n  <!-- To modify your build process, add your task in" +
-                    "side one of the targets below and uncomment it. \r\n       Other similar extension" +
-                    " points exist, see Microsoft.Common.targets.\r\n  <Target Name=\"BeforeBuild\">\r\n  <" +
-                    "/Target>\r\n  <Target Name=\"AfterBuild\">\r\n  </Target>\r\n  -->\r\n</Project>");
+            this.Write("</ItemGroup>\r\n  <ItemGroup>\r\n    <Content Include=\"Global.asax\">\r\n      <CopyToOu" +
+                    "tputDirectory>Always</CopyToOutputDirectory>\r\n\t</Content>\r\n    <Content Include=" +
+                    "\"Web.config\" >\r\n      <CopyToOutputDirectory>Always</CopyToOutputDirectory>\r\n\t</" +
+                    "Content>\r\n  </ItemGroup>\r\n  \r\n  <ItemGroup>\r\n    <None Include=\"Web.Debug.config" +
+                    "\">\r\n      <DependentUpon>Web.config</DependentUpon>\r\n    </None>\r\n    <None Incl" +
+                    "ude=\"Web.Release.config\">\r\n      <DependentUpon>Web.config</DependentUpon>\r\n    " +
+                    "</None>\r\n  </ItemGroup>\r\n  <ItemGroup>\r\n    <Folder Include=\"App_Data\\\" />\r\n  </" +
+                    "ItemGroup>\r\n  <PropertyGroup>\r\n    <VisualStudioVersion Condition=\"\'$(VisualStud" +
+                    "ioVersion)\' == \'\'\">10.0</VisualStudioVersion>\r\n    <VSToolsPath Condition=\"\'$(VS" +
+                    "ToolsPath)\' == \'\'\">$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualSt" +
+                    "udioVersion)</VSToolsPath>\r\n  </PropertyGroup>\r\n  \r\n  <ProjectExtensions>\r\n    <" +
+                    "VisualStudio>\r\n      <FlavorProperties GUID=\"{349c5851-65df-11da-9384-00065b846f" +
+                    "21}\">\r\n        <WebProjectProperties>\r\n          <UseIIS>True</UseIIS>\r\n        " +
+                    "  <AutoAssignPort>True</AutoAssignPort>\r\n          <DevelopmentServerPort>62524<" +
+                    "/DevelopmentServerPort>\r\n          <DevelopmentServerVPath>/</DevelopmentServerV" +
+                    "Path>\r\n          <IISUrl>http://localhost:62524/</IISUrl>\r\n          <NTLMAuthen" +
+                    "tication>False</NTLMAuthentication>\r\n          <UseCustomServer>False</UseCustom" +
+                    "Server>\r\n          <CustomServerUrl>\r\n          </CustomServerUrl>\r\n          <S" +
+                    "aveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>\r\n        </WebP" +
+                    "rojectProperties>\r\n      </FlavorProperties>\r\n    </VisualStudio>\r\n  </ProjectEx" +
+                    "tensions>  \r\n</Project>");
             
             #line default
             #line hidden

@@ -48,23 +48,13 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.ApiLayerTemplates 
                     "bly>\r\n        <assemblyIdentity name=\"Newtonsoft.Json\" publicKeyToken=\"30ad4fe6b" +
                     "2a6aeed\" culture=\"neutral\" />\r\n        <bindingRedirect oldVersion=\"0.0.0.0-10.0" +
                     ".0.0\" newVersion=\"10.0.0.0\" />\r\n      </dependentAssembly>\r\n    </assemblyBindin" +
-                    "g>\r\n  </runtime>\r\n  <system.codedom>\r\n    <compilers>\r\n      <compiler language=" +
-                    "\"c#;cs;csharp\" extension=\".cs\"\r\n        type=\"Microsoft.CodeDom.Providers.DotNet" +
-                    "CompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerP" +
-                    "latform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35\"\r\n   " +
-                    "     warningLevel=\"4\" compilerOptions=\"/langversion:6 /nowarn:1659;1699;1701\"/>\r" +
-                    "\n      <compiler language=\"vb;vbs;visualbasic;vbscript\" extension=\".vb\"\r\n       " +
-                    " type=\"Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Micros" +
-                    "oft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, " +
-                    "PublicKeyToken=31bf3856ad364e35\"\r\n        warningLevel=\"4\" compilerOptions=\"/lan" +
-                    "gversion:14 /nowarn:41008 /define:_MYTYPE=\\&quot;Web\\&quot; /optionInfer+\"/>\r\n  " +
-                    "  </compilers>\r\n  </system.codedom>\r\n   <entityFramework>\r\n    <defaultConnectio" +
-                    "nFactory type=\"System.Data.Entity.Infrastructure.LocalDbConnectionFactory, Entit" +
-                    "yFramework\">\r\n      <parameters>\r\n        <parameter value=\"mssqllocaldb\"/>\r\n   " +
-                    "   </parameters>\r\n    </defaultConnectionFactory>\r\n    <providers>\r\n      <provi" +
-                    "der invariantName=\"System.Data.SqlClient\" type=\"System.Data.Entity.SqlServer.Sql" +
-                    "ProviderServices, EntityFramework.SqlServer\"/>\r\n    </providers>\r\n  </entityFram" +
-                    "ework>\r\n</configuration>\r\n");
+                    "g>\r\n  </runtime>  \r\n   <entityFramework>\r\n    <defaultConnectionFactory type=\"Sy" +
+                    "stem.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework\">\r\n   " +
+                    "   <parameters>\r\n        <parameter value=\"mssqllocaldb\"/>\r\n      </parameters>\r" +
+                    "\n    </defaultConnectionFactory>\r\n    <providers>\r\n      <provider invariantName" +
+                    "=\"System.Data.SqlClient\" type=\"System.Data.Entity.SqlServer.SqlProviderServices," +
+                    " EntityFramework.SqlServer\"/>\r\n    </providers>\r\n  </entityFramework>\r\n</configu" +
+                    "ration>\r\n");
             
             #line default
             #line hidden
