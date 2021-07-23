@@ -82,8 +82,8 @@ namespace CloudPrototyper.Build.NET
                 {
                     WindowStyle = ProcessWindowStyle.Hidden,
                     FileName = "dotnet.exe",
-                    Arguments = "build " + solutionFile + " /p:OutputPath=" + buildable.OutputBuildPath + "\\build",
-                    UseShellExecute = false
+                    Arguments = "build " + solutionFile + " /p:OutputPath=" + buildable.OutputBuildPath + "\\build /flp:v=d;logfile=" + buildable.OutputBuildPath + "\\build.log",
+                    UseShellExecute = false,
                 };
 
                 process.EnableRaisingEvents = true;
