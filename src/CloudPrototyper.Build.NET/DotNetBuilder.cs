@@ -100,7 +100,7 @@ namespace CloudPrototyper.Build.NET
                     if (process.ExitCode != 0)
                     {
                         process.Dispose();
-                        throw new Exception("dotnet build process failed");
+                         throw new ArgumentException("dotnet build process failed");
                     }
 
                     process.Dispose();
@@ -132,14 +132,13 @@ namespace CloudPrototyper.Build.NET
                 var isDone = false;
                 var solutionFile = Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First();
                 Process process = new();
-                
-                ProcessStartInfo startInfo = new()
+
+                ProcessStartInfo startInfo = new ProcessStartInfo
                 {
                     WindowStyle = ProcessWindowStyle.Hidden,
-                    FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "nuget.exe"),
+                    FileName = "dotnet.exe",
                     Arguments = "restore " + solutionFile,
-                    UseShellExecute = false
-                    
+                    UseShellExecute = false,
                 };
 
                 process.EnableRaisingEvents = true;
@@ -152,7 +151,15 @@ namespace CloudPrototyper.Build.NET
                 process.Exited += (sender, args) =>
                 {
                     isDone = true;
+
+                    if (process.ExitCode != 0)
+                    {
+                        process.Dispose();
+                        throw new ArgumentException("dotnet restore process failed");
+                    }
+
                     process.Dispose();
+
                 };
                 process.Start();
 
@@ -163,7 +170,7 @@ namespace CloudPrototyper.Build.NET
             }
             catch (Exception e)
             {
-                throw new ArgumentException("Provided buildable is not valid:  " + e.Message);
+                throw new ArgumentException("Provided buildable is not valid.", e);
             }
         }
     }
