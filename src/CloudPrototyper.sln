@@ -34,30 +34,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{90AF30F2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataGeneration", "DataGeneration", "{BFDE7B21-BF71-40C0-ACF6-2ADAC9DEA280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.Generator", "CloudPrototyper.Generator\CloudPrototyper.Generator.csproj", "{BAA9057C-CC4D-48F5-A124-85773AFDE952}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Generator", "CloudPrototyper.Generator\CloudPrototyper.Generator.csproj", "{BAA9057C-CC4D-48F5-A124-85773AFDE952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.Model", "CloudPrototyper.Model\CloudPrototyper.Model.csproj", "{7BCD1EBC-B3C8-4172-8DB0-4C0B8058F0CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Model", "CloudPrototyper.Model\CloudPrototyper.Model.csproj", "{7BCD1EBC-B3C8-4172-8DB0-4C0B8058F0CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.WebApi", "CloudPrototyper.NET.Framework.v462.WebApi\CloudPrototyper.NET.Framework.v462.WebApi.csproj", "{CF5386EA-4070-4AC6-8A87-A77526021B92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.WebApi", "CloudPrototyper.NET.Framework.v462.WebApi\CloudPrototyper.NET.Framework.v462.WebApi.csproj", "{CF5386EA-4070-4AC6-8A87-A77526021B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.WebJob", "CloudPrototyper.NET.Framework.v462.WebJob\CloudPrototyper.NET.Framework.v462.WebJob.csproj", "{C832664D-EDC3-4100-B40D-0C065687C2A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.WebJob", "CloudPrototyper.NET.Framework.v462.WebJob\CloudPrototyper.NET.Framework.v462.WebJob.csproj", "{C832664D-EDC3-4100-B40D-0C065687C2A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.Common", "CloudPrototyper.NET.Framework.v462.Common\CloudPrototyper.NET.Framework.v462.Common.csproj", "{95724B89-38DD-47B3-A309-0FB5152C94A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.Common", "CloudPrototyper.NET.Framework.v462.Common\CloudPrototyper.NET.Framework.v462.Common.csproj", "{95724B89-38DD-47B3-A309-0FB5152C94A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.Benchmark", "CloudPrototyper.Benchmark\CloudPrototyper.Benchmark.csproj", "{4D27B9E9-503F-484A-866E-36521687C215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Benchmark", "CloudPrototyper.Benchmark\CloudPrototyper.Benchmark.csproj", "{4D27B9E9-503F-484A-866E-36521687C215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.Examples", "CloudPrototyper.Examples\CloudPrototyper.Examples.csproj", "{905C4537-3504-45F5-9997-8D0D8D50F7FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Examples", "CloudPrototyper.Examples\CloudPrototyper.Examples.csproj", "{905C4537-3504-45F5-9997-8D0D8D50F7FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Interface", "CloudPrototyper.NET.Interface\CloudPrototyper.NET.Interface.csproj", "{1233F9D6-548B-4C1E-B8D1-3B24B2DE775A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Interface", "CloudPrototyper.NET.Interface\CloudPrototyper.NET.Interface.csproj", "{1233F9D6-548B-4C1E-B8D1-3B24B2DE775A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.Azure", "CloudPrototyper.Azure\CloudPrototyper.Azure.csproj", "{458DEEBD-4F4A-4EE3-AD98-38ABCA75E0E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Azure", "CloudPrototyper.Azure\CloudPrototyper.Azure.csproj", "{458DEEBD-4F4A-4EE3-AD98-38ABCA75E0E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.Interface", "CloudPrototyper.Interface\CloudPrototyper.Interface.csproj", "{723260E4-7ECA-4C4C-8102-3C461161ECE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Interface", "CloudPrototyper.Interface\CloudPrototyper.Interface.csproj", "{723260E4-7ECA-4C4C-8102-3C461161ECE3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7BCD1EBC-B3C8-4172-8DB0-4C0B8058F0CA} = {7BCD1EBC-B3C8-4172-8DB0-4C0B8058F0CA}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.Computing", "CloudPrototyper.NET.Framework.v462.Computing\CloudPrototyper.NET.Framework.v462.Computing.csproj", "{51DCD0E3-15EC-49E0-8DC8-2F936F13843C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.Computing", "CloudPrototyper.NET.Framework.v462.Computing\CloudPrototyper.NET.Framework.v462.Computing.csproj", "{51DCD0E3-15EC-49E0-8DC8-2F936F13843C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Deployment.Azure", "CloudPrototyper.Deployment.Azure\CloudPrototyper.Deployment.Azure.csproj", "{C8721043-6901-4D61-B528-D00A0A13392A}"
 EndProject
@@ -67,9 +67,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Console", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.ConfigProvider", "CloudPrototyper.ConfigProvider\CloudPrototyper.ConfigProvider.csproj", "{BE69BA78-19B9-4BA7-A3DB-4A54FA9DA0DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.Build.NET", "CloudPrototyper.Build.NET\CloudPrototyper.Build.NET.csproj", "{69984CC0-5DDE-4893-9804-0F5F0F6D2ED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.Build.NET", "CloudPrototyper.Build.NET\CloudPrototyper.Build.NET.csproj", "{69984CC0-5DDE-4893-9804-0F5F0F6D2ED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.DataGenerator", "CloudPrototyper.DataGenerator\CloudPrototyper.DataGenerator.csproj", "{959F929D-BA7A-40D4-B5C4-682F2E838390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.DataGenerator", "CloudPrototyper.DataGenerator\CloudPrototyper.DataGenerator.csproj", "{959F929D-BA7A-40D4-B5C4-682F2E838390}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Benchmark", "Benchmark", "{18EBD87A-E501-43AB-B23A-65B5E154CE8C}"
 EndProject
@@ -79,9 +79,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{C988D008-2CAA-4726-84EE-A26AD8B9A8A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.DataLayer", "CloudPrototyper.NET.Framework.v462.DataLayer\CloudPrototyper.NET.Framework.v462.DataLayer.csproj", "{66E15BC2-6364-4B14-8311-36254683B157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.DataLayer", "CloudPrototyper.NET.Framework.v462.DataLayer\CloudPrototyper.NET.Framework.v462.DataLayer.csproj", "{66E15BC2-6364-4B14-8311-36254683B157}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.TblStorage", "CloudPrototyper.NET.Framework.v462.TblStorage\CloudPrototyper.NET.Framework.v462.TblStorage.csproj", "{DE9B40C4-F233-4EE8-A849-F4AD95C0ECB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.TblStorage", "CloudPrototyper.NET.Framework.v462.TblStorage\CloudPrototyper.NET.Framework.v462.TblStorage.csproj", "{DE9B40C4-F233-4EE8-A849-F4AD95C0ECB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.CosmosDb", "CloudPrototyper.NET.Framework.v462.CosmosDb\CloudPrototyper.NET.Framework.v462.CosmosDb.csproj", "{786C1D16-77D5-415D-9521-973385A2A1C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +167,10 @@ Global
 		{DE9B40C4-F233-4EE8-A849-F4AD95C0ECB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE9B40C4-F233-4EE8-A849-F4AD95C0ECB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE9B40C4-F233-4EE8-A849-F4AD95C0ECB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{786C1D16-77D5-415D-9521-973385A2A1C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{786C1D16-77D5-415D-9521-973385A2A1C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{786C1D16-77D5-415D-9521-973385A2A1C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{786C1D16-77D5-415D-9521-973385A2A1C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,9 +209,10 @@ Global
 		{C988D008-2CAA-4726-84EE-A26AD8B9A8A5} = {9C7D4B40-6698-45A7-ABC9-07D76FDF6305}
 		{66E15BC2-6364-4B14-8311-36254683B157} = {7BA16ACF-FB11-42E6-8CCB-233F63497780}
 		{DE9B40C4-F233-4EE8-A849-F4AD95C0ECB8} = {630BC060-BA11-4234-B345-79E0CBAA8D75}
+		{786C1D16-77D5-415D-9521-973385A2A1C4} = {630BC060-BA11-4234-B345-79E0CBAA8D75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2800978C-E5C9-475C-AE68-736481F4345E}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
