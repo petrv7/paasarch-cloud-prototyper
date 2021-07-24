@@ -6,10 +6,6 @@ using System.Linq;
 using System.Threading;
 using CloudPrototyper.Interface.Build;
 using CloudPrototyper.Interface.Constants;
-using Microsoft.Build.Evaluation;
-using Microsoft.Build.Execution;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Logging;
 
 namespace CloudPrototyper.Build.NET
 {
@@ -46,34 +42,6 @@ namespace CloudPrototyper.Build.NET
         {
             try
             {
-                /*ProjectCollection pc = new ProjectCollection();
-
-                Dictionary<string, string> globalProperty = new Dictionary<string, string>
-                {
-                    {"Configuration", "Release"},
-                    {"Platform", "Any CPU"},
-                    {"OutputPath", buildable.OutputBuildPath+"\\build"}
-            };
-
-                BuildParameters bp = new BuildParameters(pc);
-                File.WriteAllText(buildable.OutputBuildPath + "\\build.log", "");
-                bp.Loggers = new[] {
-                    new FileLogger
-                    {
-                        Verbosity = LoggerVerbosity.Detailed,
-                        ShowSummary = true,
-                        SkipProjectStartedText = false,
-                        Parameters = "logfile=" + buildable.OutputBuildPath + "\\build.log"
-            }
-                };
-                BuildRequestData buidlRequest = new BuildRequestData(Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First(), globalProperty, null, new[] { "Build" }, null);
-                BuildResult buildResult = BuildManager.DefaultBuildManager.Build(bp, buidlRequest);
-
-                if (buildResult.OverallResult != BuildResultCode.Success)
-                { 
-                   throw new ArgumentException("Provided buildable is not valid :( " + buildable.SolutionRootPath); 
-                }*/
-
                 var isDone = false;
                 var solutionFile = Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First();
                 Process process = new();
@@ -100,7 +68,7 @@ namespace CloudPrototyper.Build.NET
                     if (process.ExitCode != 0)
                     {
                         process.Dispose();
-                         throw new ArgumentException("dotnet build process failed");
+                        throw new ArgumentException("dotnet build process failed");
                     }
 
                     process.Dispose();
@@ -111,7 +79,7 @@ namespace CloudPrototyper.Build.NET
                 while (!isDone)
                 {
                     Thread.Sleep(100);
-                }                
+                }              
             }
             catch (Exception e)
             {
