@@ -29,11 +29,11 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerato
             {
                 new Tuple<string, string>(
                     "EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL",
-                    @"..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll"),
+                    @"..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll"),
                 new Tuple<string, string>(
-                    "EntityFramework.SqlServer, Version = 6.0.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089, processorArchitecture = MSIL",
-                    @"..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll")
-            }, "EntityFramework", "6.1.3", "net462")
+                    "EntityFramework.SqlServer, Version=6.0.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089, processorArchitecture = MSIL",
+                    @"..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll")
+            }, "EntityFramework", "6.4.4", "net462")
 
         };
 

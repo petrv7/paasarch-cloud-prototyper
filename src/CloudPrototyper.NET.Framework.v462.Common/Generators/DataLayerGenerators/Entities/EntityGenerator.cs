@@ -27,11 +27,11 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerato
             {
                 new Tuple<string, string>(
                     "EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL",
-                    @"..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll"),
+                    @"..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll"),
                 new Tuple<string, string>(
-                    "EntityFramework.SqlServer, Version = 6.0.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089, processorArchitecture = MSIL",
-                    @"..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll")
-            }, "EntityFramework", "6.1.3", "net462"),
+                    "EntityFramework.SqlServer, Version=6.0.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089, processorArchitecture = MSIL",
+                    @"..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll")
+            }, "EntityFramework", "6.4.4", "net462"),
 
             new PackageConfigInfo(new List<Tuple<string, string>>
             {
@@ -61,10 +61,10 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerato
 
             new PackageConfigInfo(new List<Tuple<string, string>>
             {
-                new Tuple<string, string>("Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, " +
+                new Tuple<string, string>("Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, " +
                                           "PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL",
-                    @"..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll")
-            }, "Newtonsoft.Json", "6.0.8", "net462"),
+                    @"..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll")
+            }, "Newtonsoft.Json", "10.0.3", "net462"),
 
 
             new PackageConfigInfo(new List<Tuple<string, string>>

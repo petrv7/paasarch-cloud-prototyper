@@ -16,12 +16,11 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
         public static List<PackageConfigInfo> MakeAzureServiceBusNuget() => new List<PackageConfigInfo>
         {
             new PackageConfigInfo(new List<Tuple<string, string>>
-                {
-                    new Tuple<string, string>(
-                        "Microsoft.ServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
-                        @"..\packages\WindowsAzure.ServiceBus.3.4.2\lib\net45-full\Microsoft.ServiceBus.dll")
-                },"WindowsAzure.ServiceBus","3.4.2","net462")
-
+            {
+                new Tuple<string, string>(
+                    "Microsoft.Azure.ServiceBus, Version=5.1.3.0, Culture=neutral, PublicKeyToken=7e34167dcc6d6d8c, processorArchitecture=MSIL",
+                    @"..\packages\Microsoft.Azure.ServiceBus.5.1.3\lib\netstandard2.0\Microsoft.Azure.ServiceBus.dll")
+            },"Microsoft.Azure.ServiceBus","5.1.3","net462")
         };
 
         /// <summary>
@@ -35,11 +34,11 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
             {
                 new Tuple<string, string>(
                     "EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL",
-                    @"..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll"),
+                    @"..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll"),
                 new Tuple<string, string>(
-                    "EntityFramework.SqlServer, Version = 6.0.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089, processorArchitecture = MSIL",
-                    @"..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll")
-            }, "EntityFramework", "6.1.3", "net462")
+                    "EntityFramework.SqlServer, Version=6.0.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089, processorArchitecture = MSIL",
+                    @"..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll")
+            }, "EntityFramework", "6.4.4", "net462")
 
         };
 
@@ -85,10 +84,10 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
 
             new PackageConfigInfo(new List<Tuple<string, string>>
             {
-                new Tuple<string, string>("Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, " +
+                new Tuple<string, string>("Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, " +
                                           "PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL",
-                    @"..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll")
-            }, "Newtonsoft.Json", "6.0.8", "net462"),
+                    @"..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll")
+            }, "Newtonsoft.Json", "10.0.3", "net462"),
 
 
             new PackageConfigInfo(new List<Tuple<string, string>>

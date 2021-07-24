@@ -7,7 +7,7 @@ namespace CloudPrototyper.Interface.Prototyper
     /// Every "generator"/"template model" should inherit this class where T is abstract model 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class Modelable<T> : GenerableBase where T : class 
+    public abstract class Modelable<T> : GeneratorBase where T : class 
     {
         public T ModelParameters { get; set; }
         protected Modelable(GenerationInfo generationInfo, T modelParameters) : base(generationInfo)

@@ -6,18 +6,10 @@
 <#@ import namespace="System.IO" #>
 <#@ parameter type="CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.AssemblyFiles.ConsoleAssemblyFileGenerator" name="Model" #>
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">  
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{<#= Model.AssemblyInfo.UniqueProjectId.ToString().ToUpper() #>}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace><#= Model.AssemblyInfo.Name #></RootNamespace>
-    <AssemblyName><#= Model.AssemblyInfo.Name #></AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,6 +19,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,10 +29,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
+  
   <ItemGroup>
     <Reference Include="System"/>
     <Reference Include="System.Core"/>
@@ -54,32 +48,18 @@
 	</ItemGroup>
 <ItemGroup>
 <# foreach(var reference in Model.AssemblyInfo.Packages) {#>
-<# foreach(var package in reference.IncludeHintPathTuples) {#>
-	<Reference Include="<#= package.Item1 #>">
-<# if(!string.IsNullOrEmpty(package.Item2)) { #>
-			 <HintPath><#= package.Item2 #></HintPath>
+    <PackageReference Include="<#= reference.Id #>">
+      <Version><#= reference.Version #></Version>
+    </PackageReference>	
 <# } #>
-    </Reference>
-<# } #>
-<# } #>
-  </ItemGroup>
-   <ItemGroup>
-<# foreach(var file in Model.AssemblyInfo.FilesToCompile) { if(!file.GenerationInfo.FileName.EndsWith("packages.config")) {#>
-			<compile Include="<#=Path.Combine(file.GenerationInfo.RelativePathFolder.Substring(Model.AssemblyInfo.ProjectFileRelativePath.Length,file.GenerationInfo.RelativePathFolder.Length-Model.AssemblyInfo.ProjectFileRelativePath.Length).TrimStart('\\'), file.GenerationInfo.FileName)#>"/>
-<# }}#>
   </ItemGroup>
  <ItemGroup>
 <# foreach(var import in Model.AssemblyInfo.AssemblyImports) {#>
 	<ProjectReference Include="..\\<#= Path.Combine(import.AssemblyInfo.ProjectFileRelativePath, import.AssemblyInfo.Name) #>.csproj">
-      <Project>{<#=  import.AssemblyInfo.UniqueProjectId.ToString().ToUpper() #>}</Project>
-      <Name><#= import.AssemblyInfo.Name #></Name>
     </ProjectReference>
 <# } #>
   </ItemGroup>
 <ItemGroup>
-    <Content Include="packages.config" >
-	 <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
 <# foreach(var include in Model.AssemblyInfo.IncludeOnlys) { #>
     <Content Include="<#= include #>" />
 <# } #>
@@ -89,13 +69,6 @@
     </Content>
 <# } #>
 </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 
  </Project>

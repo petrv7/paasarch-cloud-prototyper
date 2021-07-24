@@ -23,8 +23,8 @@
       <FileName>Generation\Generation\ApplicationGenerator.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Property Name="Contents" />
       <Property Name="Files" />
+      <Property Name="Contents" />
     </ShowAsCollectionAssociation>
     <Lollipop Position="0.231" />
   </Class>

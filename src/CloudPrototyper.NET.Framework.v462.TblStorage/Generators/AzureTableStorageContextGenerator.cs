@@ -59,10 +59,10 @@ namespace CloudPrototyper.NET.Framework.v462.TblStorage.Generators
 
             new PackageConfigInfo(new List<Tuple<string, string>>
             {
-                new Tuple<string, string>("Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, " +
+                new Tuple<string, string>("Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, " +
                                           "PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL",
-                    @"..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll")
-            }, "Newtonsoft.Json", "6.0.8", "net462"),
+                    @"..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll")
+            }, "Newtonsoft.Json", "10.0.3", "net462"),
 
 
             new PackageConfigInfo(new List<Tuple<string, string>>

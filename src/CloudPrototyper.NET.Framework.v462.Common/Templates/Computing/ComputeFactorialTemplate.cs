@@ -8,19 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.Assemblies.NuGets {
+namespace CloudPrototyper.NET.Framework.v462.Common.Templates.Computing {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
     using System;
     
     
-    public partial class WebApiPackageConfigTemplate : WebApiPackageConfigTemplateBase {
+    public partial class ComputeFactorialTemplate : ComputeFactorialTemplateBase {
         
         
-        private CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.Packages.PackagesConfigGenerator _ModelField;
+        private CloudPrototyper.NET.Framework.v462.Common.Generators.Computing.ComputeFactorialGenerator _ModelField;
         
-        public CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.Packages.PackagesConfigGenerator Model {
+        public CloudPrototyper.NET.Framework.v462.Common.Generators.Computing.ComputeFactorialGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -30,77 +30,82 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
         public virtual string TransformText() {
             this.GenerationEnvironment = null;
             
-            #line 7 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write(@"<packages>
-  <package id=""Microsoft.AspNet.WebApi"" version=""5.2.7"" targetFramework=""net462"" />
-  <package id=""Microsoft.AspNet.WebApi.Client"" version=""5.2.7"" targetFramework=""net462"" />
-  <package id=""Microsoft.AspNet.WebApi.Core"" version=""5.2.7"" targetFramework=""net462"" />
-  <package id=""Microsoft.AspNet.WebApi.WebHost"" version=""5.2.7"" targetFramework=""net462"" />
-  <package id=""Microsoft.CodeDom.Providers.DotNetCompilerPlatform"" version=""1.0.0"" targetFramework=""net462"" />
-  <package id=""Microsoft.Net.Compilers"" version=""1.0.0"" targetFramework=""net462"" developmentDependency=""true"" />
-  <package id=""Newtonsoft.Json"" version=""10.0.3"" targetFramework=""net462"" />
-  <package id=""MSBuild.Microsoft.VisualStudio.Web.targets"" version=""14.0.0.3"" targetFramework=""net462"" />
-");
+            #line 7 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write("using System.Collections.Generic;\r\n// Operation computing factorial\r\nnamespace  ");
             
             #line default
             #line hidden
             
-            #line 16 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
- foreach(var package in Model.Packages) { 
+            #line 9 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 17 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write("  <package id=\"");
+            #line 9 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 17 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( package.Id ));
+            #line 11 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 17 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write("\" version=\"");
+            #line 11 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(" : ");
             
             #line default
             #line hidden
             
-            #line 17 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( package.Version ));
+            #line 11 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.OperationInterface.Namespace ));
             
             #line default
             #line hidden
             
-            #line 17 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write("\" targetFramework=\"");
+            #line 11 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(".");
             
             #line default
             #line hidden
             
-            #line 17 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( package.Framework ));
+            #line 11 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.OperationInterface.Name ));
             
             #line default
             #line hidden
             
-            #line 17 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write("\" />\r\n");
+            #line 11 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write("\r\n    {\r\n\t\tpublic const string Key = \"");
             
             #line default
             #line hidden
             
-            #line 18 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
- } 
+            #line 13 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\SolutionTemplates\Assemblies\NuGets\WebApiPackageConfigTemplate.tt"
-            this.Write("</packages>");
+            #line 13 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write("\";\r\n\r\n\r\n\t\tpublic void Execute(List<string> outputs) \r\n\t\t{\r\n\t\t\tint numberInt = ");
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.UpTo ));
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\Computing\ComputeFactorialTemplate.tt"
+            this.Write(";\r\n\t\t\tdouble result = 1;\r\n\t\t\tfor (int i = 1; i < numberInt; i++)\r\n\t\t\t{\t\r\n\t\t\t\tresu" +
+                    "lt *= i;\r\n\t\t\t}\r\n            outputs.Add(result.ToString());\r\n\t\t}\r\n    }\r\n}\r\n\r\n\r\n" +
+                    "");
             
             #line default
             #line hidden
@@ -112,13 +117,13 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.Packages.PackagesConfigGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators.Packages.PackagesConfigGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.Framework.v462.Common.Generators.Computing.ComputeFactorialGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.Framework.v462.Common.Generators.Computing.ComputeFactorialGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators" +
-                                ".Packages.PackagesConfigGenerator\' of the parameter \'Model\' did not match the ty" +
-                                "pe passed to the template");
+                        this.Error("The type \'CloudPrototyper.NET.Framework.v462.Common.Generators.Computing.ComputeF" +
+                                "actorialGenerator\' of the parameter \'Model\' did not match the type passed to the" +
+                                " template");
                     }
                 }
             }
@@ -126,7 +131,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
         }
     }
     
-    public class WebApiPackageConfigTemplateBase {
+    public class ComputeFactorialTemplateBase {
         
         private global::System.Text.StringBuilder builder;
         

@@ -46,10 +46,12 @@ namespace <#= Model.Namespace #>
                         TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "p"),
                         TableOperators.And,
                         TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, query.NominalParameter)));
-                        return table.ExecuteQuery(qId).Cast<object>().ToList();
+						
+                        return ExecuteQuery(table, qId);
                     }
                     var q = tableQuery.Where(TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.Equal, query.NominalParameter));
-                    return table.ExecuteQuery(q).Cast<object>().ToList();
+					
+                    return ExecuteQuery(table, q);
                 }
 				 if (query.PropertyName == "Id")
                     {
@@ -63,14 +65,14 @@ namespace <#= Model.Namespace #>
                                     TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.LessThanOrEqual, query.MaxValue
                                  )
                           )));
-                        return table.ExecuteQuery(qId).Cast<object>().ToList();
+                        return ExecuteQuery(table, qId);
                     }
                 var queryRange = tableQuery.Where(
                     TableQuery.CombineFilters(
                         TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.GreaterThanOrEqual, query.MinValue),
                         TableOperators.And,
                         TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.LessThanOrEqual, query.MaxValue)));
-                return table.ExecuteQuery(queryRange).Cast<object>().ToList();
+                return ExecuteQuery(table, queryRange);
 			} 
 <# } #>
 			
@@ -81,21 +83,34 @@ namespace <#= Model.Namespace #>
 		public void InsertAll(string entitySetName, string entityName, object[] toInsert)
 		{
 		    CloudTable table = _tableClient.GetTableReference(entitySetName);
-		    table.CreateIfNotExists();
+		    table.CreateIfNotExistsAsync().Wait();
 		    TableBatchOperation batchOperation = new TableBatchOperation();
 			int count = 0;
+            int totalSize = 0;
+            int size = 0;
+
+<# foreach(var entity in Model.Entities) { #>
+			if(entityName == "<#= entity.Name #>")
+			{
+				size = <#=entity.Namespace#>.<#= entity.Name #>.GetTotalContentSize();
+      		} 
+<# } #>
+
 		    foreach (var obj in toInsert)
 		    {
 		        count++;
-		        if (count >= TableConstants.TableServiceBatchMaximumOperations-1)
+                totalSize += size;
+
+		        if (count >= 100 || totalSize + size >= 4000000)
 		        {
-		            table.ExecuteBatch(batchOperation);
+		            table.ExecuteBatchAsync(batchOperation).Wait();
 		            batchOperation = new TableBatchOperation();
 		            count = 0;
+                    totalSize = 0;
 		        }
 		        batchOperation.InsertOrReplace(obj as TableEntity);
             }
-		    table.ExecuteBatch(batchOperation);
+		    table.ExecuteBatchAsync(batchOperation).Wait();
 		}
 
 		public void Insert(string entitySetName,string entityName, int count)
@@ -117,6 +132,27 @@ namespace <#= Model.Namespace #>
 <# foreach(var set in Model.ModelParameters.EntitySets) { #>
 			_names.Add("<#= set.Name #>", new Tuple<Type,int>(typeof(<#= Model.Entities.Single(x=>x.Name == set.EntityName).Namespace #>.<#=  Model.Entities.Single(x=>x.Name == set.EntityName).Name #>),<#=set.Count#>));
 <# } #>
+        }
+
+		private static List<object> ExecuteQuery<T>(CloudTable table, TableQuery<T> query) where T : TableEntity, new()
+        {
+
+            var items = new List<object>();
+            TableContinuationToken token = null;
+
+            do
+            {
+
+                var task = table.ExecuteQuerySegmentedAsync(query, token);
+                task.Wait();
+                var seg = task.Result;
+
+                token = seg.ContinuationToken;
+                items.AddRange(seg.ToList());
+
+            } while (token != null);
+
+            return items;
         }
 
     }

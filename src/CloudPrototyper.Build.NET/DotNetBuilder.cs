@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using CloudPrototyper.Interface.Build;
 using CloudPrototyper.Interface.Constants;
-using Microsoft.Build.Evaluation;
-using Microsoft.Build.Execution;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Logging;
 
 namespace CloudPrototyper.Build.NET
 {
@@ -45,33 +42,44 @@ namespace CloudPrototyper.Build.NET
         {
             try
             {
-                ProjectCollection pc = new ProjectCollection();
+                var isDone = false;
+                var solutionFile = Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First();
+                Process process = new();
 
-                Dictionary<string, string> globalProperty = new Dictionary<string, string>
+                ProcessStartInfo startInfo = new ProcessStartInfo
                 {
-                    {"Configuration", "Release"},
-                    {"Platform", "Any CPU"},
-                    {"OutputPath", buildable.OutputBuildPath+"\\build"}
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    FileName = "dotnet.exe",
+                    Arguments = "build " + solutionFile + " /p:OutputPath=" + buildable.OutputBuildPath + "\\build /flp:v=d;logfile=" + buildable.OutputBuildPath + "\\build.log",
+                    UseShellExecute = false,
                 };
 
-                BuildParameters bp = new BuildParameters(pc);
-                File.WriteAllText(buildable.OutputBuildPath + "\\build.log", "");
-                bp.Loggers = new[] {
-                    new FileLogger
+                process.EnableRaisingEvents = true;
+                process.StartInfo = startInfo;
+
+                process.OutputDataReceived += (sender, args) =>
+                {
+                    Console.WriteLine(args.ToString());
+                };
+                process.Exited += (sender, args) =>
+                {
+                    isDone = true;
+
+                    if (process.ExitCode != 0)
                     {
-                        Verbosity = LoggerVerbosity.Detailed,
-                        ShowSummary = true,
-                        SkipProjectStartedText = false,
-                        Parameters = buildable.OutputBuildPath + "\\build.log"
-            }
-                };
-                BuildRequestData buidlRequest = new BuildRequestData(Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First(), globalProperty, "4.0", new[] { "Build" }, null);
-                BuildResult buildResult = BuildManager.DefaultBuildManager.Build(bp, buidlRequest);
+                        process.Dispose();
+                        throw new ArgumentException("dotnet build process failed");
+                    }
 
-                if (buildResult.OverallResult != BuildResultCode.Success)
-                { 
-                   throw new ArgumentException("Provided buildable is not valid :( " + buildable.SolutionRootPath); 
-                }
+                    process.Dispose();
+
+                };
+                process.Start();
+
+                while (!isDone)
+                {
+                    Thread.Sleep(100);
+                }              
             }
             catch (Exception e)
             {
@@ -91,15 +99,14 @@ namespace CloudPrototyper.Build.NET
             {
                 var isDone = false;
                 var solutionFile = Directory.GetFiles(buildable.SolutionRootPath, "*.sln", SearchOption.AllDirectories).First();
-                System.Diagnostics.Process process = new System.Diagnostics.Process();
-                
-                System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
+                Process process = new();
+
+                ProcessStartInfo startInfo = new ProcessStartInfo
                 {
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-                    FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "nuget.exe"),
+                    WindowStyle = ProcessWindowStyle.Hidden,
+                    FileName = "dotnet.exe",
                     Arguments = "restore " + solutionFile,
-                    UseShellExecute = false
-                    
+                    UseShellExecute = false,
                 };
 
                 process.EnableRaisingEvents = true;
@@ -112,7 +119,15 @@ namespace CloudPrototyper.Build.NET
                 process.Exited += (sender, args) =>
                 {
                     isDone = true;
+
+                    if (process.ExitCode != 0)
+                    {
+                        process.Dispose();
+                        throw new ArgumentException("dotnet restore process failed");
+                    }
+
                     process.Dispose();
+
                 };
                 process.Start();
 
@@ -123,7 +138,7 @@ namespace CloudPrototyper.Build.NET
             }
             catch (Exception e)
             {
-                throw new ArgumentException("Provided buildable is not valid:  " + e.Message);
+                throw new ArgumentException("Provided buildable is not valid.", e);
             }
         }
     }
