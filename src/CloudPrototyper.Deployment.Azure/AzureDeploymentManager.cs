@@ -19,6 +19,8 @@ using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
 using Microsoft.Azure.Management.ServiceBus.Fluent;
 using Microsoft.Azure.Management.Sql.Fluent.Models;
 using Microsoft.Azure.Management.Storage.Fluent;
+using CloudPrototyper.NET.Framework.v462.CosmosDb.Model;
+using Microsoft.Azure.Cosmos;
 
 namespace CloudPrototyper.Deployment.Azure
 {
@@ -43,8 +45,11 @@ namespace CloudPrototyper.Deployment.Azure
         private IAzure _azure;
         private IResourceGroup _resourceGroup;
         private ISqlServer _sqlServer;
+        private CosmosClient _cosmosClient;
+        private Database _cosmosDatabase;
         private readonly Dictionary<Application, IWebApp> _webApps = new Dictionary<Application, IWebApp>();
         private readonly Dictionary<AzureSQLDatabase, ISqlDatabase> _databases = new Dictionary<AzureSQLDatabase, ISqlDatabase>();
+        private readonly Dictionary<AzureCosmosDbContainer, Container> _containers = new Dictionary<AzureCosmosDbContainer, Container>();
         private readonly Dictionary<AzureServiceBusQueue, IQueue> _serviceQueues = new Dictionary<AzureServiceBusQueue, IQueue>();
         private readonly Dictionary<AzureTableStorage, IStorageAccount> _tableStorages = new Dictionary<AzureTableStorage, IStorageAccount>();
         private readonly Dictionary<Application, AzureAppService> _appServices = new Dictionary<Application, AzureAppService>();
@@ -70,7 +75,8 @@ namespace CloudPrototyper.Deployment.Azure
                     typeof (AzureSQLDatabase),
                     typeof (AzureTableStorage),
                     typeof (AzureServiceBusQueue),
-                    typeof (AzureAppService)
+                    typeof (AzureAppService),
+                    typeof (AzureCosmosDbContainer)
                 };
 
         /// <summary>
@@ -363,6 +369,40 @@ namespace CloudPrototyper.Deployment.Azure
             Console.WriteLine("Done: " + resource.Name);
         }
 
+        private void PrepareResource(AzureCosmosDbContainer resource)
+        {
+            if (_cosmosDatabase == null)
+            {
+                Console.WriteLine("Making AzureCosmosDB Database");
+                var createDbTask = _cosmosClient.CreateDatabaseIfNotExistsAsync(Guid.NewGuid().ToString("N").Substring(0, 16));
+                createDbTask.Wait();
+                _cosmosDatabase = createDbTask.Result.Database;
+            }
+
+            Console.WriteLine("Making AzureCosmosDB Container: " + resource.Name);
+
+            ThroughputProperties throughputProperties;
+            if (resource.ThroughputType == "manual")
+            {
+                throughputProperties = ThroughputProperties.CreateManualThroughput(resource.RUs);
+            }
+            else
+            {
+                throughputProperties = ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
+            }
+
+            var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, "/" + resource.Name), throughputProperties);
+            createContainerTask.Wait();
+            var container = createContainerTask.Result.Container;
+
+            PreparedResources.Add(resource);
+            _containers.Add(resource, container);
+            resource.ConnectionString = ConfigProvider.GetValue("CosmosAccount");
+            resource.DatabaseName = _cosmosDatabase.Id;
+
+            Console.WriteLine("Done: " + resource.Name);
+        }
+
         private void Init()
         {
             if (!_initialized)
@@ -378,6 +418,8 @@ namespace CloudPrototyper.Deployment.Azure
                         .Define(ConfigProvider.TryGetValue("ResourceGroupName") ?? "CloudPrototyperGroup")
                         .WithRegion(azureRegion ?? "westeurope")
                         .Create();
+
+                _cosmosClient = new(ConfigProvider.GetValue("CosmosAccount"));
 
                 _initialized = true;
             }
