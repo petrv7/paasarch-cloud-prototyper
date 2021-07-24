@@ -1,0 +1,72 @@
+<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter type="CloudPrototyper.NET.Framework.v462.CosmosDb.Generators.AzureCosmosDbContextGenerator" name="Model" #>
+using DataLayer.Interfaces;
+using Microsoft.Azure.Cosmos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Dynamic.Core;
+
+namespace <#= Model.Namespace #> 
+{
+    public class <#= Model.Name #> : <#= Model.StorageInterface.Namespace #>.<#= Model.StorageInterface.Name #>
+    {
+        private readonly CosmosClient _client;
+        private readonly Container _container;
+		
+        public <#= Model.Name #>() 
+		{ 
+            _client = new CosmosClient("<#= Model.ModelParameters.ConnectionString #>");
+            _container = _client.GetContainer("<#= Model.ModelParameters.DatabaseName #>", "<#= Model.ModelParameters.Name #>");
+		}
+		
+        public string GetName()
+        {
+            return "<#= Model.Key #>";
+        }
+		
+		public List<object> GetEntities(string entitySetName, string entityName, <#= Model.Query.Namespace #>.<#= Model.Query.Name #> query)
+		{
+<# foreach(var entitySet in Model.ModelParameters.EntitySets) { #>
+			if(entitySetName == "<#= entitySet.Name #>")
+			{
+				if (query.IsNominal)
+                {
+                    return _container.GetItemLinqQueryable<DataLayer.Entities.ProcessedContainer>(true).Where("@0 == @1", query.PropertyName, query.NominalParameter).ToList().Cast<object>().ToList();
+                }
+				
+	            return _container.GetItemLinqQueryable<DataLayer.Entities.ProcessedContainer>(true).Where("@0 >= @1 && @0 <= @2", query.PropertyName, query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();
+			} 
+<# } #>
+			
+			return new List<object>();
+		}
+
+
+		public void InsertAll(string entitySetName, string entityName, object[] toInsert)
+		{
+            foreach (var obj in toInsert)
+            {
+                _container.CreateItemAsync(obj).Wait();
+            }
+		}
+
+		public void Insert(string entitySetName,string entityName, int count)
+		{
+			object[] generated = null;
+<# foreach(var entity in Model.Entities) { #>
+			if(entityName == "<#= entity.Name #>")
+			{
+				generated = <#=Model.DataGenerator.Namespace#>.<#= Model.DataGenerator.Name #>.GetInstance().Generate<<#=entity.Namespace#>.<#= entity.Name #>>(count).ToArray();
+
+			} 
+<# } #>
+			InsertAll(entitySetName,entityName,generated);
+
+		}
+    }
+}
