@@ -295,80 +295,18 @@ namespace CloudPrototyper.Deployment.Azure
             }
             Console.WriteLine("Making sql db: " + resource.Name);
 
-            DatabaseEdition edition = DatabaseEdition.Free;
-            switch (resource.PerformanceTier.ToLower())
-            {
-                case "basic":
-                    edition = DatabaseEdition.Basic;
-                    break;
-                case "premium":
-                    edition = DatabaseEdition.Premium;
-                    break;
-                case "free":
-                    edition = DatabaseEdition.Free;
-                    break;
-                case "standard":
-                    edition = DatabaseEdition.Standard;
-                    break;              
-            }
+            DatabaseEdition edition;
+            ServiceObjectiveName serviceObjective;
 
-            ServiceObjectiveName serviceObjective = ServiceObjectiveName.Free;
-            switch (resource.ServiceObjective.ToLower())
+            if (resource.PerformanceTier.ToLower() == "serverless")
             {
-                case "basic":
-                    serviceObjective = ServiceObjectiveName.Basic;
-                    break;
-                case "free":
-                    serviceObjective = ServiceObjectiveName.Free;
-                    break;
-                case "p1":
-                    serviceObjective = ServiceObjectiveName.P1;
-                    break;
-                case "p2":
-                    serviceObjective = ServiceObjectiveName.P2;
-                    break;
-                case "p3":
-                    serviceObjective = ServiceObjectiveName.P3;
-                    break;
-                case "p4":
-                    serviceObjective = ServiceObjectiveName.P4;
-                    break;
-                case "p6":
-                    serviceObjective = ServiceObjectiveName.P6;
-                    break;
-                case "p11":
-                    serviceObjective = ServiceObjectiveName.P11;
-                    break;
-                case "p15":
-                    serviceObjective = ServiceObjectiveName.P15;
-                    break;
-                case "s0":
-                    serviceObjective = ServiceObjectiveName.S0;
-                    break;
-                case "s1":
-                    serviceObjective = ServiceObjectiveName.S1;
-                    break;
-                case "s2":
-                    serviceObjective = ServiceObjectiveName.S2;
-                    break;
-                case "s3":
-                    serviceObjective = ServiceObjectiveName.S3;
-                    break;
-                case "s4":
-                    serviceObjective = ServiceObjectiveName.S4;
-                    break;
-                case "s6":
-                    serviceObjective = ServiceObjectiveName.S6;
-                    break;
-                case "s7":
-                    serviceObjective = ServiceObjectiveName.S7;
-                    break;
-                case "s9":
-                    serviceObjective = ServiceObjectiveName.S9;
-                    break;
-                case "s12":
-                    serviceObjective = ServiceObjectiveName.S12;
-                    break;
+                edition = DatabaseEdition.Parse("GeneralPurpose");
+                serviceObjective = ServiceObjectiveName.Parse("GP_S_Gen5_" + resource.MaxvCores);
+            }
+            else
+            {
+                edition = DatabaseEdition.Parse(resource.PerformanceTier);
+                serviceObjective = ServiceObjectiveName.Parse(resource.ServiceObjective);
             }
 
             _databases.Add(resource, _sqlServer.Databases.Define(resource.Name)
