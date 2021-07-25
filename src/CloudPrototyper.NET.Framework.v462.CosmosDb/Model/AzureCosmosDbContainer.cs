@@ -1,9 +1,8 @@
 ﻿using CloudPrototyper.Model.Resources.Storage;
-using Newtonsoft.Json;
 
 namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Model
 {
-    public class AzureCosmosDbContainer : KeyValueDatabase
+    public class AzureCosmosDbContainer : RelationalDatabase
     {
         /// <summary>
         /// Throughput type, "manual" or "autoscale"
@@ -17,7 +16,5 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Model
         /// Name of the container database
         /// </summary>
         public string DatabaseName { get; set; } = "";
-        [JsonIgnore]
-        public string ConnectionString { get; set; } = "";
     }
 }
