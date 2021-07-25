@@ -9,11 +9,17 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.WindowsAzure.Storage.Table;
+using Newtonsoft.Json;
+
 // Entity
 namespace <#=Model.Namespace#>
 {
     public class <#=Model.Name#> : TableEntity,<#= Model.EntityInterface.Namespace #>.<#= Model.EntityInterface.Name #>
     {
+		//cosmos db id
+		[JsonProperty(PropertyName = "id")]
+		public string CosmosId { get; set; } = Guid.NewGuid().ToString("N").Substring(0, 16);
+
 		private int _id;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
