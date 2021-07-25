@@ -167,52 +167,187 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Templates {
             #line hidden
             
             #line 32 "Templates\AzureCosmosDbContextTemplate.tt"
-            this.Write(" query)\r\n\t\t{\r\n");
+            this.Write(" query)\r\n\t\t{\r\n\t\t\tif(query.IsNominal) \r\n\t\t\t{\r\n");
             
             #line default
             #line hidden
             
-            #line 34 "Templates\AzureCosmosDbContextTemplate.tt"
- foreach(var entitySet in Model.ModelParameters.EntitySets) { 
+            #line 36 "Templates\AzureCosmosDbContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
             
             #line default
             #line hidden
             
-            #line 35 "Templates\AzureCosmosDbContextTemplate.tt"
-            this.Write("\t\t\tif(entitySetName == \"");
+            #line 37 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write("\t\t\t\tif(entityName == \"");
             
             #line default
             #line hidden
             
-            #line 35 "Templates\AzureCosmosDbContextTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( entitySet.Name ));
+            #line 37 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 35 "Templates\AzureCosmosDbContextTemplate.tt"
-            this.Write(@""")
-			{
-				if (query.IsNominal)
-                {
-                    return _container.GetItemLinqQueryable<DataLayer.Entities.ProcessedContainer>(true).Where(""@0 == @1"", query.PropertyName, query.NominalParameter).ToList().Cast<object>().ToList();
-                }
-				
-	            return _container.GetItemLinqQueryable<DataLayer.Entities.ProcessedContainer>(true).Where(""@0 >= @1 && @0 <= @2"", query.PropertyName, query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();
-			} 
-");
+            #line 37 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write("\")\r\n\t\t\t\t{\r\n\t\t\t\t\tif(query.PropertyName == \"Id\")\r\n\t\t\t\t\t{   \r\n\t\t\t\t\t\tvar parameter = " +
+                    "int.Parse(query.NominalParameter);\r\n\t\t\t\t\t\treturn _container.GetItemLinqQueryable" +
+                    "<");
             
             #line default
             #line hidden
             
-            #line 44 "Templates\AzureCosmosDbContextTemplate.tt"
- } 
+            #line 42 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 42 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 42 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 42 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(">(true).Where(\"Id == @0\", parameter).ToList().Cast<object>().ToList();\r\n\t\t\t\t\t}\r\n\r" +
+                    "\n\t\t\t\t\treturn _container.GetItemLinqQueryable<");
             
             #line default
             #line hidden
             
             #line 45 "Templates\AzureCosmosDbContextTemplate.tt"
-            this.Write(@"			
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 45 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 45 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 45 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(">(true).Where(\"string.Compare(@0.ToString(), @1, StringComparison.Ordinal) == 0\"," +
+                    " query.PropertyName, query.NominalParameter).ToList().Cast<object>().ToList();\r\n" +
+                    "\t\t\t\t}\t \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 47 "Templates\AzureCosmosDbContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 48 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write("\t\t\t}\r\n\t\t\telse \r\n\t\t\t{\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 51 "Templates\AzureCosmosDbContextTemplate.tt"
+ foreach(var entity in Model.Entities) { 
+            
+            #line default
+            #line hidden
+            
+            #line 52 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write("\t\t\t\tif(entityName == \"");
+            
+            #line default
+            #line hidden
+            
+            #line 52 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 52 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write("\")\r\n\t\t\t\t{\r\n\t\t\t\t\tif(query.PropertyName == \"Id\")\r\n\t\t\t\t\t{\r\n\t\t\t\t\t    var minParameter" +
+                    " = int.Parse(query.MinValue);\r\n\t\t\t\t\t    var maxParameter = int.Parse(query.MaxVa" +
+                    "lue);\r\n\t\t\t            return _container.GetItemLinqQueryable<");
+            
+            #line default
+            #line hidden
+            
+            #line 58 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 58 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 58 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 58 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(">(true).Where(\"Id >= @0 && Id <= @1\", minParameter, maxParameter).ToList().Cast<o" +
+                    "bject>().ToList();\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t\treturn _container.GetItemLinqQueryable<");
+            
+            #line default
+            #line hidden
+            
+            #line 61 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Namespace ));
+            
+            #line default
+            #line hidden
+            
+            #line 61 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 61 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 61 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(">(true).Where(\"string.Compare(@0.ToString(), @1, StringComparison.Ordinal) >= 0 &" +
+                    "& string.Compare(@0.ToString(), @2, StringComparison.Ordinal) <= 0\", query.Prope" +
+                    "rtyName, query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();\r\n\t\t\t\t" +
+                    "}\t \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 63 "Templates\AzureCosmosDbContextTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            this.Write(@"			}
+			
 			return new List<object>();
 		}
 
@@ -233,85 +368,85 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Templates {
             #line default
             #line hidden
             
-            #line 61 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 81 "Templates\AzureCosmosDbContextTemplate.tt"
  foreach(var entity in Model.Entities) { 
             
             #line default
             #line hidden
             
-            #line 62 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 82 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write("\t\t\tif(entityName == \"");
             
             #line default
             #line hidden
             
-            #line 62 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 82 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 62 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 82 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write("\")\r\n\t\t\t{\r\n\t\t\t\tgenerated = ");
             
             #line default
             #line hidden
             
-            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 84 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
             
             #line default
             #line hidden
             
-            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 84 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 84 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.DataGenerator.Name ));
             
             #line default
             #line hidden
             
-            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 84 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(".GetInstance().Generate<");
             
             #line default
             #line hidden
             
-            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 84 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
             
             #line default
             #line hidden
             
-            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 84 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 84 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 64 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 84 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write(">(count).ToArray();\r\n\r\n\t\t\t} \r\n");
             
             #line default
             #line hidden
             
-            #line 67 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 87 "Templates\AzureCosmosDbContextTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 68 "Templates\AzureCosmosDbContextTemplate.tt"
+            #line 88 "Templates\AzureCosmosDbContextTemplate.tt"
             this.Write("\t\t\tInsertAll(entitySetName,entityName,generated);\r\n\r\n\t\t}\r\n    }\r\n}");
             
             #line default

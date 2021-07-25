@@ -31,17 +31,37 @@ namespace <#= Model.Namespace #>
 		
 		public List<object> GetEntities(string entitySetName, string entityName, <#= Model.Query.Namespace #>.<#= Model.Query.Name #> query)
 		{
-<# foreach(var entitySet in Model.ModelParameters.EntitySets) { #>
-			if(entitySetName == "<#= entitySet.Name #>")
+			if(query.IsNominal) 
 			{
-				if (query.IsNominal)
-                {
-                    return _container.GetItemLinqQueryable<DataLayer.Entities.ProcessedContainer>(true).Where("@0 == @1", query.PropertyName, query.NominalParameter).ToList().Cast<object>().ToList();
-                }
-				
-	            return _container.GetItemLinqQueryable<DataLayer.Entities.ProcessedContainer>(true).Where("@0 >= @1 && @0 <= @2", query.PropertyName, query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();
-			} 
+<# foreach(var entity in Model.Entities) { #>
+				if(entityName == "<#= entity.Name #>")
+				{
+					if(query.PropertyName == "Id")
+					{   
+						var parameter = int.Parse(query.NominalParameter);
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("Id == @0", parameter).ToList().Cast<object>().ToList();
+					}
+
+					return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(@0.ToString(), @1, StringComparison.Ordinal) == 0", query.PropertyName, query.NominalParameter).ToList().Cast<object>().ToList();
+				}	 
 <# } #>
+			}
+			else 
+			{
+<# foreach(var entity in Model.Entities) { #>
+				if(entityName == "<#= entity.Name #>")
+				{
+					if(query.PropertyName == "Id")
+					{
+					    var minParameter = int.Parse(query.MinValue);
+					    var maxParameter = int.Parse(query.MaxValue);
+			            return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("Id >= @0 && Id <= @1", minParameter, maxParameter).ToList().Cast<object>().ToList();
+					}
+
+					return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(@0.ToString(), @1, StringComparison.Ordinal) >= 0 && string.Compare(@0.ToString(), @2, StringComparison.Ordinal) <= 0", query.PropertyName, query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();
+				}	 
+<# } #>
+			}
 			
 			return new List<object>();
 		}
