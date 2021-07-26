@@ -86,12 +86,12 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
     {
 		//cosmos db id
 		[JsonProperty(PropertyName = ""id"")]
-		public string CosmosId { get; set; } = Guid.NewGuid().ToString(""N"").Substring(0, 16);
+		public string CosmosId { get; set; }
 
 		private int _id;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-		public int Id { get { return _id; } set { RowKey = value.ToString().PadLeft(9, '0'); PartitionKey = ""p""; _id = value; } }
+		public int Id { get { return _id; } set { RowKey = value.ToString().PadLeft(9, '0'); PartitionKey = ""p""; _id = value; CosmosId = value.ToString().PadLeft(9, '0'); } }
 ");
             
             #line default
