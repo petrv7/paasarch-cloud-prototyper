@@ -38,8 +38,7 @@ namespace <#= Model.Namespace #>
 				{
 					if(query.PropertyName == "Id")
 					{   
-						var parameter = int.Parse(query.NominalParameter);
-						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("Id == @0", parameter).ToList().Cast<object>().ToList();
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(CosmosId, @0, StringComparison.Ordinal) == 0", query.NominalParameter).ToList().Cast<object>().ToList();
 					}
 
 					return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(@0.ToString(), @1, StringComparison.Ordinal) == 0", query.PropertyName, query.NominalParameter).ToList().Cast<object>().ToList();
@@ -53,9 +52,7 @@ namespace <#= Model.Namespace #>
 				{
 					if(query.PropertyName == "Id")
 					{
-					    var minParameter = int.Parse(query.MinValue);
-					    var maxParameter = int.Parse(query.MaxValue);
-			            return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("Id >= @0 && Id <= @1", minParameter, maxParameter).ToList().Cast<object>().ToList();
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(CosmosId, @0, StringComparison.Ordinal) >= 0 && string.Compare(CosmosId, @1, StringComparison.Ordinal) <= 0", query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();
 					}
 
 					return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(@0.ToString(), @1, StringComparison.Ordinal) >= 0 && string.Compare(@0.ToString(), @2, StringComparison.Ordinal) <= 0", query.PropertyName, query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();
