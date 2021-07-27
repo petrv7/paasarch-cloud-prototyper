@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CloudPrototyper.Interface\CloudPrototyper.Interface.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Model\CloudPrototyper.Model.csproj" />
   </ItemGroup>
 
