@@ -276,8 +276,8 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
 
                 var generatorDependenciesType = Utils.LoadTypes(path).FirstOrDefault(t => t.BaseType != null && t.BaseType.IsGenericType &&
                                                                   t.BaseType.GetGenericTypeDefinition() ==
-                                                                  typeof(GeneratorDependency<>)
-                                                                  &&
+                                                                  typeof(GeneratorDependency<>) &&
+                                                                  !typeof(IServerless).IsAssignableFrom(t) &&
                                                                   t.BaseType.GenericTypeArguments.Contains(
                                                                      type));
                 if (generatorDependenciesType != null)
