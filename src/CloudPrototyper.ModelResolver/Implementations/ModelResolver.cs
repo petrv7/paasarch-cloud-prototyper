@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CloudPrototyper.Azure.Resources;
 using CloudPrototyper.DataGenerator;
 using CloudPrototyper.Interface;
 using CloudPrototyper.Interface.Benchmark;
@@ -298,12 +299,28 @@ namespace CloudPrototyper.ModelResolver.Implementations
         private void LoadGeneratorManagers()
         {
             var types = Utils.LoadTypes(_baseDirectory);
+            var functionApps = _prototype.Resources.OfType<AzureFunctionApp>();
             foreach (var app in _prototype.Applications) // We need to find generator for each app
             {
-                Type t = types.First(y => y.BaseType != null && y.BaseType.IsGenericType &&
+                Type t;
+                // For function apps the generator needs to implement the IServerless interface
+                if (functionApps.FirstOrDefault(a => a.WithApplication == app.Name) != null)
+                {
+                    t = types.First(y => y.BaseType != null && y.BaseType.IsGenericType &&
                                                   y.BaseType.GetGenericTypeDefinition() ==
                                                   typeof(GeneratorManager<>) &&
+                                                  typeof(IServerless).IsAssignableFrom(y) &&
                                                   y.BaseType.GetGenericArguments().Contains(app.GetType()));
+                }
+                else
+                {
+                    t = types.First(y => y.BaseType != null && y.BaseType.IsGenericType &&
+                                                  y.BaseType.GetGenericTypeDefinition() ==
+                                                  typeof(GeneratorManager<>) &&
+                                                  !typeof(IServerless).IsAssignableFrom(y) &&
+                                                  y.BaseType.GetGenericArguments().Contains(app.GetType()));
+                }
+
                 var generatorManager = (GeneratorManager)Activator.CreateInstance(t, app, _prototype, _configProvider);
                 if (generatorManager.Platform.Equals(app.Platform))
                 {
