@@ -24,7 +24,7 @@ namespace <#= Model.Namespace #>
             _action = action;
         }
 
-        [FunctionName("<#= Model.Name #>")]
+        [FunctionName("<#= Model.Action.Key #>")]
 		public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
         {
             Stopwatch stopWatch = new Stopwatch();

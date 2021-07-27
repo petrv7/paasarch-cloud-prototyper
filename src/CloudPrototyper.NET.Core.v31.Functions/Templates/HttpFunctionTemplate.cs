@@ -32,14 +32,10 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             
             #line 7 "Templates\HttpFunctionTemplate.tt"
             this.Write(@"using System;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -49,98 +45,98 @@ namespace ");
             #line default
             #line hidden
             
-            #line 20 "Templates\HttpFunctionTemplate.tt"
+            #line 16 "Templates\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 20 "Templates\HttpFunctionTemplate.tt"
+            #line 16 "Templates\HttpFunctionTemplate.tt"
             this.Write("\r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 22 "Templates\HttpFunctionTemplate.tt"
+            #line 18 "Templates\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 22 "Templates\HttpFunctionTemplate.tt"
+            #line 18 "Templates\HttpFunctionTemplate.tt"
             this.Write("\r\n    {\r\n        private readonly ");
             
             #line default
             #line hidden
             
-            #line 24 "Templates\HttpFunctionTemplate.tt"
+            #line 20 "Templates\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 24 "Templates\HttpFunctionTemplate.tt"
+            #line 20 "Templates\HttpFunctionTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 24 "Templates\HttpFunctionTemplate.tt"
+            #line 20 "Templates\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Name ));
             
             #line default
             #line hidden
             
-            #line 24 "Templates\HttpFunctionTemplate.tt"
+            #line 20 "Templates\HttpFunctionTemplate.tt"
             this.Write(" _action;\r\n\r\n        public ");
             
             #line default
             #line hidden
             
-            #line 26 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 26 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\HttpFunctionTemplate.tt"
             this.Write("(");
             
             #line default
             #line hidden
             
-            #line 26 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 26 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\HttpFunctionTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 26 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Name ));
             
             #line default
             #line hidden
             
-            #line 26 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\HttpFunctionTemplate.tt"
             this.Write(" action)\r\n        {\r\n            _action = action;\r\n        }\r\n\r\n        [Functio" +
                     "nName(\"");
             
             #line default
             #line hidden
             
-            #line 31 "Templates\HttpFunctionTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
+            #line 27 "Templates\HttpFunctionTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Key ));
             
             #line default
             #line hidden
             
-            #line 31 "Templates\HttpFunctionTemplate.tt"
+            #line 27 "Templates\HttpFunctionTemplate.tt"
             this.Write(@""")]
 		public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, ""get"")] HttpRequest req)
         {

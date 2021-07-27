@@ -21,9 +21,22 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             this.GenerationEnvironment = null;
             
             #line 6 "Templates\HostJsonTemplate.tt"
-            this.Write("{\r\n    \"version\": \"2.0\",\r\n    \"logging\": {\r\n        \"applicationInsights\": {\r\n   " +
-                    "         \"samplingSettings\": {\r\n                \"isEnabled\": true,\r\n            " +
-                    "    \"excludedTypes\": \"Request\"\r\n            }\r\n        }\r\n    }\r\n}");
+            this.Write(@"{
+    ""version"": ""2.0"",
+    ""logging"": {
+        ""applicationInsights"": {
+            ""samplingSettings"": {
+                ""isEnabled"": true,
+                ""excludedTypes"": ""Request""
+            }
+        }
+    },
+    ""extensions"": {
+        ""http"": {
+            ""routePrefix"": ""api/action""
+        }
+    }
+}");
             
             #line default
             #line hidden

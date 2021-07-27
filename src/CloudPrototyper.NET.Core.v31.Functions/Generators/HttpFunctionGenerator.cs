@@ -11,7 +11,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Generators
         public ActionGenerator Action { get; set; }
         public OperationInterfaceGenerator OperationInterface { get; set; }
         public StorageInterfaceGenerator StorageInterface { get; set; }
-        public HttpFunctionGenerator(string projectName, string actionName, IList<ActionGenerator> actions, StorageInterfaceGenerator storageInterfaceGenerator, OperationInterfaceGenerator operationInterface) : base(projectName, "Functions", actions.Single(x => x.Key == actionName).Key + "Function", typeof(HttpFunctionTemplate))
+        public HttpFunctionGenerator(string projectName, string actionName, IList<ActionGenerator> actions, StorageInterfaceGenerator storageInterfaceGenerator, OperationInterfaceGenerator operationInterface) : base(projectName, "Functions", actions.Single(x => x.Key == actionName).Key + "Action", typeof(HttpFunctionTemplate))
         {
             OperationInterface = operationInterface;
             Action = actions.Single(x => x.Key == actionName);
