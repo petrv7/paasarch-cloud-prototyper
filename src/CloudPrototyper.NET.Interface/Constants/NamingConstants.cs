@@ -20,5 +20,6 @@
         public const string StorageInterface = "StorageInterface";
         public const string MessageBusInterface = "MessageBusInterface";
         public const string HandlerInterface = "HandlerInterface";
+        public const string FunctionLayerProjectName = "FunctionLayer";
     }
 }
