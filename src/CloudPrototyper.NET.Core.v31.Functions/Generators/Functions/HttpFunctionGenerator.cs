@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CloudPrototyper.NET.Core.v31.Functions.Templates;
+using CloudPrototyper.NET.Core.v31.Functions.Templates.Functions;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators;
 using CloudPrototyper.NET.Interface.Generation;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Generators
+namespace CloudPrototyper.NET.Core.v31.Functions.Generators.Functions
 {
     public class HttpFunctionGenerator : CodeGeneratorBase
     {

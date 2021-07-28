@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
+namespace CloudPrototyper.NET.Core.v31.Functions.Templates.Functions {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
@@ -18,9 +18,9 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
     public partial class HttpFunctionTemplate : HttpFunctionTemplateBase {
         
         
-        private CloudPrototyper.NET.Core.v31.Functions.Generators.HttpFunctionGenerator _ModelField;
+        private CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctionGenerator _ModelField;
         
-        public CloudPrototyper.NET.Core.v31.Functions.Generators.HttpFunctionGenerator Model {
+        public CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctionGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -30,7 +30,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
         public virtual string TransformText() {
             this.GenerationEnvironment = null;
             
-            #line 7 "Templates\HttpFunctionTemplate.tt"
+            #line 7 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(@"using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -45,98 +45,98 @@ namespace ");
             #line default
             #line hidden
             
-            #line 16 "Templates\HttpFunctionTemplate.tt"
+            #line 16 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 16 "Templates\HttpFunctionTemplate.tt"
+            #line 16 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write("\r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 18 "Templates\HttpFunctionTemplate.tt"
+            #line 18 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 18 "Templates\HttpFunctionTemplate.tt"
+            #line 18 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write("\r\n    {\r\n        private readonly ");
             
             #line default
             #line hidden
             
-            #line 20 "Templates\HttpFunctionTemplate.tt"
+            #line 20 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 20 "Templates\HttpFunctionTemplate.tt"
+            #line 20 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 20 "Templates\HttpFunctionTemplate.tt"
+            #line 20 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Name ));
             
             #line default
             #line hidden
             
-            #line 20 "Templates\HttpFunctionTemplate.tt"
+            #line 20 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(" _action;\r\n\r\n        public ");
             
             #line default
             #line hidden
             
-            #line 22 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 22 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write("(");
             
             #line default
             #line hidden
             
-            #line 22 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 22 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 22 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Name ));
             
             #line default
             #line hidden
             
-            #line 22 "Templates\HttpFunctionTemplate.tt"
+            #line 22 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(" action)\r\n        {\r\n            _action = action;\r\n        }\r\n\r\n        [Functio" +
                     "nName(\"");
             
             #line default
             #line hidden
             
-            #line 27 "Templates\HttpFunctionTemplate.tt"
+            #line 27 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Key ));
             
             #line default
             #line hidden
             
-            #line 27 "Templates\HttpFunctionTemplate.tt"
+            #line 27 "Templates\Functions\HttpFunctionTemplate.tt"
             this.Write(@""")]
 		public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, ""get"")] HttpRequest req)
         {
@@ -168,12 +168,13 @@ namespace ");
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Core.v31.Functions.Generators.HttpFunctionGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Core.v31.Functions.Generators.HttpFunctionGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctionGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctionGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Core.v31.Functions.Generators.HttpFunctionGenerator" +
-                                "\' of the parameter \'Model\' did not match the type passed to the template");
+                        this.Error("The type \'CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctio" +
+                                "nGenerator\' of the parameter \'Model\' did not match the type passed to the templa" +
+                                "te");
                     }
                 }
             }
