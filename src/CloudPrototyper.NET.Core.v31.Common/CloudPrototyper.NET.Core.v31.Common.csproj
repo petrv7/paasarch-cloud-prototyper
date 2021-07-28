@@ -10,4 +10,17 @@
     <ProjectReference Include="..\CloudPrototyper.NET.Interface\CloudPrototyper.NET.Interface.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Templates\SolutionTemplates\AssemblyFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.0.5" />
+    <TextTemplate Include="**\*.tt" />
+  </ItemGroup>
+
+  <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
+    <Exec WorkingDirectory="$(ProjectDir)" Command="t4 %(TextTemplate.Identity) -c $(RootNameSpace).$([System.String]::Copy('%(TextTemplate.Identity)').Replace('\','.').Replace('.tt','')) -o $([System.String]::Copy('%(TextTemplate.Identity)').Replace('.tt','.cs'))" />
+  </Target>
+  
 </Project>
