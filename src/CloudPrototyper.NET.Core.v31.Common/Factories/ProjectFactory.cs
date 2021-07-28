@@ -82,12 +82,10 @@ namespace CloudPrototyper.NET.Core.v31.Common.Factories
 
             HostJsonGenerator hostJson = new HostJsonGenerator(new GenerationInfo("host.json", functionAppProject.GenerationInfo.RelativePathFolder, new HostJsonTemplate(), true));
             LocalSettingsJsonGenerator localSettingsJson = new LocalSettingsJsonGenerator(new GenerationInfo("local.settings.json", functionAppProject.GenerationInfo.RelativePathFolder, new LocalSettingsJsonTemplate(), true));
-            CastleWindsorJobActivatorGenerator castleWindsorJobActivator = new CastleWindsorJobActivatorGenerator(name);
             
             files.Add(functionAppProject);
             files.Add(hostJson);
             files.Add(localSettingsJson);
-            files.Add(castleWindsorJobActivator);
 
             functionAppProject.AssemblyInfo.AssemblyImports.AddRange(imports);
             functionAppProject.AssemblyInfo.Packages.AddRange(nugets);

@@ -14,6 +14,7 @@ using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Resources;
 using CloudPrototyper.NET.Core.v31.Functions.Generators;
+using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
 using CloudPrototyper.NET.Interface.Constants;
@@ -103,10 +104,14 @@ namespace CloudPrototyper.NET.Core.v31.Functions
 
         private void RegisterFunctionLayer(List<Action> actions)
         {
-
             Container.Register(
-                    Component.For<StartupGenerator>().ImplementedBy<StartupGenerator>().DependsOn(Dependency.OnValue("projectName", NamingConstants.FunctionLayerProjectName))
-                    );
+                Component.For<CastleWindsorJobActivatorGenerator>().ImplementedBy<CastleWindsorJobActivatorGenerator>()
+                    .DependsOn(Dependency.OnValue("projectName", NamingConstants.FunctionLayerProjectName))
+            );
+            Container.Register(
+                Component.For<StartupGenerator>().ImplementedBy<StartupGenerator>()
+                    .DependsOn(Dependency.OnValue("projectName", NamingConstants.FunctionLayerProjectName))
+            );
 
             foreach (var action in actions)
             {
