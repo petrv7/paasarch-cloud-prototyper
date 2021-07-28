@@ -43,6 +43,7 @@ namespace CloudPrototyper.Deployment.Azure
         private IResourceGroup _resourceGroup;
         private ISqlServer _sqlServer;
         private IStorageAccount _storageAccount;
+        private readonly Dictionary<string, string> _queueConnStr = new();
         private readonly Dictionary<Application, IWebApp> _webApps = new();
         private readonly Dictionary<Application, IFunctionApp> _funcApps = new();
         private readonly Dictionary<AzureSQLDatabase, ISqlDatabase> _databases = new();
@@ -158,9 +159,20 @@ namespace CloudPrototyper.Deployment.Azure
 
         private void Deploy(WorkerApplication application)
         {
-            var publishProfile = _webApps[application].GetPublishingProfile();
+            bool isServerless = false;
+            IPublishingProfile publishProfile;
 
-            
+            if (_webApps.ContainsKey(application))
+            {
+                publishProfile = _webApps[application].GetPublishingProfile();
+            }
+            else
+            {
+                isServerless = true;
+                publishProfile = _funcApps[application].GetPublishingProfile();
+                // Add connection strings to function app
+                _funcApps[application].Update().WithAppSettings(_queueConnStr).Apply();
+            }
 
             FtpClient client = new FtpClient();
             var url = publishProfile.FtpUrl;
@@ -183,13 +195,26 @@ namespace CloudPrototyper.Deployment.Azure
                 Uri relRoot = new Uri(Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), UriKind.Absolute);
 
                 string relPath = relRoot.MakeRelativeUri(fullPath).ToString();
-                client.UploadFile(file, (@"\site\wwwroot\App_Data\Jobs\continuous\Worker" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
-                if (Path.GetFileName(file.ToLower()).Contains("packages.config"))
+
+                if (isServerless)
                 {
-                    client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    client.UploadFile(file, @"\site\wwwroot" + "\\" + relPath.Substring(6), FtpRemoteExists.Overwrite, true);
+                }
+                else
+                {
+                    client.UploadFile(file, (@"\site\wwwroot\App_Data\Jobs\continuous\Worker" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    if (Path.GetFileName(file.ToLower()).Contains("packages.config"))
+                    {
+                        client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    }
                 }
             }
-            _webApps[application].Refresh();
+
+            if (!isServerless)
+            {
+                _webApps[application].Refresh();
+            }
+
             DeployedApplications.Add(application);
             client.Dispose();
         }
@@ -406,12 +431,10 @@ namespace CloudPrototyper.Deployment.Azure
             var rule = firstQueue.AuthorizationRules.Define("rulerule").WithManagementEnabled().Create();
             
             resource.ConnectionString = rule.GetKeys().PrimaryConnectionString;
-            
-            Console.WriteLine("Making AzureServiceBusQueue: " + resource.Name);
+            _queueConnStr.Add(resource.Name + "Connection", resource.ConnectionString.Substring(0, resource.ConnectionString.IndexOf("EntityPath=")));
 
             PreparedResources.Add(resource);
-            _serviceQueues.Add(resource, firstQueue);
-                                
+            _serviceQueues.Add(resource, firstQueue);                                
 
             Console.WriteLine("Done: " + resource.Name);
         }
