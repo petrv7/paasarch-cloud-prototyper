@@ -38,7 +38,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             #line hidden
             
             #line 12 "Templates\LocalSettingsJsonTemplate.tt"
- foreach(var queue in Model.Queues) { 
+ foreach(var queue in Model.Queues) { if(!string.IsNullOrWhiteSpace(queue.ConnectionString)) { 
             
             #line default
             #line hidden
@@ -62,7 +62,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             #line hidden
             
             #line 13 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( queue.ConnectionString ));
+            this.Write(this.ToStringHelper.ToStringWithCulture( queue.ConnectionString.Substring(0, queue.ConnectionString.IndexOf("EntityPath=")) ));
             
             #line default
             #line hidden
@@ -74,12 +74,48 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             #line hidden
             
             #line 14 "Templates\LocalSettingsJsonTemplate.tt"
- } 
+ } else { 
             
             #line default
             #line hidden
             
             #line 15 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("\t\t,\"");
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( queue.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("Connection\" : \"");
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( queue.ConnectionString ));
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("\"\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 16 "Templates\LocalSettingsJsonTemplate.tt"
+ }} 
+            
+            #line default
+            #line hidden
+            
+            #line 17 "Templates\LocalSettingsJsonTemplate.tt"
             this.Write("    }\r\n}");
             
             #line default
