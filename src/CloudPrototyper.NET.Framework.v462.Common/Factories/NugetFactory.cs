@@ -49,7 +49,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
         public static List<PackageConfigInfo> MakeAzureTableStorage() => new List<PackageConfigInfo>
         {
 
-            new PackageConfigInfo(new List<Tuple<string, string>>
+            /*new PackageConfigInfo(new List<Tuple<string, string>>
             {
                 new Tuple<string, string>(
                     "Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
@@ -93,7 +93,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
                 new Tuple<string, string>(
                     "System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
                     @"..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll")
-            }, "System.Spatial", "5.6.4", "net462"),
+            }, "System.Spatial", "5.6.4", "net462"),*/
 
 
 
@@ -102,7 +102,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Factories
                 new Tuple<string, string>(
                     "Microsoft.WindowsAzure.Storage, Version=7.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL",
                     @"..\packages\WindowsAzure.Storage.7.2.1\lib\net40\Microsoft.WindowsAzure.Storage.dll")
-            }, "WindowsAzure.Storage", "9.3.1", "net462"),
+            }, "WindowsAzure.Storage", "9.3.3", "net462"),
 
         };
 
