@@ -17,13 +17,70 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
     
     public partial class LocalSettingsJsonTemplate : LocalSettingsJsonTemplateBase {
         
+        
+        private CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator _ModelField;
+        
+        public CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator Model {
+            get {
+                return this._ModelField;
+            }
+        }
+
+        
         public virtual string TransformText() {
             this.GenerationEnvironment = null;
             
-            #line 6 "Templates\LocalSettingsJsonTemplate.tt"
+            #line 7 "Templates\LocalSettingsJsonTemplate.tt"
             this.Write("{\r\n    \"IsEncrypted\": false,\r\n    \"Values\": {\r\n        \"AzureWebJobsStorage\": \"Us" +
-                    "eDevelopmentStorage=true\",\r\n        \"FUNCTIONS_WORKER_RUNTIME\": \"dotnet\"\r\n    }\r" +
-                    "\n}");
+                    "eDevelopmentStorage=true\",\r\n        \"FUNCTIONS_WORKER_RUNTIME\": \"dotnet\"\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 12 "Templates\LocalSettingsJsonTemplate.tt"
+ foreach(var queue in Model.Queues) { 
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("\t\t,\"");
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( queue.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("Connection\" : \"");
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( queue.ConnectionString ));
+            
+            #line default
+            #line hidden
+            
+            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("\"\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 14 "Templates\LocalSettingsJsonTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("    }\r\n}");
             
             #line default
             #line hidden
@@ -31,6 +88,20 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
         }
         
         public virtual void Initialize() {
+            if ((this.Errors.HasErrors == false)) {
+                if (((this.Session != null) 
+                            && this.Session.ContainsKey("Model"))) {
+                    object data = this.Session["Model"];
+                    if (typeof(CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator)(data));
+                    }
+                    else {
+                        this.Error("The type \'CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGene" +
+                                "rator\' of the parameter \'Model\' did not match the type passed to the template");
+                    }
+                }
+            }
+
         }
     }
     

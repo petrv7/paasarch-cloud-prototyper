@@ -3,10 +3,14 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
+<#@ parameter type="CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator" name="Model" #>
 {
     "IsEncrypted": false,
     "Values": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+<# foreach(var queue in Model.Queues) { #>
+		,"<#= queue.Name #>Connection" : "<#= queue.ConnectionString #>"
+<# } #>
     }
 }
