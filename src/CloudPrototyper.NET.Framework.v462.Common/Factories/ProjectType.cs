@@ -16,6 +16,10 @@
         /// <summary>
         /// Web api project.
         /// </summary>
-        WebApi
+        WebApi,
+        /// <summary>
+        /// Function app project.
+        /// </summary>
+        FunctionApp
     }
 }

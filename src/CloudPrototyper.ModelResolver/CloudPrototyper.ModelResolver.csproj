@@ -8,6 +8,7 @@
     <ProjectReference Include="..\CloudPrototyper.DataGenerator\CloudPrototyper.DataGenerator.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Interface\CloudPrototyper.Interface.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Model\CloudPrototyper.Model.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Computing\CloudPrototyper.NET.Framework.v462.Computing.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.DataLayer\CloudPrototyper.NET.Framework.v462.DataLayer.csproj" />
   </ItemGroup>
 

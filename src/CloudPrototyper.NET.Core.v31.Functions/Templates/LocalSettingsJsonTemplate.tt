@@ -1,0 +1,18 @@
+<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter type="CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator" name="Model" #>
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+<# foreach(var queue in Model.Queues) { if(!string.IsNullOrWhiteSpace(queue.ConnectionString)) { #>
+		,"<#= queue.Name #>Connection" : "<#= queue.ConnectionString.Substring(0, queue.ConnectionString.IndexOf("EntityPath=")) #>"
+<# } else { #>
+		,"<#= queue.Name #>Connection" : "<#= queue.ConnectionString #>"
+<# }} #>
+    }
+}

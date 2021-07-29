@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CloudPrototyper.Azure.Resources;
 using CloudPrototyper.DataGenerator;
 using CloudPrototyper.Interface;
 using CloudPrototyper.Interface.Benchmark;
@@ -13,6 +14,7 @@ using CloudPrototyper.Interface.Prototyper;
 using CloudPrototyper.Model;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Resources;
+using CloudPrototyper.NET.Framework.v462.Computing.Models;
 using CloudPrototyper.NET.Framework.v462.DataLayer;
 
 namespace CloudPrototyper.ModelResolver.Implementations
@@ -106,6 +108,8 @@ namespace CloudPrototyper.ModelResolver.Implementations
                     + _resourcesToPrepare.Select(x => x.Name).Aggregate((first, second) => $"{first}, {second}")
                     + _applicationsToPrepare.Select(x => x.Name).Aggregate((first, second) => $"{first}, {second}"));
             }
+
+            UpdateCallUrlOperations();
         }
 
         /// <summary>
@@ -298,17 +302,44 @@ namespace CloudPrototyper.ModelResolver.Implementations
         private void LoadGeneratorManagers()
         {
             var types = Utils.LoadTypes(_baseDirectory);
+            var functionApps = _prototype.Resources.OfType<AzureFunctionApp>();
             foreach (var app in _prototype.Applications) // We need to find generator for each app
             {
-                Type t = types.First(y => y.BaseType != null && y.BaseType.IsGenericType &&
+                Type t;
+                // For function apps the generator needs to implement the IServerless interface
+                if (functionApps.FirstOrDefault(a => a.WithApplication == app.Name) != null)
+                {
+                    t = types.First(y => y.BaseType != null && y.BaseType.IsGenericType &&
                                                   y.BaseType.GetGenericTypeDefinition() ==
                                                   typeof(GeneratorManager<>) &&
+                                                  typeof(IServerless).IsAssignableFrom(y) &&
                                                   y.BaseType.GetGenericArguments().Contains(app.GetType()));
+                }
+                else
+                {
+                    t = types.First(y => y.BaseType != null && y.BaseType.IsGenericType &&
+                                                  y.BaseType.GetGenericTypeDefinition() ==
+                                                  typeof(GeneratorManager<>) &&
+                                                  !typeof(IServerless).IsAssignableFrom(y) &&
+                                                  y.BaseType.GetGenericArguments().Contains(app.GetType()));
+                }
+
                 var generatorManager = (GeneratorManager)Activator.CreateInstance(t, app, _prototype, _configProvider);
                 if (generatorManager.Platform.Equals(app.Platform))
                 {
                     _generatorManagers.Add(app, generatorManager);
                 }
+            }
+        }
+
+        private void UpdateCallUrlOperations()
+        {
+            var operations = Utils.FindAllInstances<CallUrlOperation>(_prototype).Where(o => !string.IsNullOrEmpty(o.ResourceName));
+            
+            foreach (var op in operations)
+            {
+                var resource = _prototype.Applications.OfType<RestApiApplication>().First(a => a.Name == op.ResourceName);
+                op.Url = "http://" + resource.BaseUrl + "/api/action/" + op.ActionName;
             }
         }
     }

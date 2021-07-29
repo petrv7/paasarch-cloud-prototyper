@@ -45,28 +45,29 @@ namespace <#= Model.Namespace #>
                         TableQuery.CombineFilters(
                         TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "p"),
                         TableOperators.And,
-                        TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, query.NominalParameter)));
+                        TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, query.NominalParameter.PadLeft(9, '0'))));
 						
                         return ExecuteQuery(table, qId);
                     }
-                    var q = tableQuery.Where(TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.Equal, query.NominalParameter));
-					
+
+                    var q = tableQuery.Where(TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.Equal, query.NominalParameter));					
                     return ExecuteQuery(table, q);
                 }
-				 if (query.PropertyName == "Id")
-                    {
-                        var qId = tableQuery.Where(
+				if (query.PropertyName == "Id")
+                {
+                    var qId = tableQuery.Where(
+                        TableQuery.CombineFilters(
+                            TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "p"),
+                            TableOperators.And,
                             TableQuery.CombineFilters(
-                                TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "p"),
-                                TableOperators.And,
-                                TableQuery.CombineFilters(
-                                    TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.GreaterThanOrEqual, query.MinValue), 
-                                    TableOperators.And, 
-                                    TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.LessThanOrEqual, query.MaxValue
-                                 )
-                          )));
-                        return ExecuteQuery(table, qId);
-                    }
+                                TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.GreaterThanOrEqual, query.MinValue.PadLeft(9, '0')), 
+                                TableOperators.And, 
+                                TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.LessThanOrEqual, query.MaxValue.PadLeft(9, '0')
+                                )
+                        )));
+                    return ExecuteQuery(table, qId);
+                }
+
                 var queryRange = tableQuery.Where(
                     TableQuery.CombineFilters(
                         TableQuery.GenerateFilterCondition(query.PropertyName, QueryComparisons.GreaterThanOrEqual, query.MinValue),
