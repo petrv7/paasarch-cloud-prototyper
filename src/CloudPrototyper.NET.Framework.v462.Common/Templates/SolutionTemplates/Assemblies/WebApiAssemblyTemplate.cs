@@ -69,7 +69,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
                     "mGroup>\r\n  <ItemGroup>\r\n    <PackageReference Include=\"Microsoft.CodeDom.Provide" +
                     "rs.DotNetCompilerPlatform\" version=\"1.0.5\" />\r\n    <PackageReference Include=\"Mi" +
                     "crosoft.CSharp\" Version=\"4.4.1\" />\r\n    <PackageReference Include=\"Newtonsoft.Js" +
-                    "on\">\r\n      <Version>10.0.3</Version>\r\n    </PackageReference>\t\r\n    <PackageRef" +
+                    "on\">\r\n      <Version>11.0.2</Version>\r\n    </PackageReference>\t\r\n    <PackageRef" +
                     "erence Include=\"Microsoft.AspNet.WebApi\">\r\n      <Version>5.2.7</Version>\r\n    <" +
                     "/PackageReference>\t\r\n    <PackageReference Include=\"Microsoft.AspNet.WebApi.Clie" +
                     "nt\">\r\n      <Version>5.2.7</Version>\r\n    </PackageReference>\r\n    <PackageRefer" +

@@ -15,7 +15,6 @@ using FluentFTP;
 using Microsoft.Azure.Management.AppService.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
-using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
 using Microsoft.Azure.Management.ServiceBus.Fluent;
 using Microsoft.Azure.Management.Sql.Fluent.Models;
 using Microsoft.Azure.Management.Storage.Fluent;
@@ -47,13 +46,19 @@ namespace CloudPrototyper.Deployment.Azure
         private ISqlServer _sqlServer;
         private CosmosClient _cosmosClient;
         private Database _cosmosDatabase;
-        private readonly Dictionary<Application, IWebApp> _webApps = new Dictionary<Application, IWebApp>();
-        private readonly Dictionary<AzureSQLDatabase, ISqlDatabase> _databases = new Dictionary<AzureSQLDatabase, ISqlDatabase>();
+		private IStorageAccount _storageAccount;
         private readonly Dictionary<AzureCosmosDbContainer, Container> _containers = new Dictionary<AzureCosmosDbContainer, Container>();
-        private readonly Dictionary<AzureServiceBusQueue, IQueue> _serviceQueues = new Dictionary<AzureServiceBusQueue, IQueue>();
-        private readonly Dictionary<AzureTableStorage, IStorageAccount> _tableStorages = new Dictionary<AzureTableStorage, IStorageAccount>();
-        private readonly Dictionary<Application, AzureAppService> _appServices = new Dictionary<Application, AzureAppService>();
-        private readonly Dictionary<AzureAppService, IWebApp> _webAppList = new Dictionary<AzureAppService, IWebApp>();
+        private readonly Dictionary<string, string> _queueConnStr = new();
+        private readonly Dictionary<Application, IWebApp> _webApps = new();
+        private readonly Dictionary<Application, IFunctionApp> _funcApps = new();
+        private readonly Dictionary<AzureSQLDatabase, ISqlDatabase> _databases = new();
+        private readonly Dictionary<AzureServiceBusQueue, IQueue> _serviceQueues = new();
+        private readonly Dictionary<AzureTableStorage, IStorageAccount> _tableStorages = new();
+        private readonly Dictionary<Application, AzureAppService> _appServices = new();
+        private readonly Dictionary<Application, AzureFunctionApp> _functionApps = new();
+        private readonly Dictionary<AzureAppService, IWebApp> _webAppList = new();
+        private readonly Dictionary<AzureFunctionApp, IFunctionApp> _functionAppList = new();
+
         private bool _initialized;
 
         /// <summary>
@@ -76,7 +81,8 @@ namespace CloudPrototyper.Deployment.Azure
                     typeof (AzureTableStorage),
                     typeof (AzureServiceBusQueue),
                     typeof (AzureAppService),
-                    typeof (AzureCosmosDbContainer)
+                    typeof (AzureCosmosDbContainer),
+                    typeof (AzureFunctionApp)
                 };
 
         /// <summary>
@@ -96,11 +102,29 @@ namespace CloudPrototyper.Deployment.Azure
         /// <param name="applications">Applications to be prepared.</param>
         public override void PrepareApplications(List<Application> applications)
         {
+            string url = "";
+
             foreach (var app in applications)
             {
-                _appServices.Add(app, _webAppList.Single(x => x.Key.WithApplication == app.Name).Key);
-                _webApps.Add(app,_webAppList.Single(x => x.Key.WithApplication == app.Name).Value);
-                PreparedApplications.Add(app);
+                if (!_webAppList.FirstOrDefault(x => x.Key.WithApplication == app.Name).Equals(default(KeyValuePair<AzureAppService, IWebApp>)))
+                {
+                    _appServices.Add(app, _webAppList.Single(x => x.Key.WithApplication == app.Name).Key);
+                    _webApps.Add(app, _webAppList.Single(x => x.Key.WithApplication == app.Name).Value);
+                    PreparedApplications.Add(app);
+                    url = _webApps[app].DefaultHostName;
+                }
+                else
+                {
+                    _functionApps.Add(app, _functionAppList.Single(x => x.Key.WithApplication == app.Name).Key);
+                    _funcApps.Add(app, _functionAppList.Single(x => x.Key.WithApplication == app.Name).Value);
+                    PreparedApplications.Add(app);
+                    url = _funcApps[app].DefaultHostName;
+                }
+
+                if (app is RestApiApplication restApp)
+                {
+                    restApp.BaseUrl = url;
+                }
             }
         }
 
@@ -149,9 +173,20 @@ namespace CloudPrototyper.Deployment.Azure
 
         private void Deploy(WorkerApplication application)
         {
-            var publishProfile = _webApps[application].GetPublishingProfile();
+            bool isServerless = false;
+            IPublishingProfile publishProfile;
 
-            
+            if (_webApps.ContainsKey(application))
+            {
+                publishProfile = _webApps[application].GetPublishingProfile();
+            }
+            else
+            {
+                isServerless = true;
+                publishProfile = _funcApps[application].GetPublishingProfile();
+                // Add connection strings to function app
+                _funcApps[application].Update().WithAppSettings(_queueConnStr).Apply();
+            }
 
             FtpClient client = new FtpClient();
             var url = publishProfile.FtpUrl;
@@ -174,21 +209,45 @@ namespace CloudPrototyper.Deployment.Azure
                 Uri relRoot = new Uri(Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), UriKind.Absolute);
 
                 string relPath = relRoot.MakeRelativeUri(fullPath).ToString();
-                client.UploadFile(file, (@"\site\wwwroot\App_Data\Jobs\continuous\Worker" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
-                if (Path.GetFileName(file.ToLower()).Contains("packages.config"))
+
+                if (isServerless)
                 {
-                    client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    client.UploadFile(file, @"\site\wwwroot" + "\\" + relPath.Substring(6), FtpRemoteExists.Overwrite, true);
+                }
+                else
+                {
+                    client.UploadFile(file, (@"\site\wwwroot\App_Data\Jobs\continuous\Worker" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    if (Path.GetFileName(file.ToLower()).Contains("packages.config"))
+                    {
+                        client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    }
                 }
             }
-            _webApps[application].Refresh();
+
+            if (!isServerless)
+            {
+                _webApps[application].Refresh();
+            }
+
             DeployedApplications.Add(application);
             client.Dispose();
         }
 
         private void Deploy(RestApiApplication application)
         {
+            bool isServerless = false;
+            IPublishingProfile publishProfile;
 
-            var publishProfile = _webApps[application].GetPublishingProfile();
+            if (_webApps.ContainsKey(application))
+            {
+                publishProfile = _webApps[application].GetPublishingProfile();
+            }
+            else
+            {
+                isServerless = true;
+                publishProfile = _funcApps[application].GetPublishingProfile();
+            }
+
             FtpClient client = new FtpClient();
             var url = publishProfile.FtpUrl;
 
@@ -210,18 +269,26 @@ namespace CloudPrototyper.Deployment.Azure
                 Uri relRoot = new Uri(Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), UriKind.Absolute);
 
                 string relPath = relRoot.MakeRelativeUri(fullPath).ToString();
-                if (Path.GetFileName(file.ToLower()).Contains("global.asax") ||
-                    Path.GetFileName(file.ToLower()).Contains("web.config") ||
-                    Path.GetFileName(file.ToLower()).Contains("packages.config"))
+                
+                if (isServerless)
                 {
-                    client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    client.UploadFile(file, @"\site\wwwroot" + "\\" + relPath.Substring(6), FtpRemoteExists.Overwrite, true);
                 }
                 else
                 {
-                    client.UploadFile(file, (@"\site\wwwroot\bin" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
-                }
+                    if (Path.GetFileName(file.ToLower()).Contains("global.asax") ||
+                        Path.GetFileName(file.ToLower()).Contains("web.config") ||
+                        Path.GetFileName(file.ToLower()).Contains("packages.config"))
+                    {
+                        client.UploadFile(file, (@"\site\wwwroot" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    }
+                    else
+                    {
+                        client.UploadFile(file, (@"\site\wwwroot\bin" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
+                    }
+                }               
             }
-            application.BaseUrl = _webApps[application].DefaultHostName;
+
             DeployedApplications.Add(application);
             client.Dispose();
         }
@@ -234,43 +301,8 @@ namespace CloudPrototyper.Deployment.Azure
         private void PrepareResource(AzureAppService resource)
         {
             Init();
-            PricingTier tier = PricingTier.FreeF1;
-            switch (resource.PerformanceTier.ToLower())
-            {
-                case "freef1":
-                    tier = PricingTier.FreeF1;
-                    break;
-                case "basicb1":
-                    tier = PricingTier.BasicB1;
-                    break;
-                case "basicb2":
-                    tier = PricingTier.BasicB2;
-                    break;
-                case "basicb3":
-                    tier = PricingTier.BasicB3;
-                    break;
-                case "premiump1":
-                    tier = PricingTier.PremiumP1;
-                    break;
-                case "premiump2":
-                    tier = PricingTier.PremiumP2;
-                    break;
-                case "premiump3":
-                    tier = PricingTier.PremiumP3;
-                    break;
-                case "sharedd1":
-                    tier = PricingTier.SharedD1;
-                    break;
-                case "standards1":
-                    tier = PricingTier.StandardS1;
-                    break;
-                case "standards2":
-                    tier = PricingTier.StandardS2;
-                    break;
-                case "standards3":
-                    tier = PricingTier.StandardS3;
-                    break;
-            }
+            var tier = GetPricingTierFromString(resource.PerformanceTier);
+
             Console.WriteLine("Making app service: " + resource.Name);
             var app = _azure.WebApps
                 .Define(Guid.NewGuid().ToString("N").Substring(0, 8))
@@ -284,6 +316,7 @@ namespace CloudPrototyper.Deployment.Azure
 
             _webAppList.Add(resource, app);
         }
+		
         private void PrepareResource(AzureSQLDatabase resource)
         {
             var serverLogin = "sqladmin3423";
@@ -326,6 +359,7 @@ namespace CloudPrototyper.Deployment.Azure
                                         ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             Console.WriteLine("Done: " + resource.Name);
         }
+		
         private void PrepareResource(AzureServiceBusQueue resource)
         {
 
@@ -342,28 +376,28 @@ namespace CloudPrototyper.Deployment.Azure
             var rule = firstQueue.AuthorizationRules.Define("rulerule").WithManagementEnabled().Create();
             
             resource.ConnectionString = rule.GetKeys().PrimaryConnectionString;
-            
-            Console.WriteLine("Making AzureServiceBusQueue: " + resource.Name);
+            _queueConnStr.Add(resource.Name + "Connection", resource.ConnectionString.Substring(0, resource.ConnectionString.IndexOf("EntityPath=")));
 
             PreparedResources.Add(resource);
-            _serviceQueues.Add(resource, firstQueue);
-                                
+            _serviceQueues.Add(resource, firstQueue);                                
 
             Console.WriteLine("Done: " + resource.Name);
         }
+		
         private void PrepareResource(AzureTableStorage resource)
         {
             Console.WriteLine("Making AzureTableStorage: " + resource.Name);
-            var storageAccount = _azure.StorageAccounts.Define(Guid.NewGuid().ToString("N").Substring(0, 16))
-                    .WithRegion(_resourceGroup.RegionName)
-                    .WithExistingResourceGroup(_resourceGroup)
-                    .Create();
+
+            if (_storageAccount == null)
+            {
+                CreateStorageAccount();
+            }
 
             PreparedResources.Add(resource);
-            _tableStorages.Add(resource, storageAccount);
-            resource.ConnectionString = "DefaultEndpointsProtocol=https;AccountName=" + storageAccount.Name +
+            _tableStorages.Add(resource, _storageAccount);
+            resource.ConnectionString = "DefaultEndpointsProtocol=https;AccountName=" + _storageAccount.Name +
                                         ";AccountKey=" +
-                                        storageAccount.GetKeys().First().Value +
+                                        _storageAccount.GetKeys().First().Value +
                                         ";EndpointSuffix=core.windows.net";
 
             Console.WriteLine("Done: " + resource.Name);
@@ -403,6 +437,55 @@ namespace CloudPrototyper.Deployment.Azure
             Console.WriteLine("Done: " + resource.Name);
         }
 
+        private void PrepareResource(AzureFunctionApp resource)
+        {
+            Console.WriteLine("Making function app: " + resource.Name);
+            IFunctionApp app;
+
+            if (_storageAccount == null)
+            {
+                CreateStorageAccount();
+            }
+
+            if (resource.PlanName.ToLower() == "dedicated")
+            {
+                var tier = GetPricingTierFromString(resource.PerformanceTier);
+
+                app = _azure.AppServices.FunctionApps
+                    .Define(Guid.NewGuid().ToString("N").Substring(0, 8))
+                    .WithRegion(ConfigProvider.GetValue("AzureRegion"))
+                    .WithExistingResourceGroup(_resourceGroup.Name)
+                    .WithNewAppServicePlan(tier)
+                    .WithLatestRuntimeVersion()
+                    .WithExistingStorageAccount(_storageAccount)
+                    .Create();
+            }
+            else
+            {
+                app = _azure.AppServices.FunctionApps
+                    .Define(Guid.NewGuid().ToString("N").Substring(0, 8))
+                    .WithRegion(ConfigProvider.GetValue("AzureRegion"))
+                    .WithExistingResourceGroup(_resourceGroup.Name)
+                    .WithNewConsumptionPlan()
+                    .WithLatestRuntimeVersion()
+                    .WithExistingStorageAccount(_storageAccount)
+                    .Create();
+            }
+
+            PreparedResources.Add(resource);
+            Console.WriteLine("Done: " + resource.Name);
+
+            _functionAppList.Add(resource, app);
+        }
+
+        private void CreateStorageAccount()
+        {
+            _storageAccount = _azure.StorageAccounts.Define(Guid.NewGuid().ToString("N").Substring(0, 16))
+                .WithRegion(_resourceGroup.RegionName)
+                .WithExistingResourceGroup(_resourceGroup)
+                .Create();
+        }
+
         private void Init()
         {
             if (!_initialized)
@@ -425,5 +508,37 @@ namespace CloudPrototyper.Deployment.Azure
             }
         }
 
+        private PricingTier GetPricingTierFromString(string tier)
+        {
+            if (tier == null) return PricingTier.FreeF1;
+
+            switch (tier.ToLower())
+            {
+                case "freef1":
+                    return PricingTier.FreeF1;
+                case "basicb1":
+                    return PricingTier.BasicB1;
+                case "basicb2":
+                    return PricingTier.BasicB2;
+                case "basicb3":
+                    return PricingTier.BasicB3;
+                case "premiump1":
+                    return PricingTier.PremiumP1;
+                case "premiump2":
+                    return PricingTier.PremiumP2;
+                case "premiump3":
+                    return PricingTier.PremiumP3;
+                case "sharedd1":
+                    return PricingTier.SharedD1;
+                case "standards1":
+                    return PricingTier.StandardS1;
+                case "standards2":
+                    return PricingTier.StandardS2;
+                case "standards3":
+                    return PricingTier.StandardS3;
+                default:
+                    return PricingTier.FreeF1;
+            }
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.ApiLayerTemplates 
                     "oldVersion=\"1.0.0.0-3.0.0.0\" newVersion=\"3.0.0.0\"/>\r\n      </dependentAssembly>\r" +
                     "\n      <dependentAssembly>\r\n        <assemblyIdentity name=\"Newtonsoft.Json\" pub" +
                     "licKeyToken=\"30ad4fe6b2a6aeed\" culture=\"neutral\" />\r\n        <bindingRedirect ol" +
-                    "dVersion=\"0.0.0.0-10.0.0.0\" newVersion=\"10.0.0.0\" />\r\n      </dependentAssembly>" +
+                    "dVersion=\"0.0.0.0-11.0.0.0\" newVersion=\"11.0.0.0\" />\r\n      </dependentAssembly>" +
                     "\r\n    </assemblyBinding>\r\n  </runtime>  \r\n   <entityFramework>\r\n    <defaultConn" +
                     "ectionFactory type=\"System.Data.Entity.Infrastructure.LocalDbConnectionFactory, " +
                     "EntityFramework\">\r\n      <parameters>\r\n        <parameter value=\"mssqllocaldb\"/>" +
