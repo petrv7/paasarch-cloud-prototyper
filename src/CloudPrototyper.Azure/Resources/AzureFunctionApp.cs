@@ -5,7 +5,7 @@ namespace CloudPrototyper.Azure.Resources
 { 
     public class AzureFunctionApp : HostingEnvironment, IServerless
     {
-        public string PlanName { get; set; }
+        public string PlanName { get; set; } = "";
 
         public string PerformanceTier { get; set; }
 
