@@ -14,6 +14,7 @@ using CloudPrototyper.Interface.Prototyper;
 using CloudPrototyper.Model;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Resources;
+using CloudPrototyper.NET.Framework.v462.Computing.Models;
 using CloudPrototyper.NET.Framework.v462.DataLayer;
 
 namespace CloudPrototyper.ModelResolver.Implementations
@@ -107,6 +108,8 @@ namespace CloudPrototyper.ModelResolver.Implementations
                     + _resourcesToPrepare.Select(x => x.Name).Aggregate((first, second) => $"{first}, {second}")
                     + _applicationsToPrepare.Select(x => x.Name).Aggregate((first, second) => $"{first}, {second}"));
             }
+
+            UpdateCallUrlOperations();
         }
 
         /// <summary>
@@ -326,6 +329,17 @@ namespace CloudPrototyper.ModelResolver.Implementations
                 {
                     _generatorManagers.Add(app, generatorManager);
                 }
+            }
+        }
+
+        private void UpdateCallUrlOperations()
+        {
+            var operations = Utils.FindAllInstances<CallUrlOperation>(_prototype).Where(o => !string.IsNullOrEmpty(o.ResourceName));
+            
+            foreach (var op in operations)
+            {
+                var resource = _prototype.Applications.OfType<RestApiApplication>().First(a => a.Name == op.ResourceName);
+                op.Url = "http://" + resource.BaseUrl + "/api/action/" + op.ActionName;
             }
         }
     }

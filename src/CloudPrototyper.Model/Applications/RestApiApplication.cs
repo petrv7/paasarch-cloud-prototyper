@@ -12,7 +12,7 @@ namespace CloudPrototyper.Model.Applications
         /// Base url of deployed application.
         /// </summary>
         [JsonIgnore]
-        public string BaseUrl { get; set; }
+        public string BaseUrl { get; set; } = "";
 
         /// <summary>
         /// Actions within application

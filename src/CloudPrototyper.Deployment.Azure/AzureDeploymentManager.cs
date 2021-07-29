@@ -96,6 +96,8 @@ namespace CloudPrototyper.Deployment.Azure
         /// <param name="applications">Applications to be prepared.</param>
         public override void PrepareApplications(List<Application> applications)
         {
+            string url = "";
+
             foreach (var app in applications)
             {
                 if (!_webAppList.FirstOrDefault(x => x.Key.WithApplication == app.Name).Equals(default(KeyValuePair<AzureAppService, IWebApp>)))
@@ -103,14 +105,20 @@ namespace CloudPrototyper.Deployment.Azure
                     _appServices.Add(app, _webAppList.Single(x => x.Key.WithApplication == app.Name).Key);
                     _webApps.Add(app, _webAppList.Single(x => x.Key.WithApplication == app.Name).Value);
                     PreparedApplications.Add(app);
+                    url = _webApps[app].DefaultHostName;
                 }
                 else
                 {
                     _functionApps.Add(app, _functionAppList.Single(x => x.Key.WithApplication == app.Name).Key);
                     _funcApps.Add(app, _functionAppList.Single(x => x.Key.WithApplication == app.Name).Value);
                     PreparedApplications.Add(app);
+                    url = _funcApps[app].DefaultHostName;
                 }
 
+                if (app is RestApiApplication restApp)
+                {
+                    restApp.BaseUrl = url;
+                }
             }
         }
 
@@ -273,15 +281,6 @@ namespace CloudPrototyper.Deployment.Azure
                         client.UploadFile(file, (@"\site\wwwroot\bin" + "\\" + relPath.Substring(6)), FtpRemoteExists.Overwrite, true);
                     }
                 }               
-            }
-
-            if (_webApps.ContainsKey(application))
-            {
-                application.BaseUrl = _webApps[application].DefaultHostName;
-            }
-            else
-            {
-                application.BaseUrl = _funcApps[application].DefaultHostName;
             }
 
             DeployedApplications.Add(application);
@@ -528,6 +527,8 @@ namespace CloudPrototyper.Deployment.Azure
 
         private PricingTier GetPricingTierFromString(string tier)
         {
+            if (tier == null) return PricingTier.FreeF1;
+
             switch (tier.ToLower())
             {
                 case "freef1":
