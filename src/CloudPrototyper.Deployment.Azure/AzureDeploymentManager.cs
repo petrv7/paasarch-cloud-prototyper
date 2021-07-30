@@ -425,7 +425,7 @@ namespace CloudPrototyper.Deployment.Azure
                 throughputProperties = ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
             }
 
-            var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, "/" + resource.Name), throughputProperties);
+            var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, "/id"), throughputProperties);
             createContainerTask.Wait();
             var container = createContainerTask.Result.Container;
 
