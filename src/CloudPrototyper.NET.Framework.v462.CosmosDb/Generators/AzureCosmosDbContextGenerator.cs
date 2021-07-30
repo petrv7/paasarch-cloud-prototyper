@@ -20,21 +20,12 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Generators
 
         public override List<PackageConfigInfo> GetNugetPackages() => new List<PackageConfigInfo>
         {
-
             new PackageConfigInfo(new List<Tuple<string, string>>
             {
                 new Tuple<string, string>(
                     "",
                     @"")
-            }, "System.Linq.Dynamic.Core", "1.2.11", "net462"),
-
-            new PackageConfigInfo(new List<Tuple<string, string>>
-            {
-                new Tuple<string, string>(
-                    "",
-                    @"")
-            }, "Microsoft.Azure.Cosmos", "3.20.1", "net462")
-
+            }, "Microsoft.Azure.Cosmos", "3.20.1", "")
         };
 
         public AzureCosmosDbContextGenerator(string projectName, AzureCosmosDbContainer modelParameters, IList<EntityGenerator> entities,

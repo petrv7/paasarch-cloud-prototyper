@@ -9,7 +9,6 @@ using Microsoft.Azure.Cosmos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Dynamic.Core;
 
 namespace <#= Model.Namespace #> 
 {
@@ -38,10 +37,20 @@ namespace <#= Model.Namespace #>
 				{
 					if(query.PropertyName == "Id")
 					{   
-						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(CosmosId, @0, StringComparison.Ordinal) == 0", query.NominalParameter).ToList().Cast<object>().ToList();
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.CosmosId.CompareTo(query.NominalParameter) == 0).ToList().Cast<object>().ToList();
 					}
 
-					return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(@0.ToString(), @1, StringComparison.Ordinal) == 0", query.PropertyName, query.NominalParameter).ToList().Cast<object>().ToList();
+<# foreach(var prop in entity.ModelParameters.Properties.Where(x=>x.Name != "Id")) { #>
+					if(query.PropertyName == "<#= prop.Name #>") 
+					{
+<# if (prop.Type == "System.String") { #>
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.<#= prop.Name #>.CompareTo(query.NominalParameter) == 0).ToList().Cast<object>().ToList();
+<# } else { #>
+						var param = <#= prop.Type #>.Parse(query.NominalParameter);
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.<#= prop.Name #> == param).ToList().Cast<object>().ToList();
+<# } #>
+					}
+<# } #>
 				}	 
 <# } #>
 			}
@@ -51,11 +60,22 @@ namespace <#= Model.Namespace #>
 				if(entityName == "<#= entity.Name #>")
 				{
 					if(query.PropertyName == "Id")
-					{
-						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(CosmosId, @0, StringComparison.Ordinal) >= 0 && string.Compare(CosmosId, @1, StringComparison.Ordinal) <= 0", query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();
+					{   
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.CosmosId.CompareTo(query.MinValue) >= 0 && e.CosmosId.CompareTo(query.MaxValue) <= 0).ToList().Cast<object>().ToList();
 					}
 
-					return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where("string.Compare(@0.ToString(), @1, StringComparison.Ordinal) >= 0 && string.Compare(@0.ToString(), @2, StringComparison.Ordinal) <= 0", query.PropertyName, query.MinValue, query.MaxValue).ToList().Cast<object>().ToList();
+<# foreach(var prop in entity.ModelParameters.Properties.Where(x=>x.Name != "Id")) { #>
+					if(query.PropertyName == "<#= prop.Name #>") 
+					{
+<# if (prop.Type == "System.String") { #>
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.<#= prop.Name #>.CompareTo(query.MinValue) >= 0 && e.<#= prop.Name #>.CompareTo(query.MaxValue) <= 0).ToList().Cast<object>().ToList();
+<# } else { #>
+						var minParam = <#= prop.Type #>.Parse(query.MinValue);
+						var maxParam = <#= prop.Type #>.Parse(query.MaxValue);
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.<#= prop.Name #> >= minParam && e.<#= prop.Name #> <= maxParam).ToList().Cast<object>().ToList();
+<# } #>
+					}
+<# } #>
 				}	 
 <# } #>
 			}

@@ -20,12 +20,20 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerato
 
             nugets.AddRange(NugetFactory.MakeEntityFrameworkNuget());
             nugets.AddRange(NugetFactory.MakeAzureTableStorage());
+            
             nugets.Add(new PackageConfigInfo(new List<Tuple<string, string>>
             {
                 new Tuple<string, string>("Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, " +
                                           "PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL",
                     @"..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll")
             }, "Newtonsoft.Json", "11.0.2", "net462"));
+            
+            nugets.Add(new PackageConfigInfo(new List<Tuple<string, string>>
+            {
+                new Tuple<string, string>(
+                    "",
+                    @"")
+            }, "Microsoft.Azure.Cosmos", "3.20.1", ""));
 
             return nugets;
         }
