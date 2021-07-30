@@ -32,187 +32,176 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             this.GenerationEnvironment = null;
             
             #line 8 "Templates\FunctionAssemblyFileTemplate.tt"
-            this.Write(@"<?xml version=""1.0"" encoding=""utf-8""?>
-<Project Sdk=""Microsoft.NET.Sdk"">  
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AzureFunctionsVersion>v3</AzureFunctionsVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' "">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-  </PropertyGroup>
-<ItemGroup>
-    <PackageReference Include=""Microsoft.Azure.Functions.Extensions"" Version=""1.1.0"" />
-    <PackageReference Include=""Microsoft.NET.Sdk.Functions"" Version=""3.0.13"" />
-");
+            this.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<Project Sdk=\"Microsoft.NET.Sdk\">  \r\n  <P" +
+                    "ropertyGroup>\r\n    <TargetFramework>netcoreapp3.1</TargetFramework>\r\n    <AzureF" +
+                    "unctionsVersion>v3</AzureFunctionsVersion>\r\n  </PropertyGroup>\r\n  <PropertyGroup" +
+                    " Condition=\" \'$(Configuration)|$(Platform)\' == \'Debug|AnyCPU\' \">\r\n    <DebugSymb" +
+                    "ols>true</DebugSymbols>\r\n    <DebugType>full</DebugType>\r\n    <Optimize>false</O" +
+                    "ptimize>\r\n    <OutputPath>bin\\Debug\\</OutputPath>\r\n    <DefineConstants>DEBUG;TR" +
+                    "ACE</DefineConstants>\r\n    <ErrorReport>prompt</ErrorReport>\r\n    <WarningLevel>" +
+                    "4</WarningLevel>\r\n    <AppendTargetFrameworkToOutputPath>false</AppendTargetFram" +
+                    "eworkToOutputPath>\r\n    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntim" +
+                    "eIdentifierToOutputPath>\r\n  </PropertyGroup>\r\n  <PropertyGroup Condition=\" \'$(Co" +
+                    "nfiguration)|$(Platform)\' == \'Release|AnyCPU\' \">\r\n    <DebugType>pdbonly</DebugT" +
+                    "ype>\r\n    <Optimize>true</Optimize>\r\n    <OutputPath>bin\\Release\\</OutputPath>\r\n" +
+                    "    <DefineConstants>TRACE</DefineConstants>\r\n    <ErrorReport>prompt</ErrorRepo" +
+                    "rt>\r\n    <WarningLevel>4</WarningLevel>\r\n    <AppendTargetFrameworkToOutputPath>" +
+                    "false</AppendTargetFrameworkToOutputPath>\r\n    <AppendRuntimeIdentifierToOutputP" +
+                    "ath>false</AppendRuntimeIdentifierToOutputPath>\r\n  </PropertyGroup>\r\n<ItemGroup>" +
+                    "\r\n    <PackageReference Include=\"Microsoft.Azure.Functions.Extensions\" Version=\"" +
+                    "1.1.0\" />\r\n    <PackageReference Include=\"Microsoft.NET.Sdk.Functions\" Version=\"" +
+                    "3.0.13\" />\r\n    <PackageReference Include=\"Microsoft.Azure.WebJobs.Script.Extens" +
+                    "ionsMetadataGenerator\" Version=\"1.2.3\" />\r\n");
             
             #line default
             #line hidden
             
-            #line 38 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 39 "Templates\FunctionAssemblyFileTemplate.tt"
  foreach(var reference in Model.AssemblyInfo.Packages) {
             
             #line default
             #line hidden
             
-            #line 39 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 40 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("    <PackageReference Include=\"");
             
             #line default
             #line hidden
             
-            #line 39 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 40 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( reference.Id ));
             
             #line default
             #line hidden
             
-            #line 39 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 40 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("\">\r\n      <Version>");
             
             #line default
             #line hidden
             
-            #line 40 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 41 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( reference.Version ));
             
             #line default
             #line hidden
             
-            #line 40 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 41 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("</Version>\r\n    </PackageReference>\t\r\n");
             
             #line default
             #line hidden
             
-            #line 42 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 43 "Templates\FunctionAssemblyFileTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 43 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 44 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("  </ItemGroup>\r\n   \r\n <ItemGroup>\r\n");
             
             #line default
             #line hidden
             
-            #line 46 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 47 "Templates\FunctionAssemblyFileTemplate.tt"
  foreach(var import in Model.AssemblyInfo.AssemblyImports) {
             
             #line default
             #line hidden
             
-            #line 47 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 48 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("\t<ProjectReference Include=\"..\\\\");
             
             #line default
             #line hidden
             
-            #line 47 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 48 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Path.Combine(import.AssemblyInfo.ProjectFileRelativePath, import.AssemblyInfo.Name) ));
             
             #line default
             #line hidden
             
-            #line 47 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 48 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write(".csproj\">\r\n     \r\n    </ProjectReference>\r\n");
             
             #line default
             #line hidden
             
-            #line 50 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 51 "Templates\FunctionAssemblyFileTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 51 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 52 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("  </ItemGroup>\r\n<ItemGroup>\r\n");
             
             #line default
             #line hidden
             
-            #line 53 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 54 "Templates\FunctionAssemblyFileTemplate.tt"
  foreach(var include in Model.AssemblyInfo.IncludeOnlys) { 
             
             #line default
             #line hidden
             
-            #line 54 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 55 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("    <Content Include=\"");
             
             #line default
             #line hidden
             
-            #line 54 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 55 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( include ));
             
             #line default
             #line hidden
             
-            #line 54 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 55 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("\" />\r\n");
             
             #line default
             #line hidden
             
-            #line 55 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 56 "Templates\FunctionAssemblyFileTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 56 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 57 "Templates\FunctionAssemblyFileTemplate.tt"
  foreach(var content in Model.AssemblyInfo.Contents) { 
             
             #line default
             #line hidden
             
-            #line 57 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 58 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("    <Content Include=\"..\\\\");
             
             #line default
             #line hidden
             
-            #line 57 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 58 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( content.OutputPath ));
             
             #line default
             #line hidden
             
-            #line 57 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 58 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write("\">\r\n      <CopyToOutputDirectory>Always</CopyToOutputDirectory>\r\n    </Content>\r\n" +
                     "");
             
             #line default
             #line hidden
             
-            #line 60 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 61 "Templates\FunctionAssemblyFileTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 61 "Templates\FunctionAssemblyFileTemplate.tt"
+            #line 62 "Templates\FunctionAssemblyFileTemplate.tt"
             this.Write(@"</ItemGroup>
 <ItemGroup>
     <None Update=""host.json"">
