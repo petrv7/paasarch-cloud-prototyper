@@ -502,7 +502,10 @@ namespace CloudPrototyper.Deployment.Azure
                         .WithRegion(azureRegion ?? "westeurope")
                         .Create();
 
-                _cosmosClient = new(ConfigProvider.GetValue("CosmosAccount"));
+                if (ConfigProvider.TryGetValue("CosmosAccount") != null)
+                {
+                    _cosmosClient = new(ConfigProvider.GetValue("CosmosAccount"));
+                }
 
                 _initialized = true;
             }
