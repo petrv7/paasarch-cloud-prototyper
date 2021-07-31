@@ -18,6 +18,8 @@ using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
 using Microsoft.Azure.Management.ServiceBus.Fluent;
 using Microsoft.Azure.Management.Sql.Fluent.Models;
 using Microsoft.Azure.Management.Storage.Fluent;
+using CloudPrototyper.NET.Framework.v462.CosmosDb.Model;
+using Microsoft.Azure.Cosmos;
 
 namespace CloudPrototyper.Deployment.Azure
 {
@@ -42,7 +44,10 @@ namespace CloudPrototyper.Deployment.Azure
         private IAzure _azure;
         private IResourceGroup _resourceGroup;
         private ISqlServer _sqlServer;
-        private IStorageAccount _storageAccount;
+        private CosmosClient _cosmosClient;
+        private Database _cosmosDatabase;
+		private IStorageAccount _storageAccount;
+        private readonly Dictionary<AzureCosmosDbContainer, Container> _containers = new Dictionary<AzureCosmosDbContainer, Container>();
         private readonly Dictionary<string, string> _queueConnStr = new();
         private readonly Dictionary<Application, IWebApp> _webApps = new();
         private readonly Dictionary<Application, IFunctionApp> _funcApps = new();
@@ -76,6 +81,7 @@ namespace CloudPrototyper.Deployment.Azure
                     typeof (AzureTableStorage),
                     typeof (AzureServiceBusQueue),
                     typeof (AzureAppService),
+                    typeof (AzureCosmosDbContainer),
                     typeof (AzureFunctionApp)
                 };
 
@@ -310,6 +316,7 @@ namespace CloudPrototyper.Deployment.Azure
 
             _webAppList.Add(resource, app);
         }
+		
         private void PrepareResource(AzureSQLDatabase resource)
         {
             var serverLogin = "sqladmin3423";
@@ -327,80 +334,18 @@ namespace CloudPrototyper.Deployment.Azure
             }
             Console.WriteLine("Making sql db: " + resource.Name);
 
-            DatabaseEdition edition = DatabaseEdition.Free;
-            switch (resource.PerformanceTier.ToLower())
-            {
-                case "basic":
-                    edition = DatabaseEdition.Basic;
-                    break;
-                case "premium":
-                    edition = DatabaseEdition.Premium;
-                    break;
-                case "free":
-                    edition = DatabaseEdition.Free;
-                    break;
-                case "standard":
-                    edition = DatabaseEdition.Standard;
-                    break;              
-            }
+            DatabaseEdition edition;
+            ServiceObjectiveName serviceObjective;
 
-            ServiceObjectiveName serviceObjective = ServiceObjectiveName.Free;
-            switch (resource.ServiceObjective.ToLower())
+            if (resource.PerformanceTier.ToLower() == "serverless")
             {
-                case "basic":
-                    serviceObjective = ServiceObjectiveName.Basic;
-                    break;
-                case "free":
-                    serviceObjective = ServiceObjectiveName.Free;
-                    break;
-                case "p1":
-                    serviceObjective = ServiceObjectiveName.P1;
-                    break;
-                case "p2":
-                    serviceObjective = ServiceObjectiveName.P2;
-                    break;
-                case "p3":
-                    serviceObjective = ServiceObjectiveName.P3;
-                    break;
-                case "p4":
-                    serviceObjective = ServiceObjectiveName.P4;
-                    break;
-                case "p6":
-                    serviceObjective = ServiceObjectiveName.P6;
-                    break;
-                case "p11":
-                    serviceObjective = ServiceObjectiveName.P11;
-                    break;
-                case "p15":
-                    serviceObjective = ServiceObjectiveName.P15;
-                    break;
-                case "s0":
-                    serviceObjective = ServiceObjectiveName.S0;
-                    break;
-                case "s1":
-                    serviceObjective = ServiceObjectiveName.S1;
-                    break;
-                case "s2":
-                    serviceObjective = ServiceObjectiveName.S2;
-                    break;
-                case "s3":
-                    serviceObjective = ServiceObjectiveName.S3;
-                    break;
-                case "s4":
-                    serviceObjective = ServiceObjectiveName.S4;
-                    break;
-                case "s6":
-                    serviceObjective = ServiceObjectiveName.S6;
-                    break;
-                case "s7":
-                    serviceObjective = ServiceObjectiveName.S7;
-                    break;
-                case "s9":
-                    serviceObjective = ServiceObjectiveName.S9;
-                    break;
-                case "s12":
-                    serviceObjective = ServiceObjectiveName.S12;
-                    break;
+                edition = DatabaseEdition.Parse("GeneralPurpose");
+                serviceObjective = ServiceObjectiveName.Parse("GP_S_Gen5_" + resource.MaxvCores);
+            }
+            else
+            {
+                edition = DatabaseEdition.Parse(resource.PerformanceTier);
+                serviceObjective = ServiceObjectiveName.Parse(resource.ServiceObjective);
             }
 
             _databases.Add(resource, _sqlServer.Databases.Define(resource.Name)
@@ -414,6 +359,7 @@ namespace CloudPrototyper.Deployment.Azure
                                         ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             Console.WriteLine("Done: " + resource.Name);
         }
+		
         private void PrepareResource(AzureServiceBusQueue resource)
         {
 
@@ -437,6 +383,7 @@ namespace CloudPrototyper.Deployment.Azure
 
             Console.WriteLine("Done: " + resource.Name);
         }
+		
         private void PrepareResource(AzureTableStorage resource)
         {
             Console.WriteLine("Making AzureTableStorage: " + resource.Name);
@@ -452,6 +399,40 @@ namespace CloudPrototyper.Deployment.Azure
                                         ";AccountKey=" +
                                         _storageAccount.GetKeys().First().Value +
                                         ";EndpointSuffix=core.windows.net";
+
+            Console.WriteLine("Done: " + resource.Name);
+        }
+
+        private void PrepareResource(AzureCosmosDbContainer resource)
+        {
+            if (_cosmosDatabase == null)
+            {
+                Console.WriteLine("Making AzureCosmosDB Database");
+                var createDbTask = _cosmosClient.CreateDatabaseIfNotExistsAsync(Guid.NewGuid().ToString("N").Substring(0, 16));
+                createDbTask.Wait();
+                _cosmosDatabase = createDbTask.Result.Database;
+            }
+
+            Console.WriteLine("Making AzureCosmosDB Container: " + resource.Name);
+
+            ThroughputProperties throughputProperties;
+            if (resource.ThroughputType == "manual")
+            {
+                throughputProperties = ThroughputProperties.CreateManualThroughput(resource.RUs);
+            }
+            else
+            {
+                throughputProperties = ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
+            }
+
+            var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, "/id"), throughputProperties);
+            createContainerTask.Wait();
+            var container = createContainerTask.Result.Container;
+
+            PreparedResources.Add(resource);
+            _containers.Add(resource, container);
+            resource.ConnectionString = ConfigProvider.GetValue("CosmosAccount");
+            resource.DatabaseName = _cosmosDatabase.Id;
 
             Console.WriteLine("Done: " + resource.Name);
         }
@@ -520,6 +501,11 @@ namespace CloudPrototyper.Deployment.Azure
                         .Define(ConfigProvider.TryGetValue("ResourceGroupName") ?? "CloudPrototyperGroup")
                         .WithRegion(azureRegion ?? "westeurope")
                         .Create();
+
+                if (ConfigProvider.TryGetValue("CosmosAccount") != null)
+                {
+                    _cosmosClient = new(ConfigProvider.GetValue("CosmosAccount"));
+                }
 
                 _initialized = true;
             }

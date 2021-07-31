@@ -1,0 +1,109 @@
+<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter type="CloudPrototyper.NET.Framework.v462.CosmosDb.Generators.AzureCosmosDbContextGenerator" name="Model" #>
+using DataLayer.Interfaces;
+using Microsoft.Azure.Cosmos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace <#= Model.Namespace #> 
+{
+    public class <#= Model.Name #> : <#= Model.StorageInterface.Namespace #>.<#= Model.StorageInterface.Name #>
+    {
+        private readonly CosmosClient _client;
+        private readonly Container _container;
+		
+        public <#= Model.Name #>() 
+		{ 
+            _client = new CosmosClient("<#= Model.ModelParameters.ConnectionString #>");
+            _container = _client.GetContainer("<#= Model.ModelParameters.DatabaseName #>", "<#= Model.ModelParameters.Name #>");
+		}
+		
+        public string GetName()
+        {
+            return "<#= Model.Key #>";
+        }
+		
+		public List<object> GetEntities(string entitySetName, string entityName, <#= Model.Query.Namespace #>.<#= Model.Query.Name #> query)
+		{
+			if(query.IsNominal) 
+			{
+<# foreach(var entity in Model.Entities) { #>
+				if(entityName == "<#= entity.Name #>")
+				{
+					if(query.PropertyName == "Id")
+					{   
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.CosmosId.CompareTo(query.NominalParameter) == 0).ToList().Cast<object>().ToList();
+					}
+
+<# foreach(var prop in entity.ModelParameters.Properties.Where(x=>x.Name != "Id")) { #>
+					if(query.PropertyName == "<#= prop.Name #>") 
+					{
+<# if (prop.Type == "System.String") { #>
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.<#= prop.Name #>.CompareTo(query.NominalParameter) == 0).ToList().Cast<object>().ToList();
+<# } else { #>
+						var param = <#= prop.Type #>.Parse(query.NominalParameter);
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.<#= prop.Name #> == param).ToList().Cast<object>().ToList();
+<# } #>
+					}
+<# } #>
+				}	 
+<# } #>
+			}
+			else 
+			{
+<# foreach(var entity in Model.Entities) { #>
+				if(entityName == "<#= entity.Name #>")
+				{
+					if(query.PropertyName == "Id")
+					{   
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.CosmosId.CompareTo(query.MinValue) >= 0 && e.CosmosId.CompareTo(query.MaxValue) <= 0).ToList().Cast<object>().ToList();
+					}
+
+<# foreach(var prop in entity.ModelParameters.Properties.Where(x=>x.Name != "Id")) { #>
+					if(query.PropertyName == "<#= prop.Name #>") 
+					{
+<# if (prop.Type == "System.String") { #>
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.<#= prop.Name #>.CompareTo(query.MinValue) >= 0 && e.<#= prop.Name #>.CompareTo(query.MaxValue) <= 0).ToList().Cast<object>().ToList();
+<# } else { #>
+						var minParam = <#= prop.Type #>.Parse(query.MinValue);
+						var maxParam = <#= prop.Type #>.Parse(query.MaxValue);
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.<#= prop.Name #> >= minParam && e.<#= prop.Name #> <= maxParam).ToList().Cast<object>().ToList();
+<# } #>
+					}
+<# } #>
+				}	 
+<# } #>
+			}
+			
+			return new List<object>();
+		}
+
+
+		public void InsertAll(string entitySetName, string entityName, object[] toInsert)
+		{
+            foreach (var obj in toInsert)
+            {
+                _container.CreateItemAsync(obj).Wait();
+            }
+		}
+
+		public void Insert(string entitySetName,string entityName, int count)
+		{
+			object[] generated = null;
+<# foreach(var entity in Model.Entities) { #>
+			if(entityName == "<#= entity.Name #>")
+			{
+				generated = <#=Model.DataGenerator.Namespace#>.<#= Model.DataGenerator.Name #>.GetInstance().Generate<<#=entity.Namespace#>.<#= entity.Name #>>(count).ToArray();
+
+			} 
+<# } #>
+			InsertAll(entitySetName,entityName,generated);
+
+		}
+    }
+}

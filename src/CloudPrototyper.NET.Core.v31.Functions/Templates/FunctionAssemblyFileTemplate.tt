@@ -35,6 +35,7 @@
 <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Script.ExtensionsMetadataGenerator" Version="1.2.3" />
 <# foreach(var reference in Model.AssemblyInfo.Packages) {#>
     <PackageReference Include="<#= reference.Id #>">
       <Version><#= reference.Version #></Version>

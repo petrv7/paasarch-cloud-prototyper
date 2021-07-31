@@ -33,201 +33,210 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
             #line 7 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel.Dat" +
                     "aAnnotations;\r\nusing System.ComponentModel.DataAnnotations.Schema;\r\nusing Micros" +
-                    "oft.WindowsAzure.Storage.Table;\r\n// Entity\r\nnamespace ");
+                    "oft.WindowsAzure.Storage.Table;\r\nusing Newtonsoft.Json;\r\n\r\n// Entity\r\nnamespace " +
+                    "");
             
             #line default
             #line hidden
             
-            #line 13 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 15 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Namespace));
             
             #line default
             #line hidden
             
-            #line 13 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 15 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 15 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 17 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.Name));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 17 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(" : TableEntity,");
             
             #line default
             #line hidden
             
-            #line 15 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 17 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.EntityInterface.Namespace ));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 17 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 15 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 17 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.EntityInterface.Name ));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write("\r\n    {\r\n\t\tprivate int _id;\r\n        [Key]\r\n        [DatabaseGenerated(DatabaseGe" +
-                    "neratedOption.None)]\r\n\t\tpublic int Id { get { return _id; } set { RowKey = value" +
-                    ".ToString().PadLeft(9, \'0\'); PartitionKey = \"p\"; _id = value; } }\r\n");
-            
-            #line default
-            #line hidden
-            
-            #line 21 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-foreach(var prop in Model.ModelParameters.Properties.Where(x=>x.Name != "Id")) {
-            
-            #line default
-            #line hidden
-            
-            #line 22 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write("\t\tpublic ");
-            
-            #line default
-            #line hidden
-            
-            #line 22 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
- if(prop.IsMany) { 
-            
-            #line default
-            #line hidden
-            
-            #line 23 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write(" \r\n\t\tList<");
-            
-            #line default
-            #line hidden
-            
-            #line 24 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Type ));
-            
-            #line default
-            #line hidden
-            
-            #line 24 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write("> ");
-            
-            #line default
-            #line hidden
-            
-            #line 24 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
- } else { 
-            
-            #line default
-            #line hidden
-            
-            #line 25 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write(" ");
-            
-            #line default
-            #line hidden
-            
-            #line 25 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Type ));
-            
-            #line default
-            #line hidden
-            
-            #line 25 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write(" ");
-            
-            #line default
-            #line hidden
-            
-            #line 25 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
- }
-            
-            #line default
-            #line hidden
-            
-            #line 26 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write(" ");
-            
-            #line default
-            #line hidden
-            
-            #line 26 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 26 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-            this.Write(" { get; set; }\r\n");
+            #line 17 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(@"
+    {
+		//cosmos db id
+		[JsonProperty(PropertyName = ""id"")]
+		public string CosmosId { get; set; }
+
+		private int _id;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+		public int Id { get { return _id; } set { RowKey = value.ToString().PadLeft(9, '0'); PartitionKey = ""p""; _id = value; CosmosId = value.ToString().PadLeft(9, '0'); } }
+");
             
             #line default
             #line hidden
             
             #line 27 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
-}
+foreach(var prop in Model.ModelParameters.Properties.Where(x=>x.Name != "Id")) {
             
             #line default
             #line hidden
             
             #line 28 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write("\t\tpublic ");
+            
+            #line default
+            #line hidden
+            
+            #line 28 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+ if(prop.IsMany) { 
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(" \r\n\t\tList<");
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Type ));
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write("> ");
+            
+            #line default
+            #line hidden
+            
+            #line 30 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+ } else { 
+            
+            #line default
+            #line hidden
+            
+            #line 31 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 31 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Type ));
+            
+            #line default
+            #line hidden
+            
+            #line 31 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 31 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+ }
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(" ");
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( prop.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            this.Write(" { get; set; }\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 33 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+}
+            
+            #line default
+            #line hidden
+            
+            #line 34 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\r\n\t\tpublic static int GetContentSize(string propertyName)\r\n\t\t{\r\n\t\t\ttry {\r\n\t\t\tDict" +
                     "ionary<string, int> sizeDict = new Dictionary<string, int>();\r\n");
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 39 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
 foreach(var prop in Model.ModelParameters.Properties) {
             
             #line default
             #line hidden
             
-            #line 34 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 40 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\t\t\tsizeDict.Add(\"");
             
             #line default
             #line hidden
             
-            #line 34 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 40 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
             
             #line default
             #line hidden
             
-            #line 34 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 40 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\",");
             
             #line default
             #line hidden
             
-            #line 34 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 40 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( prop.ContentSize ));
             
             #line default
             #line hidden
             
-            #line 34 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 40 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(");\r\n");
             
             #line default
             #line hidden
             
-            #line 35 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 41 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
 }
             
             #line default
             #line hidden
             
-            #line 36 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 42 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\t\t\treturn sizeDict[propertyName];\r\n\t\t\t} \r\n\t\t\tcatch(Exception)\r\n\t\t\t{\r\n\t\t\t\treturn -" +
                     "1;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\tpublic static int GetTotalContentSize()\r\n\t\t{\r\n\t\t\ttry \r\n\t\t\t{\r\n" +
                     "\t\t\t\tint size = 0;\r\n\r\n");
@@ -235,49 +244,49 @@ foreach(var prop in Model.ModelParameters.Properties) {
             #line default
             #line hidden
             
-            #line 50 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 56 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
 foreach(var prop in Model.ModelParameters.Properties) {
             
             #line default
             #line hidden
             
-            #line 51 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 57 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\t\t\t\t//");
             
             #line default
             #line hidden
             
-            #line 51 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 57 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(prop.Name));
             
             #line default
             #line hidden
             
-            #line 51 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 57 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\r\n\t\t\t\tsize += ");
             
             #line default
             #line hidden
             
-            #line 52 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 58 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( prop.ContentSize ));
             
             #line default
             #line hidden
             
-            #line 52 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 58 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write(";\r\n\r\n");
             
             #line default
             #line hidden
             
-            #line 54 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 60 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
 }
             
             #line default
             #line hidden
             
-            #line 55 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
+            #line 61 "Templates\DataLayerTemplates\Entities\EntityTemplate.tt"
             this.Write("\t\t\t\treturn size;\r\n\t\t\t} \r\n\t\t\tcatch(Exception)\r\n\t\t\t{\r\n\t\t\t\treturn -1;\r\n\t\t\t}\r\n\t\t}\r\n\t}" +
                     "\r\n}");
             

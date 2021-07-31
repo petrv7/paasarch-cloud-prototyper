@@ -15,5 +15,9 @@ namespace CloudPrototyper.Azure.Resources.Storage
         /// Service objective, for example "S3", "P1"
         /// </summary>
         public string ServiceObjective { get; set; }
+        /// <summary>
+        /// Maximum number of vCores if PerformanceTier is "serverless"
+        /// </summary>
+        public int MaxvCores { get; set; }
     }
 }
