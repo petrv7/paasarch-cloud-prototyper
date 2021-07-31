@@ -57,13 +57,16 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.ApiLayerTemplates 
                     "\n      <dependentAssembly>\r\n        <assemblyIdentity name=\"Newtonsoft.Json\" pub" +
                     "licKeyToken=\"30ad4fe6b2a6aeed\" culture=\"neutral\" />\r\n        <bindingRedirect ol" +
                     "dVersion=\"0.0.0.0-11.0.0.0\" newVersion=\"11.0.0.0\" />\r\n      </dependentAssembly>" +
-                    "\r\n    </assemblyBinding>\r\n  </runtime>  \r\n   <entityFramework>\r\n    <defaultConn" +
-                    "ectionFactory type=\"System.Data.Entity.Infrastructure.LocalDbConnectionFactory, " +
-                    "EntityFramework\">\r\n      <parameters>\r\n        <parameter value=\"mssqllocaldb\"/>" +
-                    "\r\n      </parameters>\r\n    </defaultConnectionFactory>\r\n    <providers>\r\n      <" +
-                    "provider invariantName=\"System.Data.SqlClient\" type=\"System.Data.Entity.SqlServe" +
-                    "r.SqlProviderServices, EntityFramework.SqlServer\"/>\r\n    </providers>\r\n  </entit" +
-                    "yFramework>\r\n</configuration>\r\n");
+                    "\r\n      <dependentAssembly>\r\n        <assemblyIdentity name=\"System.Diagnostics." +
+                    "DiagnosticSource\" publicKeyToken=\"cc7b13ffcd2ddd51\" culture=\"neutral\" />\r\n      " +
+                    "  <bindingRedirect oldVersion=\"0.0.0.0-4.0.4.0\" newVersion=\"4.0.4.0\" />\r\n      <" +
+                    "/dependentAssembly>\r\n    </assemblyBinding>\r\n  </runtime>  \r\n   <entityFramework" +
+                    ">\r\n    <defaultConnectionFactory type=\"System.Data.Entity.Infrastructure.LocalDb" +
+                    "ConnectionFactory, EntityFramework\">\r\n      <parameters>\r\n        <parameter val" +
+                    "ue=\"mssqllocaldb\"/>\r\n      </parameters>\r\n    </defaultConnectionFactory>\r\n    <" +
+                    "providers>\r\n      <provider invariantName=\"System.Data.SqlClient\" type=\"System.D" +
+                    "ata.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer\"/>\r\n    </pr" +
+                    "oviders>\r\n  </entityFramework>\r\n</configuration>\r\n");
             
             #line default
             #line hidden
