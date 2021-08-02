@@ -302,12 +302,12 @@ namespace CloudPrototyper.ModelResolver.Implementations
         private void LoadGeneratorManagers()
         {
             var types = Utils.LoadTypes(_baseDirectory);
-            var functionApps = _prototype.Resources.OfType<AzureFunctionApp>();
-            bool isServerless = false;
+            var functionApps = _prototype.Resources.OfType<AzureFunctionApp>();            
 
             foreach (var app in _prototype.Applications) // We need to find generator for each app
             {
                 List<Type> managers;
+                bool isServerless = false;
                 // For function apps the generator needs to implement the IServerless interface
                 if (functionApps.FirstOrDefault(a => a.WithApplication == app.Name) != null)
                 {
