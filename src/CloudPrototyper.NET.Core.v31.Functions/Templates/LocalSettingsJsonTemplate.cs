@@ -38,7 +38,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             #line hidden
             
             #line 12 "Templates\LocalSettingsJsonTemplate.tt"
- foreach(var queue in Model.Queues) { if(!string.IsNullOrWhiteSpace(queue.ConnectionString)) { 
+ foreach(var queue in Model.ServiceBusQueues) { if(!string.IsNullOrWhiteSpace(queue.ConnectionString)) { 
             
             #line default
             #line hidden
@@ -116,6 +116,48 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             #line hidden
             
             #line 17 "Templates\LocalSettingsJsonTemplate.tt"
+ foreach(var queue in Model.EventHubs) { 
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("\t\t,\"");
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( queue.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("Connection\" : \"");
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( queue.ConnectionString ));
+            
+            #line default
+            #line hidden
+            
+            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("\"\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\LocalSettingsJsonTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\LocalSettingsJsonTemplate.tt"
             this.Write("    }\r\n}");
             
             #line default

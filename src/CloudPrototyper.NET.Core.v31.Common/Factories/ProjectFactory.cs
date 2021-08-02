@@ -13,10 +13,12 @@ using CloudPrototyper.Model;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Resources;
+using CloudPrototyper.Model.Resources.Storage;
 using CloudPrototyper.NET.Core.v31.Common.Generators.SolutionGenerators.AssemblyFiles;
 using CloudPrototyper.NET.Core.v31.Functions.Generators;
 using CloudPrototyper.NET.Core.v31.Functions.Templates;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
+using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 using Component = Castle.MicroKernel.Registration.Component;
@@ -75,14 +77,14 @@ namespace CloudPrototyper.NET.Core.v31.Common.Factories
         /// <param name="nugets">Nugets to be referenced.</param>
         /// <param name="imports">Projects to be referenced.</param>
         /// <returns></returns>
-        public static AssemblyBase MakeFunctionAppProject(string baseNamespace, string name, List<IGenerableFile> includes, List<ContentInfo> contents, List<IGenerableFile> files, List<PackageConfigInfo> nugets, List<AssemblyBase> imports, List<AzureServiceBusQueue> queues)
+        public static AssemblyBase MakeFunctionAppProject(string baseNamespace, string name, List<IGenerableFile> includes, List<ContentInfo> contents, List<IGenerableFile> files, List<PackageConfigInfo> nugets, List<AssemblyBase> imports, List<AzureServiceBusQueue> queues, List<AzureEventHub> hubs)
         {
             AssemblyBase functionAppProject = new FunctionAssemblyFileGenerator(new List<IGenerableFile>(), new AssemblyInfo { Name = name, ProjectFileRelativePath = name });
 
             functionAppProject.AssemblyInfo.Contents.AddRange(contents);
 
             HostJsonGenerator hostJson = new HostJsonGenerator(new GenerationInfo("host.json", functionAppProject.GenerationInfo.RelativePathFolder, new HostJsonTemplate(), true));
-            LocalSettingsJsonGenerator localSettingsJson = new LocalSettingsJsonGenerator(new GenerationInfo("local.settings.json", functionAppProject.GenerationInfo.RelativePathFolder, new LocalSettingsJsonTemplate(), true), queues);
+            LocalSettingsJsonGenerator localSettingsJson = new LocalSettingsJsonGenerator(new GenerationInfo("local.settings.json", functionAppProject.GenerationInfo.RelativePathFolder, new LocalSettingsJsonTemplate(), true), queues, hubs);
             
             files.Add(functionAppProject);
             files.Add(hostJson);
@@ -135,7 +137,7 @@ namespace CloudPrototyper.NET.Core.v31.Common.Factories
         /// <param name="nugets">Nugets to be referenced.</param>
         /// <param name="imports">Projects to be referenced.</param>
         /// <param name="container">Container where to register project files.</param>
-        public static void RegisterSolutionLayer(string layerName, ProjectType projectType, List<PackageConfigInfo> nugets, List<IGenerableFile> files, List<IGenerableFile> includes, List<ContentInfo> contents, List<AssemblyBase> imports, WindsorContainer container, List<AzureServiceBusQueue> queues = null)
+        public static void RegisterSolutionLayer(string layerName, ProjectType projectType, List<PackageConfigInfo> nugets, List<IGenerableFile> files, List<IGenerableFile> includes, List<ContentInfo> contents, List<AssemblyBase> imports, WindsorContainer container, List<AzureServiceBusQueue> queues = null, List<AzureEventHub> hubs = null)
         {
             IAssembly instance;
             switch (projectType)
@@ -145,7 +147,8 @@ namespace CloudPrototyper.NET.Core.v31.Common.Factories
                         layerName, includes, contents, files,
                         nugets,
                         imports,
-                        queues);
+                        queues,
+                        hubs);
                     break;
 
                 case ProjectType.Library:

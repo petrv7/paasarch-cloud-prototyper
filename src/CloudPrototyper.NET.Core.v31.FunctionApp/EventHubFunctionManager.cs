@@ -28,7 +28,7 @@ using ProjectFactory = CloudPrototyper.NET.Core.v31.Common.Factories.ProjectFact
 
 namespace CloudPrototyper.NET.Core.v31.Functions
 {
-    public class ServiceBusFunctionManager : GeneratorManager<WorkerApplication>, IServerless, ISupportsQueue
+    public class EventHubFunctionManager : GeneratorManager<WorkerApplication>, IServerless, ISupportsQueue
     {
         /// <summary>
         /// Used to register and resolve all IGenerableFiles.
@@ -64,7 +64,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions
         /// <param name="application">Application to be managed.</param>
         /// <param name="prototype">Whole prototype with entities and resources.</param>
         /// <param name="configProvider">Configuration provider.</param>
-        public ServiceBusFunctionManager(WorkerApplication application, Prototype prototype, IConfigProvider configProvider) : base(new ApplicationGenerator<WorkerApplication>(application, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name), prototype, "DotNetCore31", configProvider.GetValue("OutputFolderPath") + "\\" + application.Name, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name
+        public EventHubFunctionManager(WorkerApplication application, Prototype prototype, IConfigProvider configProvider) : base(new ApplicationGenerator<WorkerApplication>(application, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name), prototype, "DotNetCore31", configProvider.GetValue("OutputFolderPath") + "\\" + application.Name, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name
             , configProvider)
         {
             Container.Kernel.Resolver.AddSubResolver(new CollectionResolver(Container.Kernel, true));
@@ -108,13 +108,13 @@ namespace CloudPrototyper.NET.Core.v31.Functions
                     .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
             );
 
-            var buses = Utils.FindAllInstances<AzureServiceBusQueue>(prototype);
+            var hubs = Utils.FindAllInstances<AzureEventHub>(prototype);
 
-            foreach (var bus in buses)
+            foreach (var hub in hubs)
             {
                 Container.Register(
-                    Component.For<ServiceBusFunctionGenerator>().ImplementedBy<ServiceBusFunctionGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
-                        "modelParameters", application.Actions)).DependsOn(Dependency.OnValue("azureServiceBusQueue", bus)).Named(bus.Name + typeof(ServiceBusFunctionGenerator))
+                    Component.For<EventHubFunctionGenerator>().ImplementedBy<EventHubFunctionGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
+                        "modelParameters", application.Actions)).DependsOn(Dependency.OnValue("azureEventHub", hub)).Named(hub.Name + typeof(EventHubFunctionGenerator))
                     );
             }
         }
@@ -135,9 +135,9 @@ namespace CloudPrototyper.NET.Core.v31.Functions
             ApplicationGenerator.Contents.AddRange(contents);
             packages = packages.Distinct().ToList();
 
-            var buses = Utils.FindAllInstances<AzureServiceBusQueue>(prototype);
+            var hubs = Utils.FindAllInstances<AzureEventHub>(prototype);
 
-            ProjectFactory.RegisterSolutionLayer(NamingConstants.WorkerName, ProjectType.FunctionApp, packages, ApplicationGenerator.Files, includes, contents, new List<AssemblyBase>(), container, buses);
+            ProjectFactory.RegisterSolutionLayer(NamingConstants.WorkerName, ProjectType.FunctionApp, packages, ApplicationGenerator.Files, includes, contents, new List<AssemblyBase>(), container, null, hubs);
         }
 
         public override void Dispose()
@@ -147,7 +147,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions
 
         public bool SupportsQueue(System.Type queue)
         {
-            return typeof(AzureServiceBusQueue).IsEquivalentTo(queue);
+            return typeof(AzureEventHub).IsEquivalentTo(queue);
         }
     }
 }
