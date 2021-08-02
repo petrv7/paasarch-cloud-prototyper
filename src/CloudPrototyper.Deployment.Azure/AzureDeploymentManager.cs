@@ -20,6 +20,9 @@ using Microsoft.Azure.Management.Sql.Fluent.Models;
 using Microsoft.Azure.Management.Storage.Fluent;
 using CloudPrototyper.NET.Framework.v462.CosmosDb.Model;
 using Microsoft.Azure.Cosmos;
+using CloudPrototyper.NET.Framework.v462.EventHub.Model;
+using Microsoft.Azure.Management.Eventhub.Fluent;
+using Microsoft.Azure.Management.EventHub.Fluent.Models;
 
 namespace CloudPrototyper.Deployment.Azure
 {
@@ -53,6 +56,8 @@ namespace CloudPrototyper.Deployment.Azure
         private readonly Dictionary<Application, IFunctionApp> _funcApps = new();
         private readonly Dictionary<AzureSQLDatabase, ISqlDatabase> _databases = new();
         private readonly Dictionary<AzureServiceBusQueue, IQueue> _serviceQueues = new();
+        private readonly Dictionary<AzureEventHub, IEventHub> _eventHubs = new();
+        private readonly Dictionary<AzureEventHubNamespace, IEventHubNamespace> _eventHubNamespaces = new();
         private readonly Dictionary<AzureTableStorage, IStorageAccount> _tableStorages = new();
         private readonly Dictionary<Application, AzureAppService> _appServices = new();
         private readonly Dictionary<Application, AzureFunctionApp> _functionApps = new();
@@ -82,7 +87,8 @@ namespace CloudPrototyper.Deployment.Azure
                     typeof (AzureServiceBusQueue),
                     typeof (AzureAppService),
                     typeof (AzureCosmosDbContainer),
-                    typeof (AzureFunctionApp)
+                    typeof (AzureFunctionApp),
+                    typeof (AzureEventHub)
                 };
 
         /// <summary>
@@ -161,7 +167,15 @@ namespace CloudPrototyper.Deployment.Azure
         public override void PrepareResources(List<Resource> resources)
         {
             Init();
-            foreach (var resource in resources)
+
+            // We need to prepare namespaces first
+            var eventHubNamespaces = resources.OfType<AzureEventHubNamespace>();
+            foreach (var resource in eventHubNamespaces)
+            {
+                PrepareResource((dynamic)resource);
+            }
+
+            foreach (var resource in resources.Except(eventHubNamespaces))
             {
                 PrepareResource((dynamic)resource);
             }
@@ -381,6 +395,66 @@ namespace CloudPrototyper.Deployment.Azure
             PreparedResources.Add(resource);
             _serviceQueues.Add(resource, firstQueue);                                
 
+            Console.WriteLine("Done: " + resource.Name);
+        }
+
+        private void PrepareResource(AzureEventHubNamespace resource)
+        {
+            Console.WriteLine("Making EventHub namespace: " + resource.Name);
+
+            var skuName = SkuName.Basic;
+            switch (resource.PricingTier.ToLower())
+            {
+                case "basic":
+                    skuName = SkuName.Basic;
+                    break;
+                case "standard":
+                    skuName = SkuName.Standard;
+                    break;
+                default:
+                    skuName = SkuName.Basic;
+                    break;
+
+            }
+
+            var sku = new EventHubNamespaceSkuType(new(skuName));
+
+            var eventHubNamespace = _azure.EventHubNamespaces
+                .Define(resource.Name)
+                .WithRegion(_resourceGroup.RegionName)
+                .WithExistingResourceGroup(_resourceGroup)
+                .WithSku(sku)
+                .WithCurrentThroughputUnits(resource.ThroughputUnits)
+                .Create();
+
+            _eventHubNamespaces.Add(resource, eventHubNamespace);
+            PreparedResources.Add(resource);
+
+            Console.WriteLine("Done: " + resource.Name);
+        }
+
+        private void PrepareResource(AzureEventHub resource)
+        {
+            var eventHubNamespace = _eventHubNamespaces.FirstOrDefault(k => k.Key.Name == resource.WithNamespace).Value;
+
+            if (eventHubNamespace == null)
+            {
+                throw new ArgumentException("Azure EventHub " + resource.Name + " is missing EventHub namespace!");
+            }
+
+            Console.WriteLine("Making EventHub: " + resource.Name);
+
+            var hub = _azure.EventHubs
+                .Define(resource.Name)
+                .WithExistingNamespace(eventHubNamespace)
+                .WithPartitionCount(resource.PartitionCount)
+                .WithRetentionPeriodInDays(1)
+                .Create();
+
+            _eventHubs.Add(resource, hub);
+            resource.ConnectionString = eventHubNamespace.Manager.NamespaceAuthorizationRules.GetByName(_resourceGroup.Name, eventHubNamespace.Name, "RootManageSharedAccessKey").GetKeys().PrimaryConnectionString;
+            //add conn str to queue conn str list
+            PreparedResources.Add(resource);
             Console.WriteLine("Done: " + resource.Name);
         }
 		
