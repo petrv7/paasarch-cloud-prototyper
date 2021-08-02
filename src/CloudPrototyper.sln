@@ -83,7 +83,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framewo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.TblStorage", "CloudPrototyper.NET.Framework.v462.TblStorage\CloudPrototyper.NET.Framework.v462.TblStorage.csproj", "{DE9B40C4-F233-4EE8-A849-F4AD95C0ECB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.CosmosDb", "CloudPrototyper.NET.Framework.v462.CosmosDb\CloudPrototyper.NET.Framework.v462.CosmosDb.csproj", "{786C1D16-77D5-415D-9521-973385A2A1C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.CosmosDb", "CloudPrototyper.NET.Framework.v462.CosmosDb\CloudPrototyper.NET.Framework.v462.CosmosDb.csproj", "{786C1D16-77D5-415D-9521-973385A2A1C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CBF51736-A900-43DF-935C-B8E7F455C370}"
 EndProject
@@ -97,9 +97,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v31", "v31", "{DE38F41D-742
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{25BA2A56-1621-483E-A85C-B54422A81373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Core.v31.Common", "CloudPrototyper.NET.Core.v31.Common\CloudPrototyper.NET.Core.v31.Common.csproj", "{7828E6DE-87BB-4BF7-B992-797A68DDAACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Core.v31.Common", "CloudPrototyper.NET.Core.v31.Common\CloudPrototyper.NET.Core.v31.Common.csproj", "{7828E6DE-87BB-4BF7-B992-797A68DDAACE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Core.v31.FunctionApp", "CloudPrototyper.NET.Core.v31.FunctionApp\CloudPrototyper.NET.Core.v31.FunctionApp.csproj", "{B82A1ECE-3216-489B-8619-6162F6D08A38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Core.v31.FunctionApp", "CloudPrototyper.NET.Core.v31.FunctionApp\CloudPrototyper.NET.Core.v31.FunctionApp.csproj", "{B82A1ECE-3216-489B-8619-6162F6D08A38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.EventHub", "CloudPrototyper.NET.Framework.v462.EventHub\CloudPrototyper.NET.Framework.v462.EventHub.csproj", "{C98E8C9C-C338-4903-809A-455C210FE10F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -199,6 +201,10 @@ Global
 		{B82A1ECE-3216-489B-8619-6162F6D08A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B82A1ECE-3216-489B-8619-6162F6D08A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B82A1ECE-3216-489B-8619-6162F6D08A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98E8C9C-C338-4903-809A-455C210FE10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98E8C9C-C338-4903-809A-455C210FE10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98E8C9C-C338-4903-809A-455C210FE10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98E8C9C-C338-4903-809A-455C210FE10F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -246,9 +252,10 @@ Global
 		{25BA2A56-1621-483E-A85C-B54422A81373} = {DE38F41D-7423-4F6E-BA08-E5F1C403F854}
 		{7828E6DE-87BB-4BF7-B992-797A68DDAACE} = {25BA2A56-1621-483E-A85C-B54422A81373}
 		{B82A1ECE-3216-489B-8619-6162F6D08A38} = {EC18A62C-C066-45D3-A023-8EF1C7DDE614}
+		{C98E8C9C-C338-4903-809A-455C210FE10F} = {630BC060-BA11-4234-B345-79E0CBAA8D75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2800978C-E5C9-475C-AE68-736481F4345E}
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+		SolutionGuid = {2800978C-E5C9-475C-AE68-736481F4345E}
 	EndGlobalSection
 EndGlobal
