@@ -19,6 +19,7 @@ using CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerato
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.Workers;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.Workers.Utils;
+using CloudPrototyper.NET.Framework.v462.EventHub.Generators;
 using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Constants;
 using CloudPrototyper.NET.Interface.Generation;
@@ -106,22 +107,36 @@ namespace CloudPrototyper.NET.Framework.v462.WebJob
 
         private void RegisterWorkerComponents(WorkerApplication application,Prototype prototype)
         {
-
             var buses = Utils.FindAllInstances<AzureServiceBusQueue>(prototype);
+            var hubs = Utils.FindAllInstances<AzureEventHub>(prototype);
 
-            foreach (var bus in buses)
+            if (application.Actions[0].Trigger is MessageReceivedTrigger trigger)
             {
-                Container.Register(
-                    Component.For<HandlerGenerator>().ImplementedBy<HandlerGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
-                        "modelParameters", application.Actions)).DependsOn(Dependency.OnValue("azureServiceBusQueue", bus)).Named(bus.Name + typeof(HandlerGenerator))
+                var queueName = trigger.QueueName;
+                var bus = buses.FirstOrDefault(b => b.Name == queueName);
+                var hub = hubs.FirstOrDefault(b => b.Name == queueName);
+
+                if (bus != null)
+                {
+                    Container.Register(
+                        Component.For<HandlerGenerator>().ImplementedBy<HandlerGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
+                            "modelParameters", application.Actions)).DependsOn(Dependency.OnValue("azureServiceBusQueue", bus)).Named(bus.Name + typeof(HandlerGenerator))
                     );
+                }
+
+                if (hub != null)
+                {
+                    Container.Register(
+                        Component.For<AzureEventHubHandlerGenerator>().ImplementedBy<AzureEventHubHandlerGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
+                            "modelParameters", application.Actions)).DependsOn(Dependency.OnValue("azureEventHub", hub)).Named(hub.Name + typeof(AzureEventHubHandlerGenerator))
+                    );
+                }
             }
 
             Container.Register(
                 Component.For<WorkerContainerInstallerGenerator>().ImplementedBy<WorkerContainerInstallerGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)),
                 Component.For<WorkerMainGenerator>().ImplementedBy<WorkerMainGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
             );
-
         }
        
         private void InitConsoleProject(List<IGenerableFile> includes, WindsorContainer container)

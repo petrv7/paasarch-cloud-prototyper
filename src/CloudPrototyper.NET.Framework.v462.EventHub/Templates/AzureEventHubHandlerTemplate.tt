@@ -1,0 +1,89 @@
+<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter type="CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubHandlerGenerator" name="Model" #>
+using Azure.Messaging.EventHubs.Consumer;
+using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
+using Castle.Windsor;
+using System.Collections.Generic;
+// EventHub handler
+namespace <#= Model.Namespace #> 
+{
+    public class <#= Model.Name #> : <#= Model.MessageBusHandlerInterface.Namespace #>.<#= Model.MessageBusHandlerInterface.Name #>
+	{
+        private string connectionString;
+        private string queueName;
+		public const string Name = "<#= Model.Name #>";
+        private EventHubConsumerClient _client;
+
+<# foreach(var action in Model.Actions) { #>
+		public <#= action.Namespace #>.<#= action.Name #> <#= action.Name #> { get; set; }
+<# } #>
+		public <#= Model.Name #>(
+<# foreach(var action in Model.Actions) {  if(Model.Actions.Last().Equals(action)) {#>
+		<#= action.Namespace #>.<#= action.Name #> <#= action.Name.ToLower() #>
+<# } else { #>
+		<#= action.Namespace #>.<#= action.Name #> <#= action.Name.ToLower() #>,
+<# }} #>
+		) 
+		{
+<# foreach(var action in Model.Actions) { #>
+			this.<#= action.Name #> = <#= action.Name.ToLower() #>;
+<# } #>
+            this.connectionString = "<#= Model.AzureEventHub.ConnectionString #>";
+            this.queueName = "<#= Model.AzureEventHub.Name #>";
+        }
+
+        public void OnStart()
+        {
+        
+            // Initialize the connection to Event Hub
+            _client = new EventHubConsumerClient(EventHubConsumerClient.DefaultConsumerGroupName, connectionString, queueName);
+        }
+
+        public void Run()
+        {
+            Trace.WriteLine("Starting processing of messages");
+
+            while(true)
+            {
+                // Get DateTime when task processing began
+                DateTime startedAt = DateTime.Now;
+				var enumerator = _client.ReadEventsAsync().GetAsyncEnumerator();
+
+				while(true)
+				{
+					var nextTask = enumerator.MoveNextAsync();
+					nextTask.AsTask().Wait();
+					if (!nextTask.Result)
+                    {
+						break;
+                    }
+
+					var label = enumerator.Current.Data.Properties["Label"].ToString();
+					try 
+					{
+<# foreach(var action in Model.ModelParameters) { #>
+						if(label == "<#= (action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType #>")
+						{
+							 <#= Model.Actions.FirstOrDefault(x=>x.Key.Equals(action.Name)).Name #>.Execute(new List<string>());
+						} 
+
+<# } #>
+						Trace.WriteLine("Processing of message completed " + label);
+					}
+					catch (Exception)
+					{
+						Trace.WriteLine("Failed processing of message" + label);
+					}
+				}
+            }
+        }
+    }
+}
