@@ -31,19 +31,20 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.ApiLayerTemplates 
                     "\n  </configSections>\r\n  <appSettings></appSettings>\r\n  <system.web>\r\n    <compil" +
                     "ation debug=\"true\" targetFramework=\"4.6.2\"/>\r\n    <httpRuntime targetFramework=\"" +
                     "4.6.2\"/>\r\n  </system.web>\r\n  <assemblyBinding xmlns=\"urn:schemas-microsoft-com:a" +
-                    "sm.v1\">\r\n    <linkedConfiguration href=\"file:C:/home/site/wwwroot/bin/ApiLayer.d" +
-                    "ll.config\"/>\r\n  </assemblyBinding>  \r\n  <system.webServer>\r\n    <handlers>\r\n    " +
-                    "  <remove name=\"ExtensionlessUrlHandler-Integrated-4.0\"/>\r\n      <remove name=\"O" +
-                    "PTIONSVerbHandler\"/>\r\n      <remove name=\"TRACEVerbHandler\"/>\r\n      <add name=\"" +
-                    "ExtensionlessUrlHandler-Integrated-4.0\" path=\"*.\" verb=\"*\" type=\"System.Web.Hand" +
-                    "lers.TransferRequestHandler\"\r\n        preCondition=\"integratedMode,runtimeVersio" +
-                    "nv4.0\"/>\r\n    </handlers>\r\n  </system.webServer>\r\n   <entityFramework>\r\n    <def" +
-                    "aultConnectionFactory type=\"System.Data.Entity.Infrastructure.LocalDbConnectionF" +
-                    "actory, EntityFramework\">\r\n      <parameters>\r\n        <parameter value=\"mssqllo" +
-                    "caldb\"/>\r\n      </parameters>\r\n    </defaultConnectionFactory>\r\n    <providers>\r" +
-                    "\n      <provider invariantName=\"System.Data.SqlClient\" type=\"System.Data.Entity." +
-                    "SqlServer.SqlProviderServices, EntityFramework.SqlServer\"/>\r\n    </providers>\r\n " +
-                    " </entityFramework>\r\n</configuration>\r\n");
+                    "sm.v1\">\r\n    <!-- For local debbuging replace with local absolute path -->\r\n    " +
+                    "<linkedConfiguration href=\"file:C:/home/site/wwwroot/bin/ApiLayer.dll.config\"/>\r" +
+                    "\n  </assemblyBinding>  \r\n  <system.webServer>\r\n    <handlers>\r\n      <remove nam" +
+                    "e=\"ExtensionlessUrlHandler-Integrated-4.0\"/>\r\n      <remove name=\"OPTIONSVerbHan" +
+                    "dler\"/>\r\n      <remove name=\"TRACEVerbHandler\"/>\r\n      <add name=\"Extensionless" +
+                    "UrlHandler-Integrated-4.0\" path=\"*.\" verb=\"*\" type=\"System.Web.Handlers.Transfer" +
+                    "RequestHandler\"\r\n        preCondition=\"integratedMode,runtimeVersionv4.0\"/>\r\n   " +
+                    " </handlers>\r\n  </system.webServer>\r\n   <entityFramework>\r\n    <defaultConnectio" +
+                    "nFactory type=\"System.Data.Entity.Infrastructure.LocalDbConnectionFactory, Entit" +
+                    "yFramework\">\r\n      <parameters>\r\n        <parameter value=\"mssqllocaldb\"/>\r\n   " +
+                    "   </parameters>\r\n    </defaultConnectionFactory>\r\n    <providers>\r\n      <provi" +
+                    "der invariantName=\"System.Data.SqlClient\" type=\"System.Data.Entity.SqlServer.Sql" +
+                    "ProviderServices, EntityFramework.SqlServer\"/>\r\n    </providers>\r\n  </entityFram" +
+                    "ework>\r\n</configuration>\r\n");
             
             #line default
             #line hidden
