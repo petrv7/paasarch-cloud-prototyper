@@ -453,7 +453,7 @@ namespace CloudPrototyper.Deployment.Azure
 
             _eventHubs.Add(resource, hub);
             resource.ConnectionString = eventHubNamespace.Manager.NamespaceAuthorizationRules.GetByName(_resourceGroup.Name, eventHubNamespace.Name, "RootManageSharedAccessKey").GetKeys().PrimaryConnectionString;
-            //add conn str to queue conn str list
+            _queueConnStr.Add(resource.Name + "Connection", resource.ConnectionString);
             PreparedResources.Add(resource);
             Console.WriteLine("Done: " + resource.Name);
         }
