@@ -40,7 +40,7 @@ namespace <#= Model.Namespace #>
             
 			foreach (EventData eventData in events)
 			{
-                string label = eventData.Properties["Label"].ToString();
+                var label = System.Text.Encoding.Default.GetString(eventData.Body.ToArray());
 <# foreach(var action in Model.ModelParameters) { #>
 				if(label == "<#= (action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType #>")
 				{

@@ -5,7 +5,6 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ parameter type="CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator" name="Model" #>
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Producer;
 // Azure service bus
@@ -35,9 +34,7 @@ namespace <#= Model.Namespace #>
 
 		public void Insert(string name, object toInsert) 
 		{
-			var obj = JsonConvert.SerializeObject(toInsert);
-			EventData data = new EventData(obj);
-            data.Properties.Add(new KeyValuePair<string, object>("Label", name));
+			EventData data = new EventData(name);
 
             var batchTask = _client.CreateBatchAsync().AsTask();
             batchTask.Wait();

@@ -31,186 +31,183 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
             this.GenerationEnvironment = null;
             
             #line 7 "Templates\AzureEventHubTemplate.tt"
-            this.Write("using System.Collections.Generic;\r\nusing Newtonsoft.Json;\r\nusing Azure.Messaging." +
-                    "EventHubs;\r\nusing Azure.Messaging.EventHubs.Producer;\r\n// Azure service bus\r\nnam" +
-                    "espace ");
+            this.Write("using System.Collections.Generic;\r\nusing Azure.Messaging.EventHubs;\r\nusing Azure." +
+                    "Messaging.EventHubs.Producer;\r\n// Azure service bus\r\nnamespace ");
             
             #line default
             #line hidden
             
-            #line 12 "Templates\AzureEventHubTemplate.tt"
+            #line 11 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 12 "Templates\AzureEventHubTemplate.tt"
+            #line 11 "Templates\AzureEventHubTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\AzureEventHubTemplate.tt"
+            #line 13 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 14 "Templates\AzureEventHubTemplate.tt"
+            #line 13 "Templates\AzureEventHubTemplate.tt"
             this.Write(" : ");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\AzureEventHubTemplate.tt"
+            #line 13 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusInterfaceGenerator.Namespace ));
             
             #line default
             #line hidden
             
-            #line 14 "Templates\AzureEventHubTemplate.tt"
+            #line 13 "Templates\AzureEventHubTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\AzureEventHubTemplate.tt"
+            #line 13 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusInterfaceGenerator.Name ));
             
             #line default
             #line hidden
             
-            #line 14 "Templates\AzureEventHubTemplate.tt"
+            #line 13 "Templates\AzureEventHubTemplate.tt"
             this.Write("\r\n    {\r\n\t\tprivate readonly EventHubProducerClient _client; \r\n\t\tpublic const stri" +
                     "ng Name = \"");
             
             #line default
             #line hidden
             
-            #line 17 "Templates\AzureEventHubTemplate.tt"
+            #line 16 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
             
             #line default
             #line hidden
             
-            #line 17 "Templates\AzureEventHubTemplate.tt"
+            #line 16 "Templates\AzureEventHubTemplate.tt"
             this.Write("\";\r\n\r\n\t\tpublic ");
             
             #line default
             #line hidden
             
-            #line 19 "Templates\AzureEventHubTemplate.tt"
+            #line 18 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\AzureEventHubTemplate.tt"
+            #line 18 "Templates\AzureEventHubTemplate.tt"
             this.Write("() \r\n\t\t{ \r\n\t\t\t_client = new EventHubProducerClient(\"");
             
             #line default
             #line hidden
             
-            #line 21 "Templates\AzureEventHubTemplate.tt"
+            #line 20 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.ConnectionString ));
             
             #line default
             #line hidden
             
-            #line 21 "Templates\AzureEventHubTemplate.tt"
+            #line 20 "Templates\AzureEventHubTemplate.tt"
             this.Write("\", Name);\r\n\t\t}\r\n\r\n\t\tpublic void Insert(string name) \r\n\t\t{\r\n\t\t\tobject toInsert = n" +
                     "ull;\r\n");
             
             #line default
             #line hidden
             
-            #line 27 "Templates\AzureEventHubTemplate.tt"
+            #line 26 "Templates\AzureEventHubTemplate.tt"
  foreach(var entity in Model.Entities) { 
             
             #line default
             #line hidden
             
-            #line 28 "Templates\AzureEventHubTemplate.tt"
+            #line 27 "Templates\AzureEventHubTemplate.tt"
             this.Write("\t\t\tif(name == \"");
             
             #line default
             #line hidden
             
-            #line 28 "Templates\AzureEventHubTemplate.tt"
+            #line 27 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 28 "Templates\AzureEventHubTemplate.tt"
+            #line 27 "Templates\AzureEventHubTemplate.tt"
             this.Write("\")\r\n\t\t\t{\r\n\t\t\t\ttoInsert = ");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.DataGenerator.Name ));
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
             this.Write(".GetInstance().Generate<");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
             this.Write(">(1).ToArray()[0];\r\n\t\t\t} \r\n");
             
             #line default
             #line hidden
             
-            #line 32 "Templates\AzureEventHubTemplate.tt"
+            #line 31 "Templates\AzureEventHubTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 33 "Templates\AzureEventHubTemplate.tt"
+            #line 32 "Templates\AzureEventHubTemplate.tt"
             this.Write(@"			Insert(name,toInsert);
 		}
 
 		public void Insert(string name, object toInsert) 
 		{
-			var obj = JsonConvert.SerializeObject(toInsert);
-			EventData data = new EventData(obj);
-            data.Properties.Add(new KeyValuePair<string, object>(""Label"", name));
+			EventData data = new EventData(name);
 
             var batchTask = _client.CreateBatchAsync().AsTask();
             batchTask.Wait();

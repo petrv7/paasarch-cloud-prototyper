@@ -5,12 +5,8 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ parameter type="CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubHandlerGenerator" name="Model" #>
 using Azure.Messaging.EventHubs.Consumer;
-using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
-using System.IO;
-using System.Threading;
-using Castle.Windsor;
 using System.Collections.Generic;
 // EventHub handler
 namespace <#= Model.Namespace #> 
@@ -51,39 +47,34 @@ namespace <#= Model.Namespace #>
         {
             Trace.WriteLine("Starting processing of messages");
 
-            while(true)
-            {
-                // Get DateTime when task processing began
-                DateTime startedAt = DateTime.Now;
-				var enumerator = _client.ReadEventsAsync().GetAsyncEnumerator();
 
-				while(true)
+            // Get DateTime when task processing began
+            DateTime startedAt = DateTime.Now;
+			var enumerator = _client.ReadEventsAsync().GetAsyncEnumerator();
+
+			while(true)
+			{
+				var nextTask = enumerator.MoveNextAsync();
+				nextTask.AsTask().Wait();
+
+				var label = System.Text.Encoding.Default.GetString(enumerator.Current.Data.Body.ToArray());
+				try 
 				{
-					var nextTask = enumerator.MoveNextAsync();
-					nextTask.AsTask().Wait();
-					if (!nextTask.Result)
-                    {
-						break;
-                    }
-
-					var label = enumerator.Current.Data.Properties["Label"].ToString();
-					try 
-					{
 <# foreach(var action in Model.ModelParameters) { #>
-						if(label == "<#= (action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType #>")
-						{
-							 <#= Model.Actions.FirstOrDefault(x=>x.Key.Equals(action.Name)).Name #>.Execute(new List<string>());
-						} 
+					if(label == "<#= (action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType #>")
+					{
+							<#= Model.Actions.FirstOrDefault(x=>x.Key.Equals(action.Name)).Name #>.Execute(new List<string>());
+					} 
 
 <# } #>
-						Trace.WriteLine("Processing of message completed " + label);
-					}
-					catch (Exception)
-					{
-						Trace.WriteLine("Failed processing of message" + label);
-					}
+					Trace.WriteLine("Processing of message completed " + label);
 				}
-            }
+				catch (Exception)
+				{
+					Trace.WriteLine("Failed processing of message" + label);
+				}
+			}
+            
         }
     }
 }

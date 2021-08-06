@@ -31,322 +31,320 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
             this.GenerationEnvironment = null;
             
             #line 7 "Templates\AzureEventHubHandlerTemplate.tt"
-            this.Write("using Azure.Messaging.EventHubs.Consumer;\r\nusing Newtonsoft.Json;\r\nusing System;\r" +
-                    "\nusing System.Diagnostics;\r\nusing System.IO;\r\nusing System.Threading;\r\nusing Cas" +
-                    "tle.Windsor;\r\nusing System.Collections.Generic;\r\n// EventHub handler\r\nnamespace " +
-                    "");
+            this.Write("using Azure.Messaging.EventHubs.Consumer;\r\nusing System;\r\nusing System.Diagnostic" +
+                    "s;\r\nusing System.Collections.Generic;\r\n// EventHub handler\r\nnamespace ");
             
             #line default
             #line hidden
             
-            #line 16 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 12 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 16 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 12 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 18 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 14 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 18 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 14 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(" : ");
             
             #line default
             #line hidden
             
-            #line 18 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 14 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Namespace ));
             
             #line default
             #line hidden
             
-            #line 18 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 14 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 18 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 14 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Name ));
             
             #line default
             #line hidden
             
-            #line 18 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 14 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\r\n\t{\r\n        private string connectionString;\r\n        private string queueName;" +
                     "\r\n\t\tpublic const string Name = \"");
             
             #line default
             #line hidden
             
-            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 18 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 18 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\";\r\n        private EventHubConsumerClient _client;\r\n\r\n");
             
             #line default
             #line hidden
             
-            #line 25 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 21 "Templates\AzureEventHubHandlerTemplate.tt"
  foreach(var action in Model.Actions) { 
             
             #line default
             #line hidden
             
-            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\t\tpublic ");
             
             #line default
             #line hidden
             
-            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(" ");
             
             #line default
             #line hidden
             
-            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 22 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(" { get; set; }\r\n");
             
             #line default
             #line hidden
             
-            #line 27 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 23 "Templates\AzureEventHubHandlerTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 24 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\t\tpublic ");
             
             #line default
             #line hidden
             
-            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 24 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 24 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("(\r\n");
             
             #line default
             #line hidden
             
-            #line 29 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 25 "Templates\AzureEventHubHandlerTemplate.tt"
  foreach(var action in Model.Actions) {  if(Model.Actions.Last().Equals(action)) {
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\t\t");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(" ");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
             
             #line default
             #line hidden
             
-            #line 30 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 26 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\r\n");
             
             #line default
             #line hidden
             
-            #line 31 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 27 "Templates\AzureEventHubHandlerTemplate.tt"
  } else { 
             
             #line default
             #line hidden
             
-            #line 32 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\t\t");
             
             #line default
             #line hidden
             
-            #line 32 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Namespace ));
             
             #line default
             #line hidden
             
-            #line 32 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 32 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 32 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(" ");
             
             #line default
             #line hidden
             
-            #line 32 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
             
             #line default
             #line hidden
             
-            #line 32 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 28 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(",\r\n");
             
             #line default
             #line hidden
             
-            #line 33 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 29 "Templates\AzureEventHubHandlerTemplate.tt"
  }} 
             
             #line default
             #line hidden
             
-            #line 34 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 30 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\t\t) \r\n\t\t{\r\n");
             
             #line default
             #line hidden
             
-            #line 36 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 32 "Templates\AzureEventHubHandlerTemplate.tt"
  foreach(var action in Model.Actions) { 
             
             #line default
             #line hidden
             
-            #line 37 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 33 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\t\t\tthis.");
             
             #line default
             #line hidden
             
-            #line 37 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 33 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name ));
             
             #line default
             #line hidden
             
-            #line 37 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 33 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(" = ");
             
             #line default
             #line hidden
             
-            #line 37 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 33 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( action.Name.ToLower() ));
             
             #line default
             #line hidden
             
-            #line 37 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 33 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(";\r\n");
             
             #line default
             #line hidden
             
-            #line 38 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 34 "Templates\AzureEventHubHandlerTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 39 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 35 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("            this.connectionString = \"");
             
             #line default
             #line hidden
             
-            #line 39 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 35 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.AzureEventHub.ConnectionString ));
             
             #line default
             #line hidden
             
-            #line 39 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 35 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write("\";\r\n            this.queueName = \"");
             
             #line default
             #line hidden
             
-            #line 40 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 36 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.AzureEventHub.Name ));
             
             #line default
             #line hidden
             
-            #line 40 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 36 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(@""";
         }
 
@@ -361,75 +359,70 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
         {
             Trace.WriteLine(""Starting processing of messages"");
 
-            while(true)
-            {
-                // Get DateTime when task processing began
-                DateTime startedAt = DateTime.Now;
-				var enumerator = _client.ReadEventsAsync().GetAsyncEnumerator();
 
-				while(true)
+            // Get DateTime when task processing began
+            DateTime startedAt = DateTime.Now;
+			var enumerator = _client.ReadEventsAsync().GetAsyncEnumerator();
+
+			while(true)
+			{
+				var nextTask = enumerator.MoveNextAsync();
+				nextTask.AsTask().Wait();
+
+				var label = System.Text.Encoding.Default.GetString(enumerator.Current.Data.Body.ToArray());
+				try 
 				{
-					var nextTask = enumerator.MoveNextAsync();
-					nextTask.AsTask().Wait();
-					if (!nextTask.Result)
-                    {
-						break;
-                    }
-
-					var label = enumerator.Current.Data.Properties[""Label""].ToString();
-					try 
-					{
 ");
             
             #line default
             #line hidden
             
-            #line 72 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 63 "Templates\AzureEventHubHandlerTemplate.tt"
  foreach(var action in Model.ModelParameters) { 
             
             #line default
             #line hidden
             
-            #line 73 "Templates\AzureEventHubHandlerTemplate.tt"
-            this.Write("\t\t\t\t\t\tif(label == \"");
+            #line 64 "Templates\AzureEventHubHandlerTemplate.tt"
+            this.Write("\t\t\t\t\tif(label == \"");
             
             #line default
             #line hidden
             
-            #line 73 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 64 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( (action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType ));
             
             #line default
             #line hidden
             
-            #line 73 "Templates\AzureEventHubHandlerTemplate.tt"
-            this.Write("\")\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t ");
+            #line 64 "Templates\AzureEventHubHandlerTemplate.tt"
+            this.Write("\")\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\t");
             
             #line default
             #line hidden
             
-            #line 75 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 66 "Templates\AzureEventHubHandlerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Actions.FirstOrDefault(x=>x.Key.Equals(action.Name)).Name ));
             
             #line default
             #line hidden
             
-            #line 75 "Templates\AzureEventHubHandlerTemplate.tt"
-            this.Write(".Execute(new List<string>());\r\n\t\t\t\t\t\t} \r\n\r\n");
+            #line 66 "Templates\AzureEventHubHandlerTemplate.tt"
+            this.Write(".Execute(new List<string>());\r\n\t\t\t\t\t} \r\n\r\n");
             
             #line default
             #line hidden
             
-            #line 78 "Templates\AzureEventHubHandlerTemplate.tt"
+            #line 69 "Templates\AzureEventHubHandlerTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 79 "Templates\AzureEventHubHandlerTemplate.tt"
-            this.Write("\t\t\t\t\t\tTrace.WriteLine(\"Processing of message completed \" + label);\r\n\t\t\t\t\t}\r\n\t\t\t\t\t" +
-                    "catch (Exception)\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\tTrace.WriteLine(\"Failed processing of message\" " +
-                    "+ label);\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n            }\r\n        }\r\n    }\r\n}\r\n");
+            #line 70 "Templates\AzureEventHubHandlerTemplate.tt"
+            this.Write("\t\t\t\t\tTrace.WriteLine(\"Processing of message completed \" + label);\r\n\t\t\t\t}\r\n\t\t\t\tcat" +
+                    "ch (Exception)\r\n\t\t\t\t{\r\n\t\t\t\t\tTrace.WriteLine(\"Failed processing of message\" + lab" +
+                    "el);\r\n\t\t\t\t}\r\n\t\t\t}\r\n            \r\n        }\r\n    }\r\n}\r\n");
             
             #line default
             #line hidden
