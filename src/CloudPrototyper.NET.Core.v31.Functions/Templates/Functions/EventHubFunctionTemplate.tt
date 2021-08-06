@@ -1,0 +1,54 @@
+<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter type="CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.EventHubFunctionGenerator" name="Model" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Azure.EventHubs;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Extensions.Logging;
+
+namespace <#= Model.Namespace #>
+{
+    public class <#= Model.Name #>
+    {
+<# foreach(var action in Model.Actions) { #>
+		public <#= action.Namespace #>.<#= action.Name #> <#= action.Name #> { get; set; }
+<# } #>
+
+        public <#= Model.Name #>(
+<# foreach(var action in Model.Actions) {  if(Model.Actions.Last().Equals(action)) {#>
+			<#= action.Namespace #>.<#= action.Name #> <#= action.Name.ToLower() #>
+<# } else { #>
+			<#= action.Namespace #>.<#= action.Name #> <#= action.Name.ToLower() #>,
+<# }} #>
+		) 
+		{
+<# foreach(var action in Model.Actions) { #>
+			this.<#= action.Name #> = <#= action.Name.ToLower() #>;
+<# } #>
+        }
+
+        [FunctionName("<#= Model.Name #>")]
+		public void Run([EventHubTrigger("<#= Model.AzureEventHub.Name #>", Connection = "<#= Model.AzureEventHub.Name #>Connection")] EventData[] events)
+        {		
+            var output = new List<string>();
+            
+			foreach (EventData eventData in events)
+			{
+                var label = System.Text.Encoding.Default.GetString(eventData.Body.ToArray());
+<# foreach(var action in Model.ModelParameters) { #>
+				if(label == "<#= (action.Trigger as CloudPrototyper.Model.Applications.MessageReceivedTrigger).MessageType #>")
+				{
+					 <#= Model.Actions.FirstOrDefault(x=>x.Key.Equals(action.Name)).Name #>.Execute(output);
+				} 
+
+<# } #>      
+			}      
+        }
+    }
+}

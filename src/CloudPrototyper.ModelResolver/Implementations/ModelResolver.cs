@@ -302,32 +302,54 @@ namespace CloudPrototyper.ModelResolver.Implementations
         private void LoadGeneratorManagers()
         {
             var types = Utils.LoadTypes(_baseDirectory);
-            var functionApps = _prototype.Resources.OfType<AzureFunctionApp>();
+            var functionApps = _prototype.Resources.OfType<AzureFunctionApp>();            
+
             foreach (var app in _prototype.Applications) // We need to find generator for each app
             {
-                Type t;
+                List<Type> managers;
+                bool isServerless = false;
                 // For function apps the generator needs to implement the IServerless interface
                 if (functionApps.FirstOrDefault(a => a.WithApplication == app.Name) != null)
                 {
-                    t = types.First(y => y.BaseType != null && y.BaseType.IsGenericType &&
+                    isServerless = true;
+                    managers = types.Where(y => y.BaseType != null && y.BaseType.IsGenericType &&
                                                   y.BaseType.GetGenericTypeDefinition() ==
                                                   typeof(GeneratorManager<>) &&
                                                   typeof(IServerless).IsAssignableFrom(y) &&
-                                                  y.BaseType.GetGenericArguments().Contains(app.GetType()));
+                                                  y.BaseType.GetGenericArguments().Contains(app.GetType())).ToList();
                 }
                 else
                 {
-                    t = types.First(y => y.BaseType != null && y.BaseType.IsGenericType &&
+                    managers = types.Where(y => y.BaseType != null && y.BaseType.IsGenericType &&
                                                   y.BaseType.GetGenericTypeDefinition() ==
                                                   typeof(GeneratorManager<>) &&
                                                   !typeof(IServerless).IsAssignableFrom(y) &&
-                                                  y.BaseType.GetGenericArguments().Contains(app.GetType()));
+                                                  y.BaseType.GetGenericArguments().Contains(app.GetType())).ToList();
                 }
 
-                var generatorManager = (GeneratorManager)Activator.CreateInstance(t, app, _prototype, _configProvider);
-                if (generatorManager.Platform.Equals(app.Platform))
+                foreach (var t in managers)
                 {
-                    _generatorManagers.Add(app, generatorManager);
+                    var generatorManager = (GeneratorManager)Activator.CreateInstance(t, app, _prototype, _configProvider);
+                    if (generatorManager.Platform.Equals(app.Platform))
+                    {
+                        if (isServerless && app is WorkerApplication workerApp && workerApp.Actions[0].Trigger is MessageReceivedTrigger msgTrigger)
+                        {
+                            ISupportsQueue queueManager = (ISupportsQueue)generatorManager;
+                            var queueName = msgTrigger.QueueName;
+                            var queue = _prototype.Resources.OfType<CloudPrototyper.Model.Resources.Storage.Queue>().First(q => q.Name == queueName);
+
+                            if (queueManager.SupportsQueue(queue.GetType()))
+                            {
+                                _generatorManagers.Add(app, generatorManager);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            _generatorManagers.Add(app, generatorManager);
+                            break;
+                        }
+                    }
                 }
             }
         }

@@ -17,6 +17,7 @@ using CloudPrototyper.NET.Core.v31.Functions.Generators;
 using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
+using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Constants;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
@@ -51,6 +52,8 @@ namespace CloudPrototyper.NET.Core.v31.Functions
                     .Where(y => Utils.FindAllInstances<Operation>(ApplicationGenerator.Model)
                         .SelectMany(x => x.GetReferencedResources()).Select(z => z.Name).Contains(y.Name)).ToList();
             res.Add(Utils.FindAllInstances<AzureFunctionApp>(Prototype).Single(x => x.WithApplication == ApplicationGenerator.Model.Name));
+            res.AddRange(Utils.FindAllInstances<AzureEventHubNamespace>(Prototype).Where(n => Utils.FindAllInstances<AzureEventHub>(res).Select(h => h.WithNamespace).Contains(n.Name)));
+
             return res;
         }
 

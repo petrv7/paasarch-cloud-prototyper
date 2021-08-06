@@ -14,10 +14,12 @@ using CloudPrototyper.Model;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Resources;
+using CloudPrototyper.Model.Resources.Storage;
 using CloudPrototyper.NET.Core.v31.Functions.Generators;
 using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
+using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Constants;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
@@ -26,7 +28,7 @@ using ProjectFactory = CloudPrototyper.NET.Core.v31.Common.Factories.ProjectFact
 
 namespace CloudPrototyper.NET.Core.v31.Functions
 {
-    public class ServiceBusFunctionManager : GeneratorManager<WorkerApplication>, IServerless
+    public class ServiceBusFunctionManager : GeneratorManager<WorkerApplication>, IServerless, ISupportsQueue
     {
         /// <summary>
         /// Used to register and resolve all IGenerableFiles.
@@ -51,6 +53,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions
             var res = Utils.FindAllInstances<Resource>(Prototype)
                     .Where(y => Utils.FindAllInstances<Operation>(ApplicationGenerator.Model)
                         .SelectMany(x => x.GetReferencedResources()).Select(z => z.Name).Contains(y.Name)).ToList();
+            res.AddRange(Utils.FindAllInstances<AzureEventHubNamespace>(Prototype).Where(n => Utils.FindAllInstances<AzureEventHub>(res).Select(h => h.WithNamespace).Contains(n.Name)));
             res.Add(Utils.FindAllInstances<AzureFunctionApp>(Prototype).Single(x => x.WithApplication == ApplicationGenerator.Model.Name));
             return res;
         }
@@ -140,6 +143,11 @@ namespace CloudPrototyper.NET.Core.v31.Functions
         public override void Dispose()
         {
             Container?.Dispose();
+        }
+
+        public bool SupportsQueue(System.Type queue)
+        {
+            return typeof(AzureServiceBusQueue).IsEquivalentTo(queue);
         }
     }
 }

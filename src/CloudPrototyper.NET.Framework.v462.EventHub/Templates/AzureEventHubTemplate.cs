@@ -8,19 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
+namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
     using System;
     
     
-    public partial class LocalSettingsJsonTemplate : LocalSettingsJsonTemplateBase {
+    public partial class AzureEventHubTemplate : AzureEventHubTemplateBase {
         
         
-        private CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator _ModelField;
+        private CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator _ModelField;
         
-        public CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator Model {
+        public CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -30,135 +30,202 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
         public virtual string TransformText() {
             this.GenerationEnvironment = null;
             
-            #line 7 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("{\r\n    \"IsEncrypted\": false,\r\n    \"Values\": {\r\n        \"AzureWebJobsStorage\": \"Us" +
-                    "eDevelopmentStorage=true\",\r\n        \"FUNCTIONS_WORKER_RUNTIME\": \"dotnet\"\r\n");
+            #line 7 "Templates\AzureEventHubTemplate.tt"
+            this.Write("using System.Collections.Generic;\r\nusing Azure.Messaging.EventHubs;\r\nusing Azure." +
+                    "Messaging.EventHubs.Producer;\r\n// Azure service bus\r\nnamespace ");
             
             #line default
             #line hidden
             
-            #line 12 "Templates\LocalSettingsJsonTemplate.tt"
- foreach(var queue in Model.ServiceBusQueues) { if(!string.IsNullOrWhiteSpace(queue.ConnectionString)) { 
+            #line 11 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("\t\t,\"");
+            #line 11 "Templates\AzureEventHubTemplate.tt"
+            this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( queue.Name ));
+            #line 13 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("Connection\" : \"");
+            #line 13 "Templates\AzureEventHubTemplate.tt"
+            this.Write(" : ");
             
             #line default
             #line hidden
             
-            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( queue.ConnectionString.Substring(0, queue.ConnectionString.IndexOf("EntityPath=")) ));
+            #line 13 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusInterfaceGenerator.Namespace ));
             
             #line default
             #line hidden
             
-            #line 13 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("\"\r\n");
+            #line 13 "Templates\AzureEventHubTemplate.tt"
+            this.Write(".");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\LocalSettingsJsonTemplate.tt"
- } else { 
+            #line 13 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusInterfaceGenerator.Name ));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("\t\t,\"");
+            #line 13 "Templates\AzureEventHubTemplate.tt"
+            this.Write("\r\n    {\r\n\t\tprivate readonly EventHubProducerClient _client; \r\n\t\tpublic const stri" +
+                    "ng Name = \"");
             
             #line default
             #line hidden
             
-            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( queue.Name ));
+            #line 16 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("Connection\" : \"");
+            #line 16 "Templates\AzureEventHubTemplate.tt"
+            this.Write("\";\r\n\r\n\t\tpublic ");
             
             #line default
             #line hidden
             
-            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( queue.ConnectionString ));
+            #line 18 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("\"\r\n");
+            #line 18 "Templates\AzureEventHubTemplate.tt"
+            this.Write("() \r\n\t\t{ \r\n\t\t\t_client = new EventHubProducerClient(\"");
             
             #line default
             #line hidden
             
-            #line 16 "Templates\LocalSettingsJsonTemplate.tt"
- }} 
+            #line 20 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.ConnectionString ));
             
             #line default
             #line hidden
             
-            #line 17 "Templates\LocalSettingsJsonTemplate.tt"
- foreach(var queue in Model.EventHubs) { 
+            #line 20 "Templates\AzureEventHubTemplate.tt"
+            this.Write("\", Name);\r\n\t\t}\r\n\r\n\t\tpublic void Insert(string name) \r\n\t\t{\r\n\t\t\tobject toInsert = n" +
+                    "ull;\r\n");
             
             #line default
             #line hidden
             
-            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("\t\t,\"");
+            #line 26 "Templates\AzureEventHubTemplate.tt"
+ foreach(var entity in Model.Entities) { 
             
             #line default
             #line hidden
             
-            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( queue.Name ));
+            #line 27 "Templates\AzureEventHubTemplate.tt"
+            this.Write("\t\t\tif(name == \"");
             
             #line default
             #line hidden
             
-            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("Connection\" : \"");
+            #line 27 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( queue.ConnectionString ));
+            #line 27 "Templates\AzureEventHubTemplate.tt"
+            this.Write("\")\r\n\t\t\t{\r\n\t\t\t\ttoInsert = ");
             
             #line default
             #line hidden
             
-            #line 18 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("\"\r\n");
+            #line 29 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\LocalSettingsJsonTemplate.tt"
+            #line 29 "Templates\AzureEventHubTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.DataGenerator.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\AzureEventHubTemplate.tt"
+            this.Write(".GetInstance().Generate<");
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\AzureEventHubTemplate.tt"
+            this.Write(".");
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\AzureEventHubTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 29 "Templates\AzureEventHubTemplate.tt"
+            this.Write(">(1).ToArray()[0];\r\n\t\t\t} \r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 31 "Templates\AzureEventHubTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 20 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("    }\r\n}");
+            #line 32 "Templates\AzureEventHubTemplate.tt"
+            this.Write(@"			Insert(name,toInsert);
+		}
+
+		public void Insert(string name, object toInsert) 
+		{
+			EventData data = new EventData(name);
+
+            var batchTask = _client.CreateBatchAsync().AsTask();
+            batchTask.Wait();
+            var batch = batchTask.Result;
+
+            batch.TryAdd(data);
+            _client.SendAsync(batch).Wait();
+		}
+
+		public void InsertAll(string name, object[] toInsert) 
+		{
+			foreach(var o in toInsert) 
+			{
+				Insert(name, o);				
+			}
+		}
+    }
+}");
             
             #line default
             #line hidden
@@ -170,12 +237,12 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGene" +
-                                "rator\' of the parameter \'Model\' did not match the type passed to the template");
+                        this.Error("The type \'CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGen" +
+                                "erator\' of the parameter \'Model\' did not match the type passed to the template");
                     }
                 }
             }
@@ -183,7 +250,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
         }
     }
     
-    public class LocalSettingsJsonTemplateBase {
+    public class AzureEventHubTemplateBase {
         
         private global::System.Text.StringBuilder builder;
         

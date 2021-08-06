@@ -15,11 +15,11 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Generators.Communication
     {
         public OperationInterfaceGenerator OperationInterface { get; set; }
         public MessageBusInterfaceGenerator MessageBusInterface { get; set; }
-        public AzureServiceBusQueueGenerator Queue { get; set; }
+        public Modelable Queue { get; set; }
 
         public AddMessageToQueueGenerator(string projectName, AddMessageToQueue modelParameters, OperationInterfaceGenerator operationInterface, MessageBusInterfaceGenerator messageBusInterface, IList<Modelable> queue) : base(projectName, "Operations", modelParameters.Name, typeof(AddMessageToQueueTemplate), modelParameters, modelParameters.Name)
         {
-            Queue = (AzureServiceBusQueueGenerator)queue.Single(x => x.Key.Equals(modelParameters.QueueName));
+            Queue = queue.Single(x => x.Key.Equals(modelParameters.QueueName));
             MessageBusInterface = messageBusInterface;
             OperationInterface = operationInterface;
         }

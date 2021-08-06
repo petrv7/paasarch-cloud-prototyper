@@ -14,27 +14,22 @@ using CloudPrototyper.Model;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Resources;
+using CloudPrototyper.Model.Resources.Storage;
+using CloudPrototyper.NET.Core.v31.Functions.Generators;
+using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
-using CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators.Services;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
-using CloudPrototyper.NET.Framework.v462.Common.Generators.Workers;
-using CloudPrototyper.NET.Framework.v462.Common.Generators.Workers.Utils;
-using CloudPrototyper.NET.Framework.v462.EventHub.Generators;
 using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Constants;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 using Action = CloudPrototyper.Model.Applications.Action;
-using Component = Castle.MicroKernel.Registration.Component;
+using ProjectFactory = CloudPrototyper.NET.Core.v31.Common.Factories.ProjectFactory;
 
-namespace CloudPrototyper.NET.Framework.v462.WebJob
+namespace CloudPrototyper.NET.Core.v31.Functions
 {
-    /// <summary>
-    /// Manages WorkerApplication for .NET framework 4.6.2 platform.
-    /// </summary>
-    public class WebJobManager : GeneratorManager<WorkerApplication>
+    public class EventHubFunctionManager : GeneratorManager<WorkerApplication>, IServerless, ISupportsQueue
     {
-
         /// <summary>
         /// Used to register and resolve all IGenerableFiles.
         /// </summary>
@@ -56,48 +51,45 @@ namespace CloudPrototyper.NET.Framework.v462.WebJob
         public override IList<Resource> GetRequiredResources()
         {
             var res = Utils.FindAllInstances<Resource>(Prototype)
-                .Where(y => Utils.FindAllInstances<Operation>(ApplicationGenerator.Model)
-                    .SelectMany(x => x.GetReferencedResources()).Select(z => z.Name).Contains(y.Name)).ToList();
+                    .Where(y => Utils.FindAllInstances<Operation>(ApplicationGenerator.Model)
+                        .SelectMany(x => x.GetReferencedResources()).Select(z => z.Name).Contains(y.Name)).ToList();
             res.AddRange(Utils.FindAllInstances<AzureEventHubNamespace>(Prototype).Where(n => Utils.FindAllInstances<AzureEventHub>(res).Select(h => h.WithNamespace).Contains(n.Name)));
-            res.Add(Utils.FindAllInstances<AzureAppService>(Prototype).Single(x => x.WithApplication == ApplicationGenerator.Model.Name));
-
+            res.Add(Utils.FindAllInstances<AzureFunctionApp>(Prototype).Single(x => x.WithApplication == ApplicationGenerator.Model.Name));
             return res;
         }
-        
+
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="application">Application to be managed.</param>
         /// <param name="prototype">Whole prototype with entities and resources.</param>
         /// <param name="configProvider">Configuration provider.</param>
-        public WebJobManager(WorkerApplication application, Prototype prototype, IConfigProvider configProvider) : base(new ApplicationGenerator<WorkerApplication>(application, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name), prototype, "DotNet46", configProvider.GetValue("OutputFolderPath") + "\\" + application.Name, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name
+        public EventHubFunctionManager(WorkerApplication application, Prototype prototype, IConfigProvider configProvider) : base(new ApplicationGenerator<WorkerApplication>(application, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name), prototype, "DotNetCore31", configProvider.GetValue("OutputFolderPath") + "\\" + application.Name, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name
             , configProvider)
         {
             Container.Kernel.Resolver.AddSubResolver(new CollectionResolver(Container.Kernel, true));
-
 
             var operations = Utils.FindAllInstances<Operation>(application);
             var actions = Utils.FindAllInstances<Action>(application);
 
             ProjectFactory.RegisterOperations(NamingConstants.WorkerName, actions, Container);
             ProjectFactory.RegisterEntities(NamingConstants.WorkerName, application, prototype, Container);
-            ProjectFactory.RegisterResources(NamingConstants.WorkerName,application, prototype, operations, Container);
+            ProjectFactory.RegisterResources(NamingConstants.WorkerName, application, prototype, operations, Container);
 
-            RegisterWorkerComponents(application,prototype);
-            var handlers = Container.Kernel.GetAssignableHandlers(typeof (IGenerableFile));
+            RegisterFunctionComponents(application, prototype);
+            var handlers = Container.Kernel.GetAssignableHandlers(typeof(IGenerableFile));
 
             List<IGenerableFile> consoleProjectFiles = ProjectFactory.ResolveHandlers(handlers, Container, NamingConstants.WorkerName);
 
-            InitConsoleProject(consoleProjectFiles, Container);
+            InitFunctionProject(consoleProjectFiles, Container, prototype);
 
             RegisterSolutionFiles(application);
 
             var allFiles = ProjectFactory.ResolveHandlers(Container.Kernel.GetAssignableHandlers(typeof(IGenerableFile)), Container);
 
             ApplicationGenerator.Files.AddRange(allFiles);
-
         }
-        
+
         private void RegisterSolutionFiles(WorkerApplication application)
         {
             Container.Register(
@@ -105,41 +97,29 @@ namespace CloudPrototyper.NET.Framework.v462.WebJob
            );
         }
 
-        private void RegisterWorkerComponents(WorkerApplication application,Prototype prototype)
+        private void RegisterFunctionComponents(WorkerApplication application, Prototype prototype)
         {
-            var buses = Utils.FindAllInstances<AzureServiceBusQueue>(prototype);
+            Container.Register(
+                Component.For<CastleWindsorJobActivatorGenerator>().ImplementedBy<CastleWindsorJobActivatorGenerator>()
+                    .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
+            );
+            Container.Register(
+                Component.For<StartupGenerator>().ImplementedBy<StartupGenerator>()
+                    .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
+            );
+
             var hubs = Utils.FindAllInstances<AzureEventHub>(prototype);
 
-            if (application.Actions[0].Trigger is MessageReceivedTrigger trigger)
+            foreach (var hub in hubs)
             {
-                var queueName = trigger.QueueName;
-                var bus = buses.FirstOrDefault(b => b.Name == queueName);
-                var hub = hubs.FirstOrDefault(b => b.Name == queueName);
-
-                if (bus != null)
-                {
-                    Container.Register(
-                        Component.For<HandlerGenerator>().ImplementedBy<HandlerGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
-                            "modelParameters", application.Actions)).DependsOn(Dependency.OnValue("azureServiceBusQueue", bus)).Named(bus.Name + typeof(HandlerGenerator))
+                Container.Register(
+                    Component.For<EventHubFunctionGenerator>().ImplementedBy<EventHubFunctionGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
+                        "modelParameters", application.Actions)).DependsOn(Dependency.OnValue("azureEventHub", hub)).Named(hub.Name + typeof(EventHubFunctionGenerator))
                     );
-                }
-
-                if (hub != null)
-                {
-                    Container.Register(
-                        Component.For<AzureEventHubHandlerGenerator>().ImplementedBy<AzureEventHubHandlerGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
-                            "modelParameters", application.Actions)).DependsOn(Dependency.OnValue("azureEventHub", hub)).Named(hub.Name + typeof(AzureEventHubHandlerGenerator))
-                    );
-                }
             }
-
-            Container.Register(
-                Component.For<WorkerContainerInstallerGenerator>().ImplementedBy<WorkerContainerInstallerGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)),
-                Component.For<WorkerMainGenerator>().ImplementedBy<WorkerMainGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
-            );
         }
-       
-        private void InitConsoleProject(List<IGenerableFile> includes, WindsorContainer container)
+
+        private void InitFunctionProject(List<IGenerableFile> includes, WindsorContainer container, Prototype prototype)
         {
             var packages = new List<PackageConfigInfo>();
 
@@ -154,12 +134,20 @@ namespace CloudPrototyper.NET.Framework.v462.WebJob
             }
             ApplicationGenerator.Contents.AddRange(contents);
             packages = packages.Distinct().ToList();
-            ProjectFactory.RegisterSolutionLayer(NamingConstants.WorkerName, ProjectType.Console, packages, ApplicationGenerator.Files, includes, contents, new List<AssemblyBase>(), container);
+
+            var hubs = Utils.FindAllInstances<AzureEventHub>(prototype);
+
+            ProjectFactory.RegisterSolutionLayer(NamingConstants.WorkerName, ProjectType.FunctionApp, packages, ApplicationGenerator.Files, includes, contents, new List<AssemblyBase>(), container, null, hubs);
         }
 
         public override void Dispose()
         {
             Container?.Dispose();
+        }
+
+        public bool SupportsQueue(System.Type queue)
+        {
+            return typeof(AzureEventHub).IsEquivalentTo(queue);
         }
     }
 }

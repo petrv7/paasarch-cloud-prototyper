@@ -30,40 +30,21 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.ApiLayerTemplates 
                     ", Culture=neutral, PublicKeyToken=b77a5c561934e089\" requirePermission=\"false\"/>\r" +
                     "\n  </configSections>\r\n  <appSettings></appSettings>\r\n  <system.web>\r\n    <compil" +
                     "ation debug=\"true\" targetFramework=\"4.6.2\"/>\r\n    <httpRuntime targetFramework=\"" +
-                    "4.6.2\"/>\r\n  </system.web>\r\n  <system.webServer>\r\n    <handlers>\r\n      <remove n" +
-                    "ame=\"ExtensionlessUrlHandler-Integrated-4.0\"/>\r\n      <remove name=\"OPTIONSVerbH" +
-                    "andler\"/>\r\n      <remove name=\"TRACEVerbHandler\"/>\r\n      <add name=\"Extensionle" +
-                    "ssUrlHandler-Integrated-4.0\" path=\"*.\" verb=\"*\" type=\"System.Web.Handlers.Transf" +
-                    "erRequestHandler\"\r\n        preCondition=\"integratedMode,runtimeVersionv4.0\"/>\r\n " +
-                    "   </handlers>\r\n  </system.webServer>\r\n  <runtime>\r\n    <assemblyBinding xmlns=\"" +
-                    "urn:schemas-microsoft-com:asm.v1\">\r\n      <dependentAssembly>\r\n        <assembly" +
-                    "Identity name=\"System.Web.Helpers\" publicKeyToken=\"31bf3856ad364e35\"/>\r\n        " +
-                    "<bindingRedirect oldVersion=\"1.0.0.0-3.0.0.0\" newVersion=\"3.0.0.0\"/>\r\n      </de" +
-                    "pendentAssembly>\r\n      <dependentAssembly>\r\n        <assemblyIdentity name=\"Sys" +
-                    "tem.Web.Mvc\" publicKeyToken=\"31bf3856ad364e35\"/>\r\n        <bindingRedirect oldVe" +
-                    "rsion=\"1.0.0.0-5.2.3.0\" newVersion=\"5.2.3.0\"/>\r\n      </dependentAssembly>\r\n    " +
-                    "  <dependentAssembly>\r\n        <assemblyIdentity name=\"System.Threading.Tasks.Ex" +
-                    "tensions\" publicKeyToken=\"cc7b13ffcd2ddd51\" culture=\"neutral\" />\r\n        <bindi" +
-                    "ngRedirect oldVersion=\"0.0.0.0-4.2.0.1\" newVersion=\"4.2.0.1\" />\r\n      </depende" +
-                    "ntAssembly>\r\n      <dependentAssembly>\r\n        <assemblyIdentity name=\"System.N" +
-                    "umerics.Vectors\" publicKeyToken=\"b03f5f7f11d50a3a\" culture=\"neutral\" />\r\n       " +
-                    " <bindingRedirect oldVersion=\"0.0.0.0-4.1.3.0\" newVersion=\"4.1.4.0\" />\r\n      </" +
-                    "dependentAssembly>\r\n      <dependentAssembly>\r\n        <assemblyIdentity name=\"S" +
-                    "ystem.Buffers\" publicKeyToken=\"cc7b13ffcd2ddd51\" culture=\"neutral\" />\r\n        <" +
-                    "bindingRedirect oldVersion=\"0.0.0.0-4.0.3.0\" newVersion=\"4.0.3.0\" />\r\n      </de" +
-                    "pendentAssembly>\r\n      <dependentAssembly>\r\n        <assemblyIdentity name=\"Sys" +
-                    "tem.Web.WebPages\" publicKeyToken=\"31bf3856ad364e35\"/>\r\n        <bindingRedirect " +
-                    "oldVersion=\"1.0.0.0-3.0.0.0\" newVersion=\"3.0.0.0\"/>\r\n      </dependentAssembly>\r" +
-                    "\n      <dependentAssembly>\r\n        <assemblyIdentity name=\"Newtonsoft.Json\" pub" +
-                    "licKeyToken=\"30ad4fe6b2a6aeed\" culture=\"neutral\" />\r\n        <bindingRedirect ol" +
-                    "dVersion=\"0.0.0.0-11.0.0.0\" newVersion=\"11.0.0.0\" />\r\n      </dependentAssembly>" +
-                    "\r\n    </assemblyBinding>\r\n  </runtime>  \r\n   <entityFramework>\r\n    <defaultConn" +
-                    "ectionFactory type=\"System.Data.Entity.Infrastructure.LocalDbConnectionFactory, " +
-                    "EntityFramework\">\r\n      <parameters>\r\n        <parameter value=\"mssqllocaldb\"/>" +
-                    "\r\n      </parameters>\r\n    </defaultConnectionFactory>\r\n    <providers>\r\n      <" +
-                    "provider invariantName=\"System.Data.SqlClient\" type=\"System.Data.Entity.SqlServe" +
-                    "r.SqlProviderServices, EntityFramework.SqlServer\"/>\r\n    </providers>\r\n  </entit" +
-                    "yFramework>\r\n</configuration>\r\n");
+                    "4.6.2\"/>\r\n  </system.web>\r\n  <assemblyBinding xmlns=\"urn:schemas-microsoft-com:a" +
+                    "sm.v1\">\r\n    <!-- For local debbuging replace with local absolute path -->\r\n    " +
+                    "<linkedConfiguration href=\"file:C:/home/site/wwwroot/bin/ApiLayer.dll.config\"/>\r" +
+                    "\n  </assemblyBinding>  \r\n  <system.webServer>\r\n    <handlers>\r\n      <remove nam" +
+                    "e=\"ExtensionlessUrlHandler-Integrated-4.0\"/>\r\n      <remove name=\"OPTIONSVerbHan" +
+                    "dler\"/>\r\n      <remove name=\"TRACEVerbHandler\"/>\r\n      <add name=\"Extensionless" +
+                    "UrlHandler-Integrated-4.0\" path=\"*.\" verb=\"*\" type=\"System.Web.Handlers.Transfer" +
+                    "RequestHandler\"\r\n        preCondition=\"integratedMode,runtimeVersionv4.0\"/>\r\n   " +
+                    " </handlers>\r\n  </system.webServer>\r\n   <entityFramework>\r\n    <defaultConnectio" +
+                    "nFactory type=\"System.Data.Entity.Infrastructure.LocalDbConnectionFactory, Entit" +
+                    "yFramework\">\r\n      <parameters>\r\n        <parameter value=\"mssqllocaldb\"/>\r\n   " +
+                    "   </parameters>\r\n    </defaultConnectionFactory>\r\n    <providers>\r\n      <provi" +
+                    "der invariantName=\"System.Data.SqlClient\" type=\"System.Data.Entity.SqlServer.Sql" +
+                    "ProviderServices, EntityFramework.SqlServer\"/>\r\n    </providers>\r\n  </entityFram" +
+                    "ework>\r\n</configuration>\r\n");
             
             #line default
             #line hidden

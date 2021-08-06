@@ -236,17 +236,19 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.SolutionTemplates.
                     "ItemGroup>\r\n  <PropertyGroup>\r\n    <VisualStudioVersion Condition=\"\'$(VisualStud" +
                     "ioVersion)\' == \'\'\">10.0</VisualStudioVersion>\r\n    <VSToolsPath Condition=\"\'$(VS" +
                     "ToolsPath)\' == \'\'\">$(MSBuildExtensionsPath32)\\Microsoft\\VisualStudio\\v$(VisualSt" +
-                    "udioVersion)</VSToolsPath>\r\n  </PropertyGroup>\r\n  \r\n  <ProjectExtensions>\r\n    <" +
-                    "VisualStudio>\r\n      <FlavorProperties GUID=\"{349c5851-65df-11da-9384-00065b846f" +
-                    "21}\">\r\n        <WebProjectProperties>\r\n          <UseIIS>True</UseIIS>\r\n        " +
-                    "  <AutoAssignPort>True</AutoAssignPort>\r\n          <DevelopmentServerPort>62524<" +
-                    "/DevelopmentServerPort>\r\n          <DevelopmentServerVPath>/</DevelopmentServerV" +
-                    "Path>\r\n          <IISUrl>http://localhost:62524/</IISUrl>\r\n          <NTLMAuthen" +
-                    "tication>False</NTLMAuthentication>\r\n          <UseCustomServer>False</UseCustom" +
-                    "Server>\r\n          <CustomServerUrl>\r\n          </CustomServerUrl>\r\n          <S" +
-                    "aveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>\r\n        </WebP" +
-                    "rojectProperties>\r\n      </FlavorProperties>\r\n    </VisualStudio>\r\n  </ProjectEx" +
-                    "tensions>  \r\n</Project>");
+                    "udioVersion)</VSToolsPath>\r\n  </PropertyGroup>\r\n  <PropertyGroup>\r\n    <AutoGene" +
+                    "rateBindingRedirects>true</AutoGenerateBindingRedirects>\r\n    <GenerateBindingRe" +
+                    "directsOutputType>true</GenerateBindingRedirectsOutputType>\r\n  </PropertyGroup>\r" +
+                    "\n  <ProjectExtensions>\r\n    <VisualStudio>\r\n      <FlavorProperties GUID=\"{349c5" +
+                    "851-65df-11da-9384-00065b846f21}\">\r\n        <WebProjectProperties>\r\n          <U" +
+                    "seIIS>True</UseIIS>\r\n          <AutoAssignPort>True</AutoAssignPort>\r\n          " +
+                    "<DevelopmentServerPort>62524</DevelopmentServerPort>\r\n          <DevelopmentServ" +
+                    "erVPath>/</DevelopmentServerVPath>\r\n          <IISUrl>http://localhost:62524/</I" +
+                    "ISUrl>\r\n          <NTLMAuthentication>False</NTLMAuthentication>\r\n          <Use" +
+                    "CustomServer>False</UseCustomServer>\r\n          <CustomServerUrl>\r\n          </C" +
+                    "ustomServerUrl>\r\n          <SaveServerSettingsInUserFile>False</SaveServerSettin" +
+                    "gsInUserFile>\r\n        </WebProjectProperties>\r\n      </FlavorProperties>\r\n    <" +
+                    "/VisualStudio>\r\n  </ProjectExtensions>  \r\n</Project>");
             
             #line default
             #line hidden

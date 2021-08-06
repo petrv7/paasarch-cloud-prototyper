@@ -9,10 +9,13 @@
     "Values": {
         "AzureWebJobsStorage": "UseDevelopmentStorage=true",
         "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-<# foreach(var queue in Model.Queues) { if(!string.IsNullOrWhiteSpace(queue.ConnectionString)) { #>
+<# foreach(var queue in Model.ServiceBusQueues) { if(!string.IsNullOrWhiteSpace(queue.ConnectionString)) { #>
 		,"<#= queue.Name #>Connection" : "<#= queue.ConnectionString.Substring(0, queue.ConnectionString.IndexOf("EntityPath=")) #>"
 <# } else { #>
 		,"<#= queue.Name #>Connection" : "<#= queue.ConnectionString #>"
 <# }} #>
+<# foreach(var queue in Model.EventHubs) { #>
+		,"<#= queue.Name #>Connection" : "<#= queue.ConnectionString #>"
+<# } #>
     }
 }
