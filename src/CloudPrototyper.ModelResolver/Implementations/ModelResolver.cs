@@ -307,11 +307,9 @@ namespace CloudPrototyper.ModelResolver.Implementations
             foreach (var app in _prototype.Applications) // We need to find generator for each app
             {
                 List<Type> managers;
-                bool isServerless = false;
                 // For function apps the generator needs to implement the IServerless interface
                 if (functionApps.FirstOrDefault(a => a.WithApplication == app.Name) != null)
                 {
-                    isServerless = true;
                     managers = types.Where(y => y.BaseType != null && y.BaseType.IsGenericType &&
                                                   y.BaseType.GetGenericTypeDefinition() ==
                                                   typeof(GeneratorManager<>) &&
@@ -332,23 +330,8 @@ namespace CloudPrototyper.ModelResolver.Implementations
                     var generatorManager = (GeneratorManager)Activator.CreateInstance(t, app, _prototype, _configProvider);
                     if (generatorManager.Platform.Equals(app.Platform))
                     {
-                        if (isServerless && app is WorkerApplication workerApp && workerApp.Actions[0].Trigger is MessageReceivedTrigger msgTrigger)
-                        {
-                            ISupportsQueue queueManager = (ISupportsQueue)generatorManager;
-                            var queueName = msgTrigger.QueueName;
-                            var queue = _prototype.Resources.OfType<CloudPrototyper.Model.Resources.Storage.Queue>().First(q => q.Name == queueName);
-
-                            if (queueManager.SupportsQueue(queue.GetType()))
-                            {
-                                _generatorManagers.Add(app, generatorManager);
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            _generatorManagers.Add(app, generatorManager);
-                            break;
-                        }
+                        _generatorManagers.Add(app, generatorManager);
+                        break;
                     }
                 }
             }
