@@ -6,5 +6,7 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Model
     {
         public string PricingTier { get; set; }
         public int ThroughputUnits { get; set; }
+        public bool WithAutoScale { get; set; }
+        public int MaxThroughputUnits { get; set; }
     }
 }
