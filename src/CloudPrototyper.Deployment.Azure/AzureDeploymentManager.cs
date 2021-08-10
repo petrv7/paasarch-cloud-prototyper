@@ -88,7 +88,8 @@ namespace CloudPrototyper.Deployment.Azure
                     typeof (AzureAppService),
                     typeof (AzureCosmosDbContainer),
                     typeof (AzureFunctionApp),
-                    typeof (AzureEventHub)
+                    typeof (AzureEventHub),
+                    typeof (AzureEventHubNamespace)
                 };
 
         /// <summary>
