@@ -508,9 +508,21 @@ namespace CloudPrototyper.Deployment.Azure
                 throughputProperties = ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
             }
 
-            var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey), throughputProperties);
-            createContainerTask.Wait();
-            var container = createContainerTask.Result.Container;
+            Container container;
+            try
+            {
+                var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey), throughputProperties);
+                createContainerTask.Wait();
+                container = createContainerTask.Result.Container;
+            }
+            catch 
+            {
+                // We cannot check if account is serverless through Azure Management SDK,
+                // so if the container creation fails, we suppose the account is serverless and try again without the throughput properties
+                var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey));
+                createContainerTask.Wait();
+                container = createContainerTask.Result.Container;
+            }
 
             PreparedResources.Add(resource);
             _containers.Add(resource, container);
