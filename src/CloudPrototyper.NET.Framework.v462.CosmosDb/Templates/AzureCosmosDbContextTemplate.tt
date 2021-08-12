@@ -34,8 +34,9 @@ namespace <#= Model.Namespace #>
 				if(entityName == "<#= entity.Name #>")
 				{
 					if(query.PropertyName == "Id")
-					{   
-						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.CosmosId.CompareTo(query.NominalParameter) == 0).ToList().Cast<object>().ToList();
+					{
+						var id = query.NominalParameter.PadLeft(9, '0');
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.CosmosId.CompareTo(id) == 0).ToList().Cast<object>().ToList();
 					}
 
 <# foreach(var prop in entity.ModelParameters.Properties.Where(x=>x.Name != "Id")) { #>
@@ -58,8 +59,10 @@ namespace <#= Model.Namespace #>
 				if(entityName == "<#= entity.Name #>")
 				{
 					if(query.PropertyName == "Id")
-					{   
-						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.CosmosId.CompareTo(query.MinValue) >= 0 && e.CosmosId.CompareTo(query.MaxValue) <= 0).ToList().Cast<object>().ToList();
+					{
+						var minId = query.MinValue.PadLeft(9, '0');
+						var maxId = query.MaxValue.PadLeft(9, '0');
+						return _container.GetItemLinqQueryable<<#= entity.Namespace #>.<#= entity.Name #>>(true).Where(e => e.CosmosId.CompareTo(minId) >= 0 && e.CosmosId.CompareTo(maxId) <= 0).ToList().Cast<object>().ToList();
 					}
 
 <# foreach(var prop in entity.ModelParameters.Properties.Where(x=>x.Name != "Id")) { #>
