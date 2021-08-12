@@ -22,6 +22,10 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Registrations.ApiLayerRegist
                     .ImplementedBy<StorageInterfaceGenerator>()
                     .LifestyleSingleton()
                     .DependsOn(Dependency.OnValue("projectName", projectName)),
+               Component.For<QueryGenerator>()
+                    .ImplementedBy<QueryGenerator>()
+                    .LifestyleSingleton()
+                    .DependsOn(Dependency.OnValue("projectName", projectName)),
                Component.For<MessageBusInterfaceGenerator>()
                     .ImplementedBy<MessageBusInterfaceGenerator>()
                     .LifestyleSingleton()
