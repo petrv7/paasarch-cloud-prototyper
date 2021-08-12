@@ -120,7 +120,7 @@ namespace CloudPrototyper.NET.Framework.v462.Computing.Templates {
 			}	
 		}
 
-		
+		// Path to the contents folder is different for Web Api, local Function App and deployed Function App
 		private string GetPath()
         {
 			var webApiPath = Path.Combine(System.AppContext.BaseDirectory, ""bin"", ""contents"", """);
