@@ -32,80 +32,71 @@ namespace CloudPrototyper.NET.Framework.v462.Computing.Templates {
             
             #line 7 "Templates\ImageTresholdingTemplate.tt"
             this.Write("using System.Collections.Generic;\r\nusing System.Drawing;\r\nusing System.IO;\r\nusing" +
-                    " System.Threading;\r\n// Image tresholding operation\r\nnamespace  ");
+                    " System.Reflection;\r\n\r\n// Image tresholding operation\r\nnamespace  ");
             
             #line default
             #line hidden
             
-            #line 12 "Templates\ImageTresholdingTemplate.tt"
+            #line 13 "Templates\ImageTresholdingTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 12 "Templates\ImageTresholdingTemplate.tt"
+            #line 13 "Templates\ImageTresholdingTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\ImageTresholdingTemplate.tt"
+            #line 15 "Templates\ImageTresholdingTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 14 "Templates\ImageTresholdingTemplate.tt"
+            #line 15 "Templates\ImageTresholdingTemplate.tt"
             this.Write(" : ");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\ImageTresholdingTemplate.tt"
+            #line 15 "Templates\ImageTresholdingTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.OperationInterface.Namespace ));
             
             #line default
             #line hidden
             
-            #line 14 "Templates\ImageTresholdingTemplate.tt"
+            #line 15 "Templates\ImageTresholdingTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\ImageTresholdingTemplate.tt"
+            #line 15 "Templates\ImageTresholdingTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.OperationInterface.Name ));
             
             #line default
             #line hidden
             
-            #line 14 "Templates\ImageTresholdingTemplate.tt"
+            #line 15 "Templates\ImageTresholdingTemplate.tt"
             this.Write("\r\n    {\r\n\t\tpublic const string Key = \"");
             
             #line default
             #line hidden
             
-            #line 16 "Templates\ImageTresholdingTemplate.tt"
+            #line 17 "Templates\ImageTresholdingTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
             
             #line default
             #line hidden
             
-            #line 16 "Templates\ImageTresholdingTemplate.tt"
-            this.Write("\";\r\n\r\n\t\tpublic void Execute(List<string> outputs) \r\n\t\t{\r\n\t\t\tusing(Bitmap bitmap =" +
-                    " new Bitmap(Path.Combine(System.AppContext.BaseDirectory, \"bin\",\"contents\", \"");
-            
-            #line default
-            #line hidden
-            
-            #line 20 "Templates\ImageTresholdingTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 20 "Templates\ImageTresholdingTemplate.tt"
-            this.Write(@""", ""lenna.png"")))
+            #line 17 "Templates\ImageTresholdingTemplate.tt"
+            this.Write(@""";
+
+		public void Execute(List<string> output) 
+		{
+			using (Bitmap bitmap = new Bitmap(GetPath()))
 			{
 					for(int i = 0; i < bitmap.Height; i++)
 					{
@@ -128,9 +119,53 @@ namespace CloudPrototyper.NET.Framework.v462.Computing.Templates {
 					}
 			}	
 		}
-	}
-}
-");
+
+		
+		private string GetPath()
+        {
+			var webApiPath = Path.Combine(System.AppContext.BaseDirectory, ""bin"", ""contents"", """);
+            
+            #line default
+            #line hidden
+            
+            #line 48 "Templates\ImageTresholdingTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 48 "Templates\ImageTresholdingTemplate.tt"
+            this.Write("\", \"lenna.png\");\r\n\t\t\tvar localFunctionpath = Path.Combine(Directory.GetCurrentDir" +
+                    "ectory(), \"contents\", \"");
+            
+            #line default
+            #line hidden
+            
+            #line 49 "Templates\ImageTresholdingTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 49 "Templates\ImageTresholdingTemplate.tt"
+            this.Write("\", \"lenna.png\");\r\n\r\n\t\t\tvar binDirectory = Path.GetDirectoryName(Assembly.GetExecu" +
+                    "tingAssembly().Location);\r\n\t\t\tvar rootDirectory = Path.GetFullPath(Path.Combine(" +
+                    "binDirectory, \"..\"));\r\n\t\t\tvar functionPath = Path.Combine(rootDirectory, \"conten" +
+                    "ts\", \"");
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\ImageTresholdingTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 53 "Templates\ImageTresholdingTemplate.tt"
+            this.Write("\", \"lenna.png\");\r\n\r\n\t\t\tif (File.Exists(webApiPath))\r\n            {\r\n\t\t\t\treturn we" +
+                    "bApiPath;\r\n            }\r\n\r\n\t\t\tif (File.Exists(localFunctionpath))\r\n\t\t\t{\r\n\t\t\t\tre" +
+                    "turn localFunctionpath;\r\n\t\t\t}\r\n\r\n\t\t\treturn functionPath;\r\n\t\t}\r\n\t}\r\n}\r\n");
             
             #line default
             #line hidden
