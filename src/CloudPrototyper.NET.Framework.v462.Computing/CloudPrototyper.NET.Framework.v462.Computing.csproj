@@ -16,5 +16,11 @@
   <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
     <Exec WorkingDirectory="$(ProjectDir)" Command="t4 %(TextTemplate.Identity) -c $(RootNameSpace).$([System.String]::Copy('%(TextTemplate.Identity)').Replace('\','.').Replace('.tt','')) -o $([System.String]::Copy('%(TextTemplate.Identity)').Replace('.tt','.cs'))" />
   </Target>
+  
+  <ItemGroup>
+    <Content Include="Contents\lenna.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>
