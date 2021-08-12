@@ -118,7 +118,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions
 
                 Container.Register(
                     Component.For<ServiceBusFunctionGenerator>().ImplementedBy<ServiceBusFunctionGenerator > ().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
-                        "modelParameters", busActions)).DependsOn(Dependency.OnValue("azureWorkerQueue", bus)).Named(bus.Name + typeof(ServiceBusFunctionGenerator))
+                        "modelParameters", busActions)).DependsOn(Dependency.OnValue("azureServiceBusQueue", bus)).Named(bus.Name + typeof(ServiceBusFunctionGenerator))
                     );
             }
 
