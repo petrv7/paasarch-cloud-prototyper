@@ -88,7 +88,8 @@ namespace CloudPrototyper.Deployment.Azure
                     typeof (AzureAppService),
                     typeof (AzureCosmosDbContainer),
                     typeof (AzureFunctionApp),
-                    typeof (AzureEventHub)
+                    typeof (AzureEventHub),
+                    typeof (AzureEventHubNamespace)
                 };
 
         /// <summary>
@@ -419,13 +420,21 @@ namespace CloudPrototyper.Deployment.Azure
 
             var sku = new EventHubNamespaceSkuType(new(skuName));
 
-            var eventHubNamespace = _azure.EventHubNamespaces
+            var eventHubNamespaceCreation = _azure.EventHubNamespaces
                 .Define(resource.Name)
                 .WithRegion(_resourceGroup.RegionName)
                 .WithExistingResourceGroup(_resourceGroup)
                 .WithSku(sku)
-                .WithCurrentThroughputUnits(resource.ThroughputUnits)
-                .Create();
+                .WithCurrentThroughputUnits(resource.ThroughputUnits);
+
+            if (resource.WithAutoScale)
+            {
+                eventHubNamespaceCreation = eventHubNamespaceCreation
+                    .WithAutoScaling()
+                    .WithThroughputUnitsUpperLimit(resource.MaxThroughputUnits);
+            }
+
+            var eventHubNamespace = eventHubNamespaceCreation.Create();
 
             _eventHubNamespaces.Add(resource, eventHubNamespace);
             PreparedResources.Add(resource);
@@ -499,9 +508,21 @@ namespace CloudPrototyper.Deployment.Azure
                 throughputProperties = ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
             }
 
-            var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey), throughputProperties);
-            createContainerTask.Wait();
-            var container = createContainerTask.Result.Container;
+            Container container;
+            try
+            {
+                var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey), throughputProperties);
+                createContainerTask.Wait();
+                container = createContainerTask.Result.Container;
+            }
+            catch 
+            {
+                // We cannot check if account is serverless through Azure Management SDK,
+                // so if the container creation fails, we suppose the account is serverless and try again without the throughput properties
+                var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey));
+                createContainerTask.Wait();
+                container = createContainerTask.Result.Container;
+            }
 
             PreparedResources.Add(resource);
             _containers.Add(resource, container);

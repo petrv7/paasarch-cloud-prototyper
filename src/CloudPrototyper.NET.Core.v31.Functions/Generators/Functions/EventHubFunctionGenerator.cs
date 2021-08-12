@@ -18,7 +18,8 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Generators.Functions
     {
         public AzureEventHub AzureEventHub { get; set; }
         public OperationInterfaceGenerator OperationInterface { get; set; }
-        public IList<ActionGenerator> Actions { get; set; }
+        public IList<ActionGenerator> Actions { get { return _actions; }  }
+        private readonly IList<ActionGenerator> _actions;
         public override List<PackageConfigInfo> GetNugetPackages() => new()
         {
             new PackageConfigInfo(new(), "Microsoft.Azure.WebJobs.Extensions.EventHubs", "4.1.1", "")
@@ -30,7 +31,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Generators.Functions
                 projectName, "Functions", azureEventHub.Name + "Function", typeof(EventHubFunctionTemplate),
                 modelParameters, azureEventHub.Name + "Function")
         {
-            Actions = actions.Where(x => modelParameters.Select(y => y.Name).Contains(x.Key)).ToList();
+            _actions = actions.Where(x => modelParameters.Select(y => y.Name).Contains(x.Key)).ToList();
             OperationInterface = operationInterface;
             AzureEventHub = azureEventHub;
         }
