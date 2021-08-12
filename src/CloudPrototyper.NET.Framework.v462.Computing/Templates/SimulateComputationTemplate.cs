@@ -15,12 +15,12 @@ namespace CloudPrototyper.NET.Framework.v462.Computing.Templates {
     using System;
     
     
-    public partial class ImageTresholdingTemplate : ImageTresholdingTemplateBase {
+    public partial class SimulateComputationTemplate : SimulateComputationTemplateBase {
         
         
-        private CloudPrototyper.NET.Framework.v462.Computing.Generators.ImageTresholdingGenerator _ModelField;
+        private CloudPrototyper.NET.Framework.v462.Computing.Generators.SimulateComputationGenerator _ModelField;
         
-        public CloudPrototyper.NET.Framework.v462.Computing.Generators.ImageTresholdingGenerator Model {
+        public CloudPrototyper.NET.Framework.v462.Computing.Generators.SimulateComputationGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -30,142 +30,69 @@ namespace CloudPrototyper.NET.Framework.v462.Computing.Templates {
         public virtual string TransformText() {
             this.GenerationEnvironment = null;
             
-            #line 7 "Templates\ImageTresholdingTemplate.tt"
-            this.Write("using System.Collections.Generic;\r\nusing System.Drawing;\r\nusing System.IO;\r\nusing" +
-                    " System.Reflection;\r\n\r\n// Image tresholding operation\r\nnamespace  ");
+            #line 7 "Templates\SimulateComputationTemplate.tt"
+            this.Write("using System.Collections.Generic;\r\nusing System.Threading;\r\n\r\n// Computation simu" +
+                    "lation operation\r\nnamespace  ");
             
             #line default
             #line hidden
             
-            #line 13 "Templates\ImageTresholdingTemplate.tt"
+            #line 11 "Templates\SimulateComputationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 13 "Templates\ImageTresholdingTemplate.tt"
+            #line 11 "Templates\SimulateComputationTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 15 "Templates\ImageTresholdingTemplate.tt"
+            #line 13 "Templates\SimulateComputationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\ImageTresholdingTemplate.tt"
+            #line 13 "Templates\SimulateComputationTemplate.tt"
             this.Write(" : ");
             
             #line default
             #line hidden
             
-            #line 15 "Templates\ImageTresholdingTemplate.tt"
+            #line 13 "Templates\SimulateComputationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.OperationInterface.Namespace ));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\ImageTresholdingTemplate.tt"
+            #line 13 "Templates\SimulateComputationTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 15 "Templates\ImageTresholdingTemplate.tt"
+            #line 13 "Templates\SimulateComputationTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.OperationInterface.Name ));
             
             #line default
             #line hidden
             
-            #line 15 "Templates\ImageTresholdingTemplate.tt"
-            this.Write("\r\n    {\r\n\t\tpublic const string Key = \"");
+            #line 13 "Templates\SimulateComputationTemplate.tt"
+            this.Write("\r\n    {\r\n\t\tpublic void Execute(List<string> output) \r\n\t\t{\r\n\t\t\tThread.Sleep(");
             
             #line default
             #line hidden
             
-            #line 17 "Templates\ImageTresholdingTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
+            #line 17 "Templates\SimulateComputationTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.MsLength ));
             
             #line default
             #line hidden
             
-            #line 17 "Templates\ImageTresholdingTemplate.tt"
-            this.Write(@""";
-
-		public void Execute(List<string> output) 
-		{
-			using (Bitmap bitmap = new Bitmap(GetPath()))
-			{
-					for(int i = 0; i < bitmap.Height; i++)
-					{
-						for(int j = 0; j < bitmap.Width; j++)
-						{	
-							var pixel = bitmap.GetPixel(i,j);
-							if (pixel.R + pixel.B + pixel.G >= 3*128)
-							{
-								bitmap.SetPixel(
-									i, j, Color.White
-								);
-							}
-							else
-							{
-								bitmap.SetPixel(
-									i, j, Color.Black
-								);
-							}
-						}
-					}
-			}	
-		}
-
-		// Path to the contents folder is different for Web Api, local Function App and deployed Function App
-		private string GetPath()
-        {
-			var webApiPath = Path.Combine(System.AppContext.BaseDirectory, ""bin"", ""contents"", """);
-            
-            #line default
-            #line hidden
-            
-            #line 48 "Templates\ImageTresholdingTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 48 "Templates\ImageTresholdingTemplate.tt"
-            this.Write("\", \"lenna.png\");\r\n\t\t\tvar localFunctionpath = Path.Combine(Directory.GetCurrentDir" +
-                    "ectory(), \"contents\", \"");
-            
-            #line default
-            #line hidden
-            
-            #line 49 "Templates\ImageTresholdingTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 49 "Templates\ImageTresholdingTemplate.tt"
-            this.Write("\", \"lenna.png\");\r\n\r\n\t\t\tvar binDirectory = Path.GetDirectoryName(Assembly.GetExecu" +
-                    "tingAssembly().Location);\r\n\t\t\tvar rootDirectory = Path.GetFullPath(Path.Combine(" +
-                    "binDirectory, \"..\"));\r\n\t\t\tvar functionPath = Path.Combine(rootDirectory, \"conten" +
-                    "ts\", \"");
-            
-            #line default
-            #line hidden
-            
-            #line 53 "Templates\ImageTresholdingTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 53 "Templates\ImageTresholdingTemplate.tt"
-            this.Write("\", \"lenna.png\");\r\n\r\n\t\t\tif (File.Exists(webApiPath))\r\n            {\r\n\t\t\t\treturn we" +
-                    "bApiPath;\r\n            }\r\n\r\n\t\t\tif (File.Exists(localFunctionpath))\r\n\t\t\t{\r\n\t\t\t\tre" +
-                    "turn localFunctionpath;\r\n\t\t\t}\r\n\r\n\t\t\treturn functionPath;\r\n\t\t}\r\n\t}\r\n}\r\n");
+            #line 17 "Templates\SimulateComputationTemplate.tt"
+            this.Write(");\r\n\t\t}\r\n\t}\r\n}\r\n");
             
             #line default
             #line hidden
@@ -177,13 +104,13 @@ namespace CloudPrototyper.NET.Framework.v462.Computing.Templates {
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.Computing.Generators.ImageTresholdingGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Framework.v462.Computing.Generators.ImageTresholdingGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.Framework.v462.Computing.Generators.SimulateComputationGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.Framework.v462.Computing.Generators.SimulateComputationGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Framework.v462.Computing.Generators.ImageTresholdin" +
-                                "gGenerator\' of the parameter \'Model\' did not match the type passed to the templa" +
-                                "te");
+                        this.Error("The type \'CloudPrototyper.NET.Framework.v462.Computing.Generators.SimulateComputa" +
+                                "tionGenerator\' of the parameter \'Model\' did not match the type passed to the tem" +
+                                "plate");
                     }
                 }
             }
@@ -191,7 +118,7 @@ namespace CloudPrototyper.NET.Framework.v462.Computing.Templates {
         }
     }
     
-    public class ImageTresholdingTemplateBase {
+    public class SimulateComputationTemplateBase {
         
         private global::System.Text.StringBuilder builder;
         

@@ -7,7 +7,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Threading;
+using System.Reflection;
+
 // Image tresholding operation
 namespace  <#= Model.Namespace #> 
 {
@@ -15,9 +16,9 @@ namespace  <#= Model.Namespace #>
     {
 		public const string Key = "<#= Model.ModelParameters.Name #>";
 
-		public void Execute(List<string> outputs) 
+		public void Execute(List<string> output) 
 		{
-			using(Bitmap bitmap = new Bitmap(Path.Combine(System.AppContext.BaseDirectory, "bin","contents", "<#= Model.ModelParameters.Name #>", "lenna.png")))
+			using (Bitmap bitmap = new Bitmap(GetPath()))
 			{
 					for(int i = 0; i < bitmap.Height; i++)
 					{
@@ -39,6 +40,29 @@ namespace  <#= Model.Namespace #>
 						}
 					}
 			}	
+		}
+
+		// Path to the contents folder is different for Web Api, local Function App and deployed Function App
+		private string GetPath()
+        {
+			var webApiPath = Path.Combine(System.AppContext.BaseDirectory, "bin", "contents", "<#= Model.ModelParameters.Name #>", "lenna.png");
+			var localFunctionpath = Path.Combine(Directory.GetCurrentDirectory(), "contents", "<#= Model.ModelParameters.Name #>", "lenna.png");
+
+			var binDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+			var rootDirectory = Path.GetFullPath(Path.Combine(binDirectory, ".."));
+			var functionPath = Path.Combine(rootDirectory, "contents", "<#= Model.ModelParameters.Name #>", "lenna.png");
+
+			if (File.Exists(webApiPath))
+            {
+				return webApiPath;
+            }
+
+			if (File.Exists(localFunctionpath))
+			{
+				return localFunctionpath;
+			}
+
+			return functionPath;
 		}
 	}
 }

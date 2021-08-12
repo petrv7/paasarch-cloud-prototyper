@@ -4,6 +4,7 @@ using CloudPrototyper.Interface.Generation.Informations;
 using CloudPrototyper.NET.Framework.v462.Computing.Models;
 using CloudPrototyper.NET.Framework.v462.Computing.Templates;
 using CloudPrototyper.NET.Interface.Generation;
+using CloudPrototyper.NET.Interface.Generation.Informations;
 using CloudPrototyper.NET.Interface.Prototyper;
 
 namespace CloudPrototyper.NET.Framework.v462.Computing.Generators
@@ -12,6 +13,10 @@ namespace CloudPrototyper.NET.Framework.v462.Computing.Generators
     {
         public OperationInterfaceGenerator OperationInterface { get; set; }
 
+        public override List<PackageConfigInfo> GetNugetPackages() => new()
+        {
+            new(new(), "System.Drawing.Common", "5.0.2", "")
+        };
 
         public override List<ContentInfo> GetContents(string projectName) => new List<ContentInfo>
         { 

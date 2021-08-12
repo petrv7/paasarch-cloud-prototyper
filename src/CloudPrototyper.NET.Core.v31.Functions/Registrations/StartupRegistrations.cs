@@ -26,6 +26,10 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Registrations
                Component.For<MessageBusInterfaceGenerator>()
                     .ImplementedBy<MessageBusInterfaceGenerator>()
                     .LifestyleSingleton()
+                    .DependsOn(Dependency.OnValue("projectName", projectName)),
+               Component.For<QueryGenerator>()
+                    .ImplementedBy<QueryGenerator>()
+                    .LifestyleSingleton()
                     .DependsOn(Dependency.OnValue("projectName", projectName))
           };
     }
