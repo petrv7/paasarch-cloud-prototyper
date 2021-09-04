@@ -4,15 +4,10 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ parameter type="CloudPrototyper.NET.Core.v31.Functions.Generators.StartupGenerator" name="Model" #>
-using Castle.Windsor;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor.MsDependencyInjection;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 using System.Linq;
-using Microsoft.Azure.WebJobs;
+using System.Reflection;
 
 [assembly: FunctionsStartup(typeof(<#= Model.Namespace #> .Startup))]
 
@@ -23,35 +18,29 @@ namespace <#= Model.Namespace #>
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            var container = new WindsorContainer();
-            container.Register(
-                Classes.FromAssemblyContaining<<#= Model.OperationInterface.Namespace #>.<#= Model.OperationInterface.Name #>>()
-                    .BasedOn<<#= Model.OperationInterface.Namespace #>.<#= Model.OperationInterface.Name #>>()
-                    .LifestyleTransient(),
-                Classes.FromAssemblyContaining<<#= Model.ActionBase.Namespace #>.<#= Model.ActionBase.Name #>>()
-                    .BasedOn<<#= Model.ActionBase.Namespace #>.<#= Model.ActionBase.Name #>>()
-                    .WithService.AllInterfaces()
-                    .LifestyleTransient(),
-                Classes.FromAssemblyContaining<<#= Model.MessageBusInterface.Namespace #>.<#= Model.MessageBusInterface.Name #>>()
-                    .BasedOn<<#= Model.MessageBusInterface.Namespace #>.<#= Model.MessageBusInterface.Name #>>()
-                    .LifestyleTransient(),
-                Classes.FromAssemblyContaining<<#= Model.StorageInterface.Namespace #>.<#= Model.StorageInterface.Name #>>()
-                    .BasedOn<<#= Model.StorageInterface.Namespace #>.<#= Model.StorageInterface.Name #>>()
-                    .LifestyleTransient()
-                );
-
-            var functions = Assembly.GetExecutingAssembly().GetTypes().Where(t =>
-                t.GetMethods().Any(m => m.GetCustomAttributes(typeof(FunctionNameAttribute), false).Any()));
-
-            foreach (var function in functions)
+            var opAssembly = typeof(<#= Model.OperationInterface.Namespace #>.<#= Model.OperationInterface.Name #>).Assembly;
+            var actionAssembly = typeof(<#= Model.ActionBase.Namespace #>.<#= Model.ActionBase.Name #>).Assembly;
+            var busAssembly = typeof(<#= Model.MessageBusInterface.Namespace #>.<#= Model.MessageBusInterface.Name #>).Assembly;
+            var storageAssembly = typeof(<#= Model.StorageInterface.Namespace #>.<#= Model.StorageInterface.Name #>).Assembly;
+            var assemblies = new Assembly[] {opAssembly, actionAssembly, busAssembly, storageAssembly};
+            var types = assemblies.SelectMany(a => a.GetTypes()).Where(t => !t.IsAbstract && !t.IsInterface).ToList();
+            
+            foreach (var type in types.Where(t => typeof(<#= Model.OperationInterface.Namespace #>.<#= Model.OperationInterface.Name #>).IsAssignableFrom(t)))
             {
-                container.Register(Component.For(function).LifestyleTransient());
+                builder.Services.AddTransient(type, type);
             }
-
-            builder.Services.AddScoped<CastleWindsorJobActivator.ScopeDisposable>()
-                .AddSingleton<IJobActivator>(new CastleWindsorJobActivator(container));
-
-            container.AddServices(builder.Services);
+            foreach (var type in types.Where(t => typeof(<#= Model.ActionBase.Namespace #>.<#= Model.ActionBase.Name #>).IsAssignableFrom(t)))
+            {
+                builder.Services.AddTransient(type, type);
+            }
+            foreach (var type in types.Where(t => typeof(<#= Model.MessageBusInterface.Namespace #>.<#= Model.MessageBusInterface.Name #>).IsAssignableFrom(t)))
+            {
+                builder.Services.AddTransient(type, type);
+            }
+            foreach (var type in types.Where(t => typeof(<#= Model.StorageInterface.Namespace #>.<#= Model.StorageInterface.Name #>).IsAssignableFrom(t)))
+            {
+                builder.Services.AddTransient(type, type);
+            }           
         }
     }
 }

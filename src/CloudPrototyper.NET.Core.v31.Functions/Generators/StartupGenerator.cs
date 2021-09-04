@@ -14,24 +14,6 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Generators
         public MessageBusInterfaceGenerator MessageBusInterface { get; set; }
         public OperationInterfaceGenerator OperationInterface { get; set; }
 
-        public override List<PackageConfigInfo> GetNugetPackages() => new List<PackageConfigInfo>
-        {
-            new PackageConfigInfo(new List<Tuple<string, string>>
-            {
-                new Tuple<string, string>("", @"")
-            },"Castle.Windsor","5.1.1",""),
-
-            new PackageConfigInfo(new List<Tuple<string, string>>
-            {
-                new Tuple<string, string>("", @"")
-            },"Castle.Windsor.MsDependencyInjection","3.4.0",""),
-
-            new PackageConfigInfo(new List<Tuple<string, string>>
-            {
-                new Tuple<string, string>("", @"")
-            },"Microsoft.Extensions.DependencyInjection","5.0.1","")
-        };
-
         public StartupGenerator(string projectName, StorageInterfaceGenerator storageInterface, MessageBusInterfaceGenerator messageBusInterface, OperationInterfaceGenerator operationInterface, ActionBaseGenerator actionBase, bool canInitialize = true) : base(projectName, "Utils", "Startup", typeof(StartupTemplate), canInitialize)
         {
             StorageInterface = storageInterface;
