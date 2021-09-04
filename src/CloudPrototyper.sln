@@ -101,7 +101,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Core.v3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Core.v31.FunctionApp", "CloudPrototyper.NET.Core.v31.FunctionApp\CloudPrototyper.NET.Core.v31.FunctionApp.csproj", "{B82A1ECE-3216-489B-8619-6162F6D08A38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudPrototyper.NET.Framework.v462.EventHub", "CloudPrototyper.NET.Framework.v462.EventHub\CloudPrototyper.NET.Framework.v462.EventHub.csproj", "{C98E8C9C-C338-4903-809A-455C210FE10F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framework.v462.EventHub", "CloudPrototyper.NET.Framework.v462.EventHub\CloudPrototyper.NET.Framework.v462.EventHub.csproj", "{C98E8C9C-C338-4903-809A-455C210FE10F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -255,7 +255,7 @@ Global
 		{C98E8C9C-C338-4903-809A-455C210FE10F} = {630BC060-BA11-4234-B345-79E0CBAA8D75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 		SolutionGuid = {2800978C-E5C9-475C-AE68-736481F4345E}
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
 	EndGlobalSection
 EndGlobal
