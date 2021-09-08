@@ -8,6 +8,8 @@
     <ProjectReference Include="..\CloudPrototyper.Azure\CloudPrototyper.Azure.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Model\CloudPrototyper.Model.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Computing\CloudPrototyper.NET.Framework.v462.Computing.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.CosmosDb\CloudPrototyper.NET.Framework.v462.CosmosDb.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.EventHub\CloudPrototyper.NET.Framework.v462.EventHub.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.TblStorage\CloudPrototyper.NET.Framework.v462.TblStorage.csproj" />
   </ItemGroup>
 

@@ -11,6 +11,7 @@ using CloudPrototyper.Model.Operations.DataAccess;
 using CloudPrototyper.Model.Resources;
 using CloudPrototyper.Model.Resources.Storage;
 using CloudPrototyper.NET.Framework.v462.Computing.Models;
+using CloudPrototyper.NET.Framework.v462.CosmosDb.Model;
 using CloudPrototyper.NET.Framework.v462.TblStorage.Model;
 
 namespace CloudPrototyper.Examples
@@ -20,12 +21,19 @@ namespace CloudPrototyper.Examples
         public Prototype NoSqlVersionAsynchronousModel { get; }
         public Prototype NoSqlVersionSynchronousModel { get; }
         public Prototype SqlVersionSynchronousModel { get; }
+        public Prototype ServerlessNoSqlVersionAsynchronousModel { get; }
+        public Prototype ServerlessNoSqlVersionSynchronousModel { get; }
+        public Prototype ServerlessSqlVersionSynchronousModel { get; }
 
         public TapHomeSample()
         {
             NoSqlVersionAsynchronousModel = MakeNoSqlVersionAsynchronousModel();
             NoSqlVersionSynchronousModel = MakeNoSqlVersionSynchronousModel();
             SqlVersionSynchronousModel = MakeSqlVersionSynchronousModel();
+
+            ServerlessNoSqlVersionAsynchronousModel = MakeServerlessNoSqlVersionAsynchronousModel();
+            ServerlessNoSqlVersionSynchronousModel = MakeServerlessNoSqlVersionSynchronousModel();
+            ServerlessSqlVersionSynchronousModel = MakeServerlessSqlVersionSynchronousModel();
         }
 
         private Prototype MakeNoSqlVersionAsynchronousModel()
@@ -696,6 +704,671 @@ namespace CloudPrototyper.Examples
                         PerformanceTier = "StandardS3",
                         WithApplication = "DataCollectingApiSQL"
 
+                    }
+                }
+            };
+
+        }
+
+        private Prototype MakeServerlessNoSqlVersionAsynchronousModel()
+        {
+            return new Prototype()
+            {
+                Applications = new List<Application>()
+                {
+                    new RestApiApplication
+                    {
+                        Name = "DataCollectingApi",
+                        DeployTo = "Azure",
+                        Platform = "DotNetCore31",
+                        Actions = new List<CallableAction>
+                        {
+                            new CallableAction
+                            {
+                                Name = "SensorDataReportToSave",
+                                Operation = new SequenceOperation
+                                {
+                                    Name = "SensorDataReportToSaveSeq",
+                                    Operations = new List<Operation>{
+
+                                        new InsertEntityToEntityStorage()
+                                        {
+                                            EntityName = "SerializedContainer",
+                                            EntitySetName = "SerializedContainers",
+                                            EntityStorageName = "SensorDataStorage",
+                                            Name = "InsertOneRawToSensorDataStorage",
+                                            NumberOfEntities = 1
+                                        },
+                                    new AddMessageToQueue
+                                    {
+                                        EntityName = "SerializedContainer",
+                                        Name = "AddSerializedContainerToQueue",
+                                        QueueName = "ComputeServiceQueue"
+                                    }}
+                                }
+                            }
+                        }
+                    },
+
+                    new RestApiApplication
+                    {
+                        Name = "VisualisationDataApi",
+                        DeployTo = "Azure",
+                        Platform = "DotNetCore31",
+                        Actions = new List<CallableAction>
+                        {
+                            new CallableAction
+                            {
+                                Name = "VisualisationDataQuery",
+                                Operation = new LoadEntitiesFromEntityStorage
+                                {
+                                    EntityName = "ProcessedContainer",
+                                    Name = "GetProcessedDataToForVisualization",
+                                    EntitySetName = "ProcessedContainers",
+                                    EntityStorageName = "SensorDataStorage",
+                                    Filter = new FilterCondition
+                                    {
+                                        IsNominal = true,
+                                        NumberOfResults = 1,
+                                        UseKey = true
+                                    }
+                                }
+                            }
+                        }
+                    },
+
+                    new WorkerApplication
+                    {
+                        Name = "ComputeUnit",
+                        Platform = "DotNetCore31",
+                        DeployTo = "Azure",
+                        Actions = new List<TriggeredAction>
+                        {
+                            new TriggeredAction()
+                            {
+                                Trigger = new MessageReceivedTrigger
+                                {
+                                    MessageType = "SerializedContainer",
+                                    QueueName = "ComputeServiceQueue"
+                                },
+                                Name = "ComputeBatch",
+                                Operation = new SequenceOperation()
+                                {
+                                    Name = "ComputeBatchSeq",
+                                    Operations = new List<Operation> {
+
+                                        new LoadEntitiesFromEntityStorage
+                                        {
+                                            EntityName = "SerializedContainer",
+                                            Name = "GetProcessedDataToForVisualization",
+                                            EntitySetName = "SerializedContainers",
+                                            EntityStorageName = "SensorDataStorage",
+                                            Filter = new FilterCondition
+                                            {
+                                                IsNominal = true,
+                                                NumberOfResults = 1,
+                                                UseKey = true
+                                            }
+                                        },
+                                        new InsertEntityToEntityStorage()
+                                        {
+                                            Description = "Inserts processed item to storage",
+                                            EntityName = "ProcessedContainer",
+                                            EntitySetName = "ProcessedContainers",
+                                            EntityStorageName = "SensorDataStorage",
+                                            Name = "InsertOneToSensorDataStorage",
+                                            NumberOfEntities = 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                Entities = new List<Entity>()
+                {
+                    new Entity
+                    {
+                        Name = "SerializedContainer",
+                        Description = "Data from 3 hours",
+                        Properties = new List<PropertyInfo>
+                        {
+                            new PropertyInfo
+                            {
+                                ContentSize = 11250,
+                                Name = "SensorData",
+                                Type = "System.String"
+                            }, new PropertyInfo
+                            {
+                                ContentSize = 11250,
+                                Name = "SensorData2",
+                                Type = "System.String"
+                            }, new PropertyInfo
+                            {
+                                ContentSize = 11250,
+                                Name = "SensorData3",
+                                Type = "System.String"
+                            }, new PropertyInfo
+                            {
+                                ContentSize = 11250,
+                                Name = "SensorData4",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 36,
+                                Name = "LocationId",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "DeviceId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "StatisticsFunctionId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "ValueLogTypeId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "PeriodId",
+                                Type = "System.Int32"
+                            },
+                        }
+
+                    },
+                    new Entity
+                    {
+                        Name = "ProcessedContainer",
+                        Properties = new List<PropertyInfo>
+                        {
+                            new PropertyInfo
+                            {
+                                ContentSize = 2000,
+                                Name = "SensorData",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 36,
+                                Name = "LocationId",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "DeviceId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "StatisticsFunctionId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "ValueLogTypeId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "PeriodId",
+                                Type = "System.Int32"
+                            },
+
+                        }
+                    }
+                },
+                Resources = new List<Resource>()
+                {
+                    new AzureCosmosDbContainer()
+                    {
+                        DeployTo = "Azure",
+                        Name = "SensorDataStorage",
+                        ThroughputType = "manual",
+                        RUs = 400,
+                        EntitySets = new List<EntitySet>
+                        {
+                            new EntitySet
+                            {
+                                Count = 10000,
+                                EntityName = "SerializedContainer",
+                                Name = "SerializedContainers"
+                            },
+                            new EntitySet
+                            {
+                                Count = 100,
+                                EntityName = "ProcessedContainer",
+                                Name = "ProcessedContainers"
+                            }
+                        }
+                    },
+                    new AzureServiceBusQueue
+                    {
+                        DeployTo = "Azure",
+                        Name = "ComputeServiceQueue",
+                        SizeInGB = 2
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "VisualisationApi",
+                        WithApplication = "VisualisationDataApi"
+
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "CollectingApi",
+                        WithApplication = "DataCollectingApi"
+
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "ComputeWorker",
+                        WithApplication = "ComputeUnit"
+                    },
+                }
+            };
+
+        }
+        private Prototype MakeServerlessNoSqlVersionSynchronousModel()
+        {
+            return new Prototype()
+            {
+                Applications = new List<Application>()
+                {
+                    new RestApiApplication
+                    {
+                        Name = "DataCollectingApiNoSQL",
+                        DeployTo = "Azure",
+                        Platform = "DotNetCore31",
+                        Actions = new List<CallableAction>
+                        {
+                            new CallableAction
+                            {
+                                Name = "ComputeBatchOfBatch",
+                                Operation = new SequenceOperation
+                                {
+                                    Name = "ComputeBatchOfBatchSeqOp",
+                                    Operations = new List<Operation>
+                                    {
+                                        new InsertEntityToEntityStorage()
+                                        {
+                                            EntityName = "SerializedContainer",
+                                            EntitySetName = "SerializedContainers",
+                                            EntityStorageName = "SensorDataStorage",
+                                            Name = "InsertOneRawToSensorDataStorage",
+                                            NumberOfEntities = 1
+                                        },
+                                         new LoadEntitiesFromEntityStorage
+                                        {
+                                        EntityName = "SerializedContainer",
+                                        Name = "GetProcessedDataToForVisualization",
+                                        EntitySetName = "SerializedContainers",
+                                        EntityStorageName = "SensorDataStorage",
+                                        Filter = new FilterCondition
+                                        {
+                                            IsNominal = true,
+                                            NumberOfResults = 1,
+                                            UseKey = true
+                                        }
+                                    },
+                                        new InsertEntityToEntityStorage()
+                                        {
+                                            Description = "Inserts processed item to storage",
+                                            EntityName = "ProcessedContainer",
+                                            EntitySetName = "ProcessedContainers",
+                                            EntityStorageName = "SensorDataStorage",
+                                            Name = "InsertOneToSensorDataStorage",
+                                            NumberOfEntities = 1
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    },
+
+                    new RestApiApplication
+                    {
+                        Name = "VisualisationDataApiNoSQL",
+                        DeployTo = "Azure",
+                        Platform = "DotNetCore31",
+                        Actions = new List<CallableAction>
+                        {
+                            new CallableAction
+                            {
+                                Name = "VisualisationDataQuery",
+                                Operation = new LoadEntitiesFromEntityStorage
+                                {
+                                    EntityName = "ProcessedContainer",
+                                    Name = "GetProcessedDataToForVisualization",
+                                    EntitySetName = "ProcessedContainers",
+                                    EntityStorageName = "SensorDataStorage",
+                                    Filter = new FilterCondition
+                                    {
+                                        IsNominal = true,
+                                        NumberOfResults = 1,
+                                        UseKey = true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                Entities = new List<Entity>()
+                {
+                    new Entity
+                    {
+                        Name = "SerializedContainer",
+                        Description = "Data from 3 hours",
+                        Properties = new List<PropertyInfo>
+                        {
+                            new PropertyInfo
+                            {
+                                ContentSize = 11250,
+                                Name = "SensorData",
+                                Type = "System.String"
+                            }, new PropertyInfo
+                            {
+                                ContentSize = 11250,
+                                Name = "SensorData2",
+                                Type = "System.String"
+                            }, new PropertyInfo
+                            {
+                                ContentSize = 11250,
+                                Name = "SensorData3",
+                                Type = "System.String"
+                            }, new PropertyInfo
+                            {
+                                ContentSize = 11250,
+                                Name = "SensorData4",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 36,
+                                Name = "LocationId",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "DeviceId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "StatisticsFunctionId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "ValueLogTypeId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "PeriodId",
+                                Type = "System.Int32"
+                            },
+                        }
+
+                    },
+                    new Entity
+                    {
+                        Name = "ProcessedContainer",
+                        Properties = new List<PropertyInfo>
+                        {
+                            new PropertyInfo
+                            {
+                                ContentSize = 2000,
+                                Name = "SensorData",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 36,
+                                Name = "LocationId",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "DeviceId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "StatisticsFunctionId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "ValueLogTypeId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "PeriodId",
+                                Type = "System.Int32"
+                            },
+
+                        }
+                    }
+                },
+                Resources = new List<Resource>()
+                {
+                    new AzureCosmosDbContainer()
+                    {
+                        DeployTo = "Azure",
+                        Name = "SensorDataStorage",
+                        ThroughputType = "manual",
+                        RUs = 400,
+                        EntitySets = new List<EntitySet>
+                        {
+                            new EntitySet
+                            {
+                                Count = 10000,
+                                EntityName = "SerializedContainer",
+                                Name = "SerializedContainers"
+                            },
+                            new EntitySet
+                            {
+                                Count = 1000,
+                                EntityName = "ProcessedContainer",
+                                Name = "ProcessedContainers"
+                            }
+                        }
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "VisualisationApi",
+                        WithApplication = "VisualisationDataApiNoSQL"
+
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "CollectingApi",
+                        WithApplication = "DataCollectingApiNoSQL"
+                    }
+                }
+            };
+
+        }
+        private Prototype MakeServerlessSqlVersionSynchronousModel()
+        {
+            return new Prototype()
+            {
+                Applications = new List<Application>()
+                {
+                    new RestApiApplication
+                    {
+                        Name = "DataCollectingApiSQL",
+                        DeployTo = "Azure",
+                        Platform = "DotNetCore31",
+                        Actions = new List<CallableAction>
+                        {
+                            new CallableAction
+                            {
+                                Name = "ComputeBatchOfBatch",
+                                Operation = new SequenceOperation
+                                {
+                                    Name = "ComputeBatchOfBatchSeqOp",
+                                    NumberOfRepetitions = 1,
+                                    Operations = new List<Operation>
+                                    {
+
+                                        new InsertEntityToEntityStorage()
+                                        {
+                                            Description = "Inserts processed item to storage",
+                                            EntityName = "Measurement",
+                                            EntitySetName = "Measurements",
+                                            EntityStorageName = "SensorDataStorage",
+                                            Name = "InsertOneToSensorDataStorage",
+                                            NumberOfEntities = 45
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+
+                    new RestApiApplication
+                    {
+                        Name = "VisualisationDataApiSQL",
+                        DeployTo = "Azure",
+                        Platform = "DotNetCore31",
+                        Actions = new List<CallableAction>
+                        {
+                            new CallableAction
+                            {
+                                Name = "VisualisationDataQuery",
+                                Operation = new SequenceOperation()
+                                    {
+                                    Name = "VisualisationDataQuerySeqOp",
+                                    NumberOfRepetitions = 10,
+                                    Operations = new List<Operation>
+                                    {
+
+                                        new LoadEntitiesFromEntityStorage
+                                        {
+                                            EntityName = "Measurement",
+                                            Name = "GetProcessedDataForVisualization",
+                                            EntitySetName = "Measurements",
+                                            EntityStorageName = "SensorDataStorage",
+                                            Filter = new FilterCondition
+                                            {
+                                                    NumberOfResults = 30,
+                                                    UseKey = true
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                },
+                Entities = new List<Entity>
+                {
+                    new Entity
+                    {
+                        Name = "Measurement",
+                        Properties = new List<PropertyInfo>
+                        {
+                            new PropertyInfo
+                            {
+                                ContentSize = 50,
+                                Name = "SensorData",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 36,
+                                Name = "LocationId",
+                                Type = "System.String"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "DeviceId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "StatisticsFunctionId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "ValueLogTypeId",
+                                Type = "System.Int32"
+                            },
+                            new PropertyInfo
+                            {
+                                ContentSize = 9,
+                                Name = "PeriodId",
+                                Type = "System.Int32"
+                            },
+                        }
+
+                    }
+                },
+                Resources = new List<Resource>()
+                {
+                    new AzureSQLDatabase()
+                    {
+                        DeployTo = "Azure",
+                        Name = "SensorDataStorage",
+                        PerformanceTier = "serverless",
+                        MaxvCores = 1,
+                        EntitySets = new List<EntitySet>
+                        {
+                            new EntitySet
+                            {
+                                Count = 100,
+                                EntityName = "Measurement",
+                                Name = "Measurements"
+                            }
+                        }
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "VisualisationApi",
+                        WithApplication = "VisualisationDataApiSQL"
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "CollectingApi",
+                        WithApplication = "DataCollectingApiSQL"
                     }
                 }
             };
