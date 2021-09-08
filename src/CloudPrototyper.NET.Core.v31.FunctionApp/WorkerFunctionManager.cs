@@ -25,7 +25,7 @@ using CloudPrototyper.NET.Interface.Generation.Informations;
 using Action = CloudPrototyper.Model.Applications.Action;
 using ProjectFactory = CloudPrototyper.NET.Core.v31.Common.Factories.ProjectFactory;
 
-namespace CloudPrototyper.NET.Core.v31.Functions
+namespace CloudPrototyper.NET.Core.v31.FunctionApp
 {
     public class WorkerFunctionManager : GeneratorManager<WorkerApplication>, IServerless
     {
@@ -98,10 +98,6 @@ namespace CloudPrototyper.NET.Core.v31.Functions
 
         private void RegisterFunctionComponents(WorkerApplication application, Prototype prototype)
         {
-            Container.Register(
-                Component.For<CastleWindsorJobActivatorGenerator>().ImplementedBy<CastleWindsorJobActivatorGenerator>()
-                    .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
-            );
             Container.Register(
                 Component.For<StartupGenerator>().ImplementedBy<StartupGenerator>()
                     .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
