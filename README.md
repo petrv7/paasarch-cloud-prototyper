@@ -1,5 +1,8 @@
 # PaaSArch Cloud Prototyper Tool
 
+### Dependencies
+[dotnet-t4](https://www.nuget.org/packages/dotnet-t4/)
+
 ### Install
 ```
 git clone https://github.com/petrv7/paasarch-cloud-prototyper
@@ -30,5 +33,5 @@ Tool requires configuration file in order to create resources in Azure. The ```T
 ```
 
 ### Authors 
-Original authors: Ondřej Gasior and David Gešvindr
+Original authors: Ondřej Gasior and David Gešvindr<br />
 Serverless extension: [Petr Vitovský](https://github.com/petrv7)
