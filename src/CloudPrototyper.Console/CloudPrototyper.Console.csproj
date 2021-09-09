@@ -13,7 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CloudPrototyper.Azure\CloudPrototyper.Azure.csproj" />
+	<None Update="SocialNetworkModel.json">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
+	<ProjectReference Include="..\CloudPrototyper.Azure\CloudPrototyper.Azure.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Benchmark\CloudPrototyper.Benchmark.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Build.NET\CloudPrototyper.Build.NET.csproj" />
     <ProjectReference Include="..\CloudPrototyper.ConfigProvider\CloudPrototyper.ConfigProvider.csproj" />
@@ -29,7 +32,9 @@
     <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.Core.v31.Functions.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Common\CloudPrototyper.NET.Framework.v462.Common.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Computing\CloudPrototyper.NET.Framework.v462.Computing.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.CosmosDb\CloudPrototyper.NET.Framework.v462.CosmosDb.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.DataLayer\CloudPrototyper.NET.Framework.v462.DataLayer.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.EventHub\CloudPrototyper.NET.Framework.v462.EventHub.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.TblStorage\CloudPrototyper.NET.Framework.v462.TblStorage.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.WebApi\CloudPrototyper.NET.Framework.v462.WebApi.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.WebJob\CloudPrototyper.NET.Framework.v462.WebJob.csproj" />
