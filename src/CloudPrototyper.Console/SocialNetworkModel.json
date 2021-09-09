@@ -140,8 +140,8 @@
 							},
 							{
 								"$type": "CloudPrototyper.Model.Operations.DataAccess.LoadEntitiesFromEntityStorage, CloudPrototyper.Model",
-								"EntityName": "User",
-								"EntitySetName": "User",
+								"EntityName": "UserEntity",
+								"EntitySetName": "Users",
 								"EntityStorageName": "SocialNetworkDB",
 								"Filter": {
 									"$type": "CloudPrototyper.Model.Operations.DataAccess.FilterCondition, CloudPrototyper.Model",
@@ -324,15 +324,6 @@
 					"IsMany": false,
 					"ContentSize": 500,
 					"IsIndexed": false
-				},
-				{
-					"$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-					"Name": "Id",
-					"Type": "System.Int32",
-					"IsReference": false,
-					"IsMany": false,
-					"ContentSize": 9,
-					"IsIndexed": true
 				}
 			]
 		},
@@ -430,15 +421,6 @@
 					"IsMany": false,
 					"ContentSize": 500,
 					"IsIndexed": false
-				},
-				{
-					"$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-					"Name": "Id",
-					"Type": "System.Int32",
-					"IsReference": false,
-					"IsMany": false,
-					"ContentSize": 9,
-					"IsIndexed": true
 				}
 			]
 		},
@@ -455,21 +437,12 @@
 					"IsMany": false,
 					"ContentSize": 0,
 					"IsIndexed": false
-				},
-				{
-					"$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-					"Name": "Id",
-					"Type": "System.Int32",
-					"IsReference": false,
-					"IsMany": false,
-					"ContentSize": 9,
-					"IsIndexed": true
 				}
 			]
 		},
 		{
 			"$type": "CloudPrototyper.Model.Entities.Entity, CloudPrototyper.Model",
-			"Name": "User",
+			"Name": "UserEntity",
 			"Description": null,
 			"Properties": [
 				{
@@ -561,15 +534,6 @@
 					"IsMany": false,
 					"ContentSize": 50,
 					"IsIndexed": false
-				},
-				{
-					"$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-					"Name": "Id",
-					"Type": "System.Int32",
-					"IsReference": false,
-					"IsMany": false,
-					"ContentSize": 9,
-					"IsIndexed": true
 				}
 			]
 		}
@@ -589,7 +553,7 @@
 				{
 					"$type": "CloudPrototyper.Model.Resources.Storage.EntitySet, CloudPrototyper.Model",
 					"Name": "Users",
-					"EntityName": "User",
+					"EntityName": "UserEntity",
 					"Count": 5000
 				}
 			],

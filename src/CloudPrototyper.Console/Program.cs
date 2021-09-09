@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using CloudPrototyper.Examples;
 using CloudPrototyper.Model;
 using Newtonsoft.Json;
 
@@ -18,19 +17,18 @@ namespace CloudPrototyper.Console
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-
-            JsonSerializerSettings settings = new JsonSerializerSettings
+            var settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Objects
             };
-
-            string json = string.Empty;
+            
+            var json = string.Empty;
             System.Console.WriteLine("Type path to file with model in JSON format:");
-            string modelJsonFilePath = System.Console.ReadLine();
+            var modelJsonFilePath = System.Console.ReadLine();
             System.Console.WriteLine("Type path to config file:");
-            string configFilePath = System.Console.ReadLine();
+            var configFilePath = System.Console.ReadLine();
 
-
+            
             if (!string.IsNullOrEmpty(modelJsonFilePath))
             {
                 json = File.ReadAllText(modelJsonFilePath);
@@ -44,28 +42,15 @@ namespace CloudPrototyper.Console
 
             if (string.IsNullOrEmpty(configFilePath))
             {
-                configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"prototyper.config");
-                System.Console.WriteLine("Default config file is used.");
+                System.Console.WriteLine("Configuration file path is required!");
+                System.Console.ReadKey();
+                return;
             }
 
-
-            System.Diagnostics.Trace.WriteLine(json);
             Prototype prototype = JsonConvert.DeserializeObject<Prototype>(json, settings);
-
-            TapHomeSample tapHomeSample = new TapHomeSample();
-            var prototypeManager = new ModelResolver.Implementations.ModelResolver(tapHomeSample.SqlVersionSynchronousModel, configFilePath);
-          /*  System.Console.WriteLine("Verifying model");
-            prototypeManager.VerifyModel();
-            System.Console.WriteLine("Model is OK");
-            */
-          //  var prototypeManager = new ModelResolver.Implementations.ModelResolver(tapHomeSample.NoSqlVersionSynchronousModel, configFilePath);
-
-         /*   System.Console.WriteLine("Verifying model");
-            prototypeManager.VerifyModel();
-            System.Console.WriteLine("Model is OK");
-            */
-          //  var prototypeManager = new ModelResolver.Implementations.ModelResolver(tapHomeSample.NoSqlVersionAsynchronousModel, configFilePath);
             
+            var prototypeManager = new ModelResolver.Implementations.ModelResolver(prototype, configFilePath);
+
             System.Console.WriteLine("Verifying model");
             prototypeManager.VerifyModel();
             System.Console.WriteLine("Model is OK");
@@ -85,12 +70,11 @@ namespace CloudPrototyper.Console
             System.Console.WriteLine("Generating benchmark");
             prototypeManager.GenerateBenchmark();
             System.Console.WriteLine("Done");
-
+            
             //Automated cleanup is not required. User has to delete resource group and output files on his own.
             /* System.Console.WriteLine("Cleaning");
              prototypeManager.CleanUp();
              System.Console.WriteLine("Cleaned");*/
-
 
             System.Console.ReadKey();
         }

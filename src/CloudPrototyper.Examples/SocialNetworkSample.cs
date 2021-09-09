@@ -173,8 +173,8 @@ namespace CloudPrototyper.Examples
                             new LoadEntitiesFromEntityStorage()
                             {
                                 EntityStorageName = "SocialNetworkDB",
-                                EntitySetName = "User",
-                                EntityName = "User",
+                                EntitySetName = "Users",
+                                EntityName = "UserEntity",
                                 Name = "ValidateUserPermission",
                                 Filter = new FilterCondition()
                                 { // FindByID
@@ -292,7 +292,7 @@ namespace CloudPrototyper.Examples
         },
         new CloudPrototyper.Model.Entities.Entity()
         {
-            Name = "User",
+            Name = "UserEntity",
             Properties = new List<PropertyInfo>()
             {
                 new PropertyInfo() { Name = "Number1", Type = "System.Int32", ContentSize = 8},
@@ -319,7 +319,7 @@ namespace CloudPrototyper.Examples
             EntitySets = new List<EntitySet>()
             {
                 new EntitySet() { EntityName = "WallRecord", Name ="WallRecords", Count = 25000 },
-                new EntitySet() { EntityName = "User", Name ="Users", Count = 5000 }
+                new EntitySet() { EntityName = "UserEntity", Name ="Users", Count = 5000 }
             }
         },
         new AzureTableStorage()
