@@ -934,12 +934,10 @@ namespace CloudPrototyper.Examples
                 },
                 Resources = new List<Resource>()
                 {
-                    new AzureCosmosDbContainer()
+                    new AzureTableStorage
                     {
                         DeployTo = "Azure",
                         Name = "SensorDataStorage",
-                        ThroughputType = "manual",
-                        RUs = 400,
                         EntitySets = new List<EntitySet>
                         {
                             new EntitySet
@@ -1180,12 +1178,10 @@ namespace CloudPrototyper.Examples
                 },
                 Resources = new List<Resource>()
                 {
-                    new AzureCosmosDbContainer()
+                    new AzureTableStorage
                     {
                         DeployTo = "Azure",
                         Name = "SensorDataStorage",
-                        ThroughputType = "manual",
-                        RUs = 400,
                         EntitySets = new List<EntitySet>
                         {
                             new EntitySet
@@ -1346,8 +1342,8 @@ namespace CloudPrototyper.Examples
                     {
                         DeployTo = "Azure",
                         Name = "SensorDataStorage",
-                        PerformanceTier = "serverless",
-                        MaxvCores = 1,
+                        PerformanceTier = "standard",
+                        ServiceObjective = "S3",
                         EntitySets = new List<EntitySet>
                         {
                             new EntitySet
