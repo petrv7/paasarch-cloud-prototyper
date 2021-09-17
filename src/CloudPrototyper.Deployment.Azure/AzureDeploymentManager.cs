@@ -542,7 +542,7 @@ namespace CloudPrototyper.Deployment.Azure
                 CreateStorageAccount();
             }
 
-            if (resource.PlanName.ToLower() == "dedicated")
+            if (resource.PlanName.ToLower() == "dedicated" || resource.PlanName.ToLower() == "premium")
             {
                 var tier = GetPricingTierFromString(resource.PerformanceTier);
 
@@ -634,6 +634,12 @@ namespace CloudPrototyper.Deployment.Azure
                     return PricingTier.StandardS2;
                 case "standards3":
                     return PricingTier.StandardS3;
+                case "ep1":
+                    return new PricingTier("ElasticPremium", "EP1");
+                case "ep2":
+                    return new PricingTier("ElasticPremium", "EP2");
+                case "ep3":
+                    return new PricingTier("ElasticPremium", "EP3");
                 default:
                     return PricingTier.FreeF1;
             }

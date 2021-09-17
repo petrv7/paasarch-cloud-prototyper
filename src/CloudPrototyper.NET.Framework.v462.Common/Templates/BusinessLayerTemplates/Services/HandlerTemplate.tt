@@ -18,7 +18,6 @@ namespace <#= Model.Namespace #>
     public class <#= Model.Name #> : <#= Model.MessageBusHandlerInterface.Namespace #>.<#= Model.MessageBusHandlerInterface.Name #>
 	{
         private string connectionString;
-        private string queueName;
 		public const string Name = "<#= Model.Name #>";
         private QueueClient _client;
         private ManualResetEvent completedEvent = new ManualResetEvent(false);
@@ -38,7 +37,6 @@ namespace <#= Model.Namespace #>
 			this.<#= action.Name #> = <#= action.Name.ToLower() #>;
 <# } #>
             this.connectionString = "<#= Model.AzureServiceBusQueue.ConnectionString #>";
-            this.queueName = "<#= Model.AzureServiceBusQueue.Name #>";
         }
 
         public void OnStart()
@@ -80,7 +78,7 @@ namespace <#= Model.Namespace #>
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Trace.WriteLine("Failed processing of message " + receivedMessage.Label);
                 }
