@@ -323,8 +323,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates.Functions {
             #line 37 "Templates\Functions\EventHubFunctionTemplate.tt"
             this.Write("Connection\")] EventData[] events)\r\n        {\t\t\r\n            var output = new List" +
                     "<string>();\r\n            \r\n\t\t\tforeach (EventData eventData in events)\r\n\t\t\t{\r\n   " +
-                    "             var label = System.Text.Encoding.Default.GetString(eventData.Body.T" +
-                    "oArray());\r\n");
+                    "             var label = (string)eventData.Properties[\"MsgType\"];\r\n");
             
             #line default
             #line hidden

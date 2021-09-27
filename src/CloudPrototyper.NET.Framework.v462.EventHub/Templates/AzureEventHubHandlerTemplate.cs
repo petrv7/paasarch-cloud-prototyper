@@ -369,7 +369,7 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
 				var nextTask = enumerator.MoveNextAsync();
 				nextTask.AsTask().Wait();
 
-				var label = System.Text.Encoding.Default.GetString(enumerator.Current.Data.Body.ToArray());
+				var label = (string)enumerator.Current.Data.Properties[""MsgType""];
 				try 
 				{
 ");

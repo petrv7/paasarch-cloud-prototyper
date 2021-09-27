@@ -31,8 +31,8 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
             this.GenerationEnvironment = null;
             
             #line 7 "Templates\AzureEventHubTemplate.tt"
-            this.Write("using System.Collections.Generic;\r\nusing Azure.Messaging.EventHubs;\r\nusing Azure." +
-                    "Messaging.EventHubs.Producer;\r\n// Azure service bus\r\nnamespace ");
+            this.Write("using Newtonsoft.Json;\r\nusing Azure.Messaging.EventHubs;\r\nusing Azure.Messaging.E" +
+                    "ventHubs.Producer;\r\n// Azure service bus\r\nnamespace ");
             
             #line default
             #line hidden
@@ -207,7 +207,9 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
 
 		public void Insert(string name, object toInsert) 
 		{
-			EventData data = new EventData(name);
+			var json = JsonConvert.SerializeObject(toInsert);
+			var data = new EventData(json);
+			data.Properties.Add(""MsgType"", name);
 
             var batchTask = _client.CreateBatchAsync().AsTask();
             batchTask.Wait();
