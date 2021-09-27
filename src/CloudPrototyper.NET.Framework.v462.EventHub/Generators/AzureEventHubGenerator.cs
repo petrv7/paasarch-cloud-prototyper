@@ -23,7 +23,13 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Generators
                 new Tuple<string, string>(
                     "",
                     @"")
-            }, "Azure.Messaging.EventHubs", "5.5.0", "")
+            }, "Azure.Messaging.EventHubs", "5.5.0", ""),
+            new PackageConfigInfo(new List<Tuple<string, string>>
+            {
+                new Tuple<string, string>(
+                    "",
+                    @"")
+            }, "Newtonsoft.Json", "11.0.2", "")
         };
 
         public AzureEventHubGenerator(string projectName, MessageBusInterfaceGenerator messageBusInterfaceGenerator, AzureEventHub modelParameters, DataGeneratorGenerator dataGenerator, IList<EntityGenerator> entities) : base(projectName, modelParameters.Name, modelParameters.Name + "Context", typeof(AzureEventHubTemplate), modelParameters, modelParameters.Name)
