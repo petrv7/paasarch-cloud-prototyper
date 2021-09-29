@@ -12,13 +12,8 @@ namespace <#= Model.Namespace #>
 {
     public class <#= Model.Name #> : <#= Model.MessageBusInterfaceGenerator.Namespace #>.<#= Model.MessageBusInterfaceGenerator.Name #>
     {
-		private readonly EventHubProducerClient _client; 
+		private static EventHubProducerClient _client = new EventHubProducerClient("<#= Model.ModelParameters.ConnectionString #>", Name);
 		public const string Name = "<#= Model.ModelParameters.Name #>";
-
-		public <#= Model.Name #>() 
-		{ 
-			_client = new EventHubProducerClient("<#= Model.ModelParameters.ConnectionString #>", Name);
-		}
 
 		public void Insert(string name) 
 		{
