@@ -20,5 +20,9 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Model
         /// Partition key of the container, default value /id as recommended by Azure
         /// </summary>
         public string PartitionKey { get; set; } = "/id";
+        /// <summary>
+        /// Connection mode of Azure Cosmos DB SQL SDK, see https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-sdk-connection-modes
+        /// </summary>
+        public bool UseGateway = false;
     }
 }

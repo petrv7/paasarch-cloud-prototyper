@@ -12,12 +12,16 @@ namespace <#= Model.Namespace #>
 {
     public class <#= Model.Name #> : <#= Model.StorageInterface.Namespace #>.<#= Model.StorageInterface.Name #>
     {
-        private readonly CosmosClient _client;
+<# if (Model.ModelParameters.UseGateway) { #>
+		private static CosmosClientOptions options = new CosmosClientOptions() { ConnectionMode = ConnectionMode.Gateway };
+		private static CosmosClient _client  = new CosmosClient("<#= Model.ModelParameters.ConnectionString #>", options);
+<# } else { #>
+        private static CosmosClient _client  = new CosmosClient("<#= Model.ModelParameters.ConnectionString #>");
+<# } #>
         private readonly Container _container;
 		
         public <#= Model.Name #>() 
-		{ 
-            _client = new CosmosClient("<#= Model.ModelParameters.ConnectionString #>");
+		{
             _container = _client.GetContainer("<#= Model.ModelParameters.DatabaseName #>", "<#= Model.ModelParameters.Name #>");
 		}
 		
