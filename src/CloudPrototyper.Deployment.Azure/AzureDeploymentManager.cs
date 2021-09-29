@@ -498,19 +498,13 @@ namespace CloudPrototyper.Deployment.Azure
 
             Console.WriteLine("Making AzureCosmosDB Container: " + resource.Name);
 
-            ThroughputProperties throughputProperties;
-            if (resource.ThroughputType == "manual")
-            {
-                throughputProperties = ThroughputProperties.CreateManualThroughput(resource.RUs);
-            }
-            else
-            {
-                throughputProperties = ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
-            }
-
             Container container;
             try
             {
+                var throughputProperties = resource.ThroughputType == "manual" ? 
+                    ThroughputProperties.CreateManualThroughput(resource.RUs) : 
+                    ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
+
                 var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey), throughputProperties);
                 createContainerTask.Wait();
                 container = createContainerTask.Result.Container;
