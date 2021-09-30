@@ -1,0 +1,516 @@
+{
+  "$type": "CloudPrototyper.Model.Prototype, CloudPrototyper.Model",
+  "Applications": [
+    {
+      "$type": "CloudPrototyper.Model.Applications.RestApiApplication, CloudPrototyper.Model",
+      "Actions": [
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "GetUserEntity",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.DataAccess.LoadEntitiesFromEntityStorage, CloudPrototyper.Model",
+            "EntityName": "UserEntity",
+            "EntitySetName": "Users",
+            "EntityStorageName": "UserContainer",
+            "Filter": {
+              "$type": "CloudPrototyper.Model.Operations.DataAccess.FilterCondition, CloudPrototyper.Model",
+              "UseKey": true,
+              "OnAttribute": "Id",
+              "IsNominal": false,
+              "NumberOfResults": 1
+            },
+            "Name": "GetUserOperation",
+            "Description": null
+          }
+        },
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "GetAllUsers",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.DataAccess.LoadEntitiesFromEntityStorage, CloudPrototyper.Model",
+            "EntityName": "UserEntity",
+            "EntitySetName": "Users",
+            "EntityStorageName": "UserContainer",
+            "Filter": {
+              "$type": "CloudPrototyper.Model.Operations.DataAccess.FilterCondition, CloudPrototyper.Model",
+              "UseKey": true,
+              "OnAttribute": "Id",
+              "IsNominal": false,
+              "NumberOfResults": 100
+            },
+            "Name": "GetAllUsersOperation",
+            "Description": null
+          }
+        },
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "CreateUserEntity",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.DataAccess.InsertEntityToEntityStorage, CloudPrototyper.Model",
+            "EntityName": "UserEntity",
+            "EntitySetName": "Users",
+            "EntityStorageName": "UserContainer",
+            "NumberOfEntities": 1,
+            "Name": "CreateUserOperation",
+            "Description": null
+          }
+        },
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "Login",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.SequenceOperation, CloudPrototyper.Model",
+            "Operations": [
+              {
+                "$type": "CloudPrototyper.Model.Operations.DataAccess.LoadEntitiesFromEntityStorage, CloudPrototyper.Model",
+                "EntityName": "UserEntity",
+                "EntitySetName": "Users",
+                "EntityStorageName": "UserContainer",
+                "Filter": {
+                  "$type": "CloudPrototyper.Model.Operations.DataAccess.FilterCondition, CloudPrototyper.Model",
+                  "UseKey": true,
+                  "OnAttribute": "Id",
+                  "IsNominal": false,
+                  "NumberOfResults": 1
+                },
+                "Name": "GetUserForLoginOperation",
+                "Description": null
+              },
+              {
+                "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.SimulateComputation, CloudPrototyper.NET.Framework.v462.Computing",
+                "MsLength": 500,
+                "Name": "AuthenticateOperation",
+                "Description": null
+              }
+            ],
+            "NumberOfRepetitions": 1,
+            "Name": "LoginOperation",
+            "Description": null
+          }
+        }
+      ],
+      "Name": "UsersMicroservice",
+      "Platform": "DotNetCore31",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.Model.Applications.RestApiApplication, CloudPrototyper.Model",
+      "Actions": [
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "GetData",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.DataAccess.LoadEntitiesFromEntityStorage, CloudPrototyper.Model",
+            "EntityName": "Data",
+            "EntitySetName": "DataSet",
+            "EntityStorageName": "DataContainer",
+            "Filter": {
+              "$type": "CloudPrototyper.Model.Operations.DataAccess.FilterCondition, CloudPrototyper.Model",
+              "UseKey": true,
+              "OnAttribute": "Id",
+              "IsNominal": false,
+              "NumberOfResults": 1
+            },
+            "Name": "GetDataOperation",
+            "Description": null
+          }
+        },
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "GetAllData",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.DataAccess.LoadEntitiesFromEntityStorage, CloudPrototyper.Model",
+            "EntityName": "Data",
+            "EntitySetName": "DataSet",
+            "EntityStorageName": "DataContainer",
+            "Filter": {
+              "$type": "CloudPrototyper.Model.Operations.DataAccess.FilterCondition, CloudPrototyper.Model",
+              "UseKey": true,
+              "OnAttribute": "Id",
+              "IsNominal": false,
+              "NumberOfResults": 1000
+            },
+            "Name": "GetAllDataOperation",
+            "Description": null
+          }
+        },
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "CreateData",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.DataAccess.InsertEntityToEntityStorage, CloudPrototyper.Model",
+            "EntityName": "Data",
+            "EntitySetName": "DataSet",
+            "EntityStorageName": "DataContainer",
+            "NumberOfEntities": 1,
+            "Name": "CreateDataOperation",
+            "Description": null
+          }
+        }
+      ],
+      "Name": "DataMicroservice",
+      "Platform": "DotNetCore31",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.Model.Applications.RestApiApplication, CloudPrototyper.Model",
+      "Actions": [
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "LoginAndGetAllData",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.SequenceOperation, CloudPrototyper.Model",
+            "Operations": [
+              {
+                "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.CallUrlOperation, CloudPrototyper.NET.Framework.v462.Computing",
+                "ResourceName": "UsersMicroservice",
+                "ActionName": "Login",
+                "Url": "",
+                "Name": "LoginOperation",
+                "Description": null
+              },
+              {
+                "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.CallUrlOperation, CloudPrototyper.NET.Framework.v462.Computing",
+                "ResourceName": "DataMicroservice",
+                "ActionName": "GetAllData",
+                "Url": "",
+                "Name": "GetAllDataOperation",
+                "Description": null
+              }
+            ],
+            "NumberOfRepetitions": 1,
+            "Name": "LoginAndGetAllDataOperation",
+            "Description": null
+          }
+        },
+        {
+          "$type": "CloudPrototyper.Model.Applications.CallableAction, CloudPrototyper.Model",
+          "Name": "LoginAndCreateData",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.SequenceOperation, CloudPrototyper.Model",
+            "Operations": [
+              {
+                "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.CallUrlOperation, CloudPrototyper.NET.Framework.v462.Computing",
+                "ResourceName": "UsersMicroservice",
+                "ActionName": "Login",
+                "Url": "",
+                "Name": "LoginCallOperation",
+                "Description": null
+              },
+              {
+                "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.CallUrlOperation, CloudPrototyper.NET.Framework.v462.Computing",
+                "ResourceName": "DataMicroservice",
+                "ActionName": "CreateData",
+                "Url": "",
+                "Name": "CreateDataOperation",
+                "Description": null
+              },
+              {
+                "$type": "CloudPrototyper.Model.Operations.Communication.AddMessageToQueue, CloudPrototyper.Model",
+                "QueueName": "EventHub",
+                "EntityName": "Data",
+                "Name": "RequestProcessingOperation",
+                "Description": null
+              }
+            ],
+            "NumberOfRepetitions": 1,
+            "Name": "LoginAndCreateDataAndRequestProcessingOperation",
+            "Description": null
+          }
+        }
+      ],
+      "Name": "ApiComposition",
+      "Platform": "DotNetCore31",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.Model.Applications.WorkerApplication, CloudPrototyper.Model",
+      "Actions": [
+        {
+          "$type": "CloudPrototyper.Model.Applications.TriggeredAction, CloudPrototyper.Model",
+          "Trigger": {
+            "$type": "CloudPrototyper.Model.Applications.MessageReceivedTrigger, CloudPrototyper.Model",
+            "MessageType": "Data",
+            "QueueName": "EventHub"
+          },
+          "Name": "ProcessData",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.SequenceOperation, CloudPrototyper.Model",
+            "Operations": [
+              {
+                "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.SimulateComputation, CloudPrototyper.NET.Framework.v462.Computing",
+                "MsLength": 100,
+                "Name": "ProcessingOperation",
+                "Description": null
+              },
+              {
+                "$type": "CloudPrototyper.Model.Operations.DataAccess.InsertEntityToEntityStorage, CloudPrototyper.Model",
+                "EntityName": "Log",
+                "EntitySetName": "Logs",
+                "EntityStorageName": "SQLDatabase",
+                "NumberOfEntities": 1,
+                "Name": "CreateLogOperation",
+                "Description": null
+              }
+            ],
+            "NumberOfRepetitions": 1,
+            "Name": "ProcessDataOperation",
+            "Description": null
+          }
+        }
+      ],
+      "Name": "DataProcessingWorker",
+      "Platform": "DotNetCore31",
+      "DeployTo": "Azure"
+    }
+  ],
+  "Entities": [
+    {
+      "$type": "CloudPrototyper.Model.Entities.Entity, CloudPrototyper.Model",
+      "Name": "UserEntity",
+      "Description": null,
+      "Properties": [
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "UserName",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 15,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "Password",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 30,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "Name",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 15,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "Address",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 50,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "PhoneNum",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 9,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "Age",
+          "Type": "System.Int32",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 2,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "Id",
+          "Type": "System.Int32",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 9,
+          "IsIndexed": true
+        }
+      ]
+    },
+    {
+      "$type": "CloudPrototyper.Model.Entities.Entity, CloudPrototyper.Model",
+      "Name": "Data",
+      "Description": null,
+      "Properties": [
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "RawData",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 200,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "Description",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 50,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "OriginSystem",
+          "Type": "System.Int32",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 5,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "Id",
+          "Type": "System.Int32",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 9,
+          "IsIndexed": true
+        }
+      ]
+    },
+    {
+      "$type": "CloudPrototyper.Model.Entities.Entity, CloudPrototyper.Model",
+      "Name": "Log",
+      "Description": null,
+      "Properties": [
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "LogName",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 10,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "LogInfo",
+          "Type": "System.String",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 50,
+          "IsIndexed": false
+        },
+        {
+          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
+          "Name": "Id",
+          "Type": "System.Int32",
+          "IsReference": false,
+          "IsMany": false,
+          "ContentSize": 9,
+          "IsIndexed": true
+        }
+      ]
+    }
+  ],
+  "Resources": [
+    {
+      "$type": "CloudPrototyper.Azure.Resources.AzureFunctionApp, CloudPrototyper.Azure",
+      "PlanName": "",
+      "PerformanceTier": null,
+      "WithApplication": "UsersMicroservice",
+      "Name": "UsersMicroserviceApp",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.Azure.Resources.AzureFunctionApp, CloudPrototyper.Azure",
+      "PlanName": "",
+      "PerformanceTier": null,
+      "WithApplication": "DataMicroservice",
+      "Name": "DataMicroserviceApp",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.Azure.Resources.AzureFunctionApp, CloudPrototyper.Azure",
+      "PlanName": "",
+      "PerformanceTier": null,
+      "WithApplication": "ApiComposition",
+      "Name": "ApiCompositionApp",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.Azure.Resources.AzureFunctionApp, CloudPrototyper.Azure",
+      "PlanName": "",
+      "PerformanceTier": null,
+      "WithApplication": "DataProcessingWorker",
+      "Name": "DataProcessingWorkerApp",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.NET.Framework.v462.EventHub.Model.AzureEventHub, CloudPrototyper.NET.Framework.v462.EventHub",
+      "PartitionCount": 2,
+      "WithNamespace": "PaaSArchEventHubNamespace",
+      "Name": "EventHub",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.NET.Framework.v462.EventHub.Model.AzureEventHubNamespace, CloudPrototyper.NET.Framework.v462.EventHub",
+      "PricingTier": "standard",
+      "ThroughputUnits": 1,
+      "WithAutoScale": true,
+      "MaxThroughputUnits": 20,
+      "Name": "PaaSArchEventHubNamespace",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.Azure.Resources.Storage.AzureSQLDatabase, CloudPrototyper.Azure",
+      "PerformanceTier": "serverless",
+      "ServiceObjective": null,
+      "MaxvCores": 8,
+      "EntitySets": [
+        {
+          "$type": "CloudPrototyper.Model.Resources.Storage.EntitySet, CloudPrototyper.Model",
+          "Name": "Logs",
+          "EntityName": "Log",
+          "Count": 1
+        }
+      ],
+      "Name": "SQLDatabase",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.NET.Framework.v462.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Framework.v462.CosmosDb",
+      "UseGateway": true,
+      "ThroughputType": null,
+      "RUs": 0,
+      "PartitionKey": "/id",
+      "EntitySets": [
+        {
+          "$type": "CloudPrototyper.Model.Resources.Storage.EntitySet, CloudPrototyper.Model",
+          "Name": "Users",
+          "EntityName": "UserEntity",
+          "Count": 102
+        }
+      ],
+      "Name": "UserContainer",
+      "DeployTo": "Azure"
+    },
+    {
+      "$type": "CloudPrototyper.NET.Framework.v462.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Framework.v462.CosmosDb",
+      "UseGateway": false,
+      "ThroughputType": null,
+      "RUs": 0,
+      "PartitionKey": "/PartitionKey",
+      "EntitySets": [
+        {
+          "$type": "CloudPrototyper.Model.Resources.Storage.EntitySet, CloudPrototyper.Model",
+          "Name": "DataSet",
+          "EntityName": "Data",
+          "Count": 1001
+        }
+      ],
+      "Name": "DataContainer",
+      "DeployTo": "Azure"
+    }
+  ]
+}

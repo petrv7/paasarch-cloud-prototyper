@@ -16,6 +16,9 @@
 	<None Update="SocialNetworkModel.json">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</None>
+	<None Update="ServerlessModel.json">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</None>
 	<ProjectReference Include="..\CloudPrototyper.Azure\CloudPrototyper.Azure.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Benchmark\CloudPrototyper.Benchmark.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Build.NET\CloudPrototyper.Build.NET.csproj" />

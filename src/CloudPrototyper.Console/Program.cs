@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using CloudPrototyper.Examples;
 using CloudPrototyper.Model;
 using Newtonsoft.Json;
 
@@ -23,22 +24,8 @@ namespace CloudPrototyper.Console
             };
             
             var json = string.Empty;
-            System.Console.WriteLine("Type path to file with model in JSON format:");
-            var modelJsonFilePath = System.Console.ReadLine();
             System.Console.WriteLine("Type path to config file:");
             var configFilePath = System.Console.ReadLine();
-
-            
-            if (!string.IsNullOrEmpty(modelJsonFilePath))
-            {
-                json = File.ReadAllText(modelJsonFilePath);
-            }
-            else
-            {
-                modelJsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SocialNetworkModel.json");
-                json = File.ReadAllText(modelJsonFilePath);
-                System.Console.WriteLine("Social Network sample is used.");
-            }
 
             if (string.IsNullOrEmpty(configFilePath))
             {
@@ -47,8 +34,38 @@ namespace CloudPrototyper.Console
                 return;
             }
 
-            Prototype prototype = JsonConvert.DeserializeObject<Prototype>(json, settings);
-            
+            System.Console.WriteLine("Type path to file with model in JSON format");
+            var modelJsonFilePath = System.Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(modelJsonFilePath))
+            {
+                json = File.ReadAllText(modelJsonFilePath);
+            }
+            else
+            {
+                System.Console.WriteLine("No model was provided. Type 1 for Social Network Sample or type 2 for Serverless Sample.");
+                var option = System.Console.ReadKey();
+                System.Console.WriteLine();
+
+                switch (option.KeyChar)
+                {
+                    case '1':
+                        modelJsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"SocialNetworkModel.json");
+                        System.Console.WriteLine("Social network sample is used.");
+                        break;
+                    case '2':
+                        modelJsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"ServerlessModel.json");
+                        System.Console.WriteLine("Serverless sample is used.");
+                        break;
+                    default:
+                        System.Console.WriteLine("Invalid input.");
+                        return;
+                }
+
+                json = File.ReadAllText(modelJsonFilePath);
+            }
+
+            var prototype = JsonConvert.DeserializeObject<Prototype>(json, settings);
             var prototypeManager = new ModelResolver.Implementations.ModelResolver(prototype, configFilePath);
 
             System.Console.WriteLine("Verifying model");
