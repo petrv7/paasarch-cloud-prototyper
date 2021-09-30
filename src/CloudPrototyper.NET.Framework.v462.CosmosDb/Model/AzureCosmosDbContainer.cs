@@ -1,4 +1,5 @@
 ﻿using CloudPrototyper.Model.Resources.Storage;
+using Newtonsoft.Json;
 
 namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Model
 {
@@ -15,6 +16,7 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Model
         /// <summary>
         /// Name of the container database
         /// </summary>
+        [JsonIgnore]
         public string DatabaseName { get; set; } = "";
         /// <summary>
         /// Partition key of the container, default value /id as recommended by Azure
