@@ -6,6 +6,10 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Model
     public class AzureCosmosDbContainer : RelationalDatabase
     {
         /// <summary>
+        /// Use serverless account
+        /// </summary>
+        public bool IsServerless { get; set; } = false;
+        /// <summary>
         /// Throughput type, "manual" or "autoscale"
         /// </summary>
         public string ThroughputType { get; set; }
