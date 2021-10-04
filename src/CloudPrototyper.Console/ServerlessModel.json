@@ -323,15 +323,6 @@
           "IsMany": false,
           "ContentSize": 2,
           "IsIndexed": false
-        },
-        {
-          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-          "Name": "Id",
-          "Type": "System.Int32",
-          "IsReference": false,
-          "IsMany": false,
-          "ContentSize": 9,
-          "IsIndexed": true
         }
       ]
     },
@@ -366,15 +357,6 @@
           "IsMany": false,
           "ContentSize": 5,
           "IsIndexed": false
-        },
-        {
-          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-          "Name": "Id",
-          "Type": "System.Int32",
-          "IsReference": false,
-          "IsMany": false,
-          "ContentSize": 9,
-          "IsIndexed": true
         }
       ]
     },
@@ -400,15 +382,6 @@
           "IsMany": false,
           "ContentSize": 50,
           "IsIndexed": false
-        },
-        {
-          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-          "Name": "Id",
-          "Type": "System.Int32",
-          "IsReference": false,
-          "IsMany": false,
-          "ContentSize": 9,
-          "IsIndexed": true
         }
       ]
     }
