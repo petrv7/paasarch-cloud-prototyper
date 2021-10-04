@@ -18,10 +18,10 @@ using CloudPrototyper.NET.Framework.v462.Common.Generators.ApiLayerGenerators;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.ApiLayerGenerators.Controllers;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.ApiLayerGenerators.Utils;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Constants;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Action = CloudPrototyper.Model.Applications.Action;
 
 namespace CloudPrototyper.NET.Framework.v462.WebApi

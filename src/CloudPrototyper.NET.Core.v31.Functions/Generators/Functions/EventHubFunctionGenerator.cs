@@ -4,10 +4,10 @@ using System.Linq;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.NET.Core.v31.Functions.Templates.Functions;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 using CloudPrototyper.NET.Interface.Prototyper;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 
 namespace CloudPrototyper.NET.Core.v31.Functions.Generators.Functions
 {

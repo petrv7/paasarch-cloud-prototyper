@@ -18,14 +18,14 @@ using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
 using Microsoft.Azure.Management.ServiceBus.Fluent;
 using Microsoft.Azure.Management.Sql.Fluent.Models;
 using Microsoft.Azure.Management.Storage.Fluent;
-using CloudPrototyper.NET.Framework.v462.CosmosDb.Model;
 using Microsoft.Azure.Cosmos;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using Microsoft.Azure.Management.Eventhub.Fluent;
 using Microsoft.Azure.Management.EventHub.Fluent.Models;
 using Azure.ResourceManager.CosmosDB;
 using Azure.Identity;
 using Azure.ResourceManager.CosmosDB.Models;
+using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 
 namespace CloudPrototyper.Deployment.Azure
 {

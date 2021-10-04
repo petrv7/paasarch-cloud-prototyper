@@ -420,14 +420,14 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.NET.Framework.v462.EventHub.Model.AzureEventHub, CloudPrototyper.NET.Framework.v462.EventHub",
+      "$type": "CloudPrototyper.NET.Standard.v20.EventHub.Model.AzureEventHub, CloudPrototyper.NET.Standard.v20.EventHub",
       "PartitionCount": 2,
       "WithNamespace": "PaaSArchEventHubNamespace",
       "Name": "EventHub",
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.NET.Framework.v462.EventHub.Model.AzureEventHubNamespace, CloudPrototyper.NET.Framework.v462.EventHub",
+      "$type": "CloudPrototyper.NET.Standard.v20.EventHub.Model.AzureEventHubNamespace, CloudPrototyper.NET.Standard.v20.EventHub",
       "PricingTier": "standard",
       "ThroughputUnits": 1,
       "WithAutoScale": true,
@@ -452,7 +452,7 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.NET.Framework.v462.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Framework.v462.CosmosDb",
+      "$type": "CloudPrototyper.NET.Standard.v20.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Standard.v20.CosmosDb",
       "UseGateway": true,
       "IsServerless": true,
       "ThroughputType": null,
@@ -470,7 +470,7 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.NET.Framework.v462.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Framework.v462.CosmosDb",
+      "$type": "CloudPrototyper.NET.Standard.v20.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Standard.v20.CosmosDb",
       "UseGateway": false,
       "IsServerless": true,
       "ThroughputType": null,

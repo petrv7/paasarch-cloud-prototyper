@@ -10,7 +10,7 @@
     <ProjectReference Include="..\CloudPrototyper.Model\CloudPrototyper.Model.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Common\CloudPrototyper.NET.Core.v31.Common.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.Core.v31.Functions.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.EventHub\CloudPrototyper.NET.Framework.v462.EventHub.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Standard.v20.EventHub\CloudPrototyper.NET.Standard.v20.EventHub.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Interface\CloudPrototyper.NET.Interface.csproj" />
   </ItemGroup>
 

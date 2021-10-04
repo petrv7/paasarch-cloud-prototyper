@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ parameter type="CloudPrototyper.NET.Framework.v462.CosmosDb.Generators.AzureCosmosDbContextGenerator" name="Model" #>
+<#@ parameter type="CloudPrototyper.NET.Standard.v20.CosmosDb.Generators.AzureCosmosDbContextGenerator" name="Model" #>
 using Microsoft.Azure.Cosmos;
 using System.Collections.Generic;
 using System.Linq;

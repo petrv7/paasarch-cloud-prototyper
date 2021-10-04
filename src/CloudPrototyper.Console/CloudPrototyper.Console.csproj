@@ -35,9 +35,9 @@
     <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.Core.v31.Functions.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Common\CloudPrototyper.NET.Framework.v462.Common.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Computing\CloudPrototyper.NET.Framework.v462.Computing.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.CosmosDb\CloudPrototyper.NET.Framework.v462.CosmosDb.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Standard.v20.CosmosDb\CloudPrototyper.NET.Standard.v20.CosmosDb.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.DataLayer\CloudPrototyper.NET.Framework.v462.DataLayer.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.EventHub\CloudPrototyper.NET.Framework.v462.EventHub.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Standard.v20.EventHub\CloudPrototyper.NET.Standard.v20.EventHub.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.TblStorage\CloudPrototyper.NET.Framework.v462.TblStorage.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.WebApi\CloudPrototyper.NET.Framework.v462.WebApi.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.WebJob\CloudPrototyper.NET.Framework.v462.WebJob.csproj" />

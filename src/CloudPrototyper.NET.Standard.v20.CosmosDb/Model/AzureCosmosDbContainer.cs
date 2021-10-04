@@ -1,7 +1,7 @@
 ﻿using CloudPrototyper.Model.Resources.Storage;
 using Newtonsoft.Json;
 
-namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Model
+namespace CloudPrototyper.NET.Standard.v20.CosmosDb.Model
 {
     public class AzureCosmosDbContainer : RelationalDatabase
     {

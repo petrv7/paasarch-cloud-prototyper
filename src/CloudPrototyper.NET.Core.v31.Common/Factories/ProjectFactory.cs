@@ -18,9 +18,9 @@ using CloudPrototyper.NET.Core.v31.Common.Generators.SolutionGenerators.Assembly
 using CloudPrototyper.NET.Core.v31.Functions.Generators;
 using CloudPrototyper.NET.Core.v31.Functions.Templates;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Component = Castle.MicroKernel.Registration.Component;
 
 namespace CloudPrototyper.NET.Core.v31.Common.Factories
