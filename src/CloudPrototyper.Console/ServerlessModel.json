@@ -481,8 +481,9 @@
     {
       "$type": "CloudPrototyper.NET.Framework.v462.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Framework.v462.CosmosDb",
       "UseGateway": true,
-      "ThroughputType": "manual",
-      "RUs": 400,
+      "IsServerless": true,
+      "ThroughputType": null,
+      "RUs": 0,
       "PartitionKey": "/id",
       "EntitySets": [
         {
@@ -498,8 +499,9 @@
     {
       "$type": "CloudPrototyper.NET.Framework.v462.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Framework.v462.CosmosDb",
       "UseGateway": false,
-      "ThroughputType": "manual",
-      "RUs": 400,
+      "IsServerless": true,
+      "ThroughputType": null,
+      "RUs": 0,
       "PartitionKey": "/PartitionKey",
       "EntitySets": [
         {

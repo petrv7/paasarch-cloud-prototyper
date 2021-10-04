@@ -426,8 +426,7 @@ namespace CloudPrototyper.Examples
                     {
                         DeployTo = "Azure",
                         Name = "UserContainer",
-                        ThroughputType = "manual",
-                        RUs = 400,
+                        IsServerless = true,
                         EntitySets = new List<EntitySet>
                         {
                             new EntitySet
@@ -443,8 +442,7 @@ namespace CloudPrototyper.Examples
                     {
                         DeployTo = "Azure",
                         Name = "DataContainer",
-                        ThroughputType = "manual",
-                        RUs = 400,
+                        IsServerless = true,
                         EntitySets = new List<EntitySet>
                         {
                             new EntitySet
