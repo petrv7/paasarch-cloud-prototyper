@@ -23,6 +23,9 @@ using Microsoft.Azure.Cosmos;
 using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using Microsoft.Azure.Management.Eventhub.Fluent;
 using Microsoft.Azure.Management.EventHub.Fluent.Models;
+using Azure.ResourceManager.CosmosDB;
+using Azure.Identity;
+using Azure.ResourceManager.CosmosDB.Models;
 
 namespace CloudPrototyper.Deployment.Azure
 {
@@ -47,9 +50,16 @@ namespace CloudPrototyper.Deployment.Azure
         private IAzure _azure;
         private IResourceGroup _resourceGroup;
         private ISqlServer _sqlServer;
+
+        private CosmosDBManagementClient _cosmosManagementClient;
         private CosmosClient _cosmosClient;
+        private CosmosClient _cosmosClientServerless;
         private Database _cosmosDatabase;
-		private IStorageAccount _storageAccount;
+        private Database _cosmosDatabaseServerless;
+        private string _cosmosConnectionString;
+        private string _cosmosConnectionStringServerless;
+
+        private IStorageAccount _storageAccount;
         private readonly Dictionary<AzureCosmosDbContainer, Container> _containers = new Dictionary<AzureCosmosDbContainer, Container>();
         private readonly Dictionary<string, string> _queueConnStr = new();
         private readonly Dictionary<Application, IWebApp> _webApps = new();
@@ -169,11 +179,21 @@ namespace CloudPrototyper.Deployment.Azure
         {
             Init();
 
-            // We need to prepare namespaces first
+            // We need to prepare event hub namespaces and cosmos accounts first
             var eventHubNamespaces = resources.OfType<AzureEventHubNamespace>();
             foreach (var resource in eventHubNamespaces)
             {
                 PrepareResource((dynamic)resource);
+            }
+
+            if (resources.OfType<AzureCosmosDbContainer>().Any(c => !c.IsServerless))
+            {
+                PrepareAzureCosmosDbAccount(false);
+            }
+
+            if (resources.OfType<AzureCosmosDbContainer>().Any(c => c.IsServerless))
+            {
+                PrepareAzureCosmosDbAccount(true);
             }
 
             foreach (var resource in resources.Except(eventHubNamespaces))
@@ -486,42 +506,84 @@ namespace CloudPrototyper.Deployment.Azure
             Console.WriteLine("Done: " + resource.Name);
         }
 
+        private void PrepareAzureCosmosDbAccount(bool serverless)
+        {
+            Console.WriteLine("Making AzureCosmosDB " + (serverless ? "serverless account" : "account"));
+
+            var acc = new DatabaseAccountCreateUpdateParameters(new List<Location>() { new Location() { LocationName = ConfigProvider.GetValue("AzureRegion") } });
+            acc.Location = ConfigProvider.GetValue("AzureRegion");
+
+            var accName = Guid.NewGuid().ToString("N").Substring(0, 16);
+            var resourceGroup = ConfigProvider.TryGetValue("ResourceGroupName") ?? "CloudPrototyperGroup";
+
+            if (serverless)
+            {
+                acc.Capabilities.Add(new Capability() { Name = "EnableServerless" });
+            }
+
+            _cosmosManagementClient.DatabaseAccounts.StartCreateOrUpdate(resourceGroup, accName, acc).WaitForCompletionAsync().AsTask().Wait();
+
+            var connStr = _cosmosManagementClient.DatabaseAccounts.ListConnectionStrings(resourceGroup, accName).Value.ConnectionStrings.First().ConnectionString;
+
+            if (serverless)
+            {
+                _cosmosClientServerless = new CosmosClient(connStr);
+                _cosmosConnectionStringServerless = connStr;
+            }
+            else
+            {
+                _cosmosClient = new CosmosClient(connStr);
+                _cosmosConnectionString = connStr;
+            }
+
+            Console.WriteLine("Done: AzureCosmosDB account");
+        }
+
         private void PrepareResource(AzureCosmosDbContainer resource)
         {
-            if (_cosmosDatabase == null)
+            if (_cosmosDatabase is null && !resource.IsServerless)
             {
                 Console.WriteLine("Making AzureCosmosDB Database");
                 var createDbTask = _cosmosClient.CreateDatabaseIfNotExistsAsync(Guid.NewGuid().ToString("N").Substring(0, 16));
                 createDbTask.Wait();
                 _cosmosDatabase = createDbTask.Result.Database;
             }
+            else if (_cosmosDatabaseServerless is null && resource.IsServerless)
+            {
+                Console.WriteLine("Making AzureCosmosDB Serverless Database");
+                var createDbTask = _cosmosClientServerless.CreateDatabaseIfNotExistsAsync(Guid.NewGuid().ToString("N").Substring(0, 16));
+                createDbTask.Wait();
+                _cosmosDatabaseServerless = createDbTask.Result.Database;
+            }
 
             Console.WriteLine("Making AzureCosmosDB Container: " + resource.Name);
 
             Container container;
-            try
+            if (resource.IsServerless)
             {
-                var throughputProperties = resource.ThroughputType == "manual" ? 
-                    ThroughputProperties.CreateManualThroughput(resource.RUs) : 
-                    ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
+                var createContainerTask = _cosmosDatabaseServerless.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey));
+                createContainerTask.Wait();
+                container = createContainerTask.Result.Container;
+
+                resource.ConnectionString = _cosmosConnectionStringServerless;
+                resource.DatabaseName = _cosmosDatabaseServerless.Id;
+            }
+            else
+            {
+                var throughputProperties = resource.ThroughputType == "manual" ?
+                ThroughputProperties.CreateManualThroughput(resource.RUs) :
+                ThroughputProperties.CreateAutoscaleThroughput(resource.RUs);
 
                 var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey), throughputProperties);
                 createContainerTask.Wait();
                 container = createContainerTask.Result.Container;
-            }
-            catch 
-            {
-                // We cannot check if account is serverless through Azure Management SDK,
-                // so if the container creation fails, we suppose the account is serverless and try again without the throughput properties
-                var createContainerTask = _cosmosDatabase.CreateContainerIfNotExistsAsync(new ContainerProperties(resource.Name, resource.PartitionKey));
-                createContainerTask.Wait();
-                container = createContainerTask.Result.Container;
+
+                resource.ConnectionString = _cosmosConnectionString;
+                resource.DatabaseName = _cosmosDatabase.Id;
             }
 
             PreparedResources.Add(resource);
             _containers.Add(resource, container);
-            resource.ConnectionString = ConfigProvider.GetValue("CosmosAccount");
-            resource.DatabaseName = _cosmosDatabase.Id;
 
             Console.WriteLine("Done: " + resource.Name);
         }
@@ -591,10 +653,10 @@ namespace CloudPrototyper.Deployment.Azure
                         .WithRegion(azureRegion ?? "westeurope")
                         .Create();
 
-                if (ConfigProvider.TryGetValue("CosmosAccount") != null)
-                {
-                    _cosmosClient = new(ConfigProvider.GetValue("CosmosAccount"));
-                }
+                var options = new DefaultAzureCredentialOptions();
+                options.ManagedIdentityClientId = ConfigProvider.GetValue("ClientId");
+                var cred = new DefaultAzureCredential(options);
+                _cosmosManagementClient = new CosmosDBManagementClient(ConfigProvider.GetValue("SubscriptionId"), cred);                
 
                 _initialized = true;
             }
