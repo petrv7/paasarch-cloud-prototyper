@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories;
-using CloudPrototyper.NET.Framework.v462.EventHub.Generators;
 using CloudPrototyper.NET.Interface.Generation;
+using CloudPrototyper.NET.Standard.v20.EventHub.Generators;
 
-namespace CloudPrototyper.NET.Framework.v462.EventHub.Registrations
+namespace CloudPrototyper.NET.Standard.v20.EventHub.Registrations
 {
     public class AzureEventHubRegistrations : GeneratorDependency<AzureEventHubGenerator>
     {

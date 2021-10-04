@@ -1,8 +1,8 @@
 ﻿using CloudPrototyper.Azure.Resources.Storage;
 using CloudPrototyper.Interface.Generation;
 using CloudPrototyper.Interface.Generation.Informations;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using System.Collections.Generic;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 
 namespace CloudPrototyper.NET.Core.v31.Functions.Generators
 {

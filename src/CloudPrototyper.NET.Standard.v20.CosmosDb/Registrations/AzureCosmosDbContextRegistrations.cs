@@ -1,10 +1,10 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using System.Collections.Generic;
+using Castle.MicroKernel.Registration;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.Entities;
-using CloudPrototyper.NET.Framework.v462.CosmosDb.Generators;
 using CloudPrototyper.NET.Interface.Generation;
-using System.Collections.Generic;
+using CloudPrototyper.NET.Standard.v20.CosmosDb.Generators;
 
-namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Registrations
+namespace CloudPrototyper.NET.Standard.v20.CosmosDb.Registrations
 {
     public class AzureCosmosDbContextRegistrations : GeneratorDependency<AzureCosmosDbContextGenerator>
     {

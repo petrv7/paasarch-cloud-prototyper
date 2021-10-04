@@ -1,15 +1,15 @@
-﻿using CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.Entities;
-using CloudPrototyper.NET.Framework.v462.CosmosDb.Model;
-using CloudPrototyper.NET.Framework.v462.CosmosDb.Templates;
+using CloudPrototyper.NET.Standard.v20.CosmosDb.Templates;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 using CloudPrototyper.NET.Interface.Prototyper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 
-namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Generators
+namespace CloudPrototyper.NET.Standard.v20.CosmosDb.Generators
 {
     public class AzureCosmosDbContextGenerator : Modeled<AzureCosmosDbContainer>, IEntityStorage
     {

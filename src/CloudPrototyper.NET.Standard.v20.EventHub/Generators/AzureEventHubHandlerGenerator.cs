@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
-using CloudPrototyper.NET.Framework.v462.EventHub.Templates;
+using CloudPrototyper.NET.Standard.v20.EventHub.Templates;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 using CloudPrototyper.NET.Interface.Prototyper;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 
-namespace CloudPrototyper.NET.Framework.v462.EventHub.Generators
+namespace CloudPrototyper.NET.Standard.v20.EventHub.Generators
 {
     public class AzureEventHubHandlerGenerator : Modeled<IList<TriggeredAction>>
     {

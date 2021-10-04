@@ -1,7 +1,7 @@
 ﻿using CloudPrototyper.Model.Resources.Storage;
 using Newtonsoft.Json;
 
-namespace CloudPrototyper.NET.Framework.v462.EventHub.Model
+namespace CloudPrototyper.NET.Standard.v20.EventHub.Model
 {
     public class AzureEventHub : Queue
     {

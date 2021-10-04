@@ -19,11 +19,11 @@ using CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerato
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.Workers;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.Workers.Utils;
-using CloudPrototyper.NET.Framework.v462.EventHub.Generators;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Constants;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
+using CloudPrototyper.NET.Standard.v20.EventHub.Generators;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Action = CloudPrototyper.Model.Applications.Action;
 using Component = Castle.MicroKernel.Registration.Component;
 

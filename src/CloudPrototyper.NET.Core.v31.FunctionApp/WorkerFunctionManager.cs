@@ -18,10 +18,10 @@ using CloudPrototyper.NET.Core.v31.Functions.Generators;
 using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Constants;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Action = CloudPrototyper.Model.Applications.Action;
 using ProjectFactory = CloudPrototyper.NET.Core.v31.Common.Factories.ProjectFactory;
 

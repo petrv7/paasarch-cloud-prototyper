@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
 using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
 using CloudPrototyper.NET.Interface.Generation;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 
 namespace CloudPrototyper.NET.Core.v31.Functions.Registrations
 {

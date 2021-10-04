@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
+namespace CloudPrototyper.NET.Standard.v20.EventHub.Templates {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
@@ -18,9 +18,9 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
     public partial class AzureEventHubTemplate : AzureEventHubTemplateBase {
         
         
-        private CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator _ModelField;
+        private CloudPrototyper.NET.Standard.v20.EventHub.Generators.AzureEventHubGenerator _ModelField;
         
-        public CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator Model {
+        public CloudPrototyper.NET.Standard.v20.EventHub.Generators.AzureEventHubGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -226,12 +226,12 @@ namespace CloudPrototyper.NET.Framework.v462.EventHub.Templates {
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.Standard.v20.EventHub.Generators.AzureEventHubGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.Standard.v20.EventHub.Generators.AzureEventHubGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Framework.v462.EventHub.Generators.AzureEventHubGen" +
-                                "erator\' of the parameter \'Model\' did not match the type passed to the template");
+                        this.Error("The type \'CloudPrototyper.NET.Standard.v20.EventHub.Generators.AzureEventHubGener" +
+                                "ator\' of the parameter \'Model\' did not match the type passed to the template");
                     }
                 }
             }

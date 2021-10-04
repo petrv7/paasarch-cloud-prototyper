@@ -1,15 +1,15 @@
-﻿using CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.DataFactories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.DataLayerGenerators.Entities;
-using CloudPrototyper.NET.Framework.v462.EventHub.Model;
-using CloudPrototyper.NET.Framework.v462.EventHub.Templates;
+using CloudPrototyper.NET.Standard.v20.EventHub.Templates;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 using CloudPrototyper.NET.Interface.Prototyper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 
-namespace CloudPrototyper.NET.Framework.v462.EventHub.Generators
+namespace CloudPrototyper.NET.Standard.v20.EventHub.Generators
 {
     public class AzureEventHubGenerator : Modeled<AzureEventHub>
     {

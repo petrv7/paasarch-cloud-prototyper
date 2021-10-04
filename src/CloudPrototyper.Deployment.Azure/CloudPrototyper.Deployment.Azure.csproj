@@ -1,10 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.4.1" />
+    <PackageReference Include="Azure.ResourceManager.CosmosDB" Version="1.0.0-preview.1" />
     <PackageReference Include="FluentFTP" Version="34.0.0" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.20.1" />
     <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.37.1" />
@@ -14,8 +16,8 @@
     <ProjectReference Include="..\CloudPrototyper.Azure\CloudPrototyper.Azure.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Interface\CloudPrototyper.Interface.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Model\CloudPrototyper.Model.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.CosmosDb\CloudPrototyper.NET.Framework.v462.CosmosDb.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.EventHub\CloudPrototyper.NET.Framework.v462.EventHub.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Standard.v20.CosmosDb\CloudPrototyper.NET.Standard.v20.CosmosDb.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Standard.v20.EventHub\CloudPrototyper.NET.Standard.v20.EventHub.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.TblStorage\CloudPrototyper.NET.Framework.v462.TblStorage.csproj" />
   </ItemGroup>
 

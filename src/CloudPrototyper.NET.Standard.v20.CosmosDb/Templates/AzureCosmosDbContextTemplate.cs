@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Templates {
+namespace CloudPrototyper.NET.Standard.v20.CosmosDb.Templates {
     using System.Linq;
     using System.Text;
     using System.Collections.Generic;
@@ -18,9 +18,9 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Templates {
     public partial class AzureCosmosDbContextTemplate : AzureCosmosDbContextTemplateBase {
         
         
-        private CloudPrototyper.NET.Framework.v462.CosmosDb.Generators.AzureCosmosDbContextGenerator _ModelField;
+        private CloudPrototyper.NET.Standard.v20.CosmosDb.Generators.AzureCosmosDbContextGenerator _ModelField;
         
-        public CloudPrototyper.NET.Framework.v462.CosmosDb.Generators.AzureCosmosDbContextGenerator Model {
+        public CloudPrototyper.NET.Standard.v20.CosmosDb.Generators.AzureCosmosDbContextGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -801,13 +801,13 @@ namespace CloudPrototyper.NET.Framework.v462.CosmosDb.Templates {
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Framework.v462.CosmosDb.Generators.AzureCosmosDbContextGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Framework.v462.CosmosDb.Generators.AzureCosmosDbContextGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.Standard.v20.CosmosDb.Generators.AzureCosmosDbContextGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.Standard.v20.CosmosDb.Generators.AzureCosmosDbContextGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Framework.v462.CosmosDb.Generators.AzureCosmosDbCon" +
-                                "textGenerator\' of the parameter \'Model\' did not match the type passed to the tem" +
-                                "plate");
+                        this.Error("The type \'CloudPrototyper.NET.Standard.v20.CosmosDb.Generators.AzureCosmosDbConte" +
+                                "xtGenerator\' of the parameter \'Model\' did not match the type passed to the templ" +
+                                "ate");
                     }
                 }
             }

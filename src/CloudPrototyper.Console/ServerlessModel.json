@@ -323,15 +323,6 @@
           "IsMany": false,
           "ContentSize": 2,
           "IsIndexed": false
-        },
-        {
-          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-          "Name": "Id",
-          "Type": "System.Int32",
-          "IsReference": false,
-          "IsMany": false,
-          "ContentSize": 9,
-          "IsIndexed": true
         }
       ]
     },
@@ -366,15 +357,6 @@
           "IsMany": false,
           "ContentSize": 5,
           "IsIndexed": false
-        },
-        {
-          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-          "Name": "Id",
-          "Type": "System.Int32",
-          "IsReference": false,
-          "IsMany": false,
-          "ContentSize": 9,
-          "IsIndexed": true
         }
       ]
     },
@@ -400,15 +382,6 @@
           "IsMany": false,
           "ContentSize": 50,
           "IsIndexed": false
-        },
-        {
-          "$type": "CloudPrototyper.Model.Entities.PropertyInfo, CloudPrototyper.Model",
-          "Name": "Id",
-          "Type": "System.Int32",
-          "IsReference": false,
-          "IsMany": false,
-          "ContentSize": 9,
-          "IsIndexed": true
         }
       ]
     }
@@ -447,14 +420,14 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.NET.Framework.v462.EventHub.Model.AzureEventHub, CloudPrototyper.NET.Framework.v462.EventHub",
+      "$type": "CloudPrototyper.NET.Standard.v20.EventHub.Model.AzureEventHub, CloudPrototyper.NET.Standard.v20.EventHub",
       "PartitionCount": 2,
       "WithNamespace": "PaaSArchEventHubNamespace",
       "Name": "EventHub",
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.NET.Framework.v462.EventHub.Model.AzureEventHubNamespace, CloudPrototyper.NET.Framework.v462.EventHub",
+      "$type": "CloudPrototyper.NET.Standard.v20.EventHub.Model.AzureEventHubNamespace, CloudPrototyper.NET.Standard.v20.EventHub",
       "PricingTier": "standard",
       "ThroughputUnits": 1,
       "WithAutoScale": true,
@@ -479,10 +452,11 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.NET.Framework.v462.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Framework.v462.CosmosDb",
+      "$type": "CloudPrototyper.NET.Standard.v20.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Standard.v20.CosmosDb",
       "UseGateway": true,
-      "ThroughputType": "manual",
-      "RUs": 400,
+      "IsServerless": true,
+      "ThroughputType": null,
+      "RUs": 0,
       "PartitionKey": "/id",
       "EntitySets": [
         {
@@ -496,10 +470,11 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.NET.Framework.v462.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Framework.v462.CosmosDb",
+      "$type": "CloudPrototyper.NET.Standard.v20.CosmosDb.Model.AzureCosmosDbContainer, CloudPrototyper.NET.Standard.v20.CosmosDb",
       "UseGateway": false,
-      "ThroughputType": "manual",
-      "RUs": 400,
+      "IsServerless": true,
+      "ThroughputType": null,
+      "RUs": 0,
       "PartitionKey": "/PartitionKey",
       "EntitySets": [
         {
