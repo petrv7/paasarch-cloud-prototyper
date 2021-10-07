@@ -31,30 +31,31 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.Workers {
             this.GenerationEnvironment = null;
             
             #line 7 "Templates\Workers\WorkerMainTemplate.tt"
-            this.Write("using Castle.Windsor;\r\n// Worker entry point\r\nnamespace ");
+            this.Write("using System.Linq;\r\nusing System.Threading.Tasks;\r\nusing Castle.Windsor;\r\n// Work" +
+                    "er entry point\r\nnamespace ");
             
             #line default
             #line hidden
             
-            #line 9 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 11 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 9 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 11 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 11 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 13 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 11 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 13 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(@" 
     {
         public static IWindsorContainer WindsorContainer;
@@ -63,56 +64,57 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.Workers {
             WindsorContainer = new WindsorContainer();
 
             WindsorContainer.Install(new Worker.Utils.Installer());
-            var handler = (");
+            var handlers = WindsorContainer.ResolveAll(typeof (");
             
             #line default
             #line hidden
             
-            #line 19 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 21 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Namespace ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 21 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 19 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 21 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Name ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\Workers\WorkerMainTemplate.tt"
-            this.Write(")WindsorContainer.Resolve(typeof (");
+            #line 21 "Templates\Workers\WorkerMainTemplate.tt"
+            this.Write("));\r\n\r\n            Task.WaitAll(handlers.Cast<");
             
             #line default
             #line hidden
             
-            #line 19 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 23 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Namespace ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 23 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 19 "Templates\Workers\WorkerMainTemplate.tt"
+            #line 23 "Templates\Workers\WorkerMainTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusHandlerInterface.Name ));
             
             #line default
             #line hidden
             
-            #line 19 "Templates\Workers\WorkerMainTemplate.tt"
-            this.Write("));\r\n            handler.OnStart();\r\n            handler.Run();\r\n        }\r\n    }" +
-                    "\r\n}");
+            #line 23 "Templates\Workers\WorkerMainTemplate.tt"
+            this.Write(">()\r\n                .Select(handler => Task.Run(() =>\r\n                {\r\n      " +
+                    "              handler.OnStart();\r\n                    handler.Run();\r\n          " +
+                    "      })).ToArray());            \r\n        }\r\n    }\r\n}");
             
             #line default
             #line hidden
