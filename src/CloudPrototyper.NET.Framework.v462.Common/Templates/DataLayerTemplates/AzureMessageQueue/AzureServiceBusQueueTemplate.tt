@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.Azure.ServiceBus;
 // Azure service bus
@@ -16,13 +15,8 @@ namespace <#= Model.Namespace #>
     public class <#= Model.Name #> : <#= Model.MessageBusInterfaceGenerator.Namespace #>.<#= Model.MessageBusInterfaceGenerator.Name #>
     {
 		private readonly Dictionary<string, Type> _names = new Dictionary<string, Type>();
-		private readonly QueueClient _client; 
+		private static readonly QueueClient _client = new QueueClient(new ServiceBusConnectionStringBuilder("<#= Model.ModelParameters.ConnectionString #>"));
 		public const string Name = "<#= Model.ModelParameters.Name #>";
-
-		public <#= Model.Name #>() 
-		{ 
-			_client = new QueueClient(new ServiceBusConnectionStringBuilder("<#= Model.ModelParameters.ConnectionString #>"));
-		}
 
 		public void Insert(string name) 
 		{
