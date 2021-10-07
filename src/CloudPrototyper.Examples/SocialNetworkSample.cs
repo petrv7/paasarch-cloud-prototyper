@@ -41,7 +41,7 @@ namespace CloudPrototyper.Examples
         {
             return new Prototype()
             {
-                Applications = GetApplications(),
+                Applications = GetApplications("DotNet46"),
                 Entities = GetEntities(),
                 Resources = new List<Model.Resources.Resource>()
                 {
@@ -99,7 +99,7 @@ namespace CloudPrototyper.Examples
         {
             return new Prototype()
             {
-                Applications = GetApplications(),
+                Applications = GetApplications("DotNetCore31"),
                 Entities = GetEntities(),
                 Resources = new List<Model.Resources.Resource>()
                 {
@@ -150,14 +150,14 @@ namespace CloudPrototyper.Examples
             };
         }
 
-        private List<Application> GetApplications()
+        private List<Application> GetApplications(string platform)
         {
             return new List<Application>
             {
                 new RestApiApplication()
                 {
                     Name = "SocialNetworkRestApi",
-                    Platform = "DotNet46",
+                    Platform = platform,
                     Actions = new List<CallableAction>()
                     {
                         new CallableAction()
@@ -263,7 +263,7 @@ namespace CloudPrototyper.Examples
                 new WorkerApplication()
                 {
                     Name = "SocialNetworkWorkerApp",
-                    Platform = "DotNet46",
+                    Platform = platform,
                     Actions = new List<TriggeredAction>()
                     {
                         new TriggeredAction()
