@@ -22,6 +22,10 @@ namespace CloudPrototyper.Examples
         /// Instance of prototype Model.
         /// </summary>
         public Prototype Model { get; set; }
+        /// <summary>
+        /// Instance of prototype serverless Model.
+        /// </summary>
+        public Prototype ServerlessModel { get; set; }
 
         /// <summary>
         /// Model definition using instances of Applications, Actions/Operations, Entities and Resources.
@@ -29,334 +33,408 @@ namespace CloudPrototyper.Examples
 
         public SocialNetworkSample()
         {
-            Model = new Prototype()
-            {
-                Applications = new List<Application>()
-    {
-        new RestApiApplication()
+            Model = CreateModel();
+            ServerlessModel = CreateServerlessModel();
+        }
+
+        private Prototype CreateModel()
         {
-            Name = "SocialNetworkRestApi",
-            Platform = "DotNet46",
-            Actions = new List<CallableAction>()
+            return new Prototype()
             {
-                new CallableAction()
+                Applications = GetApplications("DotNet46"),
+                Entities = GetEntities(),
+                Resources = new List<Model.Resources.Resource>()
                 {
-                    Name = "InsertWallRecord",
-                    Operation = new SequenceOperation()
+                    new AzureSQLDatabase()
                     {
-                        Name = "InsertWallRecordSeqOperation",
-                        Operations = new List<Operation>()
+                        Name = "SocialNetworkDB",
+                        DeployTo = "Azure",
+                        PerformanceTier = "standard",
+                        ServiceObjective = "S3",
+                        EntitySets = new List<EntitySet>()
                         {
-                            new AddMessageToQueue()
+                            new EntitySet() { EntityName = "WallRecord", Name ="WallRecords", Count = 25000 },
+                            new EntitySet() { EntityName = "UserEntity", Name ="Users", Count = 5000 }
+                        }
+                    },
+                    new AzureTableStorage()
+                    {
+                        Name = "SocialNetworkStorage",
+                        DeployTo = "Azure",
+                        EntitySets = new List<EntitySet>()
+                        {
+                            new EntitySet() { Name = "WallRecords", EntityName = "WallRecord", Count = 25000 },
+                            new EntitySet() { Name = "PrivateMessages", EntityName = "WallRecord", Count = 5000 },
+                            new EntitySet() { Name = "ImportantWallRecords", EntityName = "WallRecord", Count = 5000 },
+                            new EntitySet() { Name = "FavouriteWallRecords", EntityName = "WallRecord", Count = 5000 }
+                        }
+                    },
+                    new AzureAppService()
+                    {
+                        DeployTo = "Azure",
+                        Name = "HostingApi",
+                        PerformanceTier =  "StandardS3",
+                        WithApplication = "SocialNetworkRestApi"
+
+                    },
+                    new AzureAppService()
+                    {
+                        DeployTo = "Azure",
+                        Name = "HostingWorker",
+                        PerformanceTier = "StandardS3",
+                        WithApplication = "SocialNetworkWorkerApp"
+
+                    },
+                    new AzureServiceBusQueue()
+                    {
+                        DeployTo = "Azure",
+                        Name = "WorkerQueue",
+                        SizeInGB = 1
+                    }
+                }
+            };
+        }
+
+        private Prototype CreateServerlessModel()
+        {
+            return new Prototype()
+            {
+                Applications = GetApplications("DotNetCore31"),
+                Entities = GetEntities(),
+                Resources = new List<Model.Resources.Resource>()
+                {
+                    new AzureSQLDatabase()
+                    {
+                        Name = "SocialNetworkDB",
+                        DeployTo = "Azure",
+                        PerformanceTier = "standard",
+                        ServiceObjective = "S3",
+                        EntitySets = new List<EntitySet>()
+                        {
+                            new EntitySet() { EntityName = "WallRecord", Name ="WallRecords", Count = 25000 },
+                            new EntitySet() { EntityName = "UserEntity", Name ="Users", Count = 5000 }
+                        }
+                    },
+                    new AzureTableStorage()
+                    {
+                        Name = "SocialNetworkStorage",
+                        DeployTo = "Azure",
+                        EntitySets = new List<EntitySet>()
+                        {
+                            new EntitySet() { Name = "WallRecords", EntityName = "WallRecord", Count = 25000 },
+                            new EntitySet() { Name = "PrivateMessages", EntityName = "WallRecord", Count = 5000 },
+                            new EntitySet() { Name = "ImportantWallRecords", EntityName = "WallRecord", Count = 5000 },
+                            new EntitySet() { Name = "FavouriteWallRecords", EntityName = "WallRecord", Count = 5000 }
+                        }
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "HostingApi",
+                        WithApplication = "SocialNetworkRestApi"
+                    },
+                    new AzureFunctionApp()
+                    {
+                        DeployTo = "Azure",
+                        Name = "HostingWorker",
+                        WithApplication = "SocialNetworkWorkerApp"
+
+                    },
+                    new AzureServiceBusQueue()
+                    {
+                        DeployTo = "Azure",
+                        Name = "WorkerQueue",
+                        SizeInGB = 1
+                    }
+                }
+            };
+        }
+
+        private List<Application> GetApplications(string platform)
+        {
+            return new List<Application>
+            {
+                new RestApiApplication()
+                {
+                    Name = "SocialNetworkRestApi",
+                    Platform = platform,
+                    Actions = new List<CallableAction>()
+                    {
+                        new CallableAction()
+                        {
+                            Name = "InsertWallRecord",
+                            Operation = new SequenceOperation()
                             {
-                                Name = "InsertWallRecordTaskToWorkerQueue",
-                                QueueName = "WorkerQueue",
-                                EntityName = "InsertWallRecordTask"
+                                Name = "InsertWallRecordSeqOperation",
+                                Operations = new List<Operation>()
+                                {
+                                    new AddMessageToQueue()
+                                    {
+                                        Name = "InsertWallRecordTaskToWorkerQueue",
+                                        QueueName = "WorkerQueue",
+                                        EntityName = "InsertWallRecordTask"
+                                    }
+                                }
+                            }
+                        },
+                        new CallableAction()
+                        {
+                            Name = "GetWallRecords",
+                            Operation = new SequenceOperation()
+                            {
+                                Name = "GetWallRecordsSeq",
+                                Operations = new List<Operation>()
+                                {
+                                    new LoadEntitiesFromEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkStorage",
+                                        EntitySetName = "WallRecords",
+                                        EntityName = "WallRecord",
+                                        Name = "Take30WallRecordsFromSocialNetworkStorage",
+                                        Filter = new FilterCondition()
+                                        {
+                                            NumberOfResults = 30,
+                                            UseKey = true,
+                                        }
+                                    }
+                                    /*,
+                                    new CallUrlOperation
+                                    {
+                                        Name =  "WIkiLondon",
+                                        Url = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exlimit=max&explaintext&format=json&titles=london"
+                                    },
+                                    new ImageTresholding
+                                    {
+                                        Name   = "LenaThresholding"
+                                    }*/
+                                }
+
+                            }
+                        },
+                        new CallableAction()
+                        {
+                            Name = "GetWallRecordsDB",
+                            Operation = new SequenceOperation()
+                            {
+                                Name = "GetWallRecordsDBSeq",
+                                Operations = new List<Operation>()
+                                {
+                                    new LoadEntitiesFromEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkDB",
+                                        EntitySetName = "WallRecords",
+                                        EntityName = "WallRecord",
+                                        Name = "Take30WallRecordsFromDB",
+                                        Filter = new FilterCondition()
+                                        {
+                                            NumberOfResults = 30,
+                                            UseKey = true,
+                                        }
+                                    },
+                                    new LoadEntitiesFromEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkDB",
+                                        EntitySetName = "WallRecords",
+                                        EntityName = "WallRecord",
+                                        Name = "Take30WallRecordsFromDB2",
+                                        Filter = new FilterCondition()
+                                        {
+                                            NumberOfResults = 30,
+                                            UseKey = true,
+                                        }
+                                    },
+                                    new LoadEntitiesFromEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkDB",
+                                        EntitySetName = "WallRecords",
+                                        EntityName = "WallRecord",
+                                        Name = "Take30WallRecordsFromDB3",
+                                        Filter = new FilterCondition()
+                                        {
+                                            NumberOfResults = 30,
+                                            UseKey = true,
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 },
-                new CallableAction()
+                new WorkerApplication()
                 {
-                    Name = "GetWallRecords",
-                    Operation = new SequenceOperation()
+                    Name = "SocialNetworkWorkerApp",
+                    Platform = platform,
+                    Actions = new List<TriggeredAction>()
                     {
-                        Name = "GetWallRecordsSeq",
-                        Operations = new List<Operation>()
+                        new TriggeredAction()
                         {
-                            new LoadEntitiesFromEntityStorage()
+                            Name = "InsertWallRecord",
+                            Trigger = new MessageReceivedTrigger()
                             {
-                                EntityStorageName = "SocialNetworkStorage",
-                                EntitySetName = "WallRecords",
-                                EntityName = "WallRecord",
-                                Name = "Take30WallRecordsFromSocialNetworkStorage",
-                                Filter = new FilterCondition()
+                                MessageType = "InsertWallRecordTask",
+                                QueueName = "WorkerQueue"
+                            },
+                            Operation = new SequenceOperation()
+                            {
+                                Name = "InsertWallRecordSeq",
+                                Operations = new List<Operation>()
                                 {
-                                    NumberOfResults = 30,
-                                    UseKey = true,
+                                    new LoadEntitiesFromEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkDB",
+                                        EntitySetName = "WallRecords",
+                                        EntityName = "WallRecord",
+                                        Name = "FindExistingRecordByKeyFromSocialNetworkDB",
+                                        Filter = new FilterCondition()
+                                        {
+                                            // FindByID
+                                            UseKey = true,
+                                            NumberOfResults = 1
+                                        }
+                                    },
+                                    new LoadEntitiesFromEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkDB",
+                                        EntitySetName = "Users",
+                                        EntityName = "UserEntity",
+                                        Name = "ValidateUserPermission",
+                                        Filter = new FilterCondition()
+                                        {
+                                            // FindByID
+                                            UseKey = true,
+                                            NumberOfResults = 1
+                                        }
+                                    },
+                                    new InsertEntityToEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkDB",
+                                        EntitySetName = "WallRecords",
+                                        EntityName = "WallRecord",
+                                        Name = "OneWallRecordToSocialNetworkDB",
+                                        NumberOfEntities = 1
+                                    },
+                                    new AddMessageToQueue()
+                                    {
+                                        QueueName = "WorkerQueue",
+                                        EntityName = "GenerateWallRecordTask",
+                                        Name = "AddGenerateWallRecordTaskToWorkerQueue"
+                                    }
                                 }
                             }
-                            /*,
-                            new CallUrlOperation
-                            {
-                                Name =  "WIkiLondon",
-                                Url = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exlimit=max&explaintext&format=json&titles=london"
-                            },
-                            new ImageTresholding
-                            {
-                                Name   = "LenaThresholding"
-                            }*/
-                        }
-                       
-                    }
-                },
-                new CallableAction()
-                {
-                    Name = "GetWallRecordsDB",
-                    Operation = new SequenceOperation()
-                    {
-                        Name = "GetWallRecordsDBSeq",
-                        Operations = new List<Operation>()
+                        },
+                        new TriggeredAction()
                         {
-                            new LoadEntitiesFromEntityStorage()
+                            Name = "GenerateWallRecordTask",
+                            Trigger = new MessageReceivedTrigger()
                             {
-                                EntityStorageName = "SocialNetworkDB",
-                                EntitySetName = "WallRecords",
-                                EntityName = "WallRecord",
-                                Name = "Take30WallRecordsFromDB",
-                                Filter = new FilterCondition()
-                                {
-                                    NumberOfResults = 30,
-                                    UseKey = true,
-                                }
+                                MessageType = "GenerateWallRecordTask",
+                                QueueName = "WorkerQueue"
                             },
-                            new LoadEntitiesFromEntityStorage()
+                            Operation = new SequenceOperation()
                             {
-                                EntityStorageName = "SocialNetworkDB",
-                                EntitySetName = "WallRecords",
-                                EntityName = "WallRecord",
-                                Name = "Take30WallRecordsFromDB2",
-                                Filter = new FilterCondition()
+                                Name = "GenerateWallRecordTaskSeq",
+                                Operations = new List<Operation>()
                                 {
-                                    NumberOfResults = 30,
-                                    UseKey = true,
-                                }
-                            },
-                            new LoadEntitiesFromEntityStorage()
-                            {
-                                EntityStorageName = "SocialNetworkDB",
-                                EntitySetName = "WallRecords",
-                                EntityName = "WallRecord",
-                                Name = "Take30WallRecordsFromDB3",
-                                Filter = new FilterCondition()
-                                {
-                                    NumberOfResults = 30,
-                                    UseKey = true,
+                                    new LoadEntitiesFromEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkDB",
+                                        EntitySetName = "WallRecords",
+                                        EntityName = "WallRecord",
+                                        Name = "FindOneWallRecordByKeyFromSocialNetworkDB",
+                                        Filter = new FilterCondition()
+                                        {
+                                            // FindByID
+                                            UseKey = true,
+                                            NumberOfResults = 1
+                                        }
+                                    },
+                                    new InsertEntityToEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkStorage",
+                                        EntitySetName = "WallRecords",
+                                        EntityName = "WallRecord",
+                                        NumberOfEntities = 30,
+                                        Name = "InsertThirtyWallRecordsToSocialNetworkStorage"
+                                    },
+                                    new InsertEntityToEntityStorage()
+                                    {
+                                        EntityStorageName = "SocialNetworkStorage",
+                                        EntitySetName = "PrivateMessages",
+                                        EntityName = "WallRecord",
+                                        Name = "InsertTwoWallRecordsToSocialNetworkStorage",
+                                        NumberOfEntities = 2
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        },
-        new WorkerApplication()
+            };
+        }
+
+        private List<Entity> GetEntities()
         {
-            Name = "SocialNetworkWorkerApp",
-            Platform = "DotNet46",
-            Actions = new List<TriggeredAction>()
+            return new List<Model.Entities.Entity>()
             {
-                new TriggeredAction()
+                new CloudPrototyper.Model.Entities.Entity()
                 {
-                    Name = "InsertWallRecord",
-                    Trigger = new MessageReceivedTrigger()
+                    Name = "WallRecord",
+                    Properties = new List<PropertyInfo>()
                     {
-                        MessageType = "InsertWallRecordTask",
-                        QueueName = "WorkerQueue"
-                    },
-                    Operation = new SequenceOperation()
-                    {
-                        Name = "InsertWallRecordSeq",
-                        Operations = new List<Operation>()
-                        {
-                            new LoadEntitiesFromEntityStorage()
-                            {
-                                EntityStorageName = "SocialNetworkDB",
-                                EntitySetName = "WallRecords",
-                                EntityName = "WallRecord",
-                                Name = "FindExistingRecordByKeyFromSocialNetworkDB",
-                                Filter = new FilterCondition()
-                                { // FindByID
-                                    UseKey = true,
-                                    NumberOfResults = 1
-                                }
-                            },
-                            new LoadEntitiesFromEntityStorage()
-                            {
-                                EntityStorageName = "SocialNetworkDB",
-                                EntitySetName = "Users",
-                                EntityName = "UserEntity",
-                                Name = "ValidateUserPermission",
-                                Filter = new FilterCondition()
-                                { // FindByID
-                                    UseKey = true,
-                                    NumberOfResults = 1
-                                }
-                            },
-                            new InsertEntityToEntityStorage()
-                            {
-                                EntityStorageName = "SocialNetworkDB",
-                                EntitySetName = "WallRecords",
-                                EntityName = "WallRecord",
-                                Name = "OneWallRecordToSocialNetworkDB",
-                                NumberOfEntities = 1
-                            },
-                            new AddMessageToQueue()
-                            {
-                                QueueName = "WorkerQueue",
-                                EntityName = "GenerateWallRecordTask",
-                                Name = "AddGenerateWallRecordTaskToWorkerQueue"
-                            }
-                        }
+                        new PropertyInfo() {Name = "Number1", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number2", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number3", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number4", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number5", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Message", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message2", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message3", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message4", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message5", Type = "System.String", ContentSize = 500}
                     }
                 },
-                new TriggeredAction()
+                new CloudPrototyper.Model.Entities.Entity()
+                {
+                    Name = "InsertWallRecordTask",
+                    Properties = new List<PropertyInfo>()
+                    {
+                        new PropertyInfo() {Name = "Number1", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number2", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number3", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number4", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number5", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Message", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message2", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message3", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message4", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message5", Type = "System.String", ContentSize = 500}
+                    }
+                },
+                new CloudPrototyper.Model.Entities.Entity()
                 {
                     Name = "GenerateWallRecordTask",
-                    Trigger = new MessageReceivedTrigger()
+                    Properties = new List<PropertyInfo>()
                     {
-                        MessageType = "GenerateWallRecordTask",
-                        QueueName = "WorkerQueue"
-                    },
-                    Operation = new SequenceOperation()
+                        new PropertyInfo() {Name = "Number1", Type = "System.Int32"}
+                    }
+                },
+                new CloudPrototyper.Model.Entities.Entity()
+                {
+                    Name = "UserEntity",
+                    Properties = new List<PropertyInfo>()
                     {
-                        Name = "GenerateWallRecordTaskSeq",
-                        Operations = new List<Operation>()
-                        {
-                            new LoadEntitiesFromEntityStorage()
-                            {
-                                EntityStorageName = "SocialNetworkDB",
-                                EntitySetName = "WallRecords",
-                                EntityName = "WallRecord",
-                                Name = "FindOneWallRecordByKeyFromSocialNetworkDB",
-                                Filter = new FilterCondition()
-                                { // FindByID
-                                    UseKey = true,
-                                    NumberOfResults = 1
-                                }
-                            },
-                            new InsertEntityToEntityStorage()
-                            {
-                                EntityStorageName = "SocialNetworkStorage",
-                                EntitySetName = "WallRecords",
-                                EntityName = "WallRecord",
-                                NumberOfEntities = 30,
-                                Name = "InsertThirtyWallRecordsToSocialNetworkStorage"
-                            },
-                            new InsertEntityToEntityStorage()
-                            {
-                                EntityStorageName = "SocialNetworkStorage",
-                                EntitySetName = "PrivateMessages",
-                                EntityName = "WallRecord",
-                                Name = "InsertTwoWallRecordsToSocialNetworkStorage",
-                                NumberOfEntities = 2
-                            }
-                        }
+                        new PropertyInfo() {Name = "Number1", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number2", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number3", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number4", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Number5", Type = "System.Int32", ContentSize = 8},
+                        new PropertyInfo() {Name = "Message", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message2", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message3", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message4", Type = "System.String", ContentSize = 50},
+                        new PropertyInfo() {Name = "Message5", Type = "System.String", ContentSize = 50}
                     }
                 }
-            }
-        }
-    },
-                Entities = new List<Model.Entities.Entity>()
-    {
-        new CloudPrototyper.Model.Entities.Entity()
-        {
-            Name = "WallRecord",
-            Properties = new List<PropertyInfo>()
-            {
-                new PropertyInfo() { Name = "Number1", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number2", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number3", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number4", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number5", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Message", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message2", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message3", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message4", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message5", Type = "System.String", ContentSize = 500 }
-            }
-        },
-        new CloudPrototyper.Model.Entities.Entity()
-        {
-            Name = "InsertWallRecordTask",
-            Properties = new List<PropertyInfo>()
-            {
-                new PropertyInfo() { Name = "Number1", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number2", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number3", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number4", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number5", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Message", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message2", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message3", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message4", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message5", Type = "System.String", ContentSize = 500 }
-            }
-        },
-        new CloudPrototyper.Model.Entities.Entity()
-        {
-            Name = "GenerateWallRecordTask",
-            Properties = new List<PropertyInfo>()
-            {
-                new PropertyInfo() { Name = "Number1", Type = "System.Int32" }
-            }
-        },
-        new CloudPrototyper.Model.Entities.Entity()
-        {
-            Name = "UserEntity",
-            Properties = new List<PropertyInfo>()
-            {
-                new PropertyInfo() { Name = "Number1", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number2", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number3", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number4", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Number5", Type = "System.Int32", ContentSize = 8},
-                new PropertyInfo() { Name = "Message", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message2", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message3", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message4", Type = "System.String", ContentSize = 50 },
-                new PropertyInfo() { Name = "Message5", Type = "System.String", ContentSize = 50 }
-            }
-        },
-    },
-                Resources = new List<Model.Resources.Resource>()
-    {
-        new AzureSQLDatabase()
-        {
-            Name = "SocialNetworkDB",
-            DeployTo = "Azure",
-            PerformanceTier = "standard",
-            ServiceObjective = "S3",
-            EntitySets = new List<EntitySet>()
-            {
-                new EntitySet() { EntityName = "WallRecord", Name ="WallRecords", Count = 25000 },
-                new EntitySet() { EntityName = "UserEntity", Name ="Users", Count = 5000 }
-            }
-        },
-        new AzureTableStorage()
-        {
-            Name = "SocialNetworkStorage",
-            DeployTo = "Azure",
-            EntitySets = new List<EntitySet>()
-            {
-                new EntitySet() { Name = "WallRecords", EntityName = "WallRecord", Count = 25000 },
-                new EntitySet() { Name = "PrivateMessages", EntityName = "WallRecord", Count = 5000 },
-                new EntitySet() { Name = "ImportantWallRecords", EntityName = "WallRecord", Count = 5000 },
-                new EntitySet() { Name = "FavouriteWallRecords", EntityName = "WallRecord", Count = 5000 }
-            }
-        },
-        new AzureAppService()
-        {
-            DeployTo = "Azure",
-            Name = "HostingApi",
-            PerformanceTier =  "StandardS3",
-            WithApplication = "SocialNetworkRestApi"
-
-        },
-        new AzureAppService()
-        {
-            DeployTo = "Azure",
-            Name = "HostingWorker",
-            PerformanceTier = "StandardS3",
-            WithApplication = "SocialNetworkWorkerApp"
-
-        },
-        new AzureServiceBusQueue()
-        {
-            DeployTo = "Azure",
-            Name = "WorkerQueue",
-            SizeInGB = 1
-        }
-    }
             };
         }
     }

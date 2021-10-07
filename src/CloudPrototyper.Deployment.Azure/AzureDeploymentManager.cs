@@ -26,6 +26,7 @@ using Azure.Identity;
 using Azure.ResourceManager.CosmosDB.Models;
 using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;
+using Sku = Microsoft.Azure.Management.EventHub.Fluent.Models.Sku;
 
 namespace CloudPrototyper.Deployment.Azure
 {
@@ -208,25 +209,24 @@ namespace CloudPrototyper.Deployment.Azure
 
         private void Deploy(WorkerApplication application)
         {
-            bool isServerless = false;
+            var isServerless = !_webApps.ContainsKey(application);
             IPublishingProfile publishProfile;
 
-            if (_webApps.ContainsKey(application))
+            if (!isServerless)
             {
                 publishProfile = _webApps[application].GetPublishingProfile();
             }
             else
             {
-                isServerless = true;
                 publishProfile = _funcApps[application].GetPublishingProfile();
                 // Add connection strings to function app
                 _funcApps[application].Update().WithAppSettings(_queueConnStr).Apply();
             }
 
-            FtpClient client = new FtpClient();
+            var client = new FtpClient();
             var url = publishProfile.FtpUrl;
 
-            Uri myUri = new Uri("https://" + url);
+            var myUri = new Uri("https://" + url);
             var ip = Dns.GetHostAddresses(myUri.Host)[0];
             client.Host = ip.ToString();
 
@@ -240,10 +240,10 @@ namespace CloudPrototyper.Deployment.Azure
 
             foreach (var file in files)
             {
-                Uri fullPath = new Uri(file, UriKind.Absolute);
-                Uri relRoot = new Uri(Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), UriKind.Absolute);
+                var fullPath = new Uri(file, UriKind.Absolute);
+                var relRoot = new Uri(Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), UriKind.Absolute);
 
-                string relPath = relRoot.MakeRelativeUri(fullPath).ToString();
+                var relPath = relRoot.MakeRelativeUri(fullPath).ToString();
 
                 if (isServerless)
                 {
@@ -270,23 +270,14 @@ namespace CloudPrototyper.Deployment.Azure
 
         private void Deploy(RestApiApplication application)
         {
-            bool isServerless = false;
-            IPublishingProfile publishProfile;
+            var isServerless = !_webApps.ContainsKey(application);
 
-            if (_webApps.ContainsKey(application))
-            {
-                publishProfile = _webApps[application].GetPublishingProfile();
-            }
-            else
-            {
-                isServerless = true;
-                publishProfile = _funcApps[application].GetPublishingProfile();
-            }
+            var publishProfile = isServerless ? _funcApps[application].GetPublishingProfile() : _webApps[application].GetPublishingProfile();
 
-            FtpClient client = new FtpClient();
+            var client = new FtpClient();
             var url = publishProfile.FtpUrl;
 
-            Uri myUri = new Uri("https://" + url);
+            var myUri = new Uri("https://" + url);
             var ip = Dns.GetHostAddresses(myUri.Host)[0];
             client.Host = ip.ToString();
 
@@ -300,10 +291,10 @@ namespace CloudPrototyper.Deployment.Azure
 
             foreach (var file in files)
             {
-                Uri fullPath = new Uri(file, UriKind.Absolute);
-                Uri relRoot = new Uri(Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), UriKind.Absolute);
+                var fullPath = new Uri(file, UriKind.Absolute);
+                var relRoot = new Uri(Path.Combine(ConfigProvider.GetValue("OutputFolderPath"), application.Name, "build"), UriKind.Absolute);
 
-                string relPath = relRoot.MakeRelativeUri(fullPath).ToString();
+                var relPath = relRoot.MakeRelativeUri(fullPath).ToString();
                 
                 if (isServerless)
                 {
@@ -423,22 +414,14 @@ namespace CloudPrototyper.Deployment.Azure
         {
             Console.WriteLine("Making EventHub namespace: " + resource.Name);
 
-            var skuName = SkuName.Basic;
-            switch (resource.PricingTier.ToLower())
+            var skuName = resource.PricingTier.ToLower() switch
             {
-                case "basic":
-                    skuName = SkuName.Basic;
-                    break;
-                case "standard":
-                    skuName = SkuName.Standard;
-                    break;
-                default:
-                    skuName = SkuName.Basic;
-                    break;
+                "basic" => SkuName.Basic,
+                "standard" => SkuName.Standard,
+                _ => SkuName.Basic
+            };
 
-            }
-
-            var sku = new EventHubNamespaceSkuType(new(skuName));
+            var sku = new EventHubNamespaceSkuType(new Sku(skuName));
 
             var eventHubNamespaceCreation = _azure.EventHubNamespaces
                 .Define(resource.Name)
@@ -510,8 +493,10 @@ namespace CloudPrototyper.Deployment.Azure
         {
             Console.WriteLine("Making AzureCosmosDB " + (serverless ? "serverless account" : "account"));
 
-            var acc = new DatabaseAccountCreateUpdateParameters(new List<Location>() { new Location() { LocationName = ConfigProvider.GetValue("AzureRegion") } });
-            acc.Location = ConfigProvider.GetValue("AzureRegion");
+            var acc = new DatabaseAccountCreateUpdateParameters(new List<Location>() { new Location() { LocationName = ConfigProvider.GetValue("AzureRegion") } })
+                {
+                    Location = ConfigProvider.GetValue("AzureRegion")
+                };
 
             var accName = Guid.NewGuid().ToString("N").Substring(0, 16);
             var resourceGroup = ConfigProvider.TryGetValue("ResourceGroupName") ?? "CloudPrototyperGroup";
@@ -639,66 +624,52 @@ namespace CloudPrototyper.Deployment.Azure
 
         private void Init()
         {
-            if (!_initialized)
+            if (_initialized) return;
+
+            Console.WriteLine("Azure authentization");
+            var azureRegion = ConfigProvider.TryGetValue("AzureRegion");
+            _azure =
+                Microsoft.Azure.Management.Fluent.Azure.Authenticate(new AzureCredentials(
+                    new ServicePrincipalLoginInformation { ClientId = ConfigProvider.GetValue("ClientId"), ClientSecret = ConfigProvider.GetValue("ClientSecret") }, ConfigProvider.GetValue("TennantId"),
+                    AzureEnvironment.AzureGlobalCloud)).WithSubscription(ConfigProvider.GetValue("SubscriptionId"));
+            Console.WriteLine("Making resource group");
+            _resourceGroup = _azure.ResourceGroups
+                .Define(ConfigProvider.TryGetValue("ResourceGroupName") ?? "CloudPrototyperGroup")
+                .WithRegion(azureRegion ?? "westeurope")
+                .Create();
+
+            var options = new DefaultAzureCredentialOptions
             {
-                Console.WriteLine("Azure authentization");
-                var azureRegion = ConfigProvider.TryGetValue("AzureRegion");
-                _azure =
-                    Microsoft.Azure.Management.Fluent.Azure.Authenticate(new AzureCredentials(
-                        new ServicePrincipalLoginInformation { ClientId = ConfigProvider.GetValue("ClientId"), ClientSecret = ConfigProvider.GetValue("ClientSecret") }, ConfigProvider.GetValue("TennantId"),
-                        AzureEnvironment.AzureGlobalCloud)).WithSubscription(ConfigProvider.GetValue("SubscriptionId"));
-                Console.WriteLine("Making resource group");
-                _resourceGroup = _azure.ResourceGroups
-                        .Define(ConfigProvider.TryGetValue("ResourceGroupName") ?? "CloudPrototyperGroup")
-                        .WithRegion(azureRegion ?? "westeurope")
-                        .Create();
+                ManagedIdentityClientId = ConfigProvider.GetValue("ClientId")
+            };
+            var cred = new DefaultAzureCredential(options);
+            _cosmosManagementClient = new CosmosDBManagementClient(ConfigProvider.GetValue("SubscriptionId"), cred);                
 
-                var options = new DefaultAzureCredentialOptions();
-                options.ManagedIdentityClientId = ConfigProvider.GetValue("ClientId");
-                var cred = new DefaultAzureCredential(options);
-                _cosmosManagementClient = new CosmosDBManagementClient(ConfigProvider.GetValue("SubscriptionId"), cred);                
-
-                _initialized = true;
-            }
+            _initialized = true;
         }
 
-        private PricingTier GetPricingTierFromString(string tier)
+        private static PricingTier GetPricingTierFromString(string tier)
         {
             if (tier == null) return PricingTier.FreeF1;
 
-            switch (tier.ToLower())
+            return tier.ToLower() switch
             {
-                case "freef1":
-                    return PricingTier.FreeF1;
-                case "basicb1":
-                    return PricingTier.BasicB1;
-                case "basicb2":
-                    return PricingTier.BasicB2;
-                case "basicb3":
-                    return PricingTier.BasicB3;
-                case "premiump1":
-                    return PricingTier.PremiumP1;
-                case "premiump2":
-                    return PricingTier.PremiumP2;
-                case "premiump3":
-                    return PricingTier.PremiumP3;
-                case "sharedd1":
-                    return PricingTier.SharedD1;
-                case "standards1":
-                    return PricingTier.StandardS1;
-                case "standards2":
-                    return PricingTier.StandardS2;
-                case "standards3":
-                    return PricingTier.StandardS3;
-                case "ep1":
-                    return new PricingTier("ElasticPremium", "EP1");
-                case "ep2":
-                    return new PricingTier("ElasticPremium", "EP2");
-                case "ep3":
-                    return new PricingTier("ElasticPremium", "EP3");
-                default:
-                    return PricingTier.FreeF1;
-            }
+                "freef1" => PricingTier.FreeF1,
+                "basicb1" => PricingTier.BasicB1,
+                "basicb2" => PricingTier.BasicB2,
+                "basicb3" => PricingTier.BasicB3,
+                "premiump1" => PricingTier.PremiumP1,
+                "premiump2" => PricingTier.PremiumP2,
+                "premiump3" => PricingTier.PremiumP3,
+                "sharedd1" => PricingTier.SharedD1,
+                "standards1" => PricingTier.StandardS1,
+                "standards2" => PricingTier.StandardS2,
+                "standards3" => PricingTier.StandardS3,
+                "ep1" => new PricingTier("ElasticPremium", "EP1"),
+                "ep2" => new PricingTier("ElasticPremium", "EP2"),
+                "ep3" => new PricingTier("ElasticPremium", "EP3"),
+                _ => PricingTier.FreeF1
+            };
         }
     }
 }

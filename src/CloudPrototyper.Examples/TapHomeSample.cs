@@ -11,7 +11,6 @@ using CloudPrototyper.Model.Operations.DataAccess;
 using CloudPrototyper.Model.Resources;
 using CloudPrototyper.Model.Resources.Storage;
 using CloudPrototyper.NET.Framework.v462.Computing.Models;
-using CloudPrototyper.NET.Framework.v462.CosmosDb.Model;
 using CloudPrototyper.NET.Framework.v462.TblStorage.Model;
 
 namespace CloudPrototyper.Examples

@@ -4,6 +4,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ parameter type="CloudPrototyper.NET.Framework.v462.Common.Generators.Workers.WorkerMainGenerator" name="Model" #>
+using System.Linq;
+using System.Threading.Tasks;
 using Castle.Windsor;
 // Worker entry point
 namespace <#= Model.Namespace #> 
@@ -16,9 +18,14 @@ namespace <#= Model.Namespace #>
             WindsorContainer = new WindsorContainer();
 
             WindsorContainer.Install(new Worker.Utils.Installer());
-            var handler = (<#= Model.MessageBusHandlerInterface.Namespace #>.<#= Model.MessageBusHandlerInterface.Name #>)WindsorContainer.Resolve(typeof (<#= Model.MessageBusHandlerInterface.Namespace #>.<#= Model.MessageBusHandlerInterface.Name #>));
-            handler.OnStart();
-            handler.Run();
+            var handlers = WindsorContainer.ResolveAll(typeof (<#= Model.MessageBusHandlerInterface.Namespace #>.<#= Model.MessageBusHandlerInterface.Name #>));
+
+            Task.WaitAll(handlers.Cast<<#= Model.MessageBusHandlerInterface.Namespace #>.<#= Model.MessageBusHandlerInterface.Name #>>()
+                .Select(handler => Task.Run(() =>
+                {
+                    handler.OnStart();
+                    handler.Run();
+                })).ToArray());            
         }
     }
 }

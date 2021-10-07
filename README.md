@@ -27,7 +27,6 @@ Tool requires configuration file in order to create resources in Azure. The ```T
 		<add key="BenchmarkFileOutput" value="" />
 		<add key="DataLayerLibraryPath" value="" />
 		<add key="AzureRegion" value="" />
-		<add key="CosmosAccount" value="" />
 	</appSettings>
 </configuration>
 ```

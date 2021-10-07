@@ -31,179 +31,165 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Templates.DataLayerTemplates
             this.GenerationEnvironment = null;
             
             #line 7 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
-            this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.IO;\r\nusing System." +
-                    "Threading.Tasks;\r\nusing Newtonsoft.Json;\r\nusing Microsoft.Azure.ServiceBus;\r\n// " +
-                    "Azure service bus\r\nnamespace ");
+            this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.IO;\r\nusing Newtons" +
+                    "oft.Json;\r\nusing Microsoft.Azure.ServiceBus;\r\n// Azure service bus\r\nnamespace ");
             
             #line default
             #line hidden
             
-            #line 14 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 13 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Namespace ));
             
             #line default
             #line hidden
             
-            #line 14 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 13 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(" \r\n{\r\n    public class ");
             
             #line default
             #line hidden
             
-            #line 16 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 15 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
             
             #line default
             #line hidden
             
-            #line 16 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 15 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(" : ");
             
             #line default
             #line hidden
             
-            #line 16 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 15 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusInterfaceGenerator.Namespace ));
             
             #line default
             #line hidden
             
-            #line 16 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 15 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 16 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 15 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.MessageBusInterfaceGenerator.Name ));
             
             #line default
             #line hidden
             
-            #line 16 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 15 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write("\r\n    {\r\n\t\tprivate readonly Dictionary<string, Type> _names = new Dictionary<stri" +
-                    "ng, Type>();\r\n\t\tprivate readonly QueueClient _client; \r\n\t\tpublic const string Na" +
-                    "me = \"");
+                    "ng, Type>();\r\n\t\tprivate static readonly QueueClient _client = new QueueClient(ne" +
+                    "w ServiceBusConnectionStringBuilder(\"");
             
             #line default
             #line hidden
             
-            #line 20 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 20 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
-            this.Write("\";\r\n\r\n\t\tpublic ");
-            
-            #line default
-            #line hidden
-            
-            #line 22 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Name ));
-            
-            #line default
-            #line hidden
-            
-            #line 22 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
-            this.Write("() \r\n\t\t{ \r\n\t\t\t_client = new QueueClient(new ServiceBusConnectionStringBuilder(\"");
-            
-            #line default
-            #line hidden
-            
-            #line 24 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 18 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.ConnectionString ));
             
             #line default
             #line hidden
             
-            #line 24 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
-            this.Write("\"));\r\n\t\t}\r\n\r\n\t\tpublic void Insert(string name) \r\n\t\t{\r\n\t\t\tobject toInsert = null;\r" +
-                    "\n");
+            #line 18 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            this.Write("\"));\r\n\t\tpublic const string Name = \"");
             
             #line default
             #line hidden
             
-            #line 30 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 19 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.ModelParameters.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 19 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            this.Write("\";\r\n\r\n\t\tpublic void Insert(string name) \r\n\t\t{\r\n\t\t\tobject toInsert = null;\r\n");
+            
+            #line default
+            #line hidden
+            
+            #line 24 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
  foreach(var entity in Model.Entities) { 
             
             #line default
             #line hidden
             
-            #line 31 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 25 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write("\t\t\tif(name == \"");
             
             #line default
             #line hidden
             
-            #line 31 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 25 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 31 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 25 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write("\")\r\n\t\t\t{\r\n\t\t\t\ttoInsert = ");
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 27 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.DataGenerator.Namespace));
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 27 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 27 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( Model.DataGenerator.Name ));
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 27 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(".GetInstance().Generate<");
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 27 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(entity.Namespace));
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 27 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(".");
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 27 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture( entity.Name ));
             
             #line default
             #line hidden
             
-            #line 33 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 27 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(">(1).ToArray()[0];\r\n\t\t\t} \r\n");
             
             #line default
             #line hidden
             
-            #line 35 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 29 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 36 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
+            #line 30 "Templates\DataLayerTemplates\AzureMessageQueue\AzureServiceBusQueueTemplate.tt"
             this.Write(@"			Insert(name,toInsert);
 		}
 

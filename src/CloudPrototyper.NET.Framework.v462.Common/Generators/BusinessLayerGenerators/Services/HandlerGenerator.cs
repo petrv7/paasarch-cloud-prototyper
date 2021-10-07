@@ -19,7 +19,8 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGene
         public AzureServiceBusQueue AzureServiceBusQueue { get; set; }
         public MessageBusHandlerInterfaceGenerator MessageBusHandlerInterface { get; set; }
         public OperationInterfaceGenerator OperationInterface { get; set; }
-        public IList<ActionGenerator> Actions { get; set; }
+        public IList<ActionGenerator> Actions => _actions;
+        private readonly IList<ActionGenerator> _actions;
         public override List<PackageConfigInfo> GetNugetPackages() => NugetFactory.MakeAzureServiceBusNuget();
         public HandlerGenerator(string projectName, AzureServiceBusQueue azureServiceBusQueue,
             MessageBusHandlerInterfaceGenerator messageBusHandlerInterface, IList<TriggeredAction> modelParameters, IList<ActionGenerator> actions , OperationInterfaceGenerator operationInterface)
@@ -27,7 +28,7 @@ namespace CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGene
                 projectName, "Services", azureServiceBusQueue.Name + "Handler", typeof (HandlerTemplate),
                 modelParameters, azureServiceBusQueue.Name + "Handler")
         {
-            Actions = actions.Where(x => modelParameters.Select(y => y.Name).Contains(x.Key)).ToList();
+            _actions = actions.Where(x => modelParameters.Select(y => y.Name).Contains(x.Key)).ToList();
             OperationInterface = operationInterface;
             AzureServiceBusQueue = azureServiceBusQueue;
             MessageBusHandlerInterface = messageBusHandlerInterface;
