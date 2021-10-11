@@ -3,7 +3,6 @@ using System.Linq;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
-using CloudPrototyper.Azure.Resources;
 using CloudPrototyper.Interface;
 using CloudPrototyper.Interface.Constants;
 using CloudPrototyper.Interface.Generation;
@@ -15,6 +14,7 @@ using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Resources;
 using CloudPrototyper.NET.Core.v31.Functions.Generators;
 using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
+using CloudPrototyper.NET.Core.v31.Functions.Model;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
 using CloudPrototyper.NET.Interface.Constants;
@@ -82,9 +82,9 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
 
             RegisterSolutionItems(application);
 
-            List<IGenerableFile> dataLayerFiles = ProjectFactory.ResolveHandlers(dataLayerHandlers, Container, NamingConstants.DataLayerProjectName);
-            List<IGenerableFile> businessLayerFiles = ProjectFactory.ResolveHandlers(businessLayerHandlers, Container, NamingConstants.BusinessLayerProjectName);
-            List<IGenerableFile> functionLayerFiles = ProjectFactory.ResolveHandlers(functionLayerHandlers, Container, NamingConstants.FunctionLayerProjectName);
+            var dataLayerFiles = ProjectFactory.ResolveHandlers(dataLayerHandlers, Container, NamingConstants.DataLayerProjectName);
+            var businessLayerFiles = ProjectFactory.ResolveHandlers(businessLayerHandlers, Container, NamingConstants.BusinessLayerProjectName);
+            var functionLayerFiles = ProjectFactory.ResolveHandlers(functionLayerHandlers, Container, NamingConstants.FunctionLayerProjectName);
 
             InitDataLayer(dataLayerFiles, Container);
             InitBusinessLayer(businessLayerFiles, Container);
@@ -94,12 +94,12 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
             ApplicationGenerator.Files.AddRange(allFiles);
         }
 
-        private void RegisterBusinessLayer(List<Action> actions, WindsorContainer container)
+        private static void RegisterBusinessLayer(List<Action> actions, WindsorContainer container)
         {
             ProjectFactory.RegisterOperations(NamingConstants.BusinessLayerProjectName, actions, container);
         }
 
-        private void RegisterDataLayer(RestApiApplication application, Prototype prototype, List<Operation> operations, WindsorContainer container)
+        private static void RegisterDataLayer(RestApiApplication application, Prototype prototype, List<Operation> operations, WindsorContainer container)
         {
             ProjectFactory.RegisterEntities(NamingConstants.DataLayerProjectName, application, prototype, container);
             ProjectFactory.RegisterResources(NamingConstants.DataLayerProjectName, application, prototype, operations, container);
@@ -145,13 +145,13 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
         {
             var packages = new List<PackageConfigInfo>();
 
-            foreach (CodeGeneratorBase include in includes.OfType<CodeGeneratorBase>())
+            foreach (var include in includes.OfType<CodeGeneratorBase>())
             {
                 packages.AddRange(include.GetNugetPackages());
             }
 
             var contents = new List<ContentInfo>();
-            foreach (CodeGeneratorBase include in includes.OfType<CodeGeneratorBase>())
+            foreach (var include in includes.OfType<CodeGeneratorBase>())
             {
                 contents.AddRange(include.GetContents(NamingConstants.FunctionLayerProjectName));
             }
@@ -165,13 +165,13 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
         {
             var packages = new List<PackageConfigInfo>();
 
-            foreach (CodeGeneratorBase include in includes.OfType<CodeGeneratorBase>())
+            foreach (var include in includes.OfType<CodeGeneratorBase>())
             {
                 packages.AddRange(include.GetNugetPackages());
             }
 
             var contents = new List<ContentInfo>();
-            foreach (CodeGeneratorBase include in includes.OfType<CodeGeneratorBase>())
+            foreach (var include in includes.OfType<CodeGeneratorBase>())
             {
                 contents.AddRange(include.GetContents(NamingConstants.BusinessLayerProjectName));
             }
@@ -187,14 +187,14 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
         {
             var packages = new List<PackageConfigInfo>();
 
-            foreach (CodeGeneratorBase include in includes.OfType<CodeGeneratorBase>())
+            foreach (var include in includes.OfType<CodeGeneratorBase>())
             {
                 packages.AddRange(include.GetNugetPackages());
             }
 
 
             var contents = new List<ContentInfo>();
-            foreach (CodeGeneratorBase include in includes.OfType<CodeGeneratorBase>())
+            foreach (var include in includes.OfType<CodeGeneratorBase>())
             {
                 contents.AddRange(include.GetContents(NamingConstants.DataLayerProjectName));
             }
