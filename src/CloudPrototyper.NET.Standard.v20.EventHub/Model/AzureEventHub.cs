@@ -7,7 +7,14 @@ namespace CloudPrototyper.NET.Standard.v20.EventHub.Model
     {
         [JsonIgnore]
         public string ConnectionString { get; set; } = "";
-        public int PartitionCount { get; set; }
+
+        /// <summary>
+        /// Partition count of the Event Hub (default value 2, available values 2 - 32)
+        /// </summary>
+        public int PartitionCount { get; set; } = 2;
+        /// <summary>
+        /// Name of the Event Hub Namespace
+        /// </summary>
         public string WithNamespace { get; set; }
     }
 }
