@@ -5,5 +5,9 @@
     /// </summary>
     public abstract class HostingEnvironment : Resource
     {
+        /// <summary>
+        /// Application to be deployed here.
+        /// </summary>
+        public string WithApplication { get; set; }
     }
 }

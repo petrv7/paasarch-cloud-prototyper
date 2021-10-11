@@ -10,6 +10,7 @@ using CloudPrototyper.Model.Operations.Computing;
 using CloudPrototyper.Model.Operations.DataAccess;
 using CloudPrototyper.Model.Resources;
 using CloudPrototyper.Model.Resources.Storage;
+using CloudPrototyper.NET.Core.v31.Functions.Model;
 using CloudPrototyper.NET.Framework.v462.Computing.Models;
 using CloudPrototyper.NET.Framework.v462.TblStorage.Model;
 

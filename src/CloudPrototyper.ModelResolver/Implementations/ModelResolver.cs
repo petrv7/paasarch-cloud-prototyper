@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using CloudPrototyper.Azure.Resources;
 using CloudPrototyper.DataGenerator;
 using CloudPrototyper.Interface;
 using CloudPrototyper.Interface.Benchmark;
@@ -302,7 +301,10 @@ namespace CloudPrototyper.ModelResolver.Implementations
         private void LoadGeneratorManagers()
         {
             var types = Utils.LoadTypes(_baseDirectory);
-            var functionApps = _prototype.Resources.OfType<AzureFunctionApp>();            
+            var functionApps = _prototype.Resources
+                .OfType<HostingEnvironment>()
+                .Where(h => h is IServerless)
+                .ToList();            
 
             foreach (var app in _prototype.Applications) // We need to find generator for each app
             {
@@ -310,19 +312,19 @@ namespace CloudPrototyper.ModelResolver.Implementations
                 // For function apps the generator needs to implement the IServerless interface
                 if (functionApps.FirstOrDefault(a => a.WithApplication == app.Name) != null)
                 {
-                    managers = types.Where(y => y.BaseType != null && y.BaseType.IsGenericType &&
-                                                  y.BaseType.GetGenericTypeDefinition() ==
-                                                  typeof(GeneratorManager<>) &&
-                                                  typeof(IServerless).IsAssignableFrom(y) &&
-                                                  y.BaseType.GetGenericArguments().Contains(app.GetType())).ToList();
+                    managers = types.Where(y => y.BaseType is {IsGenericType: true} 
+                                                && y.BaseType.GetGenericTypeDefinition() == typeof(GeneratorManager<>) 
+                                                && typeof(IServerless).IsAssignableFrom(y) 
+                                                && y.BaseType.GetGenericArguments().Contains(app.GetType()))
+                        .ToList();
                 }
                 else
                 {
-                    managers = types.Where(y => y.BaseType != null && y.BaseType.IsGenericType &&
-                                                  y.BaseType.GetGenericTypeDefinition() ==
-                                                  typeof(GeneratorManager<>) &&
-                                                  !typeof(IServerless).IsAssignableFrom(y) &&
-                                                  y.BaseType.GetGenericArguments().Contains(app.GetType())).ToList();
+                    managers = types.Where(y => y.BaseType is {IsGenericType: true} 
+                                                && y.BaseType.GetGenericTypeDefinition() == typeof(GeneratorManager<>) 
+                                                && !typeof(IServerless).IsAssignableFrom(y) 
+                                                && y.BaseType.GetGenericArguments().Contains(app.GetType()))
+                        .ToList();
                 }
 
                 foreach (var t in managers)

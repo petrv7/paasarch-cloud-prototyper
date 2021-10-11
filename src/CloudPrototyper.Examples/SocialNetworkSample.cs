@@ -8,6 +8,7 @@ using CloudPrototyper.Model.Operations.DataAccess;
 using CloudPrototyper.Model.Resources.Storage;
 using System.Collections.Generic;
 using CloudPrototyper.Azure.Resources;
+using CloudPrototyper.NET.Core.v31.Functions.Model;
 using CloudPrototyper.NET.Framework.v462.Computing.Models;
 using CloudPrototyper.NET.Framework.v462.TblStorage.Model;
 

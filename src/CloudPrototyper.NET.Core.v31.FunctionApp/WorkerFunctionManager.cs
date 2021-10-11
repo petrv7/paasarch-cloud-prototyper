@@ -3,7 +3,6 @@ using System.Linq;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
-using CloudPrototyper.Azure.Resources;
 using CloudPrototyper.Azure.Resources.Storage;
 using CloudPrototyper.Interface;
 using CloudPrototyper.Interface.Constants;
@@ -16,6 +15,7 @@ using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Resources;
 using CloudPrototyper.NET.Core.v31.Functions.Generators;
 using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
+using CloudPrototyper.NET.Core.v31.Functions.Model;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
 using CloudPrototyper.NET.Interface.Constants;
@@ -78,9 +78,9 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
             RegisterFunctionComponents(application, prototype);
             var handlers = Container.Kernel.GetAssignableHandlers(typeof(IGenerableFile));
 
-            List<IGenerableFile> consoleProjectFiles = ProjectFactory.ResolveHandlers(handlers, Container, NamingConstants.WorkerName);
+            var functionProjectFiles = ProjectFactory.ResolveHandlers(handlers, Container, NamingConstants.WorkerName);
 
-            InitFunctionProject(consoleProjectFiles, Container, prototype, application);
+            InitFunctionProject(functionProjectFiles, Container, prototype, application);
 
             RegisterSolutionFiles(application);
 
@@ -133,12 +133,12 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
         {
             var packages = new List<PackageConfigInfo>();
 
-            foreach (CodeGeneratorBase include in includes.OfType<CodeGeneratorBase>())
+            foreach (var include in includes.OfType<CodeGeneratorBase>())
             {
                 packages.AddRange(include.GetNugetPackages());
             }
             var contents = new List<ContentInfo>();
-            foreach (CodeGeneratorBase include in includes.OfType<CodeGeneratorBase>())
+            foreach (var include in includes.OfType<CodeGeneratorBase>())
             {
                 contents.AddRange(include.GetContents(NamingConstants.WorkerName));
             }
