@@ -16,10 +16,5 @@ namespace CloudPrototyper.Azure.Resources
         /// Plan name.
         /// </summary>
         public string PlanName { get; set; }
-
-        /// <summary>
-        /// Application to be deployed here.
-        /// </summary>
-        public string WithApplication { get; set; }
     }
 }
