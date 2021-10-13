@@ -388,7 +388,7 @@
   ],
   "Resources": [
     {
-      "$type": "CloudPrototyper.Azure.Resources.AzureFunctionApp, CloudPrototyper.Azure",
+      "$type": "CloudPrototyper.NET.Core.v31.Functions.Model.AzureFunctionApp, CloudPrototyper.NET.Core.v31.Functions",
       "PlanName": "",
       "PerformanceTier": null,
       "WithApplication": "UsersMicroservice",
@@ -396,7 +396,7 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.Azure.Resources.AzureFunctionApp, CloudPrototyper.Azure",
+      "$type": "CloudPrototyper.NET.Core.v31.Functions.Model.AzureFunctionApp, CloudPrototyper.NET.Core.v31.Functions",
       "PlanName": "",
       "PerformanceTier": null,
       "WithApplication": "DataMicroservice",
@@ -404,7 +404,7 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.Azure.Resources.AzureFunctionApp, CloudPrototyper.Azure",
+      "$type": "CloudPrototyper.NET.Core.v31.Functions.Model.AzureFunctionApp, CloudPrototyper.NET.Core.v31.Functions",
       "PlanName": "",
       "PerformanceTier": null,
       "WithApplication": "ApiComposition",
@@ -412,7 +412,7 @@
       "DeployTo": "Azure"
     },
     {
-      "$type": "CloudPrototyper.Azure.Resources.AzureFunctionApp, CloudPrototyper.Azure",
+      "$type": "CloudPrototyper.NET.Core.v31.Functions.Model.AzureFunctionApp, CloudPrototyper.NET.Core.v31.Functions",
       "PlanName": "",
       "PerformanceTier": null,
       "WithApplication": "DataProcessingWorker",
