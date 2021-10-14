@@ -63,7 +63,7 @@ namespace CloudPrototyper.Deployment.Azure
 
         private IStorageAccount _storageAccount;
         private readonly Dictionary<AzureCosmosDbContainer, Container> _containers = new Dictionary<AzureCosmosDbContainer, Container>();
-        private readonly Dictionary<string, string> _queueConnStr = new();
+        private readonly Dictionary<string, string> _connStr = new();
         private readonly Dictionary<Application, IWebApp> _webApps = new();
         private readonly Dictionary<Application, IFunctionApp> _funcApps = new();
         private readonly Dictionary<AzureSQLDatabase, ISqlDatabase> _databases = new();
@@ -221,7 +221,7 @@ namespace CloudPrototyper.Deployment.Azure
             {
                 publishProfile = _funcApps[application].GetPublishingProfile();
                 // Add connection strings to function app
-                _funcApps[application].Update().WithAppSettings(_queueConnStr).Apply();
+                _funcApps[application].Update().WithAppSettings(_connStr).Apply();
             }
 
             var client = new FtpClient();
@@ -403,7 +403,7 @@ namespace CloudPrototyper.Deployment.Azure
             var rule = firstQueue.AuthorizationRules.Define("rulerule").WithManagementEnabled().Create();
             
             resource.ConnectionString = rule.GetKeys().PrimaryConnectionString;
-            _queueConnStr.Add(resource.Name + "Connection", resource.ConnectionString.Substring(0, resource.ConnectionString.IndexOf("EntityPath=")));
+            _connStr.Add(resource.Name + "Connection", resource.ConnectionString.Substring(0, resource.ConnectionString.IndexOf("EntityPath=")));
 
             PreparedResources.Add(resource);
             _serviceQueues.Add(resource, firstQueue);                                
@@ -466,7 +466,7 @@ namespace CloudPrototyper.Deployment.Azure
 
             _eventHubs.Add(resource, hub);
             resource.ConnectionString = eventHubNamespace.Manager.NamespaceAuthorizationRules.GetByName(_resourceGroup.Name, eventHubNamespace.Name, "RootManageSharedAccessKey").GetKeys().PrimaryConnectionString;
-            _queueConnStr.Add(resource.Name + "Connection", resource.ConnectionString);
+            _connStr.Add(resource.Name + "Connection", resource.ConnectionString);
             PreparedResources.Add(resource);
             Console.WriteLine("Done: " + resource.Name);
         }
@@ -515,11 +515,13 @@ namespace CloudPrototyper.Deployment.Azure
             {
                 _cosmosClientServerless = new CosmosClient(connStr);
                 _cosmosConnectionStringServerless = connStr;
+                _connStr.Add("serverlessConnStr", connStr);
             }
             else
             {
                 _cosmosClient = new CosmosClient(connStr);
                 _cosmosConnectionString = connStr;
+                _connStr.Add("ConnStr", connStr);
             }
 
             Console.WriteLine("Done: AzureCosmosDB account");
