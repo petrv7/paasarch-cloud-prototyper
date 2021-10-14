@@ -21,7 +21,7 @@ namespace CloudPrototyper.NET.Standard.v20.CosmosDb.Model
         /// Name of the container database
         /// </summary>
         [JsonIgnore]
-        public string DatabaseName { get; set; } = "";
+        public string DatabaseName { get; set; } = "empty";
         /// <summary>
         /// Partition key of the container, default value /id as recommended by Azure
         /// </summary>

@@ -21,6 +21,7 @@ using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
 using CloudPrototyper.NET.Interface.Constants;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
+using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Action = CloudPrototyper.Model.Applications.Action;
 using ProjectFactory = CloudPrototyper.NET.Core.v31.Common.Factories.ProjectFactory;
@@ -104,9 +105,13 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
             );
 
             var queueNames = application.Actions.Select(a => a.Trigger).OfType<MessageReceivedTrigger>().Select(t => t.QueueName);
+            var cosmosTriggers = application.Actions.Select(a => a.Trigger).OfType<AzureCosmosDbTrigger>();
+            var containerNames = cosmosTriggers.Select(t => t.ContainerName).ToList();
 
             var buses = Utils.FindAllInstances<AzureServiceBusQueue>(prototype).Where(b => queueNames.Contains(b.Name));
             var hubs = Utils.FindAllInstances<AzureEventHub>(prototype).Where(h => queueNames.Contains(h.Name));
+            var containers = Utils.FindAllInstances<AzureCosmosDbContainer>(prototype)
+                .Where(c => containerNames.Contains(c.Name));
 
             foreach (var bus in buses)
             {
@@ -126,6 +131,18 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
                     Component.For<EventHubFunctionGenerator>().ImplementedBy<EventHubFunctionGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
                         "modelParameters", hubActions)).DependsOn(Dependency.OnValue("azureEventHub", hub)).Named(hub.Name + typeof(EventHubFunctionGenerator))
                     );
+            }
+
+            foreach (var container in containers)
+            {
+                var action = application.Actions.Single(a => a.Trigger is AzureCosmosDbTrigger t && t.ContainerName == container.Name);
+
+                Container.Register(Component.For<CosmosDbFunctionGenerator>()
+                    .ImplementedBy<CosmosDbFunctionGenerator>().LifestyleSingleton()
+                    .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
+                    .DependsOn(Dependency.OnValue("actionName", action.Name))
+                    .DependsOn(Dependency.OnValue("container", container))
+                    .DependsOn(Dependency.OnValue("trigger", cosmosTriggers.Single(t => t.ContainerName == container.Name))));
             }
         }
 
