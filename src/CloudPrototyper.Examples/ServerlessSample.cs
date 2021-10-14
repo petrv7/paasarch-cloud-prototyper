@@ -131,7 +131,7 @@ namespace CloudPrototyper.Examples
                                 Operation = new LoadEntitiesFromEntityStorage()
                                 {
                                     Name = "GetDataOperation",
-                                    EntityName = "Data",
+                                    EntityName = "DataEntity",
                                     EntitySetName = "DataSet",
                                     EntityStorageName = "DataContainer",
                                     Filter = new FilterCondition()
@@ -148,7 +148,7 @@ namespace CloudPrototyper.Examples
                                 Operation = new LoadEntitiesFromEntityStorage()
                                 {
                                     Name = "GetAllDataOperation",
-                                    EntityName = "Data",
+                                    EntityName = "DataEntity",
                                     EntitySetName = "DataSet",
                                     EntityStorageName = "DataContainer",
                                     Filter = new FilterCondition()
@@ -164,7 +164,7 @@ namespace CloudPrototyper.Examples
                                 Operation = new InsertEntityToEntityStorage()
                                 {
                                     Name = "CreateDataOperation",
-                                    EntityName = "Data",
+                                    EntityName = "DataEntity",
                                     EntitySetName = "DataSet",
                                     EntityStorageName = "DataContainer",
                                     NumberOfEntities = 1
@@ -227,7 +227,7 @@ namespace CloudPrototyper.Examples
                                         new AddMessageToQueue()
                                         {
                                             Name = "RequestProcessingOperation",
-                                            EntityName = "Data",
+                                            EntityName = "DataEntity",
                                             QueueName = "EventHub"
                                         }
                                     }
@@ -244,11 +244,41 @@ namespace CloudPrototyper.Examples
                         {
                             new TriggeredAction()
                             {
+                                Name = "ETL",
+                                Trigger = new AzureCosmosDbTrigger()
+                                {
+                                    ContainerName = "DataContainer",
+                                    TriggerOncePerChange = false
+                                },
+                                Operation = new SequenceOperation()
+                                {
+                                    Name = "ETLOperation",
+                                    NumberOfRepetitions = 1,
+                                    Operations = new List<Operation>()
+                                    {
+                                        new SimulateComputation()
+                                        {
+                                            Name = "TransformOperation",
+                                            MsLength = 100
+                                        },
+                                        new InsertEntityToEntityStorage()
+                                        {
+                                            Name = "LoadOperation",
+                                            EntityStorageName = "SQLDatabase",
+                                            EntityName = "DataEntity",
+                                            EntitySetName = "DataSetProcessed",
+                                            NumberOfEntities = 1
+                                        }
+                                    }
+                                }
+                            },
+                            new TriggeredAction()
+                            {
                                 Name = "ProcessData",
                                 Trigger = new MessageReceivedTrigger()
                                 {
                                     QueueName = "EventHub",
-                                    MessageType = "Data"
+                                    MessageType = "DataEntity"
                                 },
                                 Operation = new SequenceOperation()
                                 {
@@ -322,7 +352,7 @@ namespace CloudPrototyper.Examples
                     },
                     new Entity()
                     {
-                        Name = "Data",
+                        Name = "DataEntity",
                         Properties = new List<PropertyInfo>
                         {
                             new PropertyInfo
@@ -420,6 +450,12 @@ namespace CloudPrototyper.Examples
                                 Name = "Logs",
                                 EntityName = "Log",
                                 Count = 1
+                            },
+                            new EntitySet
+                            {
+                                Count = DataCount + 1,
+                                EntityName = "DataEntity",
+                                Name = "DataSetProcessed"
                             }
                         }
                     },
@@ -449,7 +485,7 @@ namespace CloudPrototyper.Examples
                             new EntitySet
                             {
                                 Count = DataCount + 1,
-                                EntityName = "Data",
+                                EntityName = "DataEntity",
                                 Name = "DataSet"
                             }
                         },
