@@ -248,7 +248,7 @@ namespace CloudPrototyper.Examples
                                 Trigger = new AzureCosmosDbTrigger()
                                 {
                                     ContainerName = "DataContainer",
-                                    TriggerOncePerChange = false
+                                    ProcessOncePerTrigger = false
                                 },
                                 Operation = new SequenceOperation()
                                 {

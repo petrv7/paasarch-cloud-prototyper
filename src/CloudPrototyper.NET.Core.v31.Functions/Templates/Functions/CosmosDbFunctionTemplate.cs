@@ -196,7 +196,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates.Functions {
             #line hidden
             
             #line 33 "Templates\Functions\CosmosDbFunctionTemplate.tt"
- if(!Model.Trigger.TriggerOncePerChange) {
+ if(!Model.Trigger.ProcessOncePerTrigger) {
             
             #line default
             #line hidden

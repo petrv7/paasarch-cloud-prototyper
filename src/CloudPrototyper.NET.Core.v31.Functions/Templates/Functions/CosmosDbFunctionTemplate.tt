@@ -27,7 +27,7 @@ namespace <#= Model.Namespace #>
             CreateLeaseCollectionIfNotExists = true,
             LeaseCollectionName = "leases")]IReadOnlyList<Document> input)
         {
-<# if(!Model.Trigger.TriggerOncePerChange) {#>
+<# if(!Model.Trigger.ProcessOncePerTrigger) {#>
             foreach(var doc in input)
             {
                 var output = new List<string>();
