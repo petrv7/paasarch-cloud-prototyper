@@ -17,5 +17,7 @@
 <# foreach(var queue in Model.EventHubs) { #>
 		,"<#= queue.Name #>Connection" : "<#= queue.ConnectionString #>"
 <# } #>
+        ,"ConnStr" : "<#= Model.CosmosConnStr #>"
+        ,"serverlessConnStr" : "<#= Model.CosmosServerlessConnStr #>"
     }
 }

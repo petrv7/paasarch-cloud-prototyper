@@ -20,6 +20,7 @@ using CloudPrototyper.NET.Core.v31.Functions.Templates;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
+using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Component = Castle.MicroKernel.Registration.Component;
 
@@ -76,15 +77,19 @@ namespace CloudPrototyper.NET.Core.v31.Common.Factories
         /// <param name="files">All files in project.</param>
         /// <param name="nugets">Nugets to be referenced.</param>
         /// <param name="imports">Projects to be referenced.</param>
+        /// <param name="queues">Service Bus queues from the model.</param>
+        /// <param name="hubs">Event Hub queues from the model.</param>
+        /// <param name="cosmosConnStr">Connection string to Cosmos DB account.</param>
+        /// <param name="cosmosServerlessConnStr">Connection string to Cosmos DB serverless account.</param>
         /// <returns></returns>
-        public static AssemblyBase MakeFunctionAppProject(string baseNamespace, string name, List<IGenerableFile> includes, List<ContentInfo> contents, List<IGenerableFile> files, List<PackageConfigInfo> nugets, List<AssemblyBase> imports, List<AzureServiceBusQueue> queues, List<AzureEventHub> hubs)
+        public static AssemblyBase MakeFunctionAppProject(string baseNamespace, string name, List<IGenerableFile> includes, List<ContentInfo> contents, List<IGenerableFile> files, List<PackageConfigInfo> nugets, List<AssemblyBase> imports, List<AzureServiceBusQueue> queues, List<AzureEventHub> hubs, string cosmosConnStr, string cosmosServerlessConnStr)
         {
             AssemblyBase functionAppProject = new FunctionAssemblyFileGenerator(new List<IGenerableFile>(), new AssemblyInfo { Name = name, ProjectFileRelativePath = name });
 
             functionAppProject.AssemblyInfo.Contents.AddRange(contents);
 
-            HostJsonGenerator hostJson = new HostJsonGenerator(new GenerationInfo("host.json", functionAppProject.GenerationInfo.RelativePathFolder, new HostJsonTemplate(), true));
-            LocalSettingsJsonGenerator localSettingsJson = new LocalSettingsJsonGenerator(new GenerationInfo("local.settings.json", functionAppProject.GenerationInfo.RelativePathFolder, new LocalSettingsJsonTemplate(), true), queues, hubs);
+            var hostJson = new HostJsonGenerator(new GenerationInfo("host.json", functionAppProject.GenerationInfo.RelativePathFolder, new HostJsonTemplate(), true));
+            var localSettingsJson = new LocalSettingsJsonGenerator(new GenerationInfo("local.settings.json", functionAppProject.GenerationInfo.RelativePathFolder, new LocalSettingsJsonTemplate(), true), queues, hubs, cosmosConnStr, cosmosServerlessConnStr);
             
             files.Add(functionAppProject);
             files.Add(hostJson);
@@ -137,7 +142,12 @@ namespace CloudPrototyper.NET.Core.v31.Common.Factories
         /// <param name="nugets">Nugets to be referenced.</param>
         /// <param name="imports">Projects to be referenced.</param>
         /// <param name="container">Container where to register project files.</param>
-        public static void RegisterSolutionLayer(string layerName, ProjectType projectType, List<PackageConfigInfo> nugets, List<IGenerableFile> files, List<IGenerableFile> includes, List<ContentInfo> contents, List<AssemblyBase> imports, WindsorContainer container, List<AzureServiceBusQueue> queues = null, List<AzureEventHub> hubs = null)
+        /// <param name="queues">Service Bus queues from the model.</param>
+        /// <param name="hubs">Event Hub queues from the model.</param>
+        /// <param name="cosmosConnStr">Connection string to Cosmos DB account.</param>
+        /// <param name="cosmosServerlessConnStr">Connection string to Cosmos DB serverless account.</param>
+
+        public static void RegisterSolutionLayer(string layerName, ProjectType projectType, List<PackageConfigInfo> nugets, List<IGenerableFile> files, List<IGenerableFile> includes, List<ContentInfo> contents, List<AssemblyBase> imports, WindsorContainer container, List<AzureServiceBusQueue> queues = null, List<AzureEventHub> hubs = null, string cosmosConnStr = "", string cosmosServerlessConnStr = "")
         {
             IAssembly instance;
             switch (projectType)
@@ -148,7 +158,9 @@ namespace CloudPrototyper.NET.Core.v31.Common.Factories
                         nugets,
                         imports,
                         queues,
-                        hubs);
+                        hubs,
+                        cosmosConnStr,
+                        cosmosServerlessConnStr);
                     break;
 
                 case ProjectType.Library:
@@ -176,14 +188,14 @@ namespace CloudPrototyper.NET.Core.v31.Common.Factories
         /// <returns>List of resolved IGenerableFiles.</returns>
         public static List<IGenerableFile> ResolveHandlers(IHandler[] handlers, WindsorContainer container, string projectName = null)
         {
-            List<IGenerableFile> output = new List<IGenerableFile>();
-            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var output = new List<IGenerableFile>();
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             if (path == null)
             {
                 return output;
             }
 
-            List<IHandler> additionalHandlers = container.Kernel.GetAssignableHandlers(typeof(IGenerableFile)).ToList();
+            var additionalHandlers = container.Kernel.GetAssignableHandlers(typeof(IGenerableFile)).ToList();
 
             foreach (var handler in handlers)
             {

@@ -158,7 +158,31 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
             #line hidden
             
             #line 20 "Templates\LocalSettingsJsonTemplate.tt"
-            this.Write("    }\r\n}");
+            this.Write("        ,\"ConnStr\" : \"");
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.CosmosConnStr ));
+            
+            #line default
+            #line hidden
+            
+            #line 20 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("\"\r\n        ,\"serverlessConnStr\" : \"");
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.CosmosServerlessConnStr ));
+            
+            #line default
+            #line hidden
+            
+            #line 21 "Templates\LocalSettingsJsonTemplate.tt"
+            this.Write("\"\r\n    }\r\n}");
             
             #line default
             #line hidden

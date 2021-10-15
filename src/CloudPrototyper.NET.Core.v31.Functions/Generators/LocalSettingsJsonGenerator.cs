@@ -10,7 +10,10 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Generators
     {
         public List<AzureServiceBusQueue> ServiceBusQueues { get; set; } = new(); 
         public List<AzureEventHub> EventHubs { get; set; } = new();
-        public LocalSettingsJsonGenerator(GenerationInfo generationInfo, List<AzureServiceBusQueue> serviceBusQueues = null, List<AzureEventHub> eventHubs = null) : base(generationInfo)
+        public string CosmosConnStr { get; set; }
+        public string CosmosServerlessConnStr { get; set; }
+
+        public LocalSettingsJsonGenerator(GenerationInfo generationInfo, List<AzureServiceBusQueue> serviceBusQueues = null, List<AzureEventHub> eventHubs = null, string cosmosConnStr = "", string cosmosServerlessConnStr = "") : base(generationInfo)
         {
             if (serviceBusQueues != null)
             {
@@ -21,6 +24,9 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Generators
             {
                 EventHubs = eventHubs;
             }
+
+            CosmosConnStr = cosmosConnStr;
+            CosmosServerlessConnStr = cosmosServerlessConnStr;
         }
     }
 }

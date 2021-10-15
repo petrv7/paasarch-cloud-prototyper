@@ -188,7 +188,12 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
             var buses = Utils.FindAllInstances<AzureServiceBusQueue>(prototype).Where(b => queueNames.Contains(b.Name)).ToList();
             var hubs = Utils.FindAllInstances<AzureEventHub>(prototype).Where(h => queueNames.Contains(h.Name)).ToList();
 
-            ProjectFactory.RegisterSolutionLayer(NamingConstants.WorkerName, ProjectType.FunctionApp, packages, ApplicationGenerator.Files, includes, contents, new List<AssemblyBase>(), container, buses, hubs);
+            var cosmos = Utils.FindAllInstances<AzureCosmosDbContainer>(prototype).FirstOrDefault(c => !c.IsServerless);
+            var cosmosServerless = Utils.FindAllInstances<AzureCosmosDbContainer>(prototype).FirstOrDefault(c => c.IsServerless);
+            var cosmosConnStr = cosmos is null ? "" : cosmos.ConnectionString;
+            var cosmosServerlessConnStr = cosmosServerless is null ? "" : cosmosServerless.ConnectionString;
+
+            ProjectFactory.RegisterSolutionLayer(NamingConstants.WorkerName, ProjectType.FunctionApp, packages, ApplicationGenerator.Files, includes, contents, new List<AssemblyBase>(), container, buses, hubs, cosmosConnStr, cosmosServerlessConnStr);
         }
 
         public override void Dispose()
