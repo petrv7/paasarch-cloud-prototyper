@@ -233,28 +233,14 @@
             "ContainerName": "DataContainer",
             "ProcessOncePerTrigger": false
           },
-          "Name": "ETL",
+          "Name": "CDC",
           "Operation": {
-            "$type": "CloudPrototyper.Model.Operations.SequenceOperation, CloudPrototyper.Model",
-            "Operations": [
-              {
-                "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.SimulateComputation, CloudPrototyper.NET.Framework.v462.Computing",
-                "MsLength": 100,
-                "Name": "TransformOperation",
-                "Description": null
-              },
-              {
-                "$type": "CloudPrototyper.Model.Operations.DataAccess.InsertEntityToEntityStorage, CloudPrototyper.Model",
-                "EntityName": "DataEntity",
-                "EntitySetName": "DataSetProcessed",
-                "EntityStorageName": "SQLDatabase",
-                "NumberOfEntities": 1,
-                "Name": "LoadOperation",
-                "Description": null
-              }
-            ],
-            "NumberOfRepetitions": 1,
-            "Name": "ETLOperation",
+            "$type": "CloudPrototyper.Model.Operations.DataAccess.InsertEntityToEntityStorage, CloudPrototyper.Model",
+            "EntityName": "DataEntity",
+            "EntitySetName": "DataSetSQL",
+            "EntityStorageName": "SQLDatabase",
+            "NumberOfEntities": 1,
+            "Name": "InsertDataToSQLOperation",
             "Description": null
           }
         },
@@ -481,7 +467,7 @@
         },
         {
           "$type": "CloudPrototyper.Model.Resources.Storage.EntitySet, CloudPrototyper.Model",
-          "Name": "DataSetProcessed",
+          "Name": "DataSetSQL",
           "EntityName": "DataEntity",
           "Count": 1001
         }

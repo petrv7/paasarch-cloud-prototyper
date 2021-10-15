@@ -244,32 +244,19 @@ namespace CloudPrototyper.Examples
                         {
                             new TriggeredAction()
                             {
-                                Name = "ETL",
+                                Name = "CDC",
                                 Trigger = new AzureCosmosDbTrigger()
                                 {
                                     ContainerName = "DataContainer",
                                     ProcessOncePerTrigger = false
                                 },
-                                Operation = new SequenceOperation()
+                                Operation = new InsertEntityToEntityStorage()
                                 {
-                                    Name = "ETLOperation",
-                                    NumberOfRepetitions = 1,
-                                    Operations = new List<Operation>()
-                                    {
-                                        new SimulateComputation()
-                                        {
-                                            Name = "TransformOperation",
-                                            MsLength = 100
-                                        },
-                                        new InsertEntityToEntityStorage()
-                                        {
-                                            Name = "LoadOperation",
-                                            EntityStorageName = "SQLDatabase",
-                                            EntityName = "DataEntity",
-                                            EntitySetName = "DataSetProcessed",
-                                            NumberOfEntities = 1
-                                        }
-                                    }
+                                    Name = "InsertDataToSQLOperation",
+                                    EntityStorageName = "SQLDatabase",
+                                    EntityName = "DataEntity",
+                                    EntitySetName = "DataSetSQL",
+                                    NumberOfEntities = 1
                                 }
                             },
                             new TriggeredAction()
@@ -455,7 +442,7 @@ namespace CloudPrototyper.Examples
                             {
                                 Count = DataCount + 1,
                                 EntityName = "DataEntity",
-                                Name = "DataSetProcessed"
+                                Name = "DataSetSQL"
                             }
                         }
                     },
