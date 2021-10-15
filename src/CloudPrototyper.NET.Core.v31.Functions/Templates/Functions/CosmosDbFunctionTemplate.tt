@@ -25,7 +25,8 @@ namespace <#= Model.Namespace #>
             collectionName: "<#= Model.Container.Name #>",
             ConnectionStringSetting = "<# if(Model.Container.IsServerless) {#>serverlessConnStr<# } else { #>ConnStr<# } #>",
             CreateLeaseCollectionIfNotExists = true,
-            LeaseCollectionName = "leases")]IReadOnlyList<Document> input)
+            LeaseCollectionName = "leases",
+            LeaseCollectionPrefix = "<#= Model.Action.Name #>")]IReadOnlyList<Document> input)
         {
 <# if(!Model.Trigger.ProcessOncePerTrigger) {#>
             foreach(var doc in input)

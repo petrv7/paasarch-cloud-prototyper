@@ -104,22 +104,36 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
                     .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
             );
 
-            var queueNames = application.Actions.Select(a => a.Trigger).OfType<MessageReceivedTrigger>().Select(t => t.QueueName);
-            var cosmosTriggers = application.Actions.Select(a => a.Trigger).OfType<AzureCosmosDbTrigger>();
-            var containerNames = cosmosTriggers.Select(t => t.ContainerName).ToList();
+            var queueNames = application.Actions
+                .Select(a => a.Trigger)
+                .OfType<MessageReceivedTrigger>()
+                .Select(t => t.QueueName);
+            var cosmosTriggers = application.Actions
+                .Select(a => a.Trigger)
+                .OfType<AzureCosmosDbTrigger>()
+                .ToList();
+            var containerNames = cosmosTriggers
+                .Select(t => t.ContainerName)
+                .ToList();
 
-            var buses = Utils.FindAllInstances<AzureServiceBusQueue>(prototype).Where(b => queueNames.Contains(b.Name));
-            var hubs = Utils.FindAllInstances<AzureEventHub>(prototype).Where(h => queueNames.Contains(h.Name));
+            var buses = Utils.FindAllInstances<AzureServiceBusQueue>(prototype)
+                .Where(b => queueNames.Contains(b.Name));
+            var hubs = Utils.FindAllInstances<AzureEventHub>(prototype)
+                .Where(h => queueNames.Contains(h.Name));
             var containers = Utils.FindAllInstances<AzureCosmosDbContainer>(prototype)
-                .Where(c => containerNames.Contains(c.Name));
+                .Where(c => containerNames.Contains(c.Name)).ToList();
 
             foreach (var bus in buses)
             {
                 var busActions = application.Actions.Where(a => a.Trigger is MessageReceivedTrigger t && t.QueueName == bus.Name).ToList();
 
                 Container.Register(
-                    Component.For<ServiceBusFunctionGenerator>().ImplementedBy<ServiceBusFunctionGenerator > ().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
-                        "modelParameters", busActions)).DependsOn(Dependency.OnValue("azureServiceBusQueue", bus)).Named(bus.Name + typeof(ServiceBusFunctionGenerator))
+                    Component.For<ServiceBusFunctionGenerator>()
+                        .ImplementedBy<ServiceBusFunctionGenerator > ().LifestyleSingleton()
+                        .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
+                        .DependsOn(Dependency.OnValue("modelParameters", busActions))
+                        .DependsOn(Dependency.OnValue("azureServiceBusQueue", bus))
+                        .Named(bus.Name + typeof(ServiceBusFunctionGenerator))
                     );
             }
 
@@ -128,21 +142,28 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
                 var hubActions = application.Actions.Where(a => a.Trigger is MessageReceivedTrigger t && t.QueueName == hub.Name).ToList();
 
                 Container.Register(
-                    Component.For<EventHubFunctionGenerator>().ImplementedBy<EventHubFunctionGenerator>().LifestyleSingleton().DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName)).DependsOn(Dependency.OnValue(
-                        "modelParameters", hubActions)).DependsOn(Dependency.OnValue("azureEventHub", hub)).Named(hub.Name + typeof(EventHubFunctionGenerator))
+                    Component.For<EventHubFunctionGenerator>()
+                        .ImplementedBy<EventHubFunctionGenerator>().LifestyleSingleton()
+                        .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
+                        .DependsOn(Dependency.OnValue("modelParameters", hubActions))
+                        .DependsOn(Dependency.OnValue("azureEventHub", hub))
+                        .Named(hub.Name + typeof(EventHubFunctionGenerator))
                     );
             }
 
-            foreach (var container in containers)
+            foreach (var action in application.Actions.Where(a => a.Trigger is AzureCosmosDbTrigger))
             {
-                var action = application.Actions.Single(a => a.Trigger is AzureCosmosDbTrigger t && t.ContainerName == container.Name);
+                var trigger = action.Trigger as AzureCosmosDbTrigger;
+                var container = containers
+                    .Single(c => trigger.ContainerName == c.Name);
 
                 Container.Register(Component.For<CosmosDbFunctionGenerator>()
                     .ImplementedBy<CosmosDbFunctionGenerator>().LifestyleSingleton()
                     .DependsOn(Dependency.OnValue("projectName", NamingConstants.WorkerName))
                     .DependsOn(Dependency.OnValue("actionName", action.Name))
                     .DependsOn(Dependency.OnValue("container", container))
-                    .DependsOn(Dependency.OnValue("trigger", cosmosTriggers.Single(t => t.ContainerName == container.Name))));
+                    .DependsOn(Dependency.OnValue("trigger", trigger))
+                    .Named(action.Name + typeof(CosmosDbFunctionGenerator)));
             }
         }
 

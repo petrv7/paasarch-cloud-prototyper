@@ -190,18 +190,30 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates.Functions {
             
             #line 29 "Templates\Functions\CosmosDbFunctionTemplate.tt"
             this.Write("\",\r\n            CreateLeaseCollectionIfNotExists = true,\r\n            LeaseCollec" +
-                    "tionName = \"leases\")]IReadOnlyList<Document> input)\r\n        {\r\n");
+                    "tionName = \"leases\",\r\n            LeaseCollectionPrefix = \"");
             
             #line default
             #line hidden
             
-            #line 33 "Templates\Functions\CosmosDbFunctionTemplate.tt"
- if(!Model.Trigger.ProcessOncePerTrigger) {
+            #line 32 "Templates\Functions\CosmosDbFunctionTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture( Model.Action.Name ));
+            
+            #line default
+            #line hidden
+            
+            #line 32 "Templates\Functions\CosmosDbFunctionTemplate.tt"
+            this.Write("\")]IReadOnlyList<Document> input)\r\n        {\r\n");
             
             #line default
             #line hidden
             
             #line 34 "Templates\Functions\CosmosDbFunctionTemplate.tt"
+ if(!Model.Trigger.ProcessOncePerTrigger) {
+            
+            #line default
+            #line hidden
+            
+            #line 35 "Templates\Functions\CosmosDbFunctionTemplate.tt"
             this.Write("            foreach(var doc in input)\r\n            {\r\n                var output " +
                     "= new List<string>();\r\n                _action.Execute(output);\r\n            }\r\n" +
                     "");
@@ -209,26 +221,26 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates.Functions {
             #line default
             #line hidden
             
-            #line 39 "Templates\Functions\CosmosDbFunctionTemplate.tt"
+            #line 40 "Templates\Functions\CosmosDbFunctionTemplate.tt"
  } else { 
             
             #line default
             #line hidden
             
-            #line 40 "Templates\Functions\CosmosDbFunctionTemplate.tt"
+            #line 41 "Templates\Functions\CosmosDbFunctionTemplate.tt"
             this.Write("            var output = new List<string>();\r\n            _action.Execute(output)" +
                     ";\r\n");
             
             #line default
             #line hidden
             
-            #line 42 "Templates\Functions\CosmosDbFunctionTemplate.tt"
+            #line 43 "Templates\Functions\CosmosDbFunctionTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 43 "Templates\Functions\CosmosDbFunctionTemplate.tt"
+            #line 44 "Templates\Functions\CosmosDbFunctionTemplate.tt"
             this.Write("        }\r\n    }\r\n}\r\n");
             
             #line default
