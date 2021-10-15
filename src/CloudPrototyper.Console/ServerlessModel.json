@@ -231,7 +231,7 @@
           "Trigger": {
             "$type": "CloudPrototyper.NET.Core.v31.Functions.Model.AzureCosmosDbTrigger, CloudPrototyper.NET.Core.v31.Functions",
             "ContainerName": "DataContainer",
-            "TriggerOncePerChange": false
+            "ProcessOncePerTrigger": false
           },
           "Name": "ETL",
           "Operation": {
