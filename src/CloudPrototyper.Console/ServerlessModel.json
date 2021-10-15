@@ -101,7 +101,7 @@
           "Name": "GetData",
           "Operation": {
             "$type": "CloudPrototyper.Model.Operations.DataAccess.LoadEntitiesFromEntityStorage, CloudPrototyper.Model",
-            "EntityName": "Data",
+            "EntityName": "DataEntity",
             "EntitySetName": "DataSet",
             "EntityStorageName": "DataContainer",
             "Filter": {
@@ -120,7 +120,7 @@
           "Name": "GetAllData",
           "Operation": {
             "$type": "CloudPrototyper.Model.Operations.DataAccess.LoadEntitiesFromEntityStorage, CloudPrototyper.Model",
-            "EntityName": "Data",
+            "EntityName": "DataEntity",
             "EntitySetName": "DataSet",
             "EntityStorageName": "DataContainer",
             "Filter": {
@@ -139,7 +139,7 @@
           "Name": "CreateData",
           "Operation": {
             "$type": "CloudPrototyper.Model.Operations.DataAccess.InsertEntityToEntityStorage, CloudPrototyper.Model",
-            "EntityName": "Data",
+            "EntityName": "DataEntity",
             "EntitySetName": "DataSet",
             "EntityStorageName": "DataContainer",
             "NumberOfEntities": 1,
@@ -208,7 +208,7 @@
               {
                 "$type": "CloudPrototyper.Model.Operations.Communication.AddMessageToQueue, CloudPrototyper.Model",
                 "QueueName": "EventHub",
-                "EntityName": "Data",
+                "EntityName": "DataEntity",
                 "Name": "RequestProcessingOperation",
                 "Description": null
               }
@@ -229,8 +229,26 @@
         {
           "$type": "CloudPrototyper.Model.Applications.TriggeredAction, CloudPrototyper.Model",
           "Trigger": {
+            "$type": "CloudPrototyper.NET.Core.v31.Functions.Model.AzureCosmosDbTrigger, CloudPrototyper.NET.Core.v31.Functions",
+            "ContainerName": "DataContainer",
+            "ProcessOncePerTrigger": false
+          },
+          "Name": "CDC",
+          "Operation": {
+            "$type": "CloudPrototyper.Model.Operations.DataAccess.InsertEntityToEntityStorage, CloudPrototyper.Model",
+            "EntityName": "DataEntity",
+            "EntitySetName": "DataSetSQL",
+            "EntityStorageName": "SQLDatabase",
+            "NumberOfEntities": 1,
+            "Name": "InsertDataToSQLOperation",
+            "Description": null
+          }
+        },
+        {
+          "$type": "CloudPrototyper.Model.Applications.TriggeredAction, CloudPrototyper.Model",
+          "Trigger": {
             "$type": "CloudPrototyper.Model.Applications.MessageReceivedTrigger, CloudPrototyper.Model",
-            "MessageType": "Data",
+            "MessageType": "DataEntity",
             "QueueName": "EventHub"
           },
           "Name": "ProcessData",
@@ -328,7 +346,7 @@
     },
     {
       "$type": "CloudPrototyper.Model.Entities.Entity, CloudPrototyper.Model",
-      "Name": "Data",
+      "Name": "DataEntity",
       "Description": null,
       "Properties": [
         {
@@ -446,6 +464,12 @@
           "Name": "Logs",
           "EntityName": "Log",
           "Count": 1
+        },
+        {
+          "$type": "CloudPrototyper.Model.Resources.Storage.EntitySet, CloudPrototyper.Model",
+          "Name": "DataSetSQL",
+          "EntityName": "DataEntity",
+          "Count": 1001
         }
       ],
       "Name": "SQLDatabase",
@@ -480,7 +504,7 @@
         {
           "$type": "CloudPrototyper.Model.Resources.Storage.EntitySet, CloudPrototyper.Model",
           "Name": "DataSet",
-          "EntityName": "Data",
+          "EntityName": "DataEntity",
           "Count": 1001
         }
       ],
