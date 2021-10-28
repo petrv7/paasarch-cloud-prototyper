@@ -595,7 +595,7 @@ namespace CloudPrototyper.Deployment.Azure
                     .WithRegion(ConfigProvider.GetValue("AzureRegion"))
                     .WithExistingResourceGroup(_resourceGroup.Name)
                     .WithNewAppServicePlan(tier)
-                    .WithLatestRuntimeVersion()
+                    .WithRuntimeVersion("3")
                     .WithExistingStorageAccount(_storageAccount)
                     .Create();
             }
@@ -606,7 +606,7 @@ namespace CloudPrototyper.Deployment.Azure
                     .WithRegion(ConfigProvider.GetValue("AzureRegion"))
                     .WithExistingResourceGroup(_resourceGroup.Name)
                     .WithNewConsumptionPlan()
-                    .WithLatestRuntimeVersion()
+                    .WithRuntimeVersion("3")
                     .WithExistingStorageAccount(_storageAccount)
                     .Create();
             }
