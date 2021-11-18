@@ -10,7 +10,7 @@ using CloudPrototyper.Interface.Constants;
 namespace CloudPrototyper.Build.NET
 {
     /// <summary>
-    /// Implementation of IBuilder for DotNet46 platform.
+    /// Implementation of IBuilder for DotNet platform.
     /// </summary>
     public class DotNetBuilder : BuilderBase
     {
@@ -22,8 +22,7 @@ namespace CloudPrototyper.Build.NET
         }
 
         /// <summary>
-        /// DotNetBuilder builds .NET solution using nuget.exe to restore NuGets and
-        /// Microsoft.Build library to build.
+        /// DotNetBuilder builds .NET solution using dotnet process
         /// </summary>
         /// <param name="configProvider">Provides configuration</param>
         /// <param name="buildable">Represents buildable .NET solution</param>
@@ -34,7 +33,7 @@ namespace CloudPrototyper.Build.NET
         }
 
         /// <summary>
-        /// Set up parametrs of build and make build, NuGets must be RESTORED!
+        /// Builds solution using dotnet build process, NuGets must be RESTORED!
         /// </summary>
         /// <param name="configProvider">Provides configuration</param>
         /// <param name="buildable">Represents buildable .NET solution</param>
@@ -88,7 +87,7 @@ namespace CloudPrototyper.Build.NET
         }
 
         /// <summary>
-        /// Opens nuget.exe with solution file as a parameter and
+        /// Restores nugets using dotnet restore process
         /// </summary>
         /// <param name="configProvider">Provides configuration</param>
         /// <param name="buildable">Represents buildable .NET solution</param>
