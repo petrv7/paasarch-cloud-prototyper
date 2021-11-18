@@ -5,7 +5,7 @@ using CloudPrototyper.NET.Interface.Generation.Informations;
 using System;
 using System.Collections.Generic;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Generators
+namespace CloudPrototyper.NET.v6.Functions.Generators
 {
     public class StartupGenerator : CodeGeneratorBase
     {

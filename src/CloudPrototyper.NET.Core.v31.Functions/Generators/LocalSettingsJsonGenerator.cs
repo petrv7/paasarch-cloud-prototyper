@@ -4,7 +4,7 @@ using CloudPrototyper.Interface.Generation.Informations;
 using System.Collections.Generic;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Generators
+namespace CloudPrototyper.NET.v6.Functions.Generators
 {
     public class LocalSettingsJsonGenerator : GeneratorBase
     {

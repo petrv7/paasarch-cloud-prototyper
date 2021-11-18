@@ -18,9 +18,9 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates.Functions {
     public partial class ServiceBusFunctionTemplate : ServiceBusFunctionTemplateBase {
         
         
-        private CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.ServiceBusFunctionGenerator _ModelField;
+        private CloudPrototyper.NET.v6.Functions.Generators.Functions.ServiceBusFunctionGenerator _ModelField;
         
-        public CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.ServiceBusFunctionGenerator Model {
+        public CloudPrototyper.NET.v6.Functions.Generators.Functions.ServiceBusFunctionGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -381,13 +381,13 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates.Functions {
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.ServiceBusFunctionGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.ServiceBusFunctionGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.v6.Functions.Generators.Functions.ServiceBusFunctionGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.v6.Functions.Generators.Functions.ServiceBusFunctionGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.ServiceBusF" +
-                                "unctionGenerator\' of the parameter \'Model\' did not match the type passed to the " +
-                                "template");
+                        this.Error("The type \'CloudPrototyper.NET.v6.Functions.Generators.Functions.ServiceBusFunctio" +
+                                "nGenerator\' of the parameter \'Model\' did not match the type passed to the templa" +
+                                "te");
                     }
                 }
             }

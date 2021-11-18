@@ -18,9 +18,9 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
     public partial class LocalSettingsJsonTemplate : LocalSettingsJsonTemplateBase {
         
         
-        private CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator _ModelField;
+        private CloudPrototyper.NET.v6.Functions.Generators.LocalSettingsJsonGenerator _ModelField;
         
-        public CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator Model {
+        public CloudPrototyper.NET.v6.Functions.Generators.LocalSettingsJsonGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -194,12 +194,12 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.v6.Functions.Generators.LocalSettingsJsonGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.v6.Functions.Generators.LocalSettingsJsonGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Core.v31.Functions.Generators.LocalSettingsJsonGene" +
-                                "rator\' of the parameter \'Model\' did not match the type passed to the template");
+                        this.Error("The type \'CloudPrototyper.NET.v6.Functions.Generators.LocalSettingsJsonGenerator\'" +
+                                " of the parameter \'Model\' did not match the type passed to the template");
                     }
                 }
             }

@@ -24,7 +24,7 @@ using Microsoft.Azure.Management.EventHub.Fluent.Models;
 using Azure.ResourceManager.CosmosDB;
 using Azure.Identity;
 using Azure.ResourceManager.CosmosDB.Models;
-using CloudPrototyper.NET.Core.v31.Functions.Model;
+using CloudPrototyper.NET.v6.Functions.Model;
 using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Sku = Microsoft.Azure.Management.EventHub.Fluent.Models.Sku;
@@ -595,7 +595,7 @@ namespace CloudPrototyper.Deployment.Azure
                     .WithRegion(ConfigProvider.GetValue("AzureRegion"))
                     .WithExistingResourceGroup(_resourceGroup.Name)
                     .WithNewAppServicePlan(tier)
-                    .WithRuntimeVersion("3")
+                    .WithRuntimeVersion("4")
                     .WithExistingStorageAccount(_storageAccount)
                     .Create();
             }
@@ -606,7 +606,7 @@ namespace CloudPrototyper.Deployment.Azure
                     .WithRegion(ConfigProvider.GetValue("AzureRegion"))
                     .WithExistingResourceGroup(_resourceGroup.Name)
                     .WithNewConsumptionPlan()
-                    .WithRuntimeVersion("3")
+                    .WithRuntimeVersion("4")
                     .WithExistingStorageAccount(_storageAccount)
                     .Create();
             }

@@ -9,7 +9,7 @@ using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 using CloudPrototyper.NET.Interface.Prototyper;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Generators.Functions
+namespace CloudPrototyper.NET.v6.Functions.Generators.Functions
 {
     /// <summary>
     /// Service Bus Function
@@ -22,7 +22,7 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Generators.Functions
         private readonly IList<ActionGenerator> _actions;
         public override List<PackageConfigInfo> GetNugetPackages() => new()
         {
-            new PackageConfigInfo(new(), "Microsoft.Azure.WebJobs.Extensions.ServiceBus", "4.1.0", "")
+            new PackageConfigInfo(new(), "Microsoft.Azure.WebJobs.Extensions.ServiceBus", "4.3.0", "")
         };
 
         public ServiceBusFunctionGenerator(string projectName, AzureServiceBusQueue azureServiceBusQueue,

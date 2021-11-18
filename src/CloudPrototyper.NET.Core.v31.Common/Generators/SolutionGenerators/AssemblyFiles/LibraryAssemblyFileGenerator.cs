@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using CloudPrototyper.Interface.Generation;
 using CloudPrototyper.Interface.Generation.Informations;
-using CloudPrototyper.NET.Core.v31.Common.Templates.SolutionTemplates.AssemblyFiles;
+using CloudPrototyper.NET.v6.Common.Templates.SolutionTemplates.AssemblyFiles;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 
-namespace CloudPrototyper.NET.Core.v31.Common.Generators.SolutionGenerators.AssemblyFiles
+namespace CloudPrototyper.NET.v6.Common.Generators.SolutionGenerators.AssemblyFiles
 { 
     /// <summary>
     /// Generator of csproj file for library projects.

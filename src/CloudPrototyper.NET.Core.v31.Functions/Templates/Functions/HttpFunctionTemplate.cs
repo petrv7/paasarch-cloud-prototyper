@@ -18,9 +18,9 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates.Functions {
     public partial class HttpFunctionTemplate : HttpFunctionTemplateBase {
         
         
-        private CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctionGenerator _ModelField;
+        private CloudPrototyper.NET.v6.Functions.Generators.Functions.HttpFunctionGenerator _ModelField;
         
-        public CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctionGenerator Model {
+        public CloudPrototyper.NET.v6.Functions.Generators.Functions.HttpFunctionGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -168,13 +168,12 @@ namespace ");
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctionGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctionGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.v6.Functions.Generators.Functions.HttpFunctionGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.v6.Functions.Generators.Functions.HttpFunctionGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.HttpFunctio" +
-                                "nGenerator\' of the parameter \'Model\' did not match the type passed to the templa" +
-                                "te");
+                        this.Error("The type \'CloudPrototyper.NET.v6.Functions.Generators.Functions.HttpFunctionGener" +
+                                "ator\' of the parameter \'Model\' did not match the type passed to the template");
                     }
                 }
             }

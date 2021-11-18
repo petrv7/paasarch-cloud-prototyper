@@ -1,6 +1,6 @@
 ﻿using CloudPrototyper.Model.Applications;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Model
+namespace CloudPrototyper.NET.v6.Functions.Model
 {
     public class AzureCosmosDbTrigger : Trigger
     {

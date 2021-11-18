@@ -4,11 +4,11 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
-<#@ parameter type="CloudPrototyper.NET.Core.v31.Common.Generators.SolutionGenerators.AssemblyFiles.LibraryAssemblyFileGenerator" name="Model" #>
+<#@ parameter type="CloudPrototyper.NET.v6.Common.Generators.SolutionGenerators.AssemblyFiles.LibraryAssemblyFileGenerator" name="Model" #>
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">  
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

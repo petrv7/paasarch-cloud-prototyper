@@ -1,7 +1,7 @@
 ﻿using CloudPrototyper.Interface.Generation;
 using CloudPrototyper.Model.Resources;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Model
+namespace CloudPrototyper.NET.v6.Functions.Model
 { 
     public class AzureFunctionApp : HostingEnvironment, IServerless
     {

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
-using CloudPrototyper.NET.Core.v31.Functions.Generators;
+using CloudPrototyper.NET.v6.Functions.Generators;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators;
 using CloudPrototyper.NET.Interface.Generation;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Registrations
+namespace CloudPrototyper.NET.v6.Functions.Registrations
 {
     public class StartupRegistrations : GeneratorDependency<StartupGenerator>
     {

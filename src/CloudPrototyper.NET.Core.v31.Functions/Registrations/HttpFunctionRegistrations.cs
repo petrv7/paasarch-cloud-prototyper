@@ -4,7 +4,7 @@ using CloudPrototyper.Interface.Generation;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.BusinessLayerGenerators;
 using CloudPrototyper.NET.Interface.Generation;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Registrations
+namespace CloudPrototyper.NET.v6.Functions.Registrations
 {
     public class HttpFunctionRegistrations : GeneratorDependency<ActionGenerator>, IServerless
     {

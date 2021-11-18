@@ -18,9 +18,9 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
     public partial class StartupTemplate : StartupTemplateBase {
         
         
-        private CloudPrototyper.NET.Core.v31.Functions.Generators.StartupGenerator _ModelField;
+        private CloudPrototyper.NET.v6.Functions.Generators.StartupGenerator _ModelField;
         
-        public CloudPrototyper.NET.Core.v31.Functions.Generators.StartupGenerator Model {
+        public CloudPrototyper.NET.v6.Functions.Generators.StartupGenerator Model {
             get {
                 return this._ModelField;
             }
@@ -274,12 +274,12 @@ namespace CloudPrototyper.NET.Core.v31.Functions.Templates {
                 if (((this.Session != null) 
                             && this.Session.ContainsKey("Model"))) {
                     object data = this.Session["Model"];
-                    if (typeof(CloudPrototyper.NET.Core.v31.Functions.Generators.StartupGenerator).IsAssignableFrom(data.GetType())) {
-                        this._ModelField = ((CloudPrototyper.NET.Core.v31.Functions.Generators.StartupGenerator)(data));
+                    if (typeof(CloudPrototyper.NET.v6.Functions.Generators.StartupGenerator).IsAssignableFrom(data.GetType())) {
+                        this._ModelField = ((CloudPrototyper.NET.v6.Functions.Generators.StartupGenerator)(data));
                     }
                     else {
-                        this.Error("The type \'CloudPrototyper.NET.Core.v31.Functions.Generators.StartupGenerator\' of " +
-                                "the parameter \'Model\' did not match the type passed to the template");
+                        this.Error("The type \'CloudPrototyper.NET.v6.Functions.Generators.StartupGenerator\' of the pa" +
+                                "rameter \'Model\' did not match the type passed to the template");
                     }
                 }
             }

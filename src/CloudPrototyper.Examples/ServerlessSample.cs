@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using CloudPrototyper.Azure.Resources;
 using CloudPrototyper.Azure.Resources.Storage;
 using CloudPrototyper.Model;
 using CloudPrototyper.Model.Applications;
@@ -9,7 +8,7 @@ using CloudPrototyper.Model.Operations.Communication;
 using CloudPrototyper.Model.Operations.DataAccess;
 using CloudPrototyper.Model.Resources;
 using CloudPrototyper.Model.Resources.Storage;
-using CloudPrototyper.NET.Core.v31.Functions.Model;
+using CloudPrototyper.NET.v6.Functions.Model;
 using CloudPrototyper.NET.Framework.v462.Computing.Models;
 using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;

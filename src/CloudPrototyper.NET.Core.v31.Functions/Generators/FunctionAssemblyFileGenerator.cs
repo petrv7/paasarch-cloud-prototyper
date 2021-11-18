@@ -5,7 +5,7 @@ using CloudPrototyper.NET.Core.v31.Functions.Templates;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
 
-namespace CloudPrototyper.NET.Core.v31.Functions.Generators
+namespace CloudPrototyper.NET.v6.Functions.Generators
 {
     public class FunctionAssemblyFileGenerator : AssemblyBase
     {

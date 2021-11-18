@@ -13,18 +13,16 @@ using CloudPrototyper.Model;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Resources;
-using CloudPrototyper.Model.Resources.Storage;
-using CloudPrototyper.NET.Core.v31.Common.Generators.SolutionGenerators.AssemblyFiles;
-using CloudPrototyper.NET.Core.v31.Functions.Generators;
+using CloudPrototyper.NET.v6.Common.Generators.SolutionGenerators.AssemblyFiles;
+using CloudPrototyper.NET.v6.Functions.Generators;
 using CloudPrototyper.NET.Core.v31.Functions.Templates;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Interface.Generation;
 using CloudPrototyper.NET.Interface.Generation.Informations;
-using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Component = Castle.MicroKernel.Registration.Component;
 
-namespace CloudPrototyper.NET.Core.v31.Common.Factories
+namespace CloudPrototyper.NET.v6.Common.Factories
 {
     public static class ProjectFactory
     {
