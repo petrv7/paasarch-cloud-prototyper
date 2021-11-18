@@ -8,7 +8,7 @@ using CloudPrototyper.Model.Operations.DataAccess;
 using CloudPrototyper.Model.Resources.Storage;
 using System.Collections.Generic;
 using CloudPrototyper.Azure.Resources;
-using CloudPrototyper.NET.Core.v31.Functions.Model;
+using CloudPrototyper.NET.v6.Functions.Model;
 using CloudPrototyper.NET.Framework.v462.Computing.Models;
 using CloudPrototyper.NET.Framework.v462.TblStorage.Model;
 
@@ -100,7 +100,7 @@ namespace CloudPrototyper.Examples
         {
             return new Prototype()
             {
-                Applications = GetApplications("DotNetCore31"),
+                Applications = GetApplications("DotNet6"),
                 Entities = GetEntities(),
                 Resources = new List<Model.Resources.Resource>()
                 {

@@ -36,7 +36,7 @@ namespace CloudPrototyper.Examples
                     new RestApiApplication()
                     {
                         Name = "UsersMicroservice",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         DeployTo = "Azure",
                         Actions = new List<CallableAction>()
                         {
@@ -120,7 +120,7 @@ namespace CloudPrototyper.Examples
                     new RestApiApplication()
                     {
                         Name = "DataMicroservice",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         DeployTo = "Azure",
                         Actions = new List<CallableAction>()
                         {
@@ -174,7 +174,7 @@ namespace CloudPrototyper.Examples
                     new RestApiApplication()
                     {
                         Name = "ApiComposition",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         DeployTo = "Azure",
                         Actions = new List<CallableAction>()
                         {
@@ -237,7 +237,7 @@ namespace CloudPrototyper.Examples
                     new WorkerApplication()
                     {
                         Name = "DataProcessingWorker",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         DeployTo = "Azure",
                         Actions = new List<TriggeredAction>()
                         {

@@ -63,7 +63,7 @@ namespace CloudPrototyper.NET.v6.FunctionApp
         /// <param name="application">Application to be managed.</param>
         /// <param name="prototype">Whole prototype with entities and resources.</param>
         /// <param name="configProvider">Configuration provider.</param>
-        public HttpFunctionManager(RestApiApplication application, Prototype prototype, IConfigProvider configProvider) : base(new ApplicationGenerator<RestApiApplication>(application, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name), prototype, "DotNetCore31", configProvider.GetValue("OutputFolderPath") + "\\" + application.Name, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name
+        public HttpFunctionManager(RestApiApplication application, Prototype prototype, IConfigProvider configProvider) : base(new ApplicationGenerator<RestApiApplication>(application, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name), prototype, "DotNet6", configProvider.GetValue("OutputFolderPath") + "\\" + application.Name, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name
             , configProvider)
         {
             Container.Kernel.Resolver.AddSubResolver(new CollectionResolver(Container.Kernel, true));

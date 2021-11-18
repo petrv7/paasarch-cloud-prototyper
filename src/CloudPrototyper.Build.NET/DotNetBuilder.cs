@@ -17,7 +17,7 @@ namespace CloudPrototyper.Build.NET
         /// <summary>
         /// Constructor.
         /// </summary>
-        public DotNetBuilder() : base(new List<string> { "DotNet46", "DotNetCore31"})
+        public DotNetBuilder() : base(new List<string> { "DotNet46", "DotNet6"})
         {
         }
 
