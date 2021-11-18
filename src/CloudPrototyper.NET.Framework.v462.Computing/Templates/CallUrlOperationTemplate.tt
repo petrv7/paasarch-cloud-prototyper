@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 // Call url operation 
 namespace  <#= Model.Namespace #> 
@@ -18,16 +17,18 @@ namespace  <#= Model.Namespace #>
 
 		public void Execute(List<string> outputs) 
 		{
-			string result;
-            var request = WebRequest.Create("<#= Model.ModelParameters.Url #>");
-            request.Method = "GET";
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("<#= Model.ModelParameters.Url #>");
 
-            var response = request.GetResponseAsync().Result;
-            using (var reader = new StreamReader(response.GetResponseStream()))
-            {
-                result = reader.ReadToEnd();
-            }
-            outputs.Add(result);
+            var request = client.GetAsync(client.BaseAddress);
+            request.Wait();
+
+            var response = request.Result;
+            var contentTask = response.Content.ReadAsStringAsync();
+            contentTask.Wait();
+
+            var content = contentTask.Result;
+            outputs.Add(content);
 		}
 	}
 }

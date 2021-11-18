@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.Core.v31.Functions.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.v6.Functions.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Common\CloudPrototyper.NET.Framework.v462.Common.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Interface\CloudPrototyper.NET.Interface.csproj" />
   </ItemGroup>

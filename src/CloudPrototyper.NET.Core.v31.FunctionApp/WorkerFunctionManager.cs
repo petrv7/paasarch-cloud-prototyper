@@ -13,9 +13,9 @@ using CloudPrototyper.Model;
 using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Resources;
-using CloudPrototyper.NET.Core.v31.Functions.Generators;
-using CloudPrototyper.NET.Core.v31.Functions.Generators.Functions;
-using CloudPrototyper.NET.Core.v31.Functions.Model;
+using CloudPrototyper.NET.v6.Functions.Generators;
+using CloudPrototyper.NET.v6.Functions.Generators.Functions;
+using CloudPrototyper.NET.v6.Functions.Model;
 using CloudPrototyper.NET.Framework.v462.Common.Factories;
 using CloudPrototyper.NET.Framework.v462.Common.Generators.SolutionGenerators;
 using CloudPrototyper.NET.Interface.Constants;
@@ -24,9 +24,9 @@ using CloudPrototyper.NET.Interface.Generation.Informations;
 using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Action = CloudPrototyper.Model.Applications.Action;
-using ProjectFactory = CloudPrototyper.NET.Core.v31.Common.Factories.ProjectFactory;
+using ProjectFactory = CloudPrototyper.NET.v6.Common.Factories.ProjectFactory;
 
-namespace CloudPrototyper.NET.Core.v31.FunctionApp
+namespace CloudPrototyper.NET.v6.FunctionApp
 {
     public class WorkerFunctionManager : GeneratorManager<WorkerApplication>, IServerless
     {
@@ -64,7 +64,7 @@ namespace CloudPrototyper.NET.Core.v31.FunctionApp
         /// <param name="application">Application to be managed.</param>
         /// <param name="prototype">Whole prototype with entities and resources.</param>
         /// <param name="configProvider">Configuration provider.</param>
-        public WorkerFunctionManager(WorkerApplication application, Prototype prototype, IConfigProvider configProvider) : base(new ApplicationGenerator<WorkerApplication>(application, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name), prototype, "DotNetCore31", configProvider.GetValue("OutputFolderPath") + "\\" + application.Name, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name
+        public WorkerFunctionManager(WorkerApplication application, Prototype prototype, IConfigProvider configProvider) : base(new ApplicationGenerator<WorkerApplication>(application, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name), prototype, "DotNet6", configProvider.GetValue("OutputFolderPath") + "\\" + application.Name, configProvider.GetValue("OutputFolderPath") + "\\" + application.Name
             , configProvider)
         {
             Container.Kernel.Resolver.AddSubResolver(new CollectionResolver(Container.Kernel, true));

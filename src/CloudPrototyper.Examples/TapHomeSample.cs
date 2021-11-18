@@ -6,12 +6,10 @@ using CloudPrototyper.Model.Applications;
 using CloudPrototyper.Model.Entities;
 using CloudPrototyper.Model.Operations;
 using CloudPrototyper.Model.Operations.Communication;
-using CloudPrototyper.Model.Operations.Computing;
 using CloudPrototyper.Model.Operations.DataAccess;
 using CloudPrototyper.Model.Resources;
 using CloudPrototyper.Model.Resources.Storage;
-using CloudPrototyper.NET.Core.v31.Functions.Model;
-using CloudPrototyper.NET.Framework.v462.Computing.Models;
+using CloudPrototyper.NET.v6.Functions.Model;
 using CloudPrototyper.NET.Framework.v462.TblStorage.Model;
 
 namespace CloudPrototyper.Examples
@@ -720,7 +718,7 @@ namespace CloudPrototyper.Examples
                     {
                         Name = "DataCollectingApi",
                         DeployTo = "Azure",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         Actions = new List<CallableAction>
                         {
                             new CallableAction
@@ -754,7 +752,7 @@ namespace CloudPrototyper.Examples
                     {
                         Name = "VisualisationDataApi",
                         DeployTo = "Azure",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         Actions = new List<CallableAction>
                         {
                             new CallableAction
@@ -780,7 +778,7 @@ namespace CloudPrototyper.Examples
                     new WorkerApplication
                     {
                         Name = "ComputeUnit",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         DeployTo = "Azure",
                         Actions = new List<TriggeredAction>
                         {
@@ -994,7 +992,7 @@ namespace CloudPrototyper.Examples
                     {
                         Name = "DataCollectingApiNoSQL",
                         DeployTo = "Azure",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         Actions = new List<CallableAction>
                         {
                             new CallableAction
@@ -1046,7 +1044,7 @@ namespace CloudPrototyper.Examples
                     {
                         Name = "VisualisationDataApiNoSQL",
                         DeployTo = "Azure",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         Actions = new List<CallableAction>
                         {
                             new CallableAction
@@ -1225,7 +1223,7 @@ namespace CloudPrototyper.Examples
                     {
                         Name = "DataCollectingApiSQL",
                         DeployTo = "Azure",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         Actions = new List<CallableAction>
                         {
                             new CallableAction
@@ -1257,7 +1255,7 @@ namespace CloudPrototyper.Examples
                     {
                         Name = "VisualisationDataApiSQL",
                         DeployTo = "Azure",
-                        Platform = "DotNetCore31",
+                        Platform = "DotNet6",
                         Actions = new List<CallableAction>
                         {
                             new CallableAction

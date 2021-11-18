@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CloudPrototyper.Azure\CloudPrototyper.Azure.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Interface\CloudPrototyper.Interface.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Model\CloudPrototyper.Model.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Common\CloudPrototyper.NET.Core.v31.Common.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.Core.v31.Functions.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Common\CloudPrototyper.NET.v6.Common.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.v6.Functions.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Standard.v20.EventHub\CloudPrototyper.NET.Standard.v20.EventHub.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Interface\CloudPrototyper.NET.Interface.csproj" />
   </ItemGroup>

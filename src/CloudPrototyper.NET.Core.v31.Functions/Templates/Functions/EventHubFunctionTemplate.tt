@@ -3,7 +3,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ parameter type="CloudPrototyper.NET.Core.v31.Functions.Generators.Functions.EventHubFunctionGenerator" name="Model" #>
+<#@ parameter type="CloudPrototyper.NET.v6.Functions.Generators.Functions.EventHubFunctionGenerator" name="Model" #>
 using System;
 using System.Collections.Generic;
 using System.Linq;
