@@ -1,6 +1,12 @@
 # PaaSArch Cloud Prototyper Tool
 
 ### Dependencies
+|                 | Required .NET version          |
+|-----------------|-----------------------|
+| Tool            | .NET 6                |
+| PaaS prototypes | .NET Framework 4.6.2  |
+| FaaS prototypes | .NET 6 + .NET Core 3.1 |
+
 [dotnet-t4](https://www.nuget.org/packages/dotnet-t4/)
 
 ### Install
