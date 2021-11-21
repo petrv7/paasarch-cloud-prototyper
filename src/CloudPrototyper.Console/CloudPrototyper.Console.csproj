@@ -30,9 +30,9 @@
     <ProjectReference Include="..\CloudPrototyper.Interface\CloudPrototyper.Interface.csproj" />
     <ProjectReference Include="..\CloudPrototyper.ModelResolver\CloudPrototyper.ModelResolver.csproj" />
     <ProjectReference Include="..\CloudPrototyper.Model\CloudPrototyper.Model.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Common\CloudPrototyper.NET.v6.Common.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.FunctionApp\CloudPrototyper.NET.v6.FunctionApp.csproj" />
-    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.v6.Functions.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.v6.Common\CloudPrototyper.NET.v6.Common.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.v6.FunctionApp\CloudPrototyper.NET.v6.FunctionApp.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.v6.Functions\CloudPrototyper.NET.v6.Functions.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Common\CloudPrototyper.NET.Framework.v462.Common.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Computing\CloudPrototyper.NET.Framework.v462.Computing.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Standard.v20.CosmosDb\CloudPrototyper.NET.Standard.v20.CosmosDb.csproj" />

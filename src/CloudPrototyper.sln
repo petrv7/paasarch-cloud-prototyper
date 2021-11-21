@@ -85,13 +85,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Framewo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Standard.v20.CosmosDb", "CloudPrototyper.NET.Standard.v20.CosmosDb\CloudPrototyper.NET.Standard.v20.CosmosDb.csproj", "{786C1D16-77D5-415D-9521-973385A2A1C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.v6.Functions", "CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.v6.Functions.csproj", "{B4902F76-EF88-48D7-9F50-2345FE99D52F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.v6.Functions", "CloudPrototyper.NET.v6.Functions\CloudPrototyper.NET.v6.Functions.csproj", "{B4902F76-EF88-48D7-9F50-2345FE99D52F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{25BA2A56-1621-483E-A85C-B54422A81373}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.v6.Common", "CloudPrototyper.NET.Core.v31.Common\CloudPrototyper.NET.v6.Common.csproj", "{7828E6DE-87BB-4BF7-B992-797A68DDAACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.v6.Common", "CloudPrototyper.NET.v6.Common\CloudPrototyper.NET.v6.Common.csproj", "{7828E6DE-87BB-4BF7-B992-797A68DDAACE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.v6.FunctionApp", "CloudPrototyper.NET.Core.v31.FunctionApp\CloudPrototyper.NET.v6.FunctionApp.csproj", "{B82A1ECE-3216-489B-8619-6162F6D08A38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.v6.FunctionApp", "CloudPrototyper.NET.v6.FunctionApp\CloudPrototyper.NET.v6.FunctionApp.csproj", "{B82A1ECE-3216-489B-8619-6162F6D08A38}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudPrototyper.NET.Standard.v20.EventHub", "CloudPrototyper.NET.Standard.v20.EventHub\CloudPrototyper.NET.Standard.v20.EventHub.csproj", "{C98E8C9C-C338-4903-809A-455C210FE10F}"
 EndProject

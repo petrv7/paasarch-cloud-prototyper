@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CloudPrototyper.NET.Core.v31.Functions\CloudPrototyper.NET.v6.Functions.csproj" />
+    <ProjectReference Include="..\CloudPrototyper.NET.v6.Functions\CloudPrototyper.NET.v6.Functions.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Framework.v462.Common\CloudPrototyper.NET.Framework.v462.Common.csproj" />
     <ProjectReference Include="..\CloudPrototyper.NET.Interface\CloudPrototyper.NET.Interface.csproj" />
   </ItemGroup>
