@@ -18,6 +18,6 @@ namespace CloudPrototyper.Azure.Resources.Storage
         /// <summary>
         /// Maximum number of vCores if PerformanceTier is "serverless"
         /// </summary>
-        public int MaxvCores { get; set; }
+        public int MaxvCores { get; set; } = 1;
     }
 }
