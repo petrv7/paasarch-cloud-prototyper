@@ -190,13 +190,13 @@ namespace CloudPrototyper.Examples
                                         new CallUrlOperation()
                                         {
                                             Name = "LoginOperation",
-                                            ResourceName = "UsersMicroservice",
+                                            ApplicationName = "UsersMicroservice",
                                             ActionName = "Login"
                                         },
                                         new CallUrlOperation()
                                         {
                                             Name = "GetAllDataOperation",
-                                            ResourceName = "DataMicroservice",
+                                            ApplicationName = "DataMicroservice",
                                             ActionName = "GetAllData"
                                         }
                                     }
@@ -214,13 +214,13 @@ namespace CloudPrototyper.Examples
                                         new CallUrlOperation()
                                         {
                                             Name = "LoginCallOperation",
-                                            ResourceName = "UsersMicroservice",
+                                            ApplicationName = "UsersMicroservice",
                                             ActionName = "Login"
                                         },
                                         new CallUrlOperation()
                                         {
                                             Name = "CreateDataOperation",
-                                            ResourceName = "DataMicroservice",
+                                            ApplicationName = "DataMicroservice",
                                             ActionName = "CreateData"
                                         },
                                         new AddMessageToQueue()

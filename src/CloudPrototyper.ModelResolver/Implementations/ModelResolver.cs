@@ -341,11 +341,11 @@ namespace CloudPrototyper.ModelResolver.Implementations
 
         private void UpdateCallUrlOperations()
         {
-            var operations = Utils.FindAllInstances<CallUrlOperation>(_prototype).Where(o => !string.IsNullOrEmpty(o.ResourceName));
+            var operations = Utils.FindAllInstances<CallUrlOperation>(_prototype).Where(o => !string.IsNullOrEmpty(o.ApplicationName));
             
             foreach (var op in operations)
             {
-                var resource = _prototype.Applications.OfType<RestApiApplication>().First(a => a.Name == op.ResourceName);
+                var resource = _prototype.Applications.OfType<RestApiApplication>().First(a => a.Name == op.ApplicationName);
                 op.Url = "http://" + resource.BaseUrl + "/api/action/" + op.ActionName;
             }
         }
