@@ -163,7 +163,7 @@
             "Operations": [
               {
                 "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.CallUrlOperation, CloudPrototyper.NET.Framework.v462.Computing",
-                "ResourceName": "UsersMicroservice",
+                "ApplicationName": "UsersMicroservice",
                 "ActionName": "Login",
                 "Url": "",
                 "Name": "LoginOperation",
@@ -171,7 +171,7 @@
               },
               {
                 "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.CallUrlOperation, CloudPrototyper.NET.Framework.v462.Computing",
-                "ResourceName": "DataMicroservice",
+                "ApplicationName": "DataMicroservice",
                 "ActionName": "GetAllData",
                 "Url": "",
                 "Name": "GetAllDataOperation",
@@ -191,7 +191,7 @@
             "Operations": [
               {
                 "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.CallUrlOperation, CloudPrototyper.NET.Framework.v462.Computing",
-                "ResourceName": "UsersMicroservice",
+                "ApplicationName": "UsersMicroservice",
                 "ActionName": "Login",
                 "Url": "",
                 "Name": "LoginCallOperation",
@@ -199,7 +199,7 @@
               },
               {
                 "$type": "CloudPrototyper.NET.Framework.v462.Computing.Models.CallUrlOperation, CloudPrototyper.NET.Framework.v462.Computing",
-                "ResourceName": "DataMicroservice",
+                "ApplicationName": "DataMicroservice",
                 "ActionName": "CreateData",
                 "Url": "",
                 "Name": "CreateDataOperation",
