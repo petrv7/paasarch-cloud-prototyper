@@ -28,6 +28,10 @@ using CloudPrototyper.NET.v6.Functions.Model;
 using CloudPrototyper.NET.Standard.v20.CosmosDb.Model;
 using CloudPrototyper.NET.Standard.v20.EventHub.Model;
 using Sku = Microsoft.Azure.Management.EventHub.Fluent.Models.Sku;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace CloudPrototyper.Deployment.Azure
 {
@@ -49,6 +53,8 @@ namespace CloudPrototyper.Deployment.Azure
     /// </summary>
     public class AzureDeploymentManager : DeploymentManager
     {
+        private static readonly HttpClient client = new();
+
         private IAzure _azure;
         private IResourceGroup _resourceGroup;
         private ISqlServer _sqlServer;
@@ -354,8 +360,8 @@ namespace CloudPrototyper.Deployment.Azure
                 _sqlServer = _azure.SqlServers.Define(Guid.NewGuid().ToString("N").Substring(0, 16))
                         .WithRegion(ConfigProvider.GetValue("AzureRegion"))
                         .WithExistingResourceGroup(_resourceGroup)
-                        .WithAdministratorLogin("sqladmin3423")
-                        .WithAdministratorPassword("myS3cureP@ssword")
+                        .WithAdministratorLogin(serverLogin)
+                        .WithAdministratorPassword(serverPass)
                         .WithNewFirewallRule("0.0.0.0", "255.255.255.255", "shady")
                         .Create();
             }
@@ -384,6 +390,18 @@ namespace CloudPrototyper.Deployment.Azure
                                         _databases[resource].Name + ";Persist Security Info=False;User ID=" +
                                         serverLogin + ";Password=" + serverPass +
                                         ";MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+
+            // update serverless database autopause delay and min vcores
+            if (resource.PerformanceTier.ToLower() == "serverless")
+            {
+                SetAuthToken();
+                HttpRequestMessage request = new(HttpMethod.Put, @"https://management.azure.com/subscriptions/" + ConfigProvider.GetValue("SubscriptionId") + "/resourceGroups/" + _resourceGroup.Name + "/providers/Microsoft.Sql/servers/" + _sqlServer.Name + "/databases/" + resource.Name + "?api-version=2021-02-01-preview");
+
+                request.Content = new StringContent($"{{\"location\": \"{ConfigProvider.GetValue("AzureRegion")}\", \"properties\": {{ \"autoPauseDelay\": {resource.AutopauseDelay}, \"minCapacity\": {resource.MinvCores.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)} }}}}", Encoding.UTF8, "application/json");
+                var response = client.Send(request);
+                response.EnsureSuccessStatusCode();
+            }
+
             Console.WriteLine("Done: " + resource.Name);
         }
 		
@@ -673,6 +691,24 @@ namespace CloudPrototyper.Deployment.Azure
                 "ep3" => new PricingTier("ElasticPremium", "EP3"),
                 _ => PricingTier.FreeF1
             };
+        }
+
+        private void SetAuthToken()
+        {
+            HttpRequestMessage request = new(HttpMethod.Post, @"https://login.microsoftonline.com/" + ConfigProvider.GetValue("TennantId") + "/oauth2/token");
+            var content = new Dictionary<string, string>();
+            content.Add("client_id", ConfigProvider.GetValue("ClientId"));
+            content.Add("client_secret", ConfigProvider.GetValue("ClientSecret"));
+            content.Add("grant_type", "client_credentials");
+            content.Add("resource", @"https://management.azure.com/");
+
+            request.Content = new FormUrlEncodedContent(content);
+            var authResponse = client.Send(request);
+            var responseTask = authResponse.Content.ReadAsStringAsync();
+            responseTask.Wait();
+            dynamic response = JsonConvert.DeserializeObject(responseTask.Result);
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", (string)response.access_token);
         }
     }
 }

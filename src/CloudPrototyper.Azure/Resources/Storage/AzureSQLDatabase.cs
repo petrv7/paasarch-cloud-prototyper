@@ -19,5 +19,13 @@ namespace CloudPrototyper.Azure.Resources.Storage
         /// Maximum number of vCores if PerformanceTier is "serverless"
         /// </summary>
         public int MaxvCores { get; set; } = 1;
+        /// <summary>
+        /// Minimum number of vCores if PerformanceTier is "serverless"
+        /// </summary>
+        public int MinvCores { get; set; } = 1;
+        /// <summary>
+        /// Autopause delay in minutes if PerformanceTier is "serverless"
+        /// </summary>
+        public int AutopauseDelay { get; set; } = 60;
     }
 }
