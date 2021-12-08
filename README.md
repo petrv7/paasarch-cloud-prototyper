@@ -19,7 +19,7 @@ cd build
 ```
 
 ### Configuration
-Tool requires configuration file in order to create resources in Azure. The ```TennandId``` and ```SubscriptionId``` can be found in your Azure subscription settings. To get the ```ClientId``` and ```ClientSecret``` you need to register service application in the Active Directory with sufficient permissions to manipulate with resources.
+Tool requires configuration file in order to create resources in Azure. The ```TennantId``` and ```SubscriptionId``` can be found in your Azure subscription settings. To get the ```ClientId``` and ```ClientSecret``` you need to register service application in the Active Directory with sufficient permissions to manipulate with resources.
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
